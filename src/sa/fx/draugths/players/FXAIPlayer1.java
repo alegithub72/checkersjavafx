@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sa.fx.draugths.event;
+package sa.fx.draugths.players;
 
 
 import javafx.event.EventHandler;
@@ -32,7 +32,7 @@ public class FXAIPlayer1 extends AIPlayer implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-        gtable.getCommand().setText("");
+     /**   gtable.getCommand().setText("");
         Image winText;
         ImageView imageView;
         if (gtable.winCondition() == Piece.WHITE) {
@@ -65,7 +65,7 @@ public class FXAIPlayer1 extends AIPlayer implements EventHandler<MouseEvent> {
                 gtable.playComputerPlayer();
             }
 
-        }
+        }*/
         event.consume();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

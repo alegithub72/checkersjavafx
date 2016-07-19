@@ -37,7 +37,7 @@ public class FrameAnimationTimer extends AnimationTimer{
     public SpritePiece p;
     int i;
     long before;
-    long interval=100;  
+    long interval=0;  
     AudioClip mediaPlayer;
     Duration half;
    // private PathTransition pathTransition;
@@ -88,16 +88,13 @@ public class FrameAnimationTimer extends AnimationTimer{
 
     @Override
     public void stop() {
-        super.stop();
+       super.stop();
        if(mediaPlayer!=null)  {
            mediaPlayer.stop();
            
        }
         
-        if(p.getBoardPieceLink().getType()==Piece.DRAUGTH) {
-            p.setFrameDama();
-        }
-        else p.setFrame(0);
+
 
         //pathTransition.stop();
        // super.stop(); //To change body of generated methods, choose Tools | Templates.

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sa.fx.draugths.event;
+package sa.fx.draugths.players;
 
 
 import javafx.event.ActionEvent;

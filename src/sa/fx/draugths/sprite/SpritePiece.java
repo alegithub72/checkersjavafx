@@ -43,7 +43,14 @@ public abstract class SpritePiece extends Parent{
     int nframes = 0;
     FrameAnimationTimer frameAnimTimer[];
     Piece boardPieceLink;
+    int k;
+    boolean draugthTransform=false;
 
+
+    
+    
+    
+    
     public Piece getBoardPieceLink() {
         return boardPieceLink;
     }
@@ -58,6 +65,10 @@ public abstract class SpritePiece extends Parent{
     Animation ptList[];
     BCDraugthsApp bcdg;
     SpritePiece eated;
+    
+    
+    
+    
     public SpritePiece(int w, int h,double wboardBox,double hBoardBox, BCDraugthsApp bcdg,String img) {
         this.w = w;
         this.h = h;
@@ -74,6 +85,17 @@ public abstract class SpritePiece extends Parent{
         frameAnimTimer=new FrameAnimationTimer[2];
 
     }
+
+    public int getK() {
+        return k;
+    }
+
+    public void setK(int k) {
+        this.k = k;
+    }
+    
+    
+    
     public void buildFrameImages(){
                 int n = (frameImages.widthProperty().intValue() / w);
         frames = new Rectangle2D[n];
@@ -98,7 +120,7 @@ public abstract class SpritePiece extends Parent{
     public void play(Move m) {
 
          if (m.getType() == Move.MOVE ) {           
-         if( boardPieceLink.getType()==Piece.DRAUGTH ) {
+         if( m.getP().getType()==Piece.DRAUGTH ) {
              animDamaMove(m);
              playAnimDamaMove(m);
          }else{
@@ -108,14 +130,15 @@ public abstract class SpritePiece extends Parent{
 
             
         } else if (m.getType() == Move.EAT) {
-            eated = bcdg.getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor()); 
-
-           if(getBoardPieceLink().getType()==Piece.DRAUGTH){
+            
+            eated = bcdg.getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(),m.getEat().isEated()); 
+          //  System.out.println("EAT ELIMATION of"+eated.getK()+")");
+           if(m.getP().getType()==Piece.DRAUGTH){
                animDamaEat(m);
                playAnimDamaEat(m);
            }else {
                animPedinaEat(m);
-                playAnimPedinaEat(m);
+               playAnimPedinaEat(m);
            
            }
         } 
@@ -143,7 +166,8 @@ public abstract class SpritePiece extends Parent{
     
     public void start(Move m){
 
-        if(ptList!=null && ptList.length>0 && ptList[TRANSITION_STEP.FULL_STEP]!=null) ptList[TRANSITION_STEP.FULL_STEP].play();
+        if(ptList!=null && ptList.length>0 && ptList[TRANSITION_STEP.FULL_STEP]!=null) 
+            ptList[TRANSITION_STEP.FULL_STEP].play();
         if(frameAnimTimer[0]!=null) frameAnimTimer[0].start();
         if(eated!=null) eated.start(m);
 
@@ -154,13 +178,14 @@ public abstract class SpritePiece extends Parent{
     
     public void stop() {
 
-        if(frameAnimTimer!=null) frameAnimTimer[0].stop();
+        frameAnimTimer[0].stop();
         for (int i = 0; i < ptList.length; i++) {
             Animation a = ptList[i];
             if(a!=null) a.stop();
             if(a!=null) bcdg.getBoardGroup().getChildren().remove(a);
             ptList[i]=null;
         }
+        setFrame(0);
 
         
     }
@@ -244,7 +269,6 @@ public abstract class SpritePiece extends Parent{
         buildPedinaMoveEatPath(m);
         buildFrameEatMoveAnimation( 0f, true);
         ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated,this.bcdg, w, h));
-        this.eated=eated;
         this.eated.buildDestroyPedinaAnimation();
 
 
@@ -252,9 +276,9 @@ public abstract class SpritePiece extends Parent{
    protected void  animDamaEat(Move m) {
     
         buildDamaMoveEatPath(m);
-        buildFrameEatMoveAnimation( 0f, true);
-       ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated,this.bcdg, w, h));
-        this.eated=eated;
+        buildFrameEatMoveAnimation(0f, true);
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated,this.bcdg, w, h));
+       // this.eated=eated;
         this.eated.buildDestroyPedinaAnimation();
 
 

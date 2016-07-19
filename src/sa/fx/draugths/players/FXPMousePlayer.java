@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sa.fx.draugths.event;
+package sa.fx.draugths.players;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,7 @@ import javafx.scene.shape.QuadCurveTo;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.event.ConfirmCommandEvent;
 import sa.gameboard.core.Piece;
 
 /**

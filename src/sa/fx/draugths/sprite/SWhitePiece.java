@@ -51,7 +51,7 @@ public class SWhitePiece extends SpritePiece {
     }
 
     public void buildDestroyDamaAnimation() {
-        if (this.boardPieceLink.getType() == Piece.PIECE) {
+        if (!draugthTransform) {
             setEatedAnimation(12, 18, 0, false, 100, FrameAnimationTimer.BIGEXPLOSION);
         } else {
             setEatedAnimation(5, 10, 0, false, 50, FrameAnimationTimer.BIGEXPLOSION);
@@ -59,7 +59,7 @@ public class SWhitePiece extends SpritePiece {
     }
 
     public void buildDestroyPedinaAnimation() {
-        if (this.boardPieceLink.getType() == Piece.PIECE) {
+        if (!draugthTransform) {
             setEatedAnimation(10, 13, 0.35d, false, 100, FrameAnimationTimer.BITE);
         } else {
             setEatedAnimation(7, 11, 0.4d, false, 100, FrameAnimationTimer.BITE);
@@ -68,10 +68,10 @@ public class SWhitePiece extends SpritePiece {
 
     public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
 
-        if (boardPieceLink.getType() == Piece.PIECE) {
+        if (!draugthTransform) {
             frameAnimTimer[0] = new FrameAnimationTimer(5, 6, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEWHITE);
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(1, 2, this, frac, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W);
+            frameAnimTimer[0] = new FrameAnimationTimer(1, 2, this, frac, ciclyc, 0, FrameAnimationTimer.DAMAMOVE_W);
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 
@@ -97,7 +97,9 @@ public class SWhitePiece extends SpritePiece {
     }
 
     public void setFrameDama() {
-        if (boardPieceLink.getType() == Piece.DRAUGTH) {
+        if (boardPieceLink.getType() == Piece.DRAUGTH &&
+                draugthTransform==false) {
+            draugthTransform=true;
             frameImages = new Image("white_dama.png");
             pedina.setImage(frameImages);
             AudioClip ach = buildMedia(FrameAnimationTimer.ACHW);
@@ -277,8 +279,8 @@ public class SWhitePiece extends SpritePiece {
         missile.setViewport(new Rectangle2D(0, 0, 64, 22));
         bcdg.getBoardGroup().getChildren().add(missile);
         //x missile.toFront();
-        int x = boardPieceLink.getI();
-        int y = boardPieceLink.getJ();
+        int x = m.getP().getI();
+        int y = m.getP().getJ();
         /**
          * missile.setX(x*wBoardSquare);
         missile.setY((y*hBoardSquare));
@@ -314,7 +316,7 @@ public class SWhitePiece extends SpritePiece {
 
         ptMissile.play();
 
-        ptList[TRANSITION_STEP.MISSILE_FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, bcdg, wboardBox, hBoardBox));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, bcdg, wboardBox, hBoardBox));
 
     }
 

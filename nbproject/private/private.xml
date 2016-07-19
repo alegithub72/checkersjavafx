@@ -12,17 +12,8 @@
             <file>file:/C:/Users/ale2s_000/Documents/NetBeansProjects/BCDama/src/bcdama/MoveAnimePedinaTimer.java</file>
         </group>
         <group>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/event/SelectEventPlayer.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/event/FXAIPlayer1.java</file>
             <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/SpritePiece.java</file>
             <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/animation/PedinaAnimationEndHandler.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/SBlackPiece.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/animation/AnimationPedinaMove.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/animation/FrameAnimationTimer.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/event/FXPMousePlayer.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/BCDraugthsApp.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/event/ConfirmCommandEvent.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/event/FXPlayer.java</file>
             <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/SWhitePiece.java</file>
         </group>
     </open-files>

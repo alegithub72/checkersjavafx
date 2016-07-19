@@ -47,7 +47,7 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
         p.stop();
         if(e!=null) e.stop();
         if(m.getP().getColor()==Piece.WHITE) bCDamaGraphic.updatePoint(m.calculateValue());
-        if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
+       if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
             this.bCDamaGraphic.getGame().getBoard().getBoardSideNorth()==m.getP().getColor() &&
             m.getJ1()==7) {
             p.setFrameDama();
@@ -55,10 +55,12 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
 
         }else if((m.getType()==Move.MOVE || m.getType()==Move.EAT) &&
                 this.bCDamaGraphic.getGame().getBoard().getBoardSideSouth()==m.getP().getColor()  &&
-                m.getP().getJ()==0)
+                m.getJ1()==0){
+                p.setFrameDama();
+        }
 
         if (e != null) {
-            bCDamaGraphic.removeSpritePiece(e, m.getEat().getColor());
+            bCDamaGraphic.removeSpritePiece(e);
         }
 
 
