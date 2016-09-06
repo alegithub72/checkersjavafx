@@ -55,8 +55,8 @@ public class BackGround extends Group {
         background = new ImageView();
 
         if (level==1) {
-            //images = new Image("scacchieraLevel2.png");
-            images = new Image("hearthBright.png");
+            images = new Image("scacchieraLevel2.png");
+            //images = new Image("hearthBright.png");
 
         }
         else if (level==0) {

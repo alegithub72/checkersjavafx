@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import sa.boardgame.core.players.AIPlayer;
 import sa.fx.draugths.BCDraugthsApp;
-import sa.gameboard.core.Piece;
+import sa.gameboard.core.Checker;
 
 /**
  *
@@ -25,7 +25,7 @@ public class FXAIPlayer1 extends AIPlayer implements EventHandler<MouseEvent> {
     Group table;
 
     public FXAIPlayer1(Group table, BCDraugthsApp gtable,int level) {
-        super(Piece.BLACK);
+        super(Checker.BLACK);
         this.gtable = gtable;
         this.table = table;
     }

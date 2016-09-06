@@ -5,7 +5,7 @@
  */
 package sa.fx.draugths.utility;
 
-import sa.fx.draugths.sprite.SWhitePiece;
+import sa.fx.draugths.sprite.HumanPiece;
 import javafx.beans.value.WritableValue;
 
 /**
@@ -14,9 +14,9 @@ import javafx.beans.value.WritableValue;
  */
 public class WriteFrame implements WritableValue<Object> {
 
-    SWhitePiece p;
+    HumanPiece p;
     int frame;
-    public WriteFrame(SWhitePiece p) {
+    public WriteFrame(HumanPiece p) {
        this.p=p;
     }
 

@@ -10,7 +10,7 @@ import java.net.URL;
 import javafx.animation.AnimationTimer;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
-import sa.gameboard.core.Piece;
+import sa.fx.draugths.sprite.Sprite;
 
 
 /**
@@ -25,6 +25,8 @@ public class FrameAnimationTimer extends AnimationTimer{
     public static String BIG_BITE="lion_roar_2.mp3";
     public static String MOVEWHITE="jungle_drum.wav";
     public static String MOVEBLACK="moveAlien2.wav";
+    public static String MOVEMONSTER="comic_ufo.mp3";
+    public static String EXPLOSIONMONSTER="Fireball.wav";
     public static String MISSILE="top.wav";
     public static String DAMAMOVE_W="damamove.wav";
     public static String DAMAMOVE_B="move_alien.wav";
@@ -34,7 +36,7 @@ public class FrameAnimationTimer extends AnimationTimer{
     public static String ACHW="Achievement.wav";
     public static String ACHB="pluck.wav";
     public String sound;
-    public SpritePiece p;
+    public Sprite p;
     int i;
     long before;
     long interval=0;  
@@ -45,7 +47,7 @@ public class FrameAnimationTimer extends AnimationTimer{
     boolean ciclyc;
     double frac;
     boolean startMusic=true;
-    public FrameAnimationTimer(int f1, int f2, SpritePiece p,double frac,boolean cyclic,long interval,String sound) {
+    public FrameAnimationTimer(int f1, int f2, Sprite p,double frac,boolean cyclic,long interval,String sound) {
         this.f1 = f1;
         this.f2 = f2;
     

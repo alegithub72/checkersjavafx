@@ -10,7 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
-import sa.gameboard.core.Piece;
+import sa.gameboard.core.Checker;
 
 
 /**
@@ -46,7 +46,7 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
 
         p.stop();
         if(e!=null) e.stop();
-        if(m.getP().getColor()==Piece.WHITE) bCDamaGraphic.updatePoint(m.calculateValue());
+        if(m.getP().getColor()==Checker.WHITE) bCDamaGraphic.updatePoint(m.calculateValue());
        if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
             this.bCDamaGraphic.getGame().getBoard().getBoardSideNorth()==m.getP().getColor() &&
             m.getJ1()==7) {
@@ -63,7 +63,9 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
             bCDamaGraphic.removeSpritePiece(e);
         }
 
-
+        for(int h=0;h<2;h++){
+            p.removeExtraSprite(h);
+        }
         p.removeAnimationSetting();
         bCDamaGraphic.turnEnd();
         event.consume();

@@ -9,7 +9,7 @@ package sa.fx.draugths.utility;
 
 
 import sa.fx.draugths.players.FXPlayer;
-import sa.fx.draugths.sprite.SWhitePiece;
+import sa.fx.draugths.sprite.HumanPiece;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -37,7 +37,7 @@ public class BCDamaTxt extends Application implements GraficBoardInterface{
     Player player2;
     FXPlayer player1;
     TextField command;
-    SWhitePiece select;
+    HumanPiece select;
 
     @Override
     public void start(Stage primaryStage) throws Exception {

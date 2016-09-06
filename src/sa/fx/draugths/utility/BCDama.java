@@ -6,7 +6,7 @@
 package sa.fx.draugths.utility;
 
 
-import sa.fx.draugths.sprite.SWhitePiece;
+import sa.fx.draugths.sprite.HumanPiece;
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -30,9 +30,9 @@ import javafx.util.Duration;
  * @author ale2s_000
  */
 public class BCDama extends Application {
-    SWhitePiece pedinaB[];
-    SWhitePiece pedinaW[];
-    SWhitePiece pedina;
+    HumanPiece pedinaB[];
+    HumanPiece pedinaW[];
+    HumanPiece pedina;
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();

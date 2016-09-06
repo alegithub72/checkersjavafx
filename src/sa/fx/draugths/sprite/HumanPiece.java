@@ -10,7 +10,6 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.PathBuilder;
 import javafx.scene.shape.QuadCurveTo;
-import javafx.animation.Animation;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.PathTransitionBuilder;
@@ -18,8 +17,6 @@ import javafx.animation.RotateTransition;
 import javafx.animation.RotateTransitionBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -28,41 +25,42 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
  *
  * @author ale2s_000
  */
-public class SWhitePiece extends SpritePiece {
+public class HumanPiece extends SpritePiece {
 
     int color;
-    ImageView missile;
 
-    SWhitePiece(int color, BCDraugthsApp bcdg, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img) {
+
+    HumanPiece(int color, BCDraugthsApp bcdg, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img) {
         super(w, h, wbBox, hbBox, bcdg, img);
         this.color = color;
         this.bcdg = bcdg;
         this.boardPieceLink = boardPiece;
     }
 
-    private void setEatedAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
+     void setEatedAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
         frameAnimTimer[0] = new FrameAnimationTimer(f1, f2, this, frac, ciclyc, interval, sound);
     }
 
-    public void buildDestroyDamaAnimation() {
-        if (!draugthTransform) {
-            setEatedAnimation(12, 18, 0, false, 100, FrameAnimationTimer.BIGEXPLOSION);
-        } else {
-            setEatedAnimation(5, 10, 0, false, 50, FrameAnimationTimer.BIGEXPLOSION);
-        }
-    }
 
-    public void buildDestroyPedinaAnimation() {
-        if (!draugthTransform) {
-            setEatedAnimation(10, 13, 0.35d, false, 100, FrameAnimationTimer.BITE);
-        } else {
-            setEatedAnimation(7, 11, 0.4d, false, 100, FrameAnimationTimer.BITE);
+
+    public void buildDestroyAnimation(int by) {
+        if (by ==Piece.CHECKER) {
+           
+            if(!draugthTransform)  setEatedAnimation(10, 12, 0.35d, false, 100, FrameAnimationTimer.BITE);
+            else System.out.println("Errorre.........");
+        
+        } else if (by ==Piece.DRAUGTH)  {
+        
+          if(draugthTransform) setEatedAnimation(7, 11, 0.4d, false, 100, FrameAnimationTimer.BITE);
+          else setEatedAnimation(10, 12, 0.35d, false, 100, FrameAnimationTimer.BITE);
+              
         }
     }
 
@@ -97,11 +95,11 @@ public class SWhitePiece extends SpritePiece {
     }
 
     public void setFrameDama() {
-        if (boardPieceLink.getType() == Piece.DRAUGTH &&
+        if (boardPieceLink.getType() == Checker.DRAUGTH &&
                 draugthTransform==false) {
             draugthTransform=true;
             frameImages = new Image("white_dama.png");
-            pedina.setImage(frameImages);
+            imgView.setImage(frameImages);
             AudioClip ach = buildMedia(FrameAnimationTimer.ACHW);
             ach.setCycleCount(1);
             ach.play();
@@ -275,9 +273,9 @@ public class SWhitePiece extends SpritePiece {
     @Override
     public void animDamaEat(Move m) {
         ParallelTransition ptMissile = new ParallelTransition();
-        missile = new ImageView(new Image("missile2.png"));
-        missile.setViewport(new Rectangle2D(0, 0, 64, 22));
-        bcdg.getBoardGroup().getChildren().add(missile);
+        extraSprite[0]= new Sprite(64, 64, 64, 64, bcdg,"missile2.png");
+      
+        bcdg.getBoardGroup().getChildren().add(extraSprite[0]);
         //x missile.toFront();
         int x = m.getP().getI();
         int y = m.getP().getJ();
@@ -295,7 +293,7 @@ public class SWhitePiece extends SpritePiece {
         PathTransition pathMissileTransition = PathTransitionBuilder.create()
                 .duration(Duration.seconds(0.5))
                 .path(path)
-                .node(missile)
+                .node(extraSprite[0])
                 .orientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT)
                 .cycleCount(1)
                 .autoReverse(false)
@@ -310,7 +308,7 @@ public class SWhitePiece extends SpritePiece {
         frameAnimTimer[1] = new FrameAnimationTimer(3, 4, this, 0, true, 10, FrameAnimationTimer.MISSILE);
         frameAnimTimer[1].start();
 
-        eated.buildDestroyDamaAnimation();
+        eated.buildDestroyAnimation(Piece.DRAUGTH);
         buildFrameMoveAnimation(0, true);
         //setFrame(3);
 
@@ -328,7 +326,7 @@ public class SWhitePiece extends SpritePiece {
             @Override
             public void handle(ActionEvent event) {
 
-                missile.setVisible(false);
+                extraSprite[0].setVisible(false);
                 frameAnimTimer[1].stop();
                 start(m);
                 eated.start(m);

@@ -9,12 +9,8 @@ package sa.fx.draugths.sprite;
 import java.net.URL;
 
 import javafx.animation.Animation;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Reflection;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -24,26 +20,17 @@ import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.event.SelectEventPlayer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
  *
  * @author ale2s_000
  */
-public abstract class SpritePiece extends Parent{
-    public static int MOVE_TRANSITION=0;
-    
-    Image frameImages;
-    ImageView pedina;
-    Rectangle2D[] frames;
-    int w;
-    int h;
-    double wboardBox;
-    double hBoardBox;
-    int nframes = 0;
-    FrameAnimationTimer frameAnimTimer[];
+public abstract class SpritePiece extends Sprite{
+
+
     Piece boardPieceLink;
-    int k;
     boolean draugthTransform=false;
 
 
@@ -62,65 +49,31 @@ public abstract class SpritePiece extends Parent{
     
     
     
-    Animation ptList[];
-    BCDraugthsApp bcdg;
     SpritePiece eated;
     
     
     
     
     public SpritePiece(int w, int h,double wboardBox,double hBoardBox, BCDraugthsApp bcdg,String img) {
-        this.w = w;
-        this.h = h;
-        this.wboardBox=wboardBox;
-        this.hBoardBox=hBoardBox;
-        this.bcdg=bcdg;
-        frameImages = new Image(img);
-        buildFrameImages();
-        pedina = new ImageView(frameImages);
-        pedina.setViewport(frames[0]);  
-        getChildren().add(pedina);
-        ptList=new Animation[5];
-        
-        frameAnimTimer=new FrameAnimationTimer[2];
+        super(w, h, wboardBox, hBoardBox, bcdg, img);
 
     }
+    void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
+        frameAnimTimer[0] = new FrameAnimationTimer(f1, f2, this, frac, ciclyc, interval, sound);
+    }    
 
-    public int getK() {
-        return k;
-    }
-
-    public void setK(int k) {
-        this.k = k;
-    }
     
     
     
-    public void buildFrameImages(){
-                int n = (frameImages.widthProperty().intValue() / w);
-        frames = new Rectangle2D[n];
-        for (int i = 0; i < n; i++) {
-            frames[i] = new Rectangle2D(i * w, 0, w, h);
-        }
-    }
-    public void setFrame(int i) {
-        this.nframes = i;
-        pedina.setViewport(frames[i]);
-    }
+
 
     public int getFrame() {
         return this.nframes;
     }    
-    public void setX(double x){
-        pedina.setX(x);
-    }
-    public void setY(double y){
-        pedina.setY(y);
-    }    
     public void play(Move m) {
 
          if (m.getType() == Move.MOVE ) {           
-         if( m.getP().getType()==Piece.DRAUGTH ) {
+         if( Checker.DRAUGTH==m.getP().getType() ) {
              animDamaMove(m);
              playAnimDamaMove(m);
          }else{
@@ -133,7 +86,7 @@ public abstract class SpritePiece extends Parent{
             
             eated = bcdg.getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(),m.getEat().isEated()); 
           //  System.out.println("EAT ELIMATION of"+eated.getK()+")");
-           if(m.getP().getType()==Piece.DRAUGTH){
+           if(m.getP().getType()==Checker.DRAUGTH){
                animDamaEat(m);
                playAnimDamaEat(m);
            }else {
@@ -168,9 +121,13 @@ public abstract class SpritePiece extends Parent{
 
         if(ptList!=null && ptList.length>0 && ptList[TRANSITION_STEP.FULL_STEP]!=null) 
             ptList[TRANSITION_STEP.FULL_STEP].play();
-        if(frameAnimTimer[0]!=null) frameAnimTimer[0].start();
+        for(int h=0;h<frameAnimTimer.length;h++)if(frameAnimTimer[h]!=null) frameAnimTimer[0].start();
+        
         if(eated!=null) eated.start(m);
-
+        //check this code.................when intersect lauch the destruction 
+        //event...
+        //Bounds d= eated.getBoundsInLocal();
+        //this.intersects(d);
         //bcdg.removePuntatori();
         bcdg.setOn(true);
       
@@ -193,33 +150,26 @@ public abstract class SpritePiece extends Parent{
     public Duration getAnimDuration() {
         return Duration.seconds(1.5);
     }   
-    public int getW() {
-        return w;
-    }
-
-    public void setW(int w) {
-        this.w = w;
-    }
-
-    public int getH() {
-        return h;
-    }
-
-    public void setH(int h) {
-        this.h = h;
-    }    
-       public static SpritePiece  buildPedina(int w, int h,double wboardBox,double hBoardBox, int color,Piece pedinassociated,BCDraugthsApp bcdg,int level) {
+    
+        public static SpritePiece buildPedina(int w,int h,double wb,double hb,int c,Piece pa,BCDraugthsApp app,int level){
+            if(level==1)  return buildPedinaLevel1(w, h, wb, hb, c, pa, app);
+            else if(level==2) return  buildPedinaLevel2(w, h, wb, hb, c, pa, app);
+            return null;
+        }
+    
+    
+       public static SpritePiece  buildPedinaLevel1(int w, int h,double wboardBox,double hBoardBox, int color,Piece pedinassociated,BCDraugthsApp app) {
        String imagePedina=null;
        SpritePiece pedina=null;    
        if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
-        if (Piece.BLACK == color) {
+        if (Checker.BLACK == color) {
             imagePedina = "black_checker.png";
-            pedina= new SBlackPiece(Piece.BLACK, bcdg, pedinassociated, w, h,  wboardBox, hBoardBox,imagePedina);
-            if(pedinassociated.getType()==Piece.DRAUGTH) pedina.setFrameDama();
+            pedina= new AlienPiece(Checker.BLACK, app, pedinassociated, w, h,  wboardBox, hBoardBox,imagePedina);
+            if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         } else {
             imagePedina = "white_cheker.png";
-            pedina= new SWhitePiece(Piece.WHITE, bcdg, pedinassociated, w, h,wboardBox,hBoardBox, imagePedina);
-            if(pedinassociated.getType()==Piece.DRAUGTH) pedina.setFrameDama();
+            pedina= new HumanPiece(Checker.WHITE, app, pedinassociated, w, h,wboardBox,hBoardBox, imagePedina);
+            if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         }
         Reflection reflection = new Reflection();
         reflection.setFraction(0.7);
@@ -229,11 +179,38 @@ public abstract class SpritePiece extends Parent{
         dropShadow.setOffsetY(0.0);
         dropShadow.setColor(Color.BLACK);
         pedina.setEffect(dropShadow);
-        pedina.setOnMouseClicked(new SelectEventPlayer(bcdg,pedina));
+        pedina.setOnMouseClicked(new SelectEventPlayer(app,pedina));
     
         return pedina;
 
     }
+       
+       public static SpritePiece  buildPedinaLevel2(int w, int h,double wboardBox,double hBoardBox, int color,Piece pedinassociated,BCDraugthsApp app) {
+       String imagePedina=null;
+       SpritePiece pedina=null;    
+       if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
+        if (Checker.BLACK == color) {
+            imagePedina = "black_chekers4.png";
+            pedina= new MonsterSprite(Checker.BLACK, app, pedinassociated, w, h,  wboardBox, hBoardBox,imagePedina);
+            if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
+        } else {
+            imagePedina = "white_cheker_moonsoldier.png";
+            pedina= new MoonSoldier(Checker.WHITE, app, pedinassociated, w, h,wboardBox,hBoardBox, imagePedina);
+            if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
+        }
+        Reflection reflection = new Reflection();
+        reflection.setFraction(0.7);
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(20.0);
+        dropShadow.setOffsetX(0.0);
+        dropShadow.setOffsetY(0.0);
+        dropShadow.setColor(Color.BLACK);
+        pedina.setEffect(dropShadow);
+        pedina.setOnMouseClicked(new SelectEventPlayer(app,pedina));
+    
+        return pedina;
+
+    }       
     
     AudioClip buildMedia(String sound){
         ClassLoader classLoader = getClass().getClassLoader();
@@ -242,9 +219,6 @@ public abstract class SpritePiece extends Parent{
                 
     }       
     
-    public boolean isAnimMoveFinish(){
-          return ptList[TRANSITION_STEP.FULL_STEP].getStatus()==Animation.Status.STOPPED;
-    }
     
     
 
@@ -269,7 +243,7 @@ public abstract class SpritePiece extends Parent{
         buildPedinaMoveEatPath(m);
         buildFrameEatMoveAnimation( 0f, true);
         ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated,this.bcdg, w, h));
-        this.eated.buildDestroyPedinaAnimation();
+        eated.buildDestroyAnimation(m.getP().getType());
 
 
     } 
@@ -279,26 +253,14 @@ public abstract class SpritePiece extends Parent{
         buildFrameEatMoveAnimation(0f, true);
         ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated,this.bcdg, w, h));
        // this.eated=eated;
-        this.eated.buildDestroyPedinaAnimation();
-
-
+       eated.buildDestroyAnimation(m.getP().getType());
     }       
     
-    public void removeAnimationSetting(){
-        for (int i = 0; i < ptList.length; i++) {
-             ptList[i]=null;
-            
-        }
-        for (int i = 0; i < frameAnimTimer.length; i++) {
-            frameAnimTimer[i]=null;
-            
-        }
-
-        eated=null;
+    public void removeAnimationSetting() {
+        super.removeAnimationSetting();
+        eated = null;
     }
-   
-    public abstract void buildDestroyPedinaAnimation();
-    public abstract void buildDestroyDamaAnimation();
+    public abstract void buildDestroyAnimation(int by);
     public abstract void buildFrameMoveAnimation( double frac, boolean ciclyc);
     public abstract void buildFrameEatMoveAnimation( double frac, boolean ciclyc);
     public abstract void setFrameDama();

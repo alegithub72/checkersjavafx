@@ -6,7 +6,7 @@
 package sa.fx.draugths.animation;
 
 
-import sa.fx.draugths.sprite.SWhitePiece;
+import sa.fx.draugths.sprite.HumanPiece;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
@@ -17,11 +17,11 @@ import sa.fx.draugths.BCDraugthsApp;
  * @author ale2s_000
  */
 public class AnimationPedinaMove extends Transition  {
-    SWhitePiece pedina;
+    HumanPiece pedina;
     Move m;
     int f1,f2;
     BCDraugthsApp bcdg;
-    private AnimationPedinaMove(int f1, int f2, SWhitePiece p,Move m,BCDraugthsApp bcdg){
+    private AnimationPedinaMove(int f1, int f2, HumanPiece p,Move m,BCDraugthsApp bcdg){
         this.f1=f1;
         this.f2=f2;
         this.pedina=p;

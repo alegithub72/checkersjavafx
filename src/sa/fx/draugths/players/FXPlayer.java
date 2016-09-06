@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.BCDraugthsApp;
-import sa.gameboard.core.Piece;
+import sa.gameboard.core.Checker;
 
 /**
  *
@@ -24,7 +24,7 @@ public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent> 
     BCDraugthsApp gtable;
     Group table;
     public FXPlayer(Group table,BCDraugthsApp gtable) {
-        super(Piece.WHITE);
+        super(Checker.WHITE);
         gtable=gtable;
         this.table=table;
     }
@@ -36,7 +36,7 @@ public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent> 
     }
 
     @Override
-    public Move chooseMoveList(int n) {
+    public Move chooseMoveList(int n,int n2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -65,8 +65,8 @@ public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent> 
         gtable.playComputerPlayer();
         
         gtable.getCommand().setText("");
-        if (gtable.winCondition() == Piece.WHITE) table.getChildren().add(new Text("IL BIANCO HA VINTOOOOOOO"));
-        else if (gtable.winCondition() == Piece.BLACK) table.getChildren().add(new Text("IL NERO HA VINTOOOOOOO"));
+        if (gtable.winCondition() == Checker.WHITE) table.getChildren().add(new Text("IL BIANCO HA VINTOOOOOOO"));
+        else if (gtable.winCondition() == Checker.BLACK) table.getChildren().add(new Text("IL NERO HA VINTOOOOOOO"));
 
         event.consume();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

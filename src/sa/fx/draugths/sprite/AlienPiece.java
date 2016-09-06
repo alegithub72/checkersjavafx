@@ -9,6 +9,7 @@ import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.PathTransitionBuilder;
 import javafx.scene.image.Image;
+
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
@@ -20,18 +21,19 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
  *
  * @author ale2s_000
  */
-public class SBlackPiece extends SpritePiece {
+public class AlienPiece extends SpritePiece {
 
     int color;
     BCDraugthsApp bcdg;
 
-    SBlackPiece(int color, BCDraugthsApp bcdg, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img) {
+    AlienPiece(int color, BCDraugthsApp bcdg, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img) {
         super(w, h, wbBox, hbBox, bcdg, img);
         this.color = color;
         this.bcdg = bcdg;
@@ -39,25 +41,12 @@ public class SBlackPiece extends SpritePiece {
 
     }
 
-    private void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
-        frameAnimTimer[0] = new FrameAnimationTimer(f1, f2, this, frac, ciclyc, interval, sound);
-    }
 
-    public void buildDestroyDamaAnimation() {
-        if (this.boardPieceLink.getType() == Piece.PIECE) {
-            buildGenericFrameAnimation(12, 19, 0, false, 100, FrameAnimationTimer.BIGEXPLOSION);
-        } else {
-            buildGenericFrameAnimation(5, 10, 0, false, 50, FrameAnimationTimer.BIGEXPLOSION);
-        }
-    }
 
-    public void buildDestroyPedinaAnimation() {
-        if (this.boardPieceLink.getType() == Piece.PIECE) {
-            buildGenericFrameAnimation(9, 19, 0.2d, false, 100, FrameAnimationTimer.EXPLOSION);
-        } else {
-            buildGenericFrameAnimation(5, 10, 0.2d, false, 50, FrameAnimationTimer.EXPLOSION);
-        }
 
+    @Override
+    public void buildDestroyAnimation(int by) {
+        buildGenericFrameAnimation(9, 19, 0.2d, false, 100, FrameAnimationTimer.EXPLOSION);
     }
 
     public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
@@ -71,18 +60,18 @@ public class SBlackPiece extends SpritePiece {
 
     public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
 
-       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(5, 6, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(5, 7, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
        else frameAnimTimer[0] = new FrameAnimationTimer(2, 4, this, frac, ciclyc, 2, FrameAnimationTimer.DAMAMOVE_B);
     }
 
     
 
     public void setFrameDama() {
-        if (boardPieceLink.getType() == Piece.DRAUGTH
+        if (boardPieceLink.getType() == Checker.DRAUGTH
                 && draugthTransform == false) {
             draugthTransform = true;
             frameImages = new Image("black_dama.png");
-            pedina.setImage(frameImages);
+            imgView.setImage(frameImages);
             buildFrameImages();
             AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
@@ -166,6 +155,9 @@ public class SBlackPiece extends SpritePiece {
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
+   
+        
+        
         PathTransition pathTransition = PathTransitionBuilder.create()
                 .duration(Duration.seconds(2))
                 .path(path)
@@ -174,9 +166,12 @@ public class SBlackPiece extends SpritePiece {
                 .cycleCount(1)
                 .autoReverse(true)
                 .build();
+
+        //pathTransition.setNode(laser);
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
 
+        
     }
 
     @Override
@@ -214,6 +209,8 @@ public class SBlackPiece extends SpritePiece {
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
+
+        
         PathTransition pathTransition = PathTransitionBuilder.create()
                 .duration(Duration.seconds(2))
                 .path(path)
@@ -222,6 +219,7 @@ public class SBlackPiece extends SpritePiece {
                 .cycleCount(1)
                 .autoReverse(true)
                 .build();
+        
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
     }

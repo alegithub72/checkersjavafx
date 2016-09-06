@@ -39,6 +39,7 @@ import sa.boardgame.core.players.Player;
 import sa.boardgame.shell.imp.ConsoleRendering;
 import sa.gameboard.core.Board;
 import sa.gameboard.core.Game;
+import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 import sa.gameboard.core.interfaces.GraficBoardInterface;
 
@@ -141,6 +142,7 @@ public class BCDraugthsApp extends Application implements GraficBoardInterface {
                     m.getJ1(),
                     m.getP().getColor(), m.getP().isEated());
             p.play(m);
+            
         }
     }
 
@@ -152,7 +154,7 @@ public class BCDraugthsApp extends Application implements GraficBoardInterface {
         on = false;
         turn = !turn;
 
-        if (winCondition() != Piece.WHITE && winCondition() != Piece.BLACK) {
+        if (winCondition() != Checker.WHITE && winCondition() != Checker.BLACK) {
             if (turn) {
                 this.playComputerPlayer();
             }
@@ -184,7 +186,7 @@ public class BCDraugthsApp extends Application implements GraficBoardInterface {
 
     public void renderTablePlayer(Player player) {
         Piece[] list = null;
-        if (player.getColor() == Piece.BLACK) {
+        if (player.getColor() == Checker.BLACK) {
             list = game.getBoard().getBlackPieces();
         } else {
             list = game.getBoard().getWhitePieces();
@@ -223,7 +225,7 @@ public class BCDraugthsApp extends Application implements GraficBoardInterface {
             if (pedina != null) {
                 Piece p = pedina.getBoardPieceLink();
 
-                System.out.println(k + ")" + "p.i=" + p.getI() + ",p.j=" + p.getJ() + ",p.color=" + (p.getColor() == Piece.BLACK ? "BLACK" : "WHITE"));
+                System.out.println(k + ")" + "p.i=" + p.getI() + ",p.j=" + p.getJ() + ",p.color=" + (p.getColor() == Checker.BLACK ? "BLACK" : "WHITE"));
                 if (!eated && p.getI() == i1
                         && p.getJ() == j1) {
                     sp = (SpritePiece) pedinaList[decodeCol].get(k);
@@ -246,7 +248,7 @@ public class BCDraugthsApp extends Application implements GraficBoardInterface {
     }
 
     int decodeColor(int charcolor) {
-        if (charcolor == Piece.BLACK) {
+        if (charcolor == Checker.BLACK) {
             return 0;
         } else {
             return 1;
@@ -272,7 +274,7 @@ public class BCDraugthsApp extends Application implements GraficBoardInterface {
             AutomaPlayer automa=new AutomaPlayer(mousePlayer.getColor(), "Automa");
             automa.setCommand(part1);
             
-            game = new Game(automa, computerPlayer);
+            game = new Game(automa, computerPlayer,Board.CHECKERS_GAME);
             //game.setDamaSystem((DamaInterface) this);
             ConsoleRendering console = new ConsoleRendering(game.getBoard());
             game.addRenderInterface(console);
@@ -409,17 +411,17 @@ public class BCDraugthsApp extends Application implements GraficBoardInterface {
     }
 
     public int winCondition() {
-        Image winText = new Image("winwhite.png");
+        Image winText = null;
         ImageView imageView = new ImageView();
         int win = game.winCondition();
-        if (win == Piece.WHITE) {
-
+        if (win == Checker.WHITE) {
+            winText = new Image("winwhite.png");
             imageView.setImage(winText);
             imageView.setX(150);
             imageView.setY(250);
             imageView.setScaleX(1);
             imageView.setScaleY(1);
-            updatePoint(pedinaList[decodeColor(Piece.WHITE)].size() * 10);
+            updatePoint(pedinaList[decodeColor(Checker.WHITE)].size() * 10);
             level++;
             imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -430,7 +432,7 @@ public class BCDraugthsApp extends Application implements GraficBoardInterface {
                 }
             });
             boardGroup.getChildren().add(imageView);
-        } else if (win == Piece.BLACK) {
+        } else if (win == Checker.BLACK) {
             winText = new Image("winblack.png");
             imageView = new ImageView();
             //background.setFocusTraversable(true);

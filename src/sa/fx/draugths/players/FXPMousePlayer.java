@@ -20,7 +20,7 @@ import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.event.ConfirmCommandEvent;
-import sa.gameboard.core.Piece;
+import sa.gameboard.core.Checker;
 
 /**
  *
@@ -70,13 +70,13 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     }
 
     public FXPMousePlayer(BCDraugthsApp graficBoard) {
-        super(Piece.WHITE);
+        super(Checker.WHITE);
         this.graficBoard = graficBoard;
 
     }
 
     @Override
-    public Move chooseMoveList( int n) {
+    public Move chooseMoveList( int n,int n2) {
         return l[n];
     }
 
