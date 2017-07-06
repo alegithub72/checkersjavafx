@@ -12,10 +12,11 @@
             <file>file:/C:/Users/ale2s_000/Documents/NetBeansProjects/BCDama/src/bcdama/MoveAnimePedinaTimer.java</file>
         </group>
         <group>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/white_cheker_moonsoldier.png</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/MoonSoldier.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/HumanPiece.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/MonsterSprite.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/FXBoardClass.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/event/SelectEventPlayer.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/animation/PedinaAnimationEndHandler.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/BCDraugthsApp.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/event/ConfirmCommandEvent.java</file>
             <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/players/FXPMousePlayer.java</file>
         </group>
     </open-files>

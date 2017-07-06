@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.event.SelectEventPlayer;
@@ -28,7 +29,8 @@ import sa.gameboard.core.Piece;
  * @author ale2s_000
  */
 public abstract class SpritePiece extends Sprite{
-
+    public  static final int SPRITE_H = 64;
+    public static final int SPRITE_W = 64;  
 
     Piece boardPieceLink;
     boolean draugthTransform=false;
@@ -54,8 +56,8 @@ public abstract class SpritePiece extends Sprite{
     
     
     
-    public SpritePiece(int w, int h,double wboardBox,double hBoardBox, BCDraugthsApp bcdg,String img) {
-        super(w, h, wboardBox, hBoardBox, bcdg, img);
+    public SpritePiece(int w, int h,double wboardBox,double hBoardBox, String img,FXBoardClass b) {
+        super(w, h, wboardBox, hBoardBox,  img,b);
 
     }
     void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
@@ -84,7 +86,7 @@ public abstract class SpritePiece extends Sprite{
             
         } else if (m.getType() == Move.EAT) {
             
-            eated = bcdg.getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(),m.getEat().isEated()); 
+            eated = fbx.getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(),m.getEat().isEated()); 
           //  System.out.println("EAT ELIMATION of"+eated.getK()+")");
            if(m.getP().getType()==Checker.DRAUGTH){
                animDamaEat(m);
@@ -121,7 +123,8 @@ public abstract class SpritePiece extends Sprite{
 
         if(ptList!=null && ptList.length>0 && ptList[TRANSITION_STEP.FULL_STEP]!=null) 
             ptList[TRANSITION_STEP.FULL_STEP].play();
-        for(int h=0;h<frameAnimTimer.length;h++)if(frameAnimTimer[h]!=null) frameAnimTimer[0].start();
+        for(int h=0;h<frameAnimTimer.length;h++)
+            if(frameAnimTimer[h]!=null) frameAnimTimer[0].start();
         
         if(eated!=null) eated.start(m);
         //check this code.................when intersect lauch the destruction 
@@ -129,7 +132,7 @@ public abstract class SpritePiece extends Sprite{
         //Bounds d= eated.getBoundsInLocal();
         //this.intersects(d);
         //bcdg.removePuntatori();
-        bcdg.setOn(true);
+        if(fbx!=null) fbx.setOn(true);
       
     }    
     
@@ -139,7 +142,7 @@ public abstract class SpritePiece extends Sprite{
         for (int i = 0; i < ptList.length; i++) {
             Animation a = ptList[i];
             if(a!=null) a.stop();
-            if(a!=null) bcdg.getBoardGroup().getChildren().remove(a);
+            if(a!=null) fbx.remove(a);
             ptList[i]=null;
         }
         setFrame(0);
@@ -151,24 +154,28 @@ public abstract class SpritePiece extends Sprite{
         return Duration.seconds(1.5);
     }   
     
-        public static SpritePiece buildPedina(int w,int h,double wb,double hb,int c,Piece pa,BCDraugthsApp app,int level){
-            if(level==1)  return buildPedinaLevel1(w, h, wb, hb, c, pa, app);
-            else if(level==2) return  buildPedinaLevel2(w, h, wb, hb, c, pa, app);
+        public static SpritePiece buildPedina(int w,int h,double wb,double hb,int c,Piece pa,int level,
+                FXBoardClass board){
+            if(level==1)  return buildPedinaLevel1(w, h, wb, hb, c, pa,board);
+            else if(level==2) return  buildPedinaLevel2(w, h, wb, hb, c, pa,board);
             return null;
         }
     
     
-       public static SpritePiece  buildPedinaLevel1(int w, int h,double wboardBox,double hBoardBox, int color,Piece pedinassociated,BCDraugthsApp app) {
+       public static SpritePiece  buildPedinaLevel1(int w, int h,double wboardBox,double hBoardBox,
+               int color,Piece pedinassociated, FXBoardClass board) {
        String imagePedina=null;
        SpritePiece pedina=null;    
        if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
         if (Checker.BLACK == color) {
             imagePedina = "black_checker.png";
-            pedina= new AlienPiece(Checker.BLACK, app, pedinassociated, w, h,  wboardBox, hBoardBox,imagePedina);
+            pedina= new AlienPiece(Checker.BLACK,pedinassociated, w, h,  wboardBox,
+                    hBoardBox,imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         } else {
             imagePedina = "white_cheker.png";
-            pedina= new HumanPiece(Checker.WHITE, app, pedinassociated, w, h,wboardBox,hBoardBox, imagePedina);
+            pedina= new HumanPiece(Checker.WHITE,  pedinassociated, w, h,wboardBox,
+                    hBoardBox, imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         }
         Reflection reflection = new Reflection();
@@ -179,23 +186,24 @@ public abstract class SpritePiece extends Sprite{
         dropShadow.setOffsetY(0.0);
         dropShadow.setColor(Color.BLACK);
         pedina.setEffect(dropShadow);
-        pedina.setOnMouseClicked(new SelectEventPlayer(app,pedina));
+        pedina.setOnMouseClicked(new SelectEventPlayer(board,pedina));
     
         return pedina;
 
     }
        
-       public static SpritePiece  buildPedinaLevel2(int w, int h,double wboardBox,double hBoardBox, int color,Piece pedinassociated,BCDraugthsApp app) {
+       public static SpritePiece  buildPedinaLevel2(int w, int h,double wboardBox,double hBoardBox, int color,
+               Piece pedinassociated, FXBoardClass board) {
        String imagePedina=null;
        SpritePiece pedina=null;    
        if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
         if (Checker.BLACK == color) {
             imagePedina = "black_chekers4.png";
-            pedina= new MonsterSprite(Checker.BLACK, app, pedinassociated, w, h,  wboardBox, hBoardBox,imagePedina);
+            pedina= new MonsterSprite(Checker.BLACK, pedinassociated, w, h,  wboardBox, hBoardBox,imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         } else {
             imagePedina = "white_cheker_moonsoldier.png";
-            pedina= new MoonSoldier(Checker.WHITE, app, pedinassociated, w, h,wboardBox,hBoardBox, imagePedina);
+            pedina= new MoonSoldier(Checker.WHITE, pedinassociated, w, h,wboardBox,hBoardBox, imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         }
         Reflection reflection = new Reflection();
@@ -206,7 +214,7 @@ public abstract class SpritePiece extends Sprite{
         dropShadow.setOffsetY(0.0);
         dropShadow.setColor(Color.BLACK);
         pedina.setEffect(dropShadow);
-        pedina.setOnMouseClicked(new SelectEventPlayer(app,pedina));
+        pedina.setOnMouseClicked(new SelectEventPlayer(board,pedina));
     
         return pedina;
 
@@ -226,7 +234,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildPedinaMovePath(m);
         buildFrameMoveAnimation( 0, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m,this.bcdg, w, h));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, w, h,this.fbx));
 
     }  
    
@@ -234,7 +242,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMovePath(m);
         buildFrameMoveAnimation( 0, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m,this.bcdg, w, h));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, w, h,this.fbx));
 
     }     
    
@@ -242,7 +250,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildPedinaMoveEatPath(m);
         buildFrameEatMoveAnimation( 0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated,this.bcdg, w, h));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, w, h,this.fbx));
         eated.buildDestroyAnimation(m.getP().getType());
 
 
@@ -251,7 +259,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMoveEatPath(m);
         buildFrameEatMoveAnimation(0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated,this.bcdg, w, h));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, w, h,this.fbx));
        // this.eated=eated;
        eated.buildDestroyAnimation(m.getP().getType());
     }       

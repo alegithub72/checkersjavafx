@@ -5,7 +5,6 @@
  */
 package sa.fx.draugths.animation;
 
-import sa.fx.draugths.sprite.SpritePiece;
 import java.net.URL;
 import javafx.animation.AnimationTimer;
 import javafx.scene.media.AudioClip;

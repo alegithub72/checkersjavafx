@@ -9,7 +9,7 @@ import sa.fx.draugths.sprite.SpritePiece;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoardClass;
 import sa.gameboard.core.Checker;
 
 
@@ -21,24 +21,27 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
 
     SpritePiece p;
     SpritePiece e;
-    BCDraugthsApp bCDamaGraphic;
+    FXBoardClass fxboard;
     double wBoardBox, hBoadBoxs;
+    
     Move m;
-    public PedinaAnimationEndHandler(SpritePiece p, Move m,  BCDraugthsApp bCDamaGraphic, double wBoardBox, double hBoadBoxs) {
+    public PedinaAnimationEndHandler(SpritePiece p, Move m, double wBoardBox, double hBoadBoxs,FXBoardClass bb) {
         this.p = p;
-        this.bCDamaGraphic = bCDamaGraphic;
+        this.fxboard = bb;
         this.wBoardBox = wBoardBox;
         this.hBoadBoxs = hBoadBoxs;
         this.m = m;
         this.e = null;
+        
     }
-    public PedinaAnimationEndHandler(SpritePiece p, Move m, SpritePiece e, BCDraugthsApp bCDamaGraphic, double wBoardBox, double hBoadBoxs) {
+    public PedinaAnimationEndHandler(SpritePiece p, Move m, SpritePiece e, double wBoardBox, double hBoadBoxs,FXBoardClass bb) {
         this.p = p;
-        this.bCDamaGraphic = bCDamaGraphic;
+        this.fxboard = bb;
         this.wBoardBox = wBoardBox;
         this.hBoadBoxs = hBoadBoxs;
         this.m = m;
         this.e = e;
+         
     }
 
     @Override
@@ -46,28 +49,28 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
 
         p.stop();
         if(e!=null) e.stop();
-        if(m.getP().getColor()==Checker.WHITE) bCDamaGraphic.updatePoint(m.calculateValue());
+        if(m.getP().getColor()==Checker.WHITE) fxboard.getBackGround().updatePoint(m.calculateValue());
        if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
-            this.bCDamaGraphic.getGame().getBoard().getBoardSideNorth()==m.getP().getColor() &&
+            fxboard.getGame().getBoard().getBoardSideNorth()==m.getP().getColor() &&
             m.getJ1()==7) {
             p.setFrameDama();
 
 
         }else if((m.getType()==Move.MOVE || m.getType()==Move.EAT) &&
-                this.bCDamaGraphic.getGame().getBoard().getBoardSideSouth()==m.getP().getColor()  &&
+                this.fxboard.getGame().getBoard().getBoardSideSouth()==m.getP().getColor()  &&
                 m.getJ1()==0){
                 p.setFrameDama();
         }
 
         if (e != null) {
-            bCDamaGraphic.removeSpritePiece(e);
+            fxboard.removeSpritePiece(e);
         }
 
         for(int h=0;h<2;h++){
             p.removeExtraSprite(h);
         }
         p.removeAnimationSetting();
-        bCDamaGraphic.turnEnd();
+        fxboard.turnEnd();
         event.consume();
     }
 

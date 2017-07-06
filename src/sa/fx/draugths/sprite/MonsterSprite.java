@@ -18,6 +18,7 @@ import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
@@ -29,9 +30,11 @@ import sa.gameboard.core.Piece;
  * @author appleale
  */
 public class MonsterSprite extends AlienPiece {
-
-    public MonsterSprite(int color, BCDraugthsApp bcdg, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img) {
-        super(color, bcdg, boardPiece, w, h, wbBox, hbBox, img);
+ 
+    public MonsterSprite(int color, Piece boardPiece, int w,
+            int h, double wbBox, double hbBox, String img, FXBoardClass board) {
+        super(color,  boardPiece, w, h, wbBox, hbBox, img,board);
+       
         setFrame(0);
     }
     
@@ -138,7 +141,7 @@ public class MonsterSprite extends AlienPiece {
         pt.getChildren().add(pathTransition);
 
         
-         extraSprite[0] =new Sprite(64*3, 96, wboardBox, hBoardBox, bcdg, "LASERmONSTER.png");
+         extraSprite[0] =new Sprite(64*3, 96, wboardBox, hBoardBox,  "LASERmONSTER.png",this.fbx);
                 PathTransition pathTransition2 = PathTransitionBuilder.create()
                 .duration(Duration.seconds(2))
                 .path(path2)
@@ -149,12 +152,12 @@ public class MonsterSprite extends AlienPiece {
                 .build();
     
         pt.getChildren().add(pathTransition2);
-        bcdg.getBoardGroup().getChildren().add(extraSprite[0]);
+        fbx.add(extraSprite[0]);
         extraSprite[0].setVisible(true);
         frameAnimTimer[1] = new FrameAnimationTimer(0, 1, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
         frameAnimTimer[1].start();
         buildFrameEatMoveAnimation( 0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated,this.bcdg, w, h));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m,eated, w, h,this.fbx));
         eated.buildDestroyAnimation(m.getP().getType());
 
 

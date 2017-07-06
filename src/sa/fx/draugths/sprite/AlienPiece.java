@@ -19,6 +19,7 @@ import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.gameboard.core.Checker;
@@ -33,10 +34,10 @@ public class AlienPiece extends SpritePiece {
     int color;
     BCDraugthsApp bcdg;
 
-    AlienPiece(int color, BCDraugthsApp bcdg, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img) {
-        super(w, h, wbBox, hbBox, bcdg, img);
+    AlienPiece(int color, Piece boardPiece, int w, int h, double wbBox, double hbBox, 
+            String img, FXBoardClass board) {
+        super(w, h, wbBox, hbBox, img,board);
         this.color = color;
-        this.bcdg = bcdg;
         this.boardPieceLink = boardPiece;
 
     }

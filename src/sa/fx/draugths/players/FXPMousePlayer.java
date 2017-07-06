@@ -19,6 +19,7 @@ import javafx.scene.shape.QuadCurveTo;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.event.ConfirmCommandEvent;
 import sa.gameboard.core.Checker;
 
@@ -28,7 +29,8 @@ import sa.gameboard.core.Checker;
  */
 public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEvent> {
 
-    BCDraugthsApp graficBoard;
+
+    FXBoardClass board;
     ImageView punteImage[];
     List movesMouse;
 
@@ -61,17 +63,18 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     public void deleteMoveChoose() {
         if (movesMouse != null) {
             for (int i = 0; i < movesMouse.size(); i++) {
-
-                this.graficBoard.getBoardGroup().getChildren().remove(movesMouse.get(i));
+                //TODO: internare la funzione remove 
+                this.board.remove(movesMouse.get(i));
                 movesMouse.remove(i);
             }
 
         }
     }
 
-    public FXPMousePlayer(BCDraugthsApp graficBoard) {
+    public FXPMousePlayer(FXBoardClass board) {
         super(Checker.WHITE);
-        this.graficBoard = graficBoard;
+        this.board = board;
+ 
 
     }
 
@@ -85,13 +88,13 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
         
         String r =null;
          if(moveChoose==-1)
-         r="p" + graficBoard.getSelect().getBoardPieceLink().getI() + graficBoard.getSelect().getBoardPieceLink().getJ();
+         r="p" + board.getSelect().getBoardPieceLink().getI() + board.getSelect().getBoardPieceLink().getJ();
          else r=""+moveChoose;
         return r;
     }
 
     public boolean makeMove(Move m) {
-        return board.makeMove(m);
+        return this.board.getGame().getBoard().makeMove(m);
     }
 
 
@@ -100,8 +103,8 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     
     @Override
     public void handle(MouseEvent event) {
-        if (!graficBoard.isOn()) {
-            if (graficBoard.getSelect() != null) {
+        if (!board.isOn()) {
+            if (board.getSelect() != null) {
                 visualizeMove();
             }
 
@@ -112,14 +115,14 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
 
     @Override
-    public void renderMoveChoose() {
+    public void drawMoveChoose() {
         for (int i = 0; i < l.length; i++) {
             Move m = l[i];
 
             if (m != Move.NULLMOVE) {
                 QuadCurveTo quadTo = new QuadCurveTo();
-                double x0 = m.getP().getI() * graficBoard.wBoardSquare;
-                double y0 = m.getP().getJ() * graficBoard.hBoardSquare;
+                double x0 = m.getP().getI() * board.wBoardSquare;
+                double y0 = m.getP().getJ() * board.hBoardSquare;
                 double inc = 100;
                 Color color = Color.CHARTREUSE;
                 if (m.getI1() > m.getP().getI()) {
@@ -128,8 +131,8 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                     quadTo.setControlX(x0 - inc);
                 }
                 quadTo.setControlY(y0 + 22);
-                double x1 = (m.getI1() * graficBoard.wBoardSquare) + 32;
-                double y1 = (m.getJ1() * graficBoard.hBoardSquare) + 32;
+                double x1 = (m.getI1() * board.wBoardSquare) + 32;
+                double y1 = (m.getJ1() * board.hBoardSquare) + 32;
 
                 quadTo.setX(x1);
                 quadTo.setY(y1);
@@ -153,12 +156,12 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 ImageView imagePunt = new ImageView(new Image("puntatore.png"));
 
                 punteImage[i] = imagePunt;
-                punteImage[i].setOnMouseClicked(new ConfirmCommandEvent(this, i,this.graficBoard));
+                punteImage[i].setOnMouseClicked(new ConfirmCommandEvent(this, i,board));
                 punteImage[i].setX(x1 - 32);
                 punteImage[i].setY(y1 - 22);
-                this.graficBoard.getBoardGroup().getChildren().add(punteImage[i]);
+                this.board.add(punteImage[i]);
                 movesMouse.add(punteImage[i]);
-                this.graficBoard.getBoardGroup().getChildren().add(path);
+                this.board.add(path);
                 movesMouse.add(path);
                 System.out.println(i + ")" + m);
 

@@ -7,10 +7,11 @@ package sa.fx.draugths.sprite;
 
 import javafx.animation.Animation;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 
@@ -19,6 +20,9 @@ import sa.fx.draugths.animation.TRANSITION_STEP;
  * @author appleale
  */
 public class Sprite extends Parent {
+  
+    
+    
     ImageView imgView;
     public static int MOVE_TRANSITION = 0;
     Image frameImages;
@@ -32,32 +36,41 @@ public class Sprite extends Parent {
     FrameAnimationTimer[] frameAnimTimer;
     int k;
     Animation[] ptList;
-    BCDraugthsApp bcdg;
+    FXBoardClass fbx;
 
-    public Sprite(int w, int h,double wboardBox,double hBoardBox, BCDraugthsApp bcdg,String img) {
+    public Sprite(int w, int h,double wboardBox,double hBoardBox,String img,FXBoardClass b) {
         this.w = w;
         this.h = h;
         this.wboardBox=wboardBox;
         this.hBoardBox=hBoardBox;
-        this.bcdg=bcdg;
+        this.fbx=b;
         frameImages = new Image(img);
+        
         buildFrameImages();
         imgView = new ImageView(frameImages);
         imgView.setViewport(frames[0]);  
         getChildren().add(imgView);
         ptList=new Animation[5];
-        
-        frameAnimTimer=new FrameAnimationTimer[2];
 
+        frameAnimTimer=new FrameAnimationTimer[2];
+        
     }
     
+    public void setFXBoard(FXBoardClass b){
+        this.fbx=b;
+    }
+    
+    
     public void buildFrameImages(){
-                int n = (frameImages.widthProperty().intValue() / w);
+        int n = (frameImages.widthProperty().intValue() / w);
         frames = new Rectangle2D[n];
         for (int i = 0; i < n; i++) {
             frames[i] = new Rectangle2D(i * w, 0, w, h);
         }
     }    
+    public Node getImg(){
+    return imgView;
+    }
     protected Sprite() {
     }
 
@@ -82,6 +95,14 @@ public class Sprite extends Parent {
         imgView.setY(y);
     }
 
+    public double getX(){
+       return  imgView.getX();
+    }    
+    public double getY(){
+        return imgView.getY();
+    }
+    
+    
     public int getW() {
         return w;
     }
@@ -117,7 +138,7 @@ public class Sprite extends Parent {
        if(frameAnimTimer[n]!=null) frameAnimTimer[n].stop();
     }
     public void removeExtraSprite(int n){
-        if(extraSprite[n]!=null) bcdg.getBoardGroup().getChildren().remove(extraSprite[n]);
+        if(extraSprite[n]!=null) fbx.remove(extraSprite[n]);
     }
     
 }

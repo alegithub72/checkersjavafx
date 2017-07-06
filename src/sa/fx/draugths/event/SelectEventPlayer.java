@@ -8,7 +8,8 @@ package sa.fx.draugths.event;
 import sa.fx.draugths.sprite.SpritePiece;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import sa.fx.draugths.BCDraugthsApp;
+
+import sa.fx.draugths.FXBoardClass;
 
 /**
  *
@@ -16,26 +17,26 @@ import sa.fx.draugths.BCDraugthsApp;
  */
 public class SelectEventPlayer implements EventHandler<MouseEvent> {
 
-    BCDraugthsApp gtable;
+    FXBoardClass fxb;
     SpritePiece p;
 
-    public SelectEventPlayer(BCDraugthsApp gtable,SpritePiece p) {
-        this.gtable = gtable;
+    public SelectEventPlayer(FXBoardClass board,SpritePiece p) {
+        this.fxb = board;
         this.p=p;
     }
 
 
     @Override
     public void handle(MouseEvent event) {
-        if(!this.gtable.isOn()){
-        if(this.gtable.getSelect()!=null && this.gtable.getSelect()!=p ){
-            this.gtable.getSelect().setFrame(0);
+        if(!this.fxb.isOn()){
+        if(this.fxb.getSelect()!=null && this.fxb.getSelect()!=p ){
+            this.fxb.getSelect().setFrame(0);
 
         }
-        gtable.getMousePlayer().deleteMoveChoose();
-        gtable.setSelect(p);
+        fxb.getMousePlayer().deleteMoveChoose();
+        fxb.setSelect(p);
         p.setFrame(1);
-        gtable.getMousePlayer().visualizeMove();
+        fxb.getMousePlayer().visualizeMove();
                 
         }
                   

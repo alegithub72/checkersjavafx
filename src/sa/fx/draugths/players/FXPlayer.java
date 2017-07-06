@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoardClass;
 import sa.gameboard.core.Checker;
 
 /**
@@ -21,17 +22,17 @@ import sa.gameboard.core.Checker;
  */
 public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent>  {
 
-    BCDraugthsApp gtable;
+    FXBoardClass board;
     Group table;
-    public FXPlayer(Group table,BCDraugthsApp gtable) {
+    public FXPlayer(Group table,FXBoardClass board) {
         super(Checker.WHITE);
-        gtable=gtable;
+        this.board=board;
         this.table=table;
     }
 
     @Override
     public String getCommand() {
-        String r= gtable.getCommand().getText(); //To change body of generated methods, choose Tools | Templates.
+        String r= board.getCommand().getText(); //To change body of generated methods, choose Tools | Templates.
         return r;
     }
 
@@ -46,7 +47,7 @@ public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent> 
     }
 
     @Override
-    public void renderMoveChoose() {
+    public void drawMoveChoose() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -62,11 +63,11 @@ public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent> 
     @Override
     public void handle(ActionEvent event) {
         
-        gtable.playComputerPlayer();
+        board.playComputerPlayer();
         
-        gtable.getCommand().setText("");
-        if (gtable.winCondition() == Checker.WHITE) table.getChildren().add(new Text("IL BIANCO HA VINTOOOOOOO"));
-        else if (gtable.winCondition() == Checker.BLACK) table.getChildren().add(new Text("IL NERO HA VINTOOOOOOO"));
+        board.getCommand().setText("");
+        if (board.winCondition() == Checker.WHITE) table.getChildren().add(new Text("IL BIANCO HA VINTOOOOOOO"));
+        else if (board.winCondition() == Checker.BLACK) table.getChildren().add(new Text("IL NERO HA VINTOOOOOOO"));
 
         event.consume();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

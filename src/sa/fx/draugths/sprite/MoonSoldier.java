@@ -8,6 +8,7 @@ package sa.fx.draugths.sprite;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
@@ -32,8 +33,8 @@ public class MoonSoldier extends HumanPiece {
     }    
 
 
-    public MoonSoldier(int color, BCDraugthsApp bcdg, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img) {
-        super(color, bcdg, boardPiece, w, h, wbBox, hbBox, img);
+    public MoonSoldier(int color, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img,FXBoardClass bb) {
+        super(color, boardPiece, w, h, wbBox, hbBox, img,bb);
     }
         
     @Override

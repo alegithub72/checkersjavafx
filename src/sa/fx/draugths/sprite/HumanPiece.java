@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
@@ -36,13 +37,15 @@ public class HumanPiece extends SpritePiece {
 
     int color;
 
-
-    HumanPiece(int color, BCDraugthsApp bcdg, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img) {
-        super(w, h, wbBox, hbBox, bcdg, img);
+   
+    HumanPiece(int color, Piece boardPiece, int w, int h, 
+            double wbBox, double hbBox, String img, FXBoardClass board) {
+        super(w, h, wbBox, hbBox, img,board);
         this.color = color;
-        this.bcdg = bcdg;
+       
         this.boardPieceLink = boardPiece;
     }
+    
 
      void setEatedAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
         frameAnimTimer[0] = new FrameAnimationTimer(f1, f2, this, frac, ciclyc, interval, sound);
@@ -273,9 +276,9 @@ public class HumanPiece extends SpritePiece {
     @Override
     public void animDamaEat(Move m) {
         ParallelTransition ptMissile = new ParallelTransition();
-        extraSprite[0]= new Sprite(64, 64, 64, 64, bcdg,"missile2.png");
+        extraSprite[0]= new Sprite(64, 64, 64, 64, "missile2.png",this.fbx);
       
-        bcdg.getBoardGroup().getChildren().add(extraSprite[0]);
+        this.fbx.add(extraSprite[0]);
         //x missile.toFront();
         int x = m.getP().getI();
         int y = m.getP().getJ();
@@ -314,7 +317,7 @@ public class HumanPiece extends SpritePiece {
 
         ptMissile.play();
 
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, bcdg, wboardBox, hBoardBox));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, wboardBox, hBoardBox,this.fbx));
 
     }
 
