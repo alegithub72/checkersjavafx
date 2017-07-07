@@ -52,8 +52,8 @@ public class BCDamaTxt extends Application{
         Canvas c=new Canvas(w, h);
         Checker ck=new Checker(0,0,Player.BOARDNORTH);
          Checker ck2=new Checker(1, 0, Player.BOARDNORTH);
-        SpritePiece p=SpritePiece.buildPedina(64, 64,64, 64, 0, ck, 1,null);
-        SpritePiece p1=SpritePiece.buildPedina(64, 64, 64,64, 0,ck2, 1,null);
+        SpritePiece p=SpritePiece.buildPedina(64, 64, 0, ck, 1,null);
+        SpritePiece p1=SpritePiece.buildPedina(64, 64, 0,ck2, 1,null);
         c.getGraphicsContext2D().drawImage(img, 0, 0);
         boardGroup.getChildren().add(c);
         boardGroup.getChildren().add(p);

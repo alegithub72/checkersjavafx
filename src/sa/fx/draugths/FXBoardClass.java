@@ -22,6 +22,7 @@ import sa.boardgame.console.imp.ConsoleRendering;
 import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
 import sa.fx.draugths.screen.BackGround;
+import sa.fx.draugths.sprite.Sprite;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Board;
 import sa.gameboard.core.Checker;
@@ -212,16 +213,21 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
             int x1 = pedinaChar.getI();
             int y1 = pedinaChar.getJ();
 
-            double x = (x1 * wBoardSquare) + ((wBoardSquare / 2) - (hBoardSquare / 2));
-            double y = (y1 * hBoardSquare) + (hBoardSquare / 2 - (wBoardSquare / 2))+backGround.hPointTable;
-
-            SpritePiece pedina = SpritePiece.buildPedina(SpritePiece.SPRITE_W, SpritePiece.SPRITE_H,
-                    this.wBoardSquare, this.hBoardSquare, 
+            double x = Sprite.convertBoardIposition(x1, wBoardSquare);
+                    
+            double y = Sprite.convertBoardJposition(y1,hBoardSquare);
+            
+            SpritePiece pedina = SpritePiece.buildPedina(
+                    wBoardSquare, hBoardSquare, 
                     player.getColor(), pedinaChar, level,this);
             pedina.setK(i);
             add(pedina,color);
-            pedina.setX(x);
-            pedina.setY(y);
+            pedina.setX(x
+              //      -(SpritePiece.SPRITE_W/2)
+            );
+            pedina.setY(y
+            //        -(SpritePiece.SPRITE_H/2)
+            );
             getChildren().add(pedina);
             }else add(null,color);
         }
@@ -278,27 +284,7 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
         System.out.println("list after remove"+ this);
     }
     
-    public void buildBackground(){
-        Image image=null;
-     
-        if (level==1) {
-              image = new Image("heartBoard.png");
-              
 
-        }
-        else if (level==2) {
-        image = new Image("moonBoard.png");
-        
-        
-        }
-        Canvas c=new Canvas();
-        c.getGraphicsContext2D().drawImage(image, 0, 31);        
-        getChildren().add(c);    
-    
-    
-    
-    
-    }
     
     @Override
     public void drawBoard(){

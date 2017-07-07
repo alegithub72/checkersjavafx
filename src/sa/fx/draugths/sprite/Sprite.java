@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.fx.draugths.screen.BackGround;
 
 /**
  *
@@ -30,19 +31,19 @@ public class Sprite extends Parent {
     Rectangle2D[] frames;
     int w;
     int h;
-    double wboardBox;
-    double hBoardBox;
+    int wSquare;
+    int hSquare;
     int nframes = 0;
     FrameAnimationTimer[] frameAnimTimer;
     int k;
     Animation[] ptList;
     FXBoardClass fbx;
 
-    public Sprite(int w, int h,double wboardBox,double hBoardBox,String img,FXBoardClass b) {
+    public Sprite(int w, int h,int wboardBox,int hBoardBox,String img,FXBoardClass b) {
         this.w = w;
         this.h = h;
-        this.wboardBox=wboardBox;
-        this.hBoardBox=hBoardBox;
+        this.wSquare=wboardBox;
+        this.hSquare=hBoardBox;
         this.fbx=b;
         frameImages = new Image(img);
         
@@ -140,5 +141,33 @@ public class Sprite extends Parent {
     public void removeExtraSprite(int n){
         if(extraSprite[n]!=null) fbx.remove(extraSprite[n]);
     }
+    public static double convertBoardIposition(int i,int w){
+    
+                double x = ((i * w) + (w / 2)) 
+                    - (SpritePiece.SPRITE_W/2);
+                return x;
+    }
+     public static double convertBoardJposition(int j,int h){
+        double y = ((j * h) + (h / 2)) 
+                    - (SpritePiece.SPRITE_H/2)
+                    +BackGround.hPointTable+10;
+        return y;
+    }   
+    public static double convertBoardIpositionCenter(int i,int w){
+    
+                double x = ((i * w) 
+                        + (w / 2)
+                        );
+                return x;
+    }
+    public static double convertBoardJpositionCenter(int j,int h){
+    
+                double y = ((j * h)
+                        + (h / 2)
+                       )  + BackGround.hPointTable+10;
+                        
+                return y;
+    }    
+    
     
 }

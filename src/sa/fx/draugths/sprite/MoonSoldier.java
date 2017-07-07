@@ -33,8 +33,8 @@ public class MoonSoldier extends HumanPiece {
     }    
 
 
-    public MoonSoldier(int color, Piece boardPiece, int w, int h, double wbBox, double hbBox, String img,FXBoardClass bb) {
-        super(color, boardPiece, w, h, wbBox, hbBox, img,bb);
+    public MoonSoldier(int color, Piece boardPiece,  int wbBox, int hbBox, String img,FXBoardClass bb) {
+        super(color, boardPiece,  wbBox, hbBox, img,bb);
     }
         
     @Override

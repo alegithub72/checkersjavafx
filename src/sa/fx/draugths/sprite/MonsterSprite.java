@@ -31,9 +31,9 @@ import sa.gameboard.core.Piece;
  */
 public class MonsterSprite extends AlienPiece {
  
-    public MonsterSprite(int color, Piece boardPiece, int w,
-            int h, double wbBox, double hbBox, String img, FXBoardClass board) {
-        super(color,  boardPiece, w, h, wbBox, hbBox, img,board);
+    public MonsterSprite(int color, Piece boardPiece, 
+            int wbBox, int hbBox, String img, FXBoardClass board) {
+        super(color,  boardPiece, wbBox, hbBox, img,board);
        
         setFrame(0);
     }
@@ -86,20 +86,26 @@ public class MonsterSprite extends AlienPiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo quadTo = new QuadCurveTo();
         QuadCurveTo quadTo2 = new QuadCurveTo();
-        double x0 = m.getP().getI() * wboardBox + ((wboardBox / 2));
-        double y0 = m.getP().getJ() * hBoardBox + ((hBoardBox / 2));
-        double x1 = (m.getI1() * wboardBox) + ((wboardBox / 2));
-        double y1 = (m.getJ1() * hBoardBox) + ((hBoardBox / 2));
+        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+                //m.getP().getI() * wSquare + ((wSquare / 2));
+        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+                //m.getP().getJ() * hSquare + ((hSquare / 2));
+        double x1 =  Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+                //(m.getI1() * wSquare) + ((wSquare / 2));
+        double y1 =Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+                //(m.getJ1() * hSquare) + ((hSquare / 2));
         double xe = 0;
         double ye = 0;
         Path path=null,path2 = null;
         Color color = Color.CHARTREUSE;
         quadTo.setControlX(x1);
-        quadTo.setControlY(y1 - (h * 2));
+        quadTo.setControlY(y1 - (hSquare * 2));
         quadTo2.setControlX(x1);
-        quadTo2.setControlY(y1 - (h * 2));
-        xe = (m.getEat().getI() * wboardBox) + (wboardBox / 2);
-        ye = (m.getEat().getJ() * hBoardBox) + (hBoardBox / 2);
+        quadTo2.setControlY(y1 - (hSquare * 2));
+        xe = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+                //(m.getEat().getI() * wSquare) + (wSquare / 2);
+        ye =Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+                //(m.getEat().getJ() * hSquare) + (hSquare / 2);
         quadTo.setX(xe);
         quadTo.setY(ye);
         quadTo2.setX(x1);
@@ -141,7 +147,7 @@ public class MonsterSprite extends AlienPiece {
         pt.getChildren().add(pathTransition);
 
         
-         extraSprite[0] =new Sprite(64*3, 96, wboardBox, hBoardBox,  "LASERmONSTER.png",this.fbx);
+         extraSprite[0] =new Sprite(64*3, 96, wSquare, hSquare,  "LASERmONSTER.png",this.fbx);
                 PathTransition pathTransition2 = PathTransitionBuilder.create()
                 .duration(Duration.seconds(2))
                 .path(path2)

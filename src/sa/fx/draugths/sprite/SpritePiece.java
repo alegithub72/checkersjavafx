@@ -15,7 +15,6 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
@@ -56,8 +55,8 @@ public abstract class SpritePiece extends Sprite{
     
     
     
-    public SpritePiece(int w, int h,double wboardBox,double hBoardBox, String img,FXBoardClass b) {
-        super(w, h, wboardBox, hBoardBox,  img,b);
+    public SpritePiece(int wboardBox,int hBoardBox, String img,FXBoardClass b) {
+        super(SPRITE_W, SPRITE_H, wboardBox, hBoardBox,  img,b);
 
     }
     void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
@@ -154,27 +153,27 @@ public abstract class SpritePiece extends Sprite{
         return Duration.seconds(1.5);
     }   
     
-        public static SpritePiece buildPedina(int w,int h,double wb,double hb,int c,Piece pa,int level,
+        public static SpritePiece buildPedina(int wb,int hb,int c,Piece pa,int level,
                 FXBoardClass board){
-            if(level==1)  return buildPedinaLevel1(w, h, wb, hb, c, pa,board);
-            else if(level==2) return  buildPedinaLevel2(w, h, wb, hb, c, pa,board);
+            if(level==1)  return buildPedinaLevel1( wb, hb, c, pa,board);
+            else if(level==2) return  buildPedinaLevel2( wb, hb, c, pa,board);
             return null;
         }
     
     
-       public static SpritePiece  buildPedinaLevel1(int w, int h,double wboardBox,double hBoardBox,
+       public static SpritePiece  buildPedinaLevel1(int wboardBox,int hBoardBox,
                int color,Piece pedinassociated, FXBoardClass board) {
        String imagePedina=null;
        SpritePiece pedina=null;    
        if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
         if (Checker.BLACK == color) {
             imagePedina = "black_checker.png";
-            pedina= new AlienPiece(Checker.BLACK,pedinassociated, w, h,  wboardBox,
+            pedina= new AlienPiece(Checker.BLACK,pedinassociated,  wboardBox,
                     hBoardBox,imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         } else {
             imagePedina = "white_cheker.png";
-            pedina= new HumanPiece(Checker.WHITE,  pedinassociated, w, h,wboardBox,
+            pedina= new HumanPiece(Checker.WHITE,  pedinassociated,wboardBox,
                     hBoardBox, imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         }
@@ -192,18 +191,18 @@ public abstract class SpritePiece extends Sprite{
 
     }
        
-       public static SpritePiece  buildPedinaLevel2(int w, int h,double wboardBox,double hBoardBox, int color,
+       public static SpritePiece  buildPedinaLevel2(int wboardBox,int hBoardBox, int color,
                Piece pedinassociated, FXBoardClass board) {
        String imagePedina=null;
        SpritePiece pedina=null;    
        if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
         if (Checker.BLACK == color) {
             imagePedina = "black_chekers4.png";
-            pedina= new MonsterSprite(Checker.BLACK, pedinassociated, w, h,  wboardBox, hBoardBox,imagePedina,board);
+            pedina= new MonsterSprite(Checker.BLACK, pedinassociated,  wboardBox, hBoardBox,imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         } else {
             imagePedina = "white_cheker_moonsoldier.png";
-            pedina= new MoonSoldier(Checker.WHITE, pedinassociated, w, h,wboardBox,hBoardBox, imagePedina,board);
+            pedina= new MoonSoldier(Checker.WHITE, pedinassociated,wboardBox,hBoardBox, imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         }
         Reflection reflection = new Reflection();

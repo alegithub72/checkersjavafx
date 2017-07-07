@@ -14,13 +14,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.shape.PathBuilder;
 import javafx.scene.shape.QuadCurveTo;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.event.ConfirmCommandEvent;
+import sa.fx.draugths.sprite.Sprite;
 import sa.gameboard.core.Checker;
 
 /**
@@ -121,30 +120,41 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
             if (m != Move.NULLMOVE) {
                 QuadCurveTo quadTo = new QuadCurveTo();
-                double x0 = m.getP().getI() * board.wBoardSquare;
-                double y0 = m.getP().getJ() * board.hBoardSquare;
+                quadTo.setAbsolute(true);
+                double x0 =Sprite.convertBoardIpositionCenter(m.getP().getI() , board.wBoardSquare);
+                       // m.getP().getI() * board.wBoardSquare;
+                double y0 =Sprite.convertBoardJpositionCenter(m.getP().getJ() , board.hBoardSquare);
+                       // m.getP().getJ() * board.hBoardSquare;
                 double inc = 100;
-                Color color = Color.CHARTREUSE;
+                Color color = Color.WHITE;
                 if (m.getI1() > m.getP().getI()) {
                     quadTo.setControlX(x0 + inc);
                 } else {
                     quadTo.setControlX(x0 - inc);
                 }
-                quadTo.setControlY(y0 + 22);
-                double x1 = (m.getI1() * board.wBoardSquare) + 32;
-                double y1 = (m.getJ1() * board.hBoardSquare) + 32;
-
-                quadTo.setX(x1);
-                quadTo.setY(y1);
-                Path path = PathBuilder.create()
-                        .elements(
-                                new MoveTo(x0 + 32, y0 + 32),
-                                quadTo
+                
+                double x1 =Sprite.convertBoardIpositionCenter(m.getI1()  , board.wBoardSquare);
+                        //(m.getI1() * board.wBoardSquare) + 32;
+                double y1 =Sprite.convertBoardJpositionCenter(m.getJ1() , board.hBoardSquare);
+                       // (m.getJ1() * board.hBoardSquare) + 32;
+                quadTo.setControlY(y0);
+                quadTo.setX(x0);
+                quadTo.setY(y0);
+                
+                Path path = new Path();
+                MoveTo mt=new MoveTo();
+                mt.setX(x1);
+                mt.setY(y1);
+                mt.setAbsolute(true);
+                path.getElements().addAll(
+                        
+                                mt
+                                ,quadTo
                         //,
                         //new CubicCurveTo(0, 120, 0, 240, 380, 240)
-                        )
-                        .build();
-                path.setStroke(Color.WHITESMOKE);
+                        );
+                System.out.println(" cursor  x0="+x0+",y0="+y0+",x1="+x1+",y1="+y1);
+                path.setStroke(Color.WHITE);
                 path.setOpacity(0.6);
                 path.setStrokeWidth(2);
                 path.getStrokeDashArray().setAll(5d, 5d);
@@ -157,8 +167,12 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
                 punteImage[i] = imagePunt;
                 punteImage[i].setOnMouseClicked(new ConfirmCommandEvent(this, i,board));
-                punteImage[i].setX(x1 - 32);
-                punteImage[i].setY(y1 - 22);
+                double xp =Sprite.convertBoardIposition(m.getI1()  , board.wBoardSquare);
+                        //(m.getI1() * board.wBoardSquare) + 32;
+                double yp =Sprite.convertBoardJposition(m.getJ1() , board.hBoardSquare);
+                       // (m.getJ1() * board.hBoardSquare) + 32;
+                punteImage[i].setX(xp);
+                punteImage[i].setY(yp);
                 this.board.add(punteImage[i]);
                 movesMouse.add(punteImage[i]);
                 this.board.add(path);

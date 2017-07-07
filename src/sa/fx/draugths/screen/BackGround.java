@@ -7,8 +7,6 @@ package sa.fx.draugths.screen;
 
 
 
-import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,7 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.ScreenPause;
 import sa.fx.draugths.animation.ScreenPauseInterface;
@@ -29,8 +26,8 @@ import sa.fx.draugths.animation.ScreenPauseInterface;
 public class BackGround extends Parent implements ScreenPauseInterface {
 
     double wBackground=700;
-    double hBackgroud=740;
-    public double hPointTable=30;
+    double hBackgroud=700;
+    static public double hPointTable=30;
     Canvas c;
     Text scoreLabel;
     Text score;
@@ -61,7 +58,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     
     public BackGround(int level,FXBoardClass board){
 
-        c=new Canvas(wBackground, hBackgroud);
+        c=new Canvas(wBackground, hBackgroud+hPointTable+10);
         getChildren().add(c);
         this.board=board;
         this.level=level;
@@ -81,7 +78,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
               
 
         }else{
-            images = new Image("moonBoard.png");
+            images = new Image("AmlienBaseBoard.png");
 
         }
         c.getGraphicsContext2D().drawImage(images, 0, 31);

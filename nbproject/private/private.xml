@@ -13,10 +13,14 @@
         </group>
         <group>
             <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/FXBoardClass.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/event/SelectEventPlayer.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/animation/PedinaAnimationEndHandler.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/BCDraugthsApp.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/event/ConfirmCommandEvent.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/SpritePiece.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/Sprite.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/AlienPiece.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/MoonSoldier.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/screen/BackGround.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/utility/BCDamaTxt.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/HumanPiece.java</file>
+            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/MonsterSprite.java</file>
             <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/players/FXPMousePlayer.java</file>
         </group>
     </open-files>

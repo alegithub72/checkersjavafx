@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcTo;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
@@ -38,9 +39,9 @@ public class HumanPiece extends SpritePiece {
     int color;
 
    
-    HumanPiece(int color, Piece boardPiece, int w, int h, 
-            double wbBox, double hbBox, String img, FXBoardClass board) {
-        super(w, h, wbBox, hbBox, img,board);
+    HumanPiece(int color, Piece boardPiece,
+            int wbBox, int hbBox, String img, FXBoardClass board) {
+        super( wbBox, hbBox, img,board);
         this.color = color;
        
         this.boardPieceLink = boardPiece;
@@ -115,26 +116,41 @@ public class HumanPiece extends SpritePiece {
     public void buildPedinaMovePath(Move m) {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo arc = new QuadCurveTo();
+        
         //javafx.scene.shape.
-        double x0 = (m.getP().getI() * wboardBox) + ((wboardBox / 2));
-        double y0 = (m.getP().getJ() * hBoardBox) + ((hBoardBox / 2));
+        double x0 =Sprite.convertBoardIpositionCenter(m.getP().getI(),wSquare); 
+       
+               // (m.getP().getI() * wboardBox) + ((wboardBox / 2));
+        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getJ() ,hSquare); 
+                
+                //(m.getP().getJ() * hBoardBox) + ((hBoardBox / 2));
 
-        Color color = Color.CHARTREUSE;
-        double x1 = (m.getI1() * wboardBox) + ((wboardBox / 2));
-        double y1 = (m.getJ1() * hBoardBox) + ((hBoardBox / 2));
+        Color color = Color.ANTIQUEWHITE;
+        double x1 = Sprite.convertBoardIpositionCenter(m.getI1(),wSquare); 
+                
+                //(m.getI1() * wboardBox) + ((wboardBox / 2));
+        double y1 = Sprite.convertBoardJpositionCenter(m.getJ1() ,hSquare);
+                
+                //(m.getJ1() * hBoardBox) + ((hBoardBox / 2));
         arc.setX(x1);
         arc.setY(y1);
-
+       // arc.setRadiusX(-10);
+       // arc.setRadiusY(-10);
         arc.setControlX(x1);
         arc.setControlY(y1);
 
-        MoveTo from = new MoveTo(x0, y0);
-        Path path = PathBuilder.create()
-                .elements(
-                        from,
+        MoveTo to = new MoveTo();
+        //to.setAbsolute(true);
+        to.setX(x0);
+        to.setY(y0);
+        System.out.println("x0="+x0+",y0="+y0+",x1="+x1+",y1="+y1);
+        Path path = new Path();
+        path.getElements().addAll(
+           
+                        to,
                         arc
-                )
-                .build();
+              )
+                ;
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
@@ -147,7 +163,9 @@ public class HumanPiece extends SpritePiece {
                 .cycleCount(1)
                 .autoReverse(true)
                 .build();
+        
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
+        
         pt.getChildren().add(pathTransition);
 
     }
@@ -156,12 +174,16 @@ public class HumanPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo arc = new QuadCurveTo();
         //javafx.scene.shape.
-        double x0 = (m.getP().getI() * wboardBox) + ((wboardBox / 2));
-        double y0 = (m.getP().getJ() * hBoardBox) + ((hBoardBox / 2));
+        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+                //(m.getP().getI() * wSquare) + ((wSquare / 2));
+        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+                //(m.getP().getJ() * hSquare) + ((hSquare / 2));
 
         Color color = Color.CHARTREUSE;
-        double x1 = (m.getI1() * wboardBox) + ((wboardBox / 2));
-        double y1 = (m.getJ1() * hBoardBox) + ((hBoardBox / 2));
+        double x1 =Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+                //(m.getI1() * wSquare) + ((wSquare / 2));
+        double y1 = Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+                //(m.getJ1() * hSquare) + ((hSquare / 2));
         arc.setX(x1);
         arc.setY(y1);
         arc.setControlX(x1);
@@ -195,12 +217,16 @@ public class HumanPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo arc = new QuadCurveTo();
         //javafx.scene.shape.
-        double x0 = (m.getP().getI() * wboardBox) + ((wboardBox / 2));
-        double y0 = (m.getP().getJ() * hBoardBox) + ((hBoardBox / 2));
+        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+                //(m.getP().getI() * wSquare) + ((wSquare / 2));
+        double y0 =Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+                //(m.getP().getJ() * hSquare) + ((hSquare / 2));
 
         Color color = Color.CHARTREUSE;
-        double x1 = (m.getI1() * wboardBox) + ((wboardBox / 2));
-        double y1 = (m.getJ1() * hBoardBox) + ((hBoardBox / 2));
+        double x1 = Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+        //(m.getI1() * wSquare) + ((wSquare / 2));
+        double y1 = Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+                //(m.getJ1() * hSquare) + ((hSquare / 2));
         arc.setX(x1);
         arc.setY(y1);
         arc.setControlX(x0);
@@ -234,12 +260,16 @@ public class HumanPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo arc = new QuadCurveTo();
         //javafx.scene.shape.
-        double x0 = (m.getP().getI() * wboardBox) + ((wboardBox / 2));
-        double y0 = (m.getP().getJ() * hBoardBox) + ((hBoardBox / 2));
+        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+                //(m.getP().getI() * wSquare) + ((wSquare / 2));
+        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+                //(m.getP().getJ() * hSquare) + ((hSquare / 2));
 
         Color color = Color.CHARTREUSE;
-        double x1 = (m.getI1() * wboardBox) + ((wboardBox / 2));
-        double y1 = (m.getJ1() * hBoardBox) + ((hBoardBox / 2));
+        double x1 =Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+                //(m.getI1() * wSquare) + ((wSquare / 2));
+        double y1 =Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+                //(m.getJ1() * hSquare) + ((hSquare / 2));
         arc.setX(x1);
         arc.setY(y1);
         /**
@@ -247,7 +277,7 @@ public class HumanPiece extends SpritePiece {
          */
 
         arc.setControlX(x0);
-        arc.setControlY(y1 - (h * 2));
+        arc.setControlY(y1 - (hSquare * 2));
 
         MoveTo from = new MoveTo(x0, y0);
         Path path = PathBuilder.create()
@@ -280,21 +310,31 @@ public class HumanPiece extends SpritePiece {
       
         this.fbx.add(extraSprite[0]);
         //x missile.toFront();
-        int x = m.getP().getI();
-        int y = m.getP().getJ();
+        double x =Sprite.convertBoardIpositionCenter( m.getP().getI(),wSquare);
+        double y = Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+                //m.getP().getJ();
+        double xm=Sprite.convertBoardIpositionCenter(eated.boardPieceLink.getI(), wSquare);
+        double ym=Sprite.convertBoardJpositionCenter(eated.boardPieceLink.getJ(), hSquare);
+        QuadCurveTo qTO=new QuadCurveTo();
+        MoveTo mt=new MoveTo();
+        mt.setX(x);
+        mt.setY(y);
+        qTO.setX(xm);
+        qTO.setY(ym);
+        qTO.setControlX(x);
+        qTO.setControlY(y);
         /**
          * missile.setX(x*wBoardSquare);
         missile.setY((y*hBoardSquare));
          */
-        Path path = PathBuilder.create()
-                .elements(new MoveTo(x * wboardBox + 10, y * hBoardBox + 10),
-                        new QuadCurveTo((x + 4 * (wboardBox)), (y * hBoardBox),
-                                (eated.boardPieceLink.getI() * wboardBox + 20), (eated.boardPieceLink.getJ() * wboardBox + 10)
-                        )
+        Path path = new Path();
+        path.getElements().addAll(
+                mt,
+                qTO
                 )
-                .build();
+                ;
         PathTransition pathMissileTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(0.5))
+                .duration(Duration.seconds(0.2))
                 .path(path)
                 .node(extraSprite[0])
                 .orientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT)
@@ -317,7 +357,7 @@ public class HumanPiece extends SpritePiece {
 
         ptMissile.play();
 
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, wboardBox, hBoardBox,this.fbx));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, wSquare, hSquare,this.fbx));
 
     }
 
