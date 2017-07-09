@@ -7,15 +7,21 @@ package sa.fx.draugths.screen;
 
 
 
+import java.net.URL;
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.ScreenPause;
 import sa.fx.draugths.animation.ScreenPauseInterface;
 
@@ -33,6 +39,10 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     Text score;
     Text levelLabel;
     int point;
+
+    public int getPoint() {
+        return point;
+    }
     //Text start;
     FXBoardClass board; 
     int level;
@@ -56,29 +66,30 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         return c.getGraphicsContext2D();
     }
     
-    public BackGround(int level,FXBoardClass board){
+    public BackGround(int level,FXBoardClass board,int point){
 
         c=new Canvas(wBackground, hBackgroud+hPointTable+10);
         getChildren().add(c);
         this.board=board;
         this.level=level;
+        this.point=point;
 
     }
 
-    public void drawBackGround(int level){
-        Image images;
+    public void drawBackGround(){
+        Image images=null;
      
            // getChildren().remove(start);
-            drawScoreBar(level);
+            drawScoreBar();
         
    
         
         if (level==1) {
-              images = new Image("heartBoard.png");
+              images = new Image("forestBoard2.png");
               
 
-        }else{
-            images = new Image("AmlienBaseBoard.png");
+        }else if(level==2){
+            images = new Image("moonBoard.png");
 
         }
         c.getGraphicsContext2D().drawImage(images, 0, 31);
@@ -86,7 +97,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
     
     }
-    void drawScoreBar(int level) {
+    void drawScoreBar() {
         
  
  
@@ -137,6 +148,42 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     public void updatePoint(int value) {
         this.point = this.point + value;
         score.setText("" + this.point);
+        
+        ClassLoader classLoader = getClass().getClassLoader();
+       URL url=null;
+       
+      //URL url2=classLoader.getResource("pointUp.mp3"); 
+      
+
+      //if(value>15) url=classLoader.getResource("simpletone.mp3"); 
+      //else url=classLoader.getResource("pointUp.mp3"); 
+      url=classLoader.getResource(FrameAnimationTimer.ACHW); 
+      
+      AudioClip a=  new AudioClip(url.toString());
+      a.setVolume(1);
+      a.setPriority(-1);
+      a.setPan(-1);
+      a.play();
+      
+      Animation t=new Transition() {
+                {
+                    setCycleCount(1);
+                    setCycleDuration(Duration.millis(500));
+                    
+                }
+                
+                @Override
+                protected void interpolate(double frac) {
+                    //System.out.println("color="+Color.WHITE.interpolate(Color.BLACK, frac));
+                       score.setFill(Color.WHITE.interpolate(Color.rgb(0, 204, 102), frac));
+                       score.setScaleX(2-frac);
+                       score.setScaleY(2-frac);
+                       
+                }
+            };
+            t.play();
+    
+        
     }
 
     public void resetPoint() {
@@ -148,11 +195,8 @@ public class BackGround extends Parent implements ScreenPauseInterface {
                 
     }
     
-    public void middleScreen(int level){
-                
+    public void middleScreen(){
 
-          
-            
             Image imagesDesc = null;
             if (level == 1) {
                 imagesDesc = new Image("desc1.png");
@@ -162,27 +206,14 @@ public class BackGround extends Parent implements ScreenPauseInterface {
             
             c.getGraphicsContext2D().fillRect(0, 0, wBackground, wBackground);
             c.getGraphicsContext2D().drawImage(imagesDesc, 0, 0);
-            ScreenPause p=new ScreenPause(2500, this);
-            p.start();
-           // SequentialTransition seq=new SequentialTransition(new PauseTransition(
-            //        Duration.millis(1500)));
-             // seq.setNode(c);
-             // seq.play();
-          //  c.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            ScreenPause p=new ScreenPause(1.5d,this);
+            p.play();
             
-             //   @Override
-            ///    public void handle(MouseEvent event) {
-              //      c.getGraphicsContext2D().fillRect(0, 0, widthScreen, widthScreen);
-                    //backGround.setVisibleBack(true);
-
-                //    event.consume();
-               // }
-            //});
         
     
     }
     public void goAhead(){
-        drawBackGround(level);
+        drawBackGround();
         board.drawBoard();
     }
 }

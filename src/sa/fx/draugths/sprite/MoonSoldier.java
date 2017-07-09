@@ -7,7 +7,6 @@ package sa.fx.draugths.sprite;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.gameboard.core.Checker;
@@ -24,7 +23,7 @@ public class MoonSoldier extends HumanPiece {
     public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
 
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(5, 6, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEWHITE);
+            frameAnimTimer[0] = new FrameAnimationTimer(5, 6, this, frac, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER);
         } else {
             frameAnimTimer[0] = new FrameAnimationTimer(1, 2, this, frac, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W);
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);

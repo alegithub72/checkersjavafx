@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.screen.StartScreen;
 import sa.gameboard.core.Game;
 
@@ -35,10 +36,8 @@ public class BCDraugthsApp extends Application {
    // 
     StartScreen startScreen;
     //private Group boardGroup;
-
-    private double widthScreen;
-    private double heightScreen;
-
+    RecordScreen recordScreen;
+    AudioClip music;
     private ParallelTransition pt;
     private AnimationPedinaMove anim;
 
@@ -47,7 +46,7 @@ public class BCDraugthsApp extends Application {
     public FXBoardClass getFxb() {
         return fxb;
     }
-    public int level;
+
 
     //PathTransition pathTransition;
 
@@ -108,7 +107,7 @@ public class BCDraugthsApp extends Application {
     public void initDama() {
 
 
-            root=new Group();
+            
 
         
 
@@ -125,56 +124,25 @@ public class BCDraugthsApp extends Application {
         //TODO: gestire gli screen di inizio gioco non  con il background del gioco,
         // possibile di rinominare ed usare Background class per questo ruolo di screen before play
         debug = true;
-        initDama();
-        this.primaryStage = primaryStage;
-        AudioClip music = buildMedia(FrameAnimationTimer.MUSIC);
-        music.setCycleCount(AudioClip.INDEFINITE);
-        music.play();
-            fxb=new FXBoardClass(level,this);
-        startScreen=new StartScreen(level,fxb);
-        root.getChildren().add(startScreen);
+        //initDama();
+        root=new Group();
+        drawStartScreen();
         
         Scene scene = new Scene(root,startScreen.getWidthScreen()
                 ,startScreen.getHeightScreen(), Color.BLACK);
-        
-        
-        startScreen.drawScreen(level);
-        startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            
-            @Override
-            public void handle(MouseEvent event) {
-                    level++;
-                    music.stop();
-                   
-                    fxb.setLevel(level);
-                    System.out.println("level="+level);
-                    fxb.startLevel();
-                    root.getChildren().remove(startScreen);
-                    root.getChildren().add(fxb);
-                    //scene.setRoot(fxb);
 
-                    // backGround.middleScreen(level);
-                    //restartGame();
-        if (level== 1) {
-           // backGround.middleScreen(level);
-           // renderTable();
-            primaryStage.setTitle("Grafic BC Dama:EARTH");
-        } else {
-            
-            primaryStage.setTitle("Grafic BC Dama:MARS");
-        }
-                
-                event.consume();
-            }
-        });
-
-        primaryStage.setScene(scene);
-        
-       
-        primaryStage.show();
+       primaryStage.setScene(scene);
+       primaryStage.show();
 
     }
-
+   public void levelUp(int level,int point){
+            root.getChildren().remove(fxb);
+            fxb=new FXBoardClass(level,this);
+            fxb.startLevel(point);
+            root.getChildren().remove(startScreen);
+            root.getChildren().add(fxb);         
+               
+   }
 
 
 
@@ -214,5 +182,52 @@ public class BCDraugthsApp extends Application {
 
     }
 
-
+  public void drawRecordScreen(){
+      
+        root.getChildren().remove(fxb);
+        System.out.println("index of fxb ="+root.getChildren().contains(fxb));
+        //fxb=new FXBoardClass(0, this);
+        recordScreen = new RecordScreen();
+        root.getChildren().add(recordScreen);
+        recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+           
+            @Override
+            public void handle(MouseEvent event) {
+                    music.play();
+                    root.getChildren().remove(recordScreen);
+                    drawStartScreen();
+                event.consume();
+            }
+        });     
+     
+     
+ }
+  
+  public void drawStartScreen(){
+        
+      
+        music = buildMedia(FrameAnimationTimer.MUSIC);
+        music.setCycleCount(AudioClip.INDEFINITE);
+        music.play(); 
+        root.getChildren().remove(fxb);
+        fxb=new FXBoardClass(0,this);
+        startScreen=new StartScreen(0,fxb);
+        root.getChildren().add(startScreen);
+        startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            
+            @Override
+            public void handle(MouseEvent event) {
+                    //level++;
+                    music.stop();
+                   
+                    fxb.setLevel(1);
+                    //System.out.println("level="+level);
+                    fxb.startLevel(0);
+                    root.getChildren().remove(startScreen);
+                    root.getChildren().add(fxb);                
+                event.consume();
+            }
+        });        
+  }
+  
 }

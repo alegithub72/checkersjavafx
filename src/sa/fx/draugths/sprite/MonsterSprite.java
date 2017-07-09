@@ -17,7 +17,6 @@ import javafx.scene.shape.PathBuilder;
 import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
@@ -44,9 +43,9 @@ public class MonsterSprite extends AlienPiece {
     public void buildDestroyAnimation(int by) {
         System.out.println("EAT BY "+((by==Piece.CHECKER)?"CHECKERS":"DAMA"));
         if (by==Piece.CHECKER ) {
-            buildGenericFrameAnimation(15, 19, 0.2d, false, 100, FrameAnimationTimer.EXPLOSION);
+            buildGenericFrameAnimation(15, 19, 0.2d, false, 0, FrameAnimationTimer.EXPLOSION);
         } else {
-            buildGenericFrameAnimation(8, 14, 0, false, 100, FrameAnimationTimer.EXPLOSION);
+            buildGenericFrameAnimation(8, 14, 0, false, 0, FrameAnimationTimer.EXPLOSION);
         }
 
     }

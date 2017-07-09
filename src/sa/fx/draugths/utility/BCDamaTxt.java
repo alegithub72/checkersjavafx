@@ -23,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
+import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Game;
@@ -52,8 +53,12 @@ public class BCDamaTxt extends Application{
         Canvas c=new Canvas(w, h);
         Checker ck=new Checker(0,0,Player.BOARDNORTH);
          Checker ck2=new Checker(1, 0, Player.BOARDNORTH);
+         FXBoardClass fbx=new FXBoardClass(1, null);
+         
         SpritePiece p=SpritePiece.buildPedina(64, 64, 0, ck, 1,null);
         SpritePiece p1=SpritePiece.buildPedina(64, 64, 0,ck2, 1,null);
+        p.setFXBoard(fbx);
+        p1.setFXBoard(fbx);
         c.getGraphicsContext2D().drawImage(img, 0, 0);
         boardGroup.getChildren().add(c);
         boardGroup.getChildren().add(p);
@@ -69,6 +74,7 @@ public class BCDamaTxt extends Application{
        // System.out.println("po1  ="+po);
        Bounds b= n.getBoundsInLocal();
        Bounds b1=n1.getBoundsInLocal();
+       
         Move m=new Move(0, 0,ck2 ,ck, Move.EAT);
         p1.play(m);
        System.out.println("--->"+b.contains(200, 0));

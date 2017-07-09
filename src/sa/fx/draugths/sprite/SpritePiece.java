@@ -155,6 +155,7 @@ public abstract class SpritePiece extends Sprite{
     
         public static SpritePiece buildPedina(int wb,int hb,int c,Piece pa,int level,
                 FXBoardClass board){
+            System.out.println("LEVEL="+level);
             if(level==1)  return buildPedinaLevel1( wb, hb, c, pa,board);
             else if(level==2) return  buildPedinaLevel2( wb, hb, c, pa,board);
             return null;
@@ -172,7 +173,7 @@ public abstract class SpritePiece extends Sprite{
                     hBoardBox,imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         } else {
-            imagePedina = "white_cheker.png";
+            imagePedina = "militaryCheckers1_1.png";
             pedina= new HumanPiece(Checker.WHITE,  pedinassociated,wboardBox,
                     hBoardBox, imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();

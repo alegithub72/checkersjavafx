@@ -19,14 +19,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcTo;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.fx.draugths.event.CollisionSpriteEvent;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
@@ -104,7 +103,7 @@ public class HumanPiece extends SpritePiece {
             draugthTransform=true;
             frameImages = new Image("white_dama.png");
             imgView.setImage(frameImages);
-            AudioClip ach = buildMedia(FrameAnimationTimer.ACHW);
+            AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
             ach.play();
             buildFrameImages();
@@ -313,14 +312,16 @@ public class HumanPiece extends SpritePiece {
         double x =Sprite.convertBoardIpositionCenter( m.getP().getI(),wSquare);
         double y = Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
                 //m.getP().getJ();
-        double xm=Sprite.convertBoardIpositionCenter(eated.boardPieceLink.getI(), wSquare);
-        double ym=Sprite.convertBoardJpositionCenter(eated.boardPieceLink.getJ(), hSquare);
+        double xe=Sprite.convertBoardIpositionCenter(eated.boardPieceLink.getI(), wSquare);
+        double ye=Sprite.convertBoardJpositionCenter(eated.boardPieceLink.getJ(), hSquare);
+        extraSprite[0].setX(x);
+        extraSprite[0].setY(y);
         QuadCurveTo qTO=new QuadCurveTo();
         MoveTo mt=new MoveTo();
         mt.setX(x);
         mt.setY(y);
-        qTO.setX(xm);
-        qTO.setY(ym);
+        qTO.setX(xe);
+        qTO.setY(ye);
         qTO.setControlX(x);
         qTO.setControlY(y);
         /**
@@ -348,23 +349,23 @@ public class HumanPiece extends SpritePiece {
         buildDamaMoveEatPath(m);
 
         ptList[TRANSITION_STEP.MISSILE_FULL_STEP] = ptMissile;
-        frameAnimTimer[1] = new FrameAnimationTimer(3, 4, this, 0, true, 10, FrameAnimationTimer.MISSILE);
+        frameAnimTimer[1] = new FrameAnimationTimer(3, 4, this,extraSprite[0],eated, 0, true, 10, FrameAnimationTimer.MISSILE);
         frameAnimTimer[1].start();
+        
 
+        
         eated.buildDestroyAnimation(Piece.DRAUGTH);
         buildFrameMoveAnimation(0, true);
         //setFrame(3);
-
         ptMissile.play();
-
         ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, wSquare, hSquare,this.fbx));
-
+        
     }
 
     @Override
     protected void playAnimDamaEat(Move m) {
 
-        ptList[TRANSITION_STEP.MISSILE_FULL_STEP].setOnFinished(new EventHandler<ActionEvent>() {
+       /* ptList[TRANSITION_STEP.MISSILE_FULL_STEP].setOnFinished(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
@@ -376,7 +377,18 @@ public class HumanPiece extends SpritePiece {
                 event.consume();
 
             }
-        });
+        });*/
+        this.getParent().addEventHandler(CollisionSpriteEvent.COLLISION_SPRITE, new EventHandler<CollisionSpriteEvent>(){
+            @Override
+            public void handle(CollisionSpriteEvent event) {
+               extraSprite[0].setVisible(false);
+               frameAnimTimer[1].stop();
+                start(m);
+                eated.start(m);
+                event.consume();
+            }
+        }
+        );       
 
     }
 

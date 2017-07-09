@@ -10,7 +10,6 @@ import java.util.List;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -101,7 +100,7 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
         ,"p24","1","p44","1","p66","0","p15","1","p26","0","p15","0",
         "p77","0","p33","1","p55","0","p04","0","p22","0","p11","0"};
             String[] part2=new String[]{""};
-
+        this.level=l;
             //HBox infoPanel=new HBox();
             computerPlayer = new FXAIPlayer1();
             mousePlayer = new FXPMousePlayer(this);
@@ -114,9 +113,7 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
             game.addRenderInterface(console);
             game.playGame();
             game.setHuman(mousePlayer);           
-            backGround = new BackGround(level,this);
-            
-            getChildren().add(backGround);
+
  
             if(game!=null) game.addRenderInterface(this);
 
@@ -245,7 +242,7 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
             imageView.setY(250);
             imageView.setScaleX(1);
             imageView.setScaleY(1);
-            level=level++;
+             level++;
             getChildren().add(imageView);
             
         } else if (win == Checker.BLACK) {
@@ -266,9 +263,9 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
 
                 @Override
                 public void handle(MouseEvent event) {
-                    app.level=level;
-                    app.restartGame();///mettere una condizione per rifare la classe board...nella app...
-                    // ad esempio unmetodo newLevel start...
+                   if(isLastLevel() || level==0)  app.drawRecordScreen();
+                   else  app.levelUp(level,backGround.getPoint());
+                   //TODO mettere una classe che per record of fame
                     event.consume();
                 }
             }); 
@@ -295,8 +292,10 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
          
     
     }
-    public void  startLevel(){
-        backGround.middleScreen(level);
+    public void  startLevel(int point){
+        backGround = new BackGround(level,this,point);
+        getChildren().add(backGround);
+        backGround.middleScreen();
     
     }
     public void remove(Object  o){
@@ -336,8 +335,11 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
     public int winCondition() {
 
         int win = game.winCondition();
-        if(win == Checker.WHITE)   getBackGround().updatePoint(size(Checker.WHITE) * 10);
-        winConditionMessage(win);
+        if(win == Checker.WHITE) {
+            getBackGround().updatePoint(size(Checker.WHITE) * 10);
+            
+        }
+        if(win!=-1) winConditionMessage(win);
 
         return win;
     }    
@@ -367,5 +369,10 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
             //game.getBoard().makeMove(m);
             //turnEnd();
         }
+        
+ 
     }
+     public boolean isLastLevel(){
+        return (level==3);
+    }       
 }

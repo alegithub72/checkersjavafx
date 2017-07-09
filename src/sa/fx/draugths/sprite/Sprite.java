@@ -25,6 +25,8 @@ public class Sprite extends Parent {
     
     
     ImageView imgView;
+
+
     public static int MOVE_TRANSITION = 0;
     Image frameImages;
     Sprite[] extraSprite=new Sprite[2];

@@ -7,8 +7,10 @@ package sa.fx.draugths.animation;
 
 import java.net.URL;
 import javafx.animation.AnimationTimer;
+import javafx.geometry.Bounds;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
+import sa.fx.draugths.event.CollisionSpriteEvent;
 import sa.fx.draugths.sprite.Sprite;
 
 
@@ -23,8 +25,9 @@ public class FrameAnimationTimer extends AnimationTimer{
     public static String BITE="Dogbite.wav";
     public static String BIG_BITE="lion_roar_2.mp3";
     public static String MOVEWHITE="jungle_drum.wav";
+    public static String MOVESPACESOLDIER="jerpack.wav";
     public static String MOVEBLACK="moveAlien2.wav";
-    public static String MOVEMONSTER="comic_ufo.mp3";
+    public static String MOVEMONSTER="UFO.wav";
     public static String EXPLOSIONMONSTER="Fireball.wav";
     public static String MISSILE="top.wav";
     public static String DAMAMOVE_W="damamove.wav";
@@ -36,6 +39,8 @@ public class FrameAnimationTimer extends AnimationTimer{
     public static String ACHB="pluck.wav";
     public String sound;
     public Sprite p;
+    public Sprite shot;
+    public Sprite target;
     int i;
     long before;
     long interval=0;  
@@ -46,10 +51,13 @@ public class FrameAnimationTimer extends AnimationTimer{
     boolean ciclyc;
     double frac;
     boolean startMusic=true;
+
+    
     public FrameAnimationTimer(int f1, int f2, Sprite p,double frac,boolean cyclic,long interval,String sound) {
         this.f1 = f1;
         this.f2 = f2;
-    
+        target=null;
+        shot=null;
         this.p = p;
         this.sound=sound;
         if(sound!=null){
@@ -63,13 +71,49 @@ public class FrameAnimationTimer extends AnimationTimer{
         i=this.f1;
         this.interval=interval;
     }
+    public FrameAnimationTimer(int f1, int f2, Sprite source,Sprite shot,Sprite target,double frac,boolean cyclic,long interval,String sound) {
+        this.f1 = f1;
+        this.f2 = f2;
+        this.target=target;
+        this.p = source;
+        this.sound=sound;
+        this.shot=shot;
+        if(sound!=null){
+        mediaPlayer=buildMedia(sound);
+
+        }
+        //
+
+        this.frac=frac;
+        this.ciclyc=cyclic;
+        i=this.f1;
+        this.interval=interval;
+    }    
      
     
     @Override  
     public void handle(long now) {
 
         long intervalTemp=System.currentTimeMillis()-before;
-        
+        double lx=0,ly=0;
+        if(target!=null) {
+
+           // System.out.println("scene shot x="+shotSceneBound.getMinX());
+            //System.out.println("scene shot y="+shotSceneBound.getMinY());
+            //System.out.println("scene target x="+targetSceneBound.getMinX());
+            //System.out.println("scene target y="+targetSceneBound.getMinY());
+            //System.out.println(" shot intercept target="+targetSceneBound.contains(shotSceneBound.getMinX(),shotSceneBound.getMinY()));
+        }
+        if(target!=null ){
+            Bounds shotSceneBound=shot.localToScene(shot.getBoundsInLocal());
+            Bounds targetSceneBound=target.localToScene(target.getBoundsInLocal());
+            if( targetSceneBound.contains(shotSceneBound.getMinX(),shotSceneBound.getMinY())){
+                System.out.println("INTERSECTION DETECTED!!!!!!!");
+            CollisionSpriteEvent c=new CollisionSpriteEvent(p, null, CollisionSpriteEvent.COLLISION_SPRITE);
+            p.fireEvent(c);                
+            }
+
+        }
         playEffect();
         if(i<=f2  && intervalTemp>this.interval) {
             
@@ -115,7 +159,7 @@ public class FrameAnimationTimer extends AnimationTimer{
        if(mediaPlayer!=null)  {
        if(startMusic) {
            if(this.sound==FIRE|| 
-                   this.sound==EAT ||this.sound==MOVEBLACK ||this.sound==DAMAMOVE_B ) {
+                   this.sound==EAT ||this.sound==MOVEBLACK ||this.sound==DAMAMOVE_B||this.sound==MOVESPACESOLDIER ) {
              // mediaPlayer.setCycleCount(10);
                //mediaPlayer.seek(Duration.ONE);
                //mediaPlayer.setPriority(1);

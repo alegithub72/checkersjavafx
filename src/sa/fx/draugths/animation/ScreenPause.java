@@ -5,32 +5,43 @@
  */
 package sa.fx.draugths.animation;
 
-import javafx.animation.AnimationTimer;
+import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 /**
  *
  * @author appleale
  */
-public class ScreenPause extends AnimationTimer{
+public class ScreenPause extends Transition{
     long duration=0;
     boolean start=true;
     ScreenPauseInterface i;
-    public ScreenPause(long duration,ScreenPauseInterface i){
-    this.duration=duration;
-            this.i=i;
-    }
-    @Override
-    public void handle(long now) {
-        long startL=0;
-        if(start) startL=now;
-        start=false;
-        if(now-startL>=duration) 
-        {
-            i.goAhead();
-            stop();
-        }
+    public ScreenPause(double duration,ScreenPauseInterface i){
+        //Duration d= Duration.ofSeconds(duration);
+        //this.duration=d.getNano();
+        setCycleDuration(javafx.util.Duration.seconds(duration));
+        start=true;
+        this.i=i;
+        this.setOnFinished(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                i.goAhead();
+            }
+            
+    
+    });
         
-       
+    }
+    
+   
+        
+     
+
+    @Override
+    protected void interpolate(double frac) {
+        
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
