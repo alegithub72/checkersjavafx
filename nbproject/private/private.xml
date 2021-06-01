@@ -11,14 +11,6 @@
             <file>file:/C:/Users/ale2s_000/Documents/NetBeansProjects/BCDama/src/pedinaNeraAnimBattagliaDama.png</file>
             <file>file:/C:/Users/ale2s_000/Documents/NetBeansProjects/BCDama/src/bcdama/MoveAnimePedinaTimer.java</file>
         </group>
-        <group>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/FXBoardClass.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/SpritePiece.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/Sprite.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/screen/BackGround.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/sprite/HumanPiece.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/animation/FrameAnimationTimer.java</file>
-            <file>file:/Users/appleale/NetBeansProjects/BCDama/src/sa/fx/draugths/BCDraugthsApp.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
