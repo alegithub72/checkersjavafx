@@ -9,19 +9,15 @@ package sa.fx.draugths.screen;
 
 import javafx.animation.Animation;
 import javafx.animation.Transition;
-import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import sa.fx.draugths.FXBoardClass;
-import static sa.fx.draugths.screen.BackGround.hPointTable;
 
 /**
  *

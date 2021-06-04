@@ -6,6 +6,7 @@
 package sa.fx.draugths.animation;
 
 import java.net.URL;
+
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Bounds;
 import javafx.scene.media.AudioClip;

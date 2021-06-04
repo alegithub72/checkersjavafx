@@ -6,7 +6,6 @@
 package sa.fx.draugths.utility;
 
 
-import sa.fx.draugths.sprite.HumanPiece;
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -24,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sa.fx.draugths.sprite.HumanPiece;
 
 /**
  *

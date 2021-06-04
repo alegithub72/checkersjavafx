@@ -8,8 +8,7 @@ package sa.fx.draugths.utility;
 
 
 
-import sa.fx.draugths.players.FXPlayer;
-import sa.fx.draugths.sprite.HumanPiece;
+
 import javafx.application.Application;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
@@ -24,10 +23,11 @@ import javafx.stage.Stage;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
 import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.players.FXPlayer;
+import sa.fx.draugths.sprite.HumanPiece;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Game;
-import sa.gameboard.core.Piece;
 
 /**
  *

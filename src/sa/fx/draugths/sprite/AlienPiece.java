@@ -5,19 +5,18 @@
  */
 package sa.fx.draugths.sprite;
 
+import sa.boardgame.core.moves.*;
+
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
-import javafx.animation.PathTransitionBuilder;
 import javafx.scene.image.Image;
-
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.shape.PathBuilder;
 import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
-import sa.boardgame.core.moves.Move;
+
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
@@ -102,24 +101,22 @@ public class AlienPiece extends SpritePiece {
         quadTo.setControlY(y1);
         quadTo.setX(x1);
         quadTo.setY(y1);
-        path = PathBuilder.create()
-                .elements(
-                        new MoveTo(x0, y0),
-                        quadTo
-                )
-                .build();
+        path = new Path();
+        path.getElements().add(new MoveTo(x0, y0)); 
+        		path.getElements().add(quadTo);
+        
 
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
-        PathTransition pathTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path)
-                .node(this)
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(2));
+        pathTransition.setPath(path);
+        pathTransition.setNode(this);
+        pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+        pathTransition.setCycleCount(1);
+        pathTransition.setAutoReverse(true);
+                
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
 
@@ -153,12 +150,10 @@ public class AlienPiece extends SpritePiece {
         quadTo.setY(ye);
         quadTo2.setX(x1);
         quadTo2.setY(y1);
-        path = PathBuilder.create()
-                .elements(
-                        new MoveTo(x0, y0),
-                        quadTo
-                )
-                .build();
+        path = new Path();
+        path.getElements().add(new MoveTo(x0, y0));
+        path.getElements().add(quadTo);
+                
         path.getElements().add(new MoveTo(xe, ye));
         path.getElements().add(quadTo2);
 
@@ -168,14 +163,14 @@ public class AlienPiece extends SpritePiece {
    
         
         
-        PathTransition pathTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path)
-                .node(this)
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(2));
+        pathTransition.setPath(path);
+        pathTransition.setNode(this);
+        pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+        pathTransition.setCycleCount(1);
+        pathTransition.setAutoReverse(true);
+                //.build();
 
         //pathTransition.setNode(laser);
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
@@ -215,12 +210,10 @@ public class AlienPiece extends SpritePiece {
         quadTo.setY(ye);
         quadTo2.setX(x1);
         quadTo2.setY(y1);
-        path = PathBuilder.create()
-                .elements(
-                        new MoveTo(x0, y0),
-                        quadTo
-                )
-                .build();
+        path = new Path();
+        path.getElements().add(new MoveTo(x0, y0));
+        path.getElements().add(quadTo);
+        
         path.getElements().add(new MoveTo(xe, ye));
         path.getElements().add(quadTo2);
 
@@ -229,14 +222,14 @@ public class AlienPiece extends SpritePiece {
         path.getStrokeDashArray().setAll(5d, 5d);
 
         
-        PathTransition pathTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path)
-                .node(this)
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+        PathTransition pathTransition = new PathTransition();
+                pathTransition.setDuration(Duration.seconds(2));
+                pathTransition.setPath(path);
+                pathTransition.setNode(this);
+                pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+                pathTransition.setCycleCount(1);
+                pathTransition.setAutoReverse(true);
+                //.build();
         
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
@@ -264,24 +257,22 @@ public class AlienPiece extends SpritePiece {
         quadTo.setControlY(y1);
         quadTo.setX(x1);
         quadTo.setY(y1);
-        path = PathBuilder.create()
-                .elements(
-                        new MoveTo(x0, y0),
-                        quadTo
-                )
-                .build();
+        path = new Path();
+        path.getElements().add(new MoveTo(x0, y0));
+        path.getElements().add(quadTo);
+                //.build();
 
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
-        PathTransition pathTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path)
-                .node(this)
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+        PathTransition pathTransition = new PathTransition();
+                pathTransition.setDuration(Duration.seconds(2));
+                pathTransition.setPath(path);
+                pathTransition.setNode(this);
+                pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+                pathTransition.setCycleCount(1);
+                pathTransition.setAutoReverse(true);
+               // .build();
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
 

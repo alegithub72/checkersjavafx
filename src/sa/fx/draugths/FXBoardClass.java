@@ -7,6 +7,8 @@ package sa.fx.draugths;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,10 +16,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import sa.boardgame.core.moves.Move;
+
 import sa.boardgame.console.imp.AutomaPlayer;
-import sa.boardgame.core.players.Player;
 import sa.boardgame.console.imp.ConsoleRendering;
+import sa.boardgame.core.moves.Move;
+import sa.boardgame.core.players.Player;
 import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
 import sa.fx.draugths.screen.BackGround;

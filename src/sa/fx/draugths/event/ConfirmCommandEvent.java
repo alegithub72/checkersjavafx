@@ -5,12 +5,11 @@
  */
 package sa.fx.draugths.event;
 
-import sa.fx.draugths.players.FXPMousePlayer;
+import sa.boardgame.core.moves.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.players.FXPMousePlayer;
 
 
 /**

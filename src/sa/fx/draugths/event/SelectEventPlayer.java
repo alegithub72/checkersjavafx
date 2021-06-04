@@ -5,11 +5,10 @@
  */
 package sa.fx.draugths.event;
 
-import sa.fx.draugths.sprite.SpritePiece;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-
 import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.sprite.SpritePiece;
 
 /**
  *

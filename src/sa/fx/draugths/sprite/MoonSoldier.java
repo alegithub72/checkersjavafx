@@ -7,9 +7,11 @@ package sa.fx.draugths.sprite;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import sa.boardgame.core.moves.*;
+import sa.gameboard.core.Checker;
+import sa.gameboard.core.Piece;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
-import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**

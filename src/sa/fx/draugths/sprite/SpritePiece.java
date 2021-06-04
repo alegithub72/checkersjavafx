@@ -8,6 +8,7 @@ package sa.fx.draugths.sprite;
 
 import java.net.URL;
 
+
 import javafx.animation.Animation;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Reflection;
@@ -18,8 +19,8 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
-import sa.fx.draugths.event.SelectEventPlayer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.fx.draugths.event.SelectEventPlayer;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 

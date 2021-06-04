@@ -5,11 +5,11 @@
  */
 package sa.fx.draugths;
 
-import sa.fx.draugths.animation.FrameAnimationTimer;
-import sa.fx.draugths.animation.AnimationPedinaMove;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+
 import javafx.animation.ParallelTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -20,6 +20,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sa.fx.draugths.animation.AnimationPedinaMove;
+import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.screen.StartScreen;
 import sa.gameboard.core.Game;
@@ -151,15 +153,10 @@ public class BCDraugthsApp extends Application {
         game.makeHumanMove();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
 
-        launch(args);
-
-    }
-
+public static void main(String[] args) {
+    launch(args);
+}
 
 
 

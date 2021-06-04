@@ -5,12 +5,11 @@
  */
 package sa.fx.draugths.animation;
 
-
-import sa.fx.draugths.sprite.HumanPiece;
+import sa.boardgame.core.moves.*;
 import javafx.animation.Transition;
 import javafx.util.Duration;
-import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.sprite.HumanPiece;
 
 /**
  *

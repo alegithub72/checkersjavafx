@@ -5,8 +5,8 @@
  */
 package sa.fx.draugths.utility;
 
-import sa.fx.draugths.sprite.HumanPiece;
 import javafx.beans.value.WritableValue;
+import sa.fx.draugths.sprite.HumanPiece;
 
 /**
  *

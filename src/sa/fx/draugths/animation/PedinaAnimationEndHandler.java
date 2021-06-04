@@ -5,11 +5,12 @@
  */
 package sa.fx.draugths.animation;
 
-import sa.fx.draugths.sprite.SpritePiece;
+import sa.boardgame.core.moves.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import sa.boardgame.core.moves.Move;
+
 import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 
 

@@ -5,23 +5,24 @@
  */
 package sa.fx.draugths.sprite;
 
+import sa.boardgame.core.moves.*;
+import sa.gameboard.core.Checker;
+import sa.gameboard.core.Piece;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
-import javafx.animation.PathTransitionBuilder;
+import javafx.animation.PathTransition.OrientationType;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.shape.PathBuilder;
 import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
-import sa.boardgame.core.moves.Move;
+
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
-import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
@@ -95,7 +96,7 @@ public class MonsterSprite extends AlienPiece {
                 //(m.getJ1() * hSquare) + ((hSquare / 2));
         double xe = 0;
         double ye = 0;
-        Path path=null,path2 = null;
+        Path path=new Path(),path2 = new Path();
         Color color = Color.CHARTREUSE;
         quadTo.setControlX(x1);
         quadTo.setControlY(y1 - (hSquare * 2));
@@ -109,18 +110,12 @@ public class MonsterSprite extends AlienPiece {
         quadTo.setY(ye);
         quadTo2.setX(x1);
         quadTo2.setY(y1);
-        path = PathBuilder.create()
-                .elements(
-                        new MoveTo(x0, y0),
-                        quadTo
-                )
-                .build();
-        path2 = PathBuilder.create()
-                .elements(
-                        new MoveTo(x0, y0+32),
-                        quadTo
-                )
-                .build();
+        path.getElements().add(new MoveTo(x0, y0));
+        path.getElements().add(quadTo);
+
+        path2.getElements().add(new MoveTo(x0, y0+32));
+        path2.getElements().add(quadTo);
+
         path.getElements().add(new MoveTo(xe, ye));
         path.getElements().add(quadTo2);
         path2.getElements().add(new MoveTo(xe, ye+32));
@@ -132,14 +127,14 @@ public class MonsterSprite extends AlienPiece {
    
         
         
-        PathTransition pathTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path)
-                .node(this)
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+        PathTransition pathTransition = new PathTransition();
+                pathTransition.setDuration(Duration.seconds(2));
+                pathTransition.setPath(path);
+                pathTransition.setNode(this);
+                pathTransition.setOrientation(OrientationType.NONE);
+                pathTransition.setCycleCount(1);
+                pathTransition.setAutoReverse(true);
+              
 
         //pathTransition.setNode(laser);
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
@@ -147,14 +142,14 @@ public class MonsterSprite extends AlienPiece {
 
         
          extraSprite[0] =new Sprite(64*3, 96, wSquare, hSquare,  "LASERmONSTER.png",this.fbx);
-                PathTransition pathTransition2 = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path2)
-                .node(extraSprite[0])
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+                PathTransition pathTransition2 = new PathTransition();
+                		pathTransition2.setDuration(Duration.seconds(2));
+                		pathTransition2.setPath(path2);
+                		pathTransition2.setNode(extraSprite[0]);
+                		pathTransition2.setOrientation(OrientationType.NONE);
+                		pathTransition2.setCycleCount(1);
+                		pathTransition2.setAutoReverse(true);
+                
     
         pt.getChildren().add(pathTransition2);
         fbx.add(extraSprite[0]);

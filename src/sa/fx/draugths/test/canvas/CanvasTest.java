@@ -5,11 +5,9 @@
  */
 package sa.fx.draugths.test.canvas;
  
-import sa.fx.draugths.animation.FrameAnimationTimer;
-import java.io.File;
 import java.net.URL;
-import javafx.application.Application;
 
+import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -18,7 +16,6 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
 import javafx.stage.Stage;
 
  

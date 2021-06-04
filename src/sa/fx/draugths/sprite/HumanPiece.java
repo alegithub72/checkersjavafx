@@ -5,28 +5,26 @@
  */
 package sa.fx.draugths.sprite;
 
-import javafx.scene.image.Image;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.PathBuilder;
-import javafx.scene.shape.QuadCurveTo;
+
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
-import javafx.animation.PathTransitionBuilder;
 import javafx.animation.RotateTransition;
-import javafx.animation.RotateTransitionBuilder;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
-import sa.boardgame.core.moves.Move;
+import sa.boardgame.core.moves.*;
+import sa.gameboard.core.Checker;
+import sa.gameboard.core.Piece;
 import sa.fx.draugths.FXBoardClass;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.event.CollisionSpriteEvent;
-import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
@@ -81,14 +79,14 @@ public class HumanPiece extends SpritePiece {
     @Override
     public void animPedinaEat(Move m) {
         super.animPedinaEat(m);
-        RotateTransition rotateTransition = RotateTransitionBuilder.create()
+        RotateTransition rotateTransition = new RotateTransition();
                 // .node(p)
-                .duration(getAnimDuration())
-                .fromAngle(0)
-                .toAngle(-720)
-                .cycleCount(1)
-                .autoReverse(false)
-                .build();
+        rotateTransition.setDuration(getAnimDuration());
+        rotateTransition.setFromAngle(0);
+        rotateTransition.setToAngle(-720);
+        rotateTransition.setCycleCount(1);
+        rotateTransition.setAutoReverse(false);
+                //.build();
         ((ParallelTransition) ptList[TRANSITION_STEP.FULL_STEP]).getChildren().add(rotateTransition);
     }
 
@@ -154,14 +152,14 @@ public class HumanPiece extends SpritePiece {
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
 
-        PathTransition pathTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path)
-                .node(this)
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(2));
+        pathTransition.setPath(path);
+        pathTransition.setNode(this);
+        pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+        pathTransition.setCycleCount(1);
+        pathTransition.setAutoReverse(true);
+                //
         
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         
@@ -189,24 +187,22 @@ public class HumanPiece extends SpritePiece {
         arc.setControlY(y1);
 
         MoveTo from = new MoveTo(x0, y0);
-        Path path = PathBuilder.create()
-                .elements(
-                        from,
-                        arc
-                )
-                .build();
+        Path path = new Path();
+        path.getElements().add(from);
+        path.getElements().add(arc);
+                //
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
 
-        PathTransition pathTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path)
-                .node(this)
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(2));
+        pathTransition.setPath(path);
+        pathTransition.setNode(this);
+        pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+        pathTransition.setCycleCount(1);
+        pathTransition.setAutoReverse(true);
+                //.build();
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
 
@@ -232,24 +228,22 @@ public class HumanPiece extends SpritePiece {
         arc.setControlY(y1 - (h * 2));
 
         MoveTo from = new MoveTo(x0, y0);
-        Path path = PathBuilder.create()
-                .elements(
-                        from,
-                        arc
-                )
-                .build();
+        Path path = new Path();
+               path.getElements().add(from);
+               path.getElements().add(arc);
+              
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
 
-        PathTransition pathTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path)
-                .node(this)
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(2));
+        pathTransition.setPath(path);
+        pathTransition.setNode(this);
+        pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+        pathTransition.setCycleCount(1);
+        pathTransition.setAutoReverse(true);
+                //.build();
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
 
@@ -279,24 +273,22 @@ public class HumanPiece extends SpritePiece {
         arc.setControlY(y1 - (hSquare * 2));
 
         MoveTo from = new MoveTo(x0, y0);
-        Path path = PathBuilder.create()
-                .elements(
-                        from,
-                        arc
-                )
-                .build();
+        Path path = new Path();
+             path.getElements().add(from);
+             path.getElements().add(arc);
+             
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
 
-        PathTransition pathTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(2))
-                .path(path)
-                .node(this)
-                .orientation(PathTransition.OrientationType.NONE)
-                .cycleCount(1)
-                .autoReverse(true)
-                .build();
+        PathTransition pathTransition = new PathTransition();
+          pathTransition.setDuration(Duration.seconds(2));
+          pathTransition.setPath(path);
+          pathTransition.setNode(this);
+          pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+          pathTransition.setCycleCount(1);
+          pathTransition.setAutoReverse(true);
+                //
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
 
@@ -334,14 +326,14 @@ public class HumanPiece extends SpritePiece {
                 qTO
                 )
                 ;
-        PathTransition pathMissileTransition = PathTransitionBuilder.create()
-                .duration(Duration.seconds(0.2))
-                .path(path)
-                .node(extraSprite[0])
-                .orientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT)
-                .cycleCount(1)
-                .autoReverse(false)
-                .build();
+        PathTransition pathMissileTransition = new PathTransition();
+        pathMissileTransition.setDuration(Duration.seconds(0.2));
+        pathMissileTransition.setPath(path);
+        pathMissileTransition.setNode(extraSprite[0]);
+        pathMissileTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pathMissileTransition.setCycleCount(1);
+        pathMissileTransition.setAutoReverse(false);
+                //.build();
 
         //table.getChildren().add(path);
         ptMissile.getChildren().add(pathMissileTransition);

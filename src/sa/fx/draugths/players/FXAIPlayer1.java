@@ -7,12 +7,9 @@ package sa.fx.draugths.players;
 
 
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import sa.boardgame.core.*;
 import sa.boardgame.core.players.AIPlayer;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.gameboard.core.Checker;
 
 /**

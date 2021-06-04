@@ -6,13 +6,13 @@
 package sa.fx.draugths.players;
 
 
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
-import sa.boardgame.core.moves.Move;
+import sa.boardgame.core.moves.*;
 import sa.boardgame.core.players.HumanPlayer;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoardClass;
 import sa.gameboard.core.Checker;
 
