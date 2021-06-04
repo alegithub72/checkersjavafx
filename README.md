@@ -4,6 +4,7 @@ Copy the ckeckers directory  under lib in  your repository.
 To run the game: 
 
 mvn pakcage 
+
 mvn clean javafx:run
 
 Some screenshot:
