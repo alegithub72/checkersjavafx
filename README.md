@@ -1,6 +1,6 @@
 
 # Space Invaders Chekcers game by JavaFX
-The game of checkers made with Java and JavaFX, space invaders style.
+The game of checkers made with Java and JavaFX, space invaders style.(still developing).
 
 Copy the `ckeckers` directory  under `lib` in  your local `repository`.
 
