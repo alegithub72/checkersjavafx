@@ -5,6 +5,7 @@
  */
 package sa.fx.draugths;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,11 +113,13 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             
             game = new Game(automa, computerPlayer,Board.CHECKERS_GAME);
             //game.setDamaSystem((DamaInterface) this);
-            ConsoleRendering console = new ConsoleRendering(game.getBoard());
+            
+            ConsoleRendering console = new ConsoleRendering();
             game.addRenderInterface(console);
            // game.playGame();
-            game.setHuman(mousePlayer);           
 
+            game.setHuman(mousePlayer);           
+            //load("board.txt");
  
             if(game!=null) game.addRenderInterface(this);
 
@@ -124,7 +127,16 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                
         
     }
-
+    void load(String file) {
+    	
+        try {
+			game.getBoard().loadBoard(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    }
     public boolean isOn() {
         return on;
     }

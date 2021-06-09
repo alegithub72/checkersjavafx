@@ -28,6 +28,7 @@ import sa.fx.draugths.sprite.HumanPiece;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Game;
+import sa.gameboard.core.Piece.Side;
 
 /**
  *
@@ -51,8 +52,8 @@ public class BCDamaTxt extends Application{
         double w=img.getWidth();
         double h=img.getHeight();
         Canvas c=new Canvas(w, h);
-        Checker ck=new Checker(0,0,Player.BOARDNORTH);
-         Checker ck2=new Checker(1, 0, Player.BOARDNORTH);
+        Checker ck=new Checker(0,0,Side.NORTH_BOARD);
+         Checker ck2=new Checker(1, 0, Side.SOUTH_BOARD);
          FXBoard fbx=new FXBoard(1, null);
          
         SpritePiece p=SpritePiece.buildPedina(64, 64, 0, ck, 1,null);

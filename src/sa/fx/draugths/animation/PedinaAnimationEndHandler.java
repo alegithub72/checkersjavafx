@@ -53,13 +53,13 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
         if(m.getP().getColor()==Checker.WHITE) fxboard.getBackGround().updatePoint(m.calculateValue());
        if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
             fxboard.getGame().getBoard().getColorSideNorth()==m.getP().getColor() &&
-            m.getJ1()==7) {
+            m.getI1()==7) {
             p.setFrameDama();
 
 
         }else if((m.getType()==Move.MOVE || m.getType()==Move.EAT) &&
                 this.fxboard.getGame().getBoard().getBoardSideSouth()==m.getP().getColor()  &&
-                m.getJ1()==0){
+                m.getI1()==0){
                 p.setFrameDama();
         }
 
