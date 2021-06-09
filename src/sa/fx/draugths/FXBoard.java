@@ -36,7 +36,7 @@ import sa.gameboard.core.interfaces.GraficBoardInterface;
  *
  * @author appleale
  */
-public class FXBoardClass extends Parent implements GraficBoardInterface  {
+public class FXBoard extends Parent implements GraficBoardInterface  {
 
     private final List pedinaList[];
     private boolean on = false;
@@ -93,7 +93,7 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
         this.level = level;
     }
     
-    public FXBoardClass(int l,BCDraugthsApp app) {
+    public FXBoard(int l,BCDraugthsApp app) {
         this.pedinaList = new ArrayList[2];
         turn=false;
         this.app=app;
@@ -114,7 +114,7 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
             //game.setDamaSystem((DamaInterface) this);
             ConsoleRendering console = new ConsoleRendering(game.getBoard());
             game.addRenderInterface(console);
-            game.playGame();
+           // game.playGame();
             game.setHuman(mousePlayer);           
 
  
@@ -210,12 +210,12 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
             wBoardSquare = (int) wBoard / 8;
             Piece pedinaChar = list[i];
             if(pedinaChar!=null){
-            int x1 = pedinaChar.getI();
-            int y1 = pedinaChar.getJ();
+            int x1 = pedinaChar.getJ(); 
+            int y1 = pedinaChar.getI();
 
-            double x = Sprite.convertBoardIposition(x1, wBoardSquare);
+            double x = Sprite.convertBoardJposition(x1, wBoardSquare);
                     
-            double y = Sprite.convertBoardJposition(y1,hBoardSquare);
+            double y = Sprite.convertBoardIposition(y1,hBoardSquare);
             
             SpritePiece pedina = SpritePiece.buildPedina(
                     wBoardSquare, hBoardSquare, 
@@ -316,7 +316,7 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
     
     public void playComputerPlayer() {
         if (game.getAI().getName().equals("Computer")) {
-            game.makeAIMove();
+            game.makeAITurn();
         } else {
             game.makeHumanMove();
         }
@@ -375,7 +375,16 @@ public class FXBoardClass extends Parent implements GraficBoardInterface  {
         
  
     }
-     public boolean isLastLevel(){
+    
+    
+    
+     @Override
+	public void renderCommad() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean isLastLevel(){
         return (level==3);
     }       
 }

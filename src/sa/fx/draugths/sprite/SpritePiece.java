@@ -16,7 +16,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
@@ -56,7 +56,7 @@ public abstract class SpritePiece extends Sprite{
     
     
     
-    public SpritePiece(int wboardBox,int hBoardBox, String img,FXBoardClass b) {
+    public SpritePiece(int wboardBox,int hBoardBox, String img,FXBoard b) {
         super(SPRITE_W, SPRITE_H, wboardBox, hBoardBox,  img,b);
 
     }
@@ -155,7 +155,7 @@ public abstract class SpritePiece extends Sprite{
     }   
     
         public static SpritePiece buildPedina(int wb,int hb,int c,Piece pa,int level,
-                FXBoardClass board){
+                FXBoard board){
             System.out.println("LEVEL="+level);
             if(level==1)  return buildPedinaLevel1( wb, hb, c, pa,board);
             else if(level==2) return  buildPedinaLevel2( wb, hb, c, pa,board);
@@ -164,7 +164,7 @@ public abstract class SpritePiece extends Sprite{
     
     
        public static SpritePiece  buildPedinaLevel1(int wboardBox,int hBoardBox,
-               int color,Piece pedinassociated, FXBoardClass board) {
+               int color,Piece pedinassociated, FXBoard board) {
        String imagePedina=null;
        SpritePiece pedina=null;    
        if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
@@ -194,7 +194,7 @@ public abstract class SpritePiece extends Sprite{
     }
        
        public static SpritePiece  buildPedinaLevel2(int wboardBox,int hBoardBox, int color,
-               Piece pedinassociated, FXBoardClass board) {
+               Piece pedinassociated, FXBoard board) {
        String imagePedina=null;
        SpritePiece pedina=null;    
        if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");

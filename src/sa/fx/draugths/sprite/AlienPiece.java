@@ -18,7 +18,7 @@ import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
 
 import sa.fx.draugths.BCDraugthsApp;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.gameboard.core.Checker;
@@ -34,7 +34,7 @@ public class AlienPiece extends SpritePiece {
     BCDraugthsApp bcdg;
 
     AlienPiece(int color, Piece boardPiece, int wbBox, int hbBox, 
-            String img, FXBoardClass board) {
+            String img, FXBoard board) {
         super(wbBox, hbBox, img,board);
         this.color = color;
         this.boardPieceLink = boardPiece;
@@ -85,13 +85,13 @@ public class AlienPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo quadTo = new QuadCurveTo();
         QuadCurveTo quadTo2 = new QuadCurveTo();
-        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+        double x0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), wSquare);
                 //m.getP().getI() * wboardBox + ((wboardBox / 2));
-        double y0 =  Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+        double y0 =  Sprite.convertBoardIpositionCenter(m.getP().getI(), hSquare);
                 //m.getP().getJ() * hBoardBox + ((hBoardBox / 2));
-        double x1 = Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+        double x1 = Sprite.convertBoardJpositionCenter(m.getJ1(), wSquare);
                 //(m.getI1() * wboardBox) + ((wboardBox / 2));
-        double y1 = Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+        double y1 = Sprite.convertBoardIpositionCenter(m.getI1(), hSquare);
                 //(m.getJ1() * hBoardBox) + ((hBoardBox / 2));
 
         Path path = null;
@@ -126,13 +126,13 @@ public class AlienPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo quadTo = new QuadCurveTo();
         QuadCurveTo quadTo2 = new QuadCurveTo();
-        double x0 =Sprite.convertBoardIpositionCenter(m.getP().getI(),wSquare);
+        double x0 =Sprite.convertBoardJpositionCenter(m.getP().getJ(),wSquare);
                 //( m.getP().getI() * wboardBox) + ((wboardBox / 2));
-        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(),hSquare);
+        double y0 = Sprite.convertBoardIpositionCenter(m.getP().getI(),hSquare);
                 //(m.getP().getJ() * hBoardBox) + ((hBoardBox / 2));
-        double x1 = Sprite.convertBoardIpositionCenter(m.getI1(),wSquare);
+        double x1 = Sprite.convertBoardJpositionCenter(m.getJ1(),wSquare);
                 //(m.getI1() * wboardBox) + ((wboardBox / 2));
-        double y1 =Sprite.convertBoardJpositionCenter(m.getJ1(),hSquare);
+        double y1 =Sprite.convertBoardIpositionCenter(m.getI1(),hSquare);
                 //(m.getJ1() * hBoardBox) + ((hBoardBox / 2));
         double xe = 0;
         double ye = 0;
@@ -142,9 +142,9 @@ public class AlienPiece extends SpritePiece {
         quadTo.setControlY(y1 - (h * 2));
         quadTo2.setControlX(x1);
         quadTo2.setControlY(y1 - (h * 2));
-        xe = Sprite.convertBoardIpositionCenter(m.getEat().getI() , wSquare);
+        xe = Sprite.convertBoardIpositionCenter(m.getEat().getJ() , wSquare);
                 //(m.getEat().getI() * wboardBox) + (wboardBox / 2);
-        ye = Sprite.convertBoardJpositionCenter(m.getEat().getJ() , hSquare);
+        ye = Sprite.convertBoardJpositionCenter(m.getEat().getI() , hSquare);
                 //(m.getEat().getJ() * hBoardBox) + (hBoardBox / 2);
         quadTo.setX(xe);
         quadTo.setY(ye);
@@ -184,13 +184,13 @@ public class AlienPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo quadTo = new QuadCurveTo();
         QuadCurveTo quadTo2 = new QuadCurveTo();
-        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+        double x0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), wSquare);
                 //m.getP().getI() * wboardBox + ((wboardBox / 2));
-        double y0 = Sprite.convertBoardJposition(m.getP().getJ(), hSquare);
+        double y0 = Sprite.convertBoardIposition(m.getP().getI(), hSquare);
                 //m.getP().getJ() * hBoardBox + ((hBoardBox / 2));
-        double x1 = Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+        double x1 = Sprite.convertBoardJpositionCenter(m.getJ1(), wSquare);
                 //(m.getI1() * wboardBox) + ((wboardBox / 2));
-        double y1 = Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+        double y1 = Sprite.convertBoardIpositionCenter(m.getI1(), hSquare);
                 //(m.getJ1() * hBoardBox) + ((hBoardBox / 2));
         double xe = 0;
         double ye = 0;
@@ -200,10 +200,10 @@ public class AlienPiece extends SpritePiece {
         quadTo.setControlY(y1 - (h * 2));
         quadTo2.setControlX(x1);
         quadTo2.setControlY(y1 - (h * 2));
-        xe = Sprite.convertBoardIpositionCenter(m.getEat().getI(), wSquare);
+        xe = Sprite.convertBoardJpositionCenter(m.getEat().getJ(), wSquare);
                 
                 //(m.getEat().getI() * wSquare) + (wSquare / 2);
-        ye = Sprite.convertBoardJpositionCenter(m.getEat().getJ(), hSquare);
+        ye = Sprite.convertBoardIpositionCenter(m.getEat().getI(), hSquare);
                 
                 //(m.getEat().getJ() * hSquare) + (hSquare / 2);
         quadTo.setX(xe);
@@ -240,13 +240,13 @@ public class AlienPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo quadTo = new QuadCurveTo();
         QuadCurveTo quadTo2 = new QuadCurveTo();
-        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+        double x0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), wSquare);
                 //m.getP().getI() * wSquare + ((wSquare / 2));
-        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+        double y0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), hSquare);
                 //m.getP().getJ() * hSquare + ((hSquare / 2));
-        double x1 = Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+        double x1 = Sprite.convertBoardJpositionCenter(m.getJ1(), wSquare);
                 //(m.getI1() * wSquare) + ((wSquare / 2));
-        double y1 = Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+        double y1 = Sprite.convertBoardIpositionCenter(m.getI1(), hSquare);
                 //(m.getJ1() * hSquare) + ((hSquare / 2));
         double xe = 0;
         double ye = 0;

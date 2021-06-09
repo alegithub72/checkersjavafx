@@ -32,11 +32,11 @@ public class AnimationPedinaMove extends Transition  {
     }    
     @Override
     protected void   interpolate(double frac) {
-     double x1= m.getI1()*pedina.getW();
-     double y1= m.getJ1()*pedina.getH();
+     double x1= m.getJ1()*pedina.getW();
+     double y1= m.getI1()*pedina.getH();
 
-     double x0= m.getP().getI()*pedina.getW();
-     double y0= m.getP().getJ()*pedina.getH();
+     double x0= m.getP().getJ()*pedina.getW();
+     double y0= m.getP().getI()*pedina.getH();
      double x01=x0-x1;
      double y01=y0-y1;
 

@@ -7,7 +7,7 @@ package sa.fx.draugths.event;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.sprite.SpritePiece;
 
 /**
@@ -16,10 +16,10 @@ import sa.fx.draugths.sprite.SpritePiece;
  */
 public class SelectEventPlayer implements EventHandler<MouseEvent> {
 
-    FXBoardClass fxb;
+    FXBoard fxb;
     SpritePiece p;
 
-    public SelectEventPlayer(FXBoardClass board,SpritePiece p) {
+    public SelectEventPlayer(FXBoard board,SpritePiece p) {
         this.fxb = board;
         this.p=p;
     }
@@ -35,7 +35,7 @@ public class SelectEventPlayer implements EventHandler<MouseEvent> {
         fxb.getMousePlayer().deleteMoveChoose();
         fxb.setSelect(p);
         p.setFrame(1);
-        fxb.getMousePlayer().visualizeMove();
+        fxb.getMousePlayer().choosePiece();
                 
         }
                   

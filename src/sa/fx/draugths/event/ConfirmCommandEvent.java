@@ -8,7 +8,7 @@ package sa.fx.draugths.event;
 import sa.boardgame.core.moves.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.players.FXPMousePlayer;
 
 
@@ -18,10 +18,10 @@ import sa.fx.draugths.players.FXPMousePlayer;
  */
 public class ConfirmCommandEvent implements EventHandler<MouseEvent>{
     int n;
-    FXBoardClass bb;
+    FXBoard bb;
     FXPMousePlayer mousePlayer;
     
-  public   ConfirmCommandEvent(FXPMousePlayer mousePLayer,int n,FXBoardClass bb){
+  public   ConfirmCommandEvent(FXPMousePlayer mousePLayer,int n,FXBoard bb){
         this.n=n;
         this.bb=bb;
         mousePlayer=mousePLayer;
@@ -31,7 +31,7 @@ public class ConfirmCommandEvent implements EventHandler<MouseEvent>{
     public void handle(MouseEvent event) {
         mousePlayer.setMoveChoose(n);
         System.out.println("Hai scelto "+n);
-        Move m=mousePlayer.confirmMove();
+        Move m=mousePlayer.chooseMove();
 
         System.out.println("m="+m+", p.i="+m.getP().getI()+",p.j="+m.getP().getJ());
         if(!mousePlayer.makeMove(m)) throw new RuntimeException("Move not executed");

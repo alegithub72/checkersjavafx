@@ -13,7 +13,7 @@ import javafx.scene.Group;
 import javafx.scene.text.Text;
 import sa.boardgame.core.moves.*;
 import sa.boardgame.core.players.HumanPlayer;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.gameboard.core.Checker;
 
 /**
@@ -22,39 +22,24 @@ import sa.gameboard.core.Checker;
  */
 public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent>  {
 
-    FXBoardClass board;
+    FXBoard board;
     Group table;
-    public FXPlayer(Group table,FXBoardClass board) {
+    public FXPlayer(Group table,FXBoard board) {
         super(Checker.WHITE);
         this.board=board;
         this.table=table;
     }
 
-    @Override
+
+	@Override
     public String getCommand() {
         String r= board.getCommand().getText(); //To change body of generated methods, choose Tools | Templates.
         return r;
     }
 
-    @Override
-    public Move chooseMoveList(int n,int n2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public void possibleMove(String c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public void drawMoveChoose() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public void deleteMoveChoose() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     
     

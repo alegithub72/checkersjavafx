@@ -10,7 +10,7 @@ import javafx.scene.media.AudioClip;
 import sa.boardgame.core.moves.*;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.gameboard.core.Piece;
 
@@ -34,7 +34,7 @@ public class MoonSoldier extends HumanPiece {
     }    
 
 
-    public MoonSoldier(int color, Piece boardPiece,  int wbBox, int hbBox, String img,FXBoardClass bb) {
+    public MoonSoldier(int color, Piece boardPiece,  int wbBox, int hbBox, String img,FXBoard bb) {
         super(color, boardPiece,  wbBox, hbBox, img,bb);
     }
         

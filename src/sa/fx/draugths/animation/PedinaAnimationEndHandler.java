@@ -9,7 +9,7 @@ import sa.boardgame.core.moves.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 
@@ -22,11 +22,11 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
 
     SpritePiece p;
     SpritePiece e;
-    FXBoardClass fxboard;
+    FXBoard fxboard;
     double wBoardBox, hBoadBoxs;
     
     Move m;
-    public PedinaAnimationEndHandler(SpritePiece p, Move m, double wBoardBox, double hBoadBoxs,FXBoardClass bb) {
+    public PedinaAnimationEndHandler(SpritePiece p, Move m, double wBoardBox, double hBoadBoxs,FXBoard bb) {
         this.p = p;
         this.fxboard = bb;
         this.wBoardBox = wBoardBox;
@@ -35,7 +35,7 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
         this.e = null;
         
     }
-    public PedinaAnimationEndHandler(SpritePiece p, Move m, SpritePiece e, double wBoardBox, double hBoadBoxs,FXBoardClass bb) {
+    public PedinaAnimationEndHandler(SpritePiece p, Move m, SpritePiece e, double wBoardBox, double hBoadBoxs,FXBoard bb) {
         this.p = p;
         this.fxboard = bb;
         this.wBoardBox = wBoardBox;
@@ -52,7 +52,7 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
         if(e!=null) e.stop();
         if(m.getP().getColor()==Checker.WHITE) fxboard.getBackGround().updatePoint(m.calculateValue());
        if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
-            fxboard.getGame().getBoard().getBoardSideNorth()==m.getP().getColor() &&
+            fxboard.getGame().getBoard().getColorSideNorth()==m.getP().getColor() &&
             m.getJ1()==7) {
             p.setFrameDama();
 

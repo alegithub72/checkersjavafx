@@ -20,7 +20,7 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.*;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
@@ -37,7 +37,7 @@ public class HumanPiece extends SpritePiece {
 
    
     HumanPiece(int color, Piece boardPiece,
-            int wbBox, int hbBox, String img, FXBoardClass board) {
+            int wbBox, int hbBox, String img, FXBoard board) {
         super( wbBox, hbBox, img,board);
         this.color = color;
        
@@ -115,18 +115,18 @@ public class HumanPiece extends SpritePiece {
         QuadCurveTo arc = new QuadCurveTo();
         
         //javafx.scene.shape.
-        double x0 =Sprite.convertBoardIpositionCenter(m.getP().getI(),wSquare); 
+        double x0 =Sprite.convertBoardJpositionCenter(m.getP().getJ(),wSquare); 
        
                // (m.getP().getI() * wboardBox) + ((wboardBox / 2));
-        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getJ() ,hSquare); 
+        double y0 = Sprite.convertBoardIpositionCenter(m.getP().getI() ,hSquare); 
                 
                 //(m.getP().getJ() * hBoardBox) + ((hBoardBox / 2));
 
         Color color = Color.ANTIQUEWHITE;
-        double x1 = Sprite.convertBoardIpositionCenter(m.getI1(),wSquare); 
+        double x1 = Sprite.convertBoardJpositionCenter(m.getJ1(),wSquare); 
                 
                 //(m.getI1() * wboardBox) + ((wboardBox / 2));
-        double y1 = Sprite.convertBoardJpositionCenter(m.getJ1() ,hSquare);
+        double y1 = Sprite.convertBoardIpositionCenter(m.getI1() ,hSquare);
                 
                 //(m.getJ1() * hBoardBox) + ((hBoardBox / 2));
         arc.setX(x1);
@@ -171,15 +171,15 @@ public class HumanPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo arc = new QuadCurveTo();
         //javafx.scene.shape.
-        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+        double x0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), wSquare);
                 //(m.getP().getI() * wSquare) + ((wSquare / 2));
-        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+        double y0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), hSquare);
                 //(m.getP().getJ() * hSquare) + ((hSquare / 2));
 
         Color color = Color.CHARTREUSE;
-        double x1 =Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+        double x1 =Sprite.convertBoardJpositionCenter(m.getJ1(), wSquare);
                 //(m.getI1() * wSquare) + ((wSquare / 2));
-        double y1 = Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+        double y1 = Sprite.convertBoardIpositionCenter(m.getI1(), hSquare);
                 //(m.getJ1() * hSquare) + ((hSquare / 2));
         arc.setX(x1);
         arc.setY(y1);
@@ -212,15 +212,15 @@ public class HumanPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo arc = new QuadCurveTo();
         //javafx.scene.shape.
-        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+        double x0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), wSquare);
                 //(m.getP().getI() * wSquare) + ((wSquare / 2));
-        double y0 =Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+        double y0 =Sprite.convertBoardIpositionCenter(m.getP().getI(), hSquare);
                 //(m.getP().getJ() * hSquare) + ((hSquare / 2));
 
         Color color = Color.CHARTREUSE;
-        double x1 = Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+        double x1 = Sprite.convertBoardJpositionCenter(m.getJ1(), wSquare);
         //(m.getI1() * wSquare) + ((wSquare / 2));
-        double y1 = Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+        double y1 = Sprite.convertBoardIpositionCenter(m.getI1(), hSquare);
                 //(m.getJ1() * hSquare) + ((hSquare / 2));
         arc.setX(x1);
         arc.setY(y1);
@@ -253,15 +253,15 @@ public class HumanPiece extends SpritePiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo arc = new QuadCurveTo();
         //javafx.scene.shape.
-        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), wSquare);
+        double x0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), wSquare);
                 //(m.getP().getI() * wSquare) + ((wSquare / 2));
-        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+        double y0 = Sprite.convertBoardIpositionCenter(m.getP().getI(), hSquare);
                 //(m.getP().getJ() * hSquare) + ((hSquare / 2));
 
         Color color = Color.CHARTREUSE;
-        double x1 =Sprite.convertBoardIpositionCenter(m.getI1(), wSquare);
+        double x1 =Sprite.convertBoardJpositionCenter(m.getJ1(), wSquare);
                 //(m.getI1() * wSquare) + ((wSquare / 2));
-        double y1 =Sprite.convertBoardJpositionCenter(m.getJ1(), hSquare);
+        double y1 =Sprite.convertBoardIpositionCenter(m.getI1(), hSquare);
                 //(m.getJ1() * hSquare) + ((hSquare / 2));
         arc.setX(x1);
         arc.setY(y1);
@@ -301,11 +301,11 @@ public class HumanPiece extends SpritePiece {
       
         this.fbx.add(extraSprite[0]);
         //x missile.toFront();
-        double x =Sprite.convertBoardIpositionCenter( m.getP().getI(),wSquare);
-        double y = Sprite.convertBoardJpositionCenter(m.getP().getJ(), hSquare);
+        double x =Sprite.convertBoardJpositionCenter( m.getP().getJ(),wSquare);
+        double y = Sprite.convertBoardIpositionCenter(m.getP().getI(), hSquare);
                 //m.getP().getJ();
-        double xe=Sprite.convertBoardIpositionCenter(eated.boardPieceLink.getI(), wSquare);
-        double ye=Sprite.convertBoardJpositionCenter(eated.boardPieceLink.getJ(), hSquare);
+        double xe=Sprite.convertBoardJpositionCenter(eated.boardPieceLink.getJ(), wSquare);
+        double ye=Sprite.convertBoardIpositionCenter(eated.boardPieceLink.getI(), hSquare);
         extraSprite[0].setX(x);
         extraSprite[0].setY(y);
         QuadCurveTo qTO=new QuadCurveTo();

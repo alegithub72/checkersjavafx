@@ -21,7 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.ScreenPause;
 import sa.fx.draugths.animation.ScreenPauseInterface;
@@ -45,7 +45,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         return point;
     }
     //Text start;
-    FXBoardClass board; 
+    FXBoard board; 
     int level;
 
     public double getWBackground() {
@@ -67,7 +67,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         return c.getGraphicsContext2D();
     }
     
-    public BackGround(int level,FXBoardClass board,int point){
+    public BackGround(int level,FXBoard board,int point){
 
         c=new Canvas(wBackground, hBackgroud+hPointTable+10);
         getChildren().add(c);

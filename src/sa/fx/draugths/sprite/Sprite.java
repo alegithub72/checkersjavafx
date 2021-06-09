@@ -11,7 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.screen.BackGround;
@@ -39,9 +39,9 @@ public class Sprite extends Parent {
     FrameAnimationTimer[] frameAnimTimer;
     int k;
     Animation[] ptList;
-    FXBoardClass fbx;
+    FXBoard fbx;
 
-    public Sprite(int w, int h,int wboardBox,int hBoardBox,String img,FXBoardClass b) {
+    public Sprite(int w, int h,int wboardBox,int hBoardBox,String img,FXBoard b) {
         this.w = w;
         this.h = h;
         this.wSquare=wboardBox;
@@ -59,7 +59,7 @@ public class Sprite extends Parent {
         
     }
     
-    public void setFXBoard(FXBoardClass b){
+    public void setFXBoard(FXBoard b){
         this.fbx=b;
     }
     
@@ -143,28 +143,28 @@ public class Sprite extends Parent {
     public void removeExtraSprite(int n){
         if(extraSprite[n]!=null) fbx.remove(extraSprite[n]);
     }
-    public static double convertBoardIposition(int i,int w){
+    public static double convertBoardJposition(int i,int w){
     
                 double x = ((i * w) + (w / 2)) 
                     - (SpritePiece.SPRITE_W/2);
                 return x;
     }
-     public static double convertBoardJposition(int j,int h){
+     public static double convertBoardIposition(int j,int h){
         double y = ((j * h) + (h / 2)) 
                     - (SpritePiece.SPRITE_H/2)
                     +BackGround.hPointTable+10;
         return y;
     }   
-    public static double convertBoardIpositionCenter(int i,int w){
+    public static double convertBoardJpositionCenter(int j,int w){
     
-                double x = ((i * w) 
+                double x = ((j * w) 
                         + (w / 2)
                         );
                 return x;
     }
-    public static double convertBoardJpositionCenter(int j,int h){
+    public static double convertBoardIpositionCenter(int i,int h){
     
-                double y = ((j * h)
+                double y = ((i * h)
                         + (h / 2)
                        )  + BackGround.hPointTable+10;
                         

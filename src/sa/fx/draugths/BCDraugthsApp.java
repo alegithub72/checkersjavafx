@@ -43,9 +43,9 @@ public class BCDraugthsApp extends Application {
     private ParallelTransition pt;
     private AnimationPedinaMove anim;
 
-    FXBoardClass fxb;
+    FXBoard fxb;
 
-    public FXBoardClass getFxb() {
+    public FXBoard getFxb() {
         return fxb;
     }
 
@@ -139,7 +139,7 @@ public class BCDraugthsApp extends Application {
     }
    public void levelUp(int level,int point){
             root.getChildren().remove(fxb);
-            fxb=new FXBoardClass(level,this);
+            fxb=new FXBoard(level,this);
             fxb.startLevel(point);
             root.getChildren().remove(startScreen);
             root.getChildren().add(fxb);         
@@ -207,7 +207,7 @@ public static void main(String[] args) {
         music.setCycleCount(AudioClip.INDEFINITE);
         music.play(); 
         root.getChildren().remove(fxb);
-        fxb=new FXBoardClass(0,this);
+        fxb=new FXBoard(0,this);
         startScreen=new StartScreen(0,fxb);
         root.getChildren().add(startScreen);
         startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {

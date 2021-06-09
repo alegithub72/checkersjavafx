@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import sa.fx.draugths.FXBoardClass;
+import sa.fx.draugths.FXBoard;
 
 /**
  *
@@ -30,7 +30,7 @@ public class StartScreen extends Parent {
     Canvas c;
     int point;
     Text start;
-    FXBoardClass fbx;
+    FXBoard fbx;
     int level;
 
     public double getWidthScreen() {
@@ -52,7 +52,7 @@ public class StartScreen extends Parent {
         return c.getGraphicsContext2D();
     }
     
-    public StartScreen(int level,FXBoardClass b){
+    public StartScreen(int level,FXBoard b){
         this.fbx=b;
         c=new Canvas(700, 730);
         getChildren().add(c);
