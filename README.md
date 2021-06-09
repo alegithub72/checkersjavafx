@@ -1,3 +1,4 @@
+
 # Space Invaders Chekcers game by JavaFX
 The game of checkers made with Java and JavaFX, space invaders style.
 
@@ -12,6 +13,6 @@ To run the game:
 Some screenshot:
 
 ![screesho_check_1](https://user-images.githubusercontent.com/26597373/120767886-edd6d380-c51b-11eb-9262-362aa5805dd8.PNG)
-
-![screenshot5](https://user-images.githubusercontent.com/26597373/121335648-13e4e500-c91b-11eb-986d-890a8e8b2a03.jpg)
-
+<br>
+<br>
+![screenshot6](https://user-images.githubusercontent.com/26597373/121335849-3f67cf80-c91b-11eb-8ac7-f4b031c42f57.jpg)
