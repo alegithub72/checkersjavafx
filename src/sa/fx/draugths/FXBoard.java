@@ -119,7 +119,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
            // game.playGame();
 
             game.setHuman(mousePlayer);           
-            //load("board.txt");
+            load("board.txt");
  
             if(game!=null) game.addRenderInterface(this);
 
@@ -322,8 +322,8 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             
         }
             
-    public void updateInterface(Move m) {
-        game.updateInterface(m);
+    public void updateInterface(String namePlayer,Move m) {
+        game.updateInterface(namePlayer,m);
     }
     
     public void playComputerPlayer() {
@@ -374,7 +374,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     }
 
     @Override
-    public void renderMove(Move m) {
+    public void renderMove(String namePlayer,Move m) {
         if (m != Move.NULLMOVE) {
             SpritePiece p;
             p = getSpritePiece(m.getI1(),

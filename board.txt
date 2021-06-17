@@ -1,5 +1,2 @@
-i:1,j:1,color:0,type:2,side:10
-i:7,j:5,color:0,type:2,side:10
-i:6,j:4,color:1,type:2,side:20
-i:4,j:2,color:1,type:2,side:20
-i:2,j:2,color:1,type:2,side:20
+i:7,j:5,color:0,type:2,side:SOUTH_BOARD
+i:6,j:4,color:1,type:2,side:NORTH_BOARD
