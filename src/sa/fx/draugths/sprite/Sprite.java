@@ -37,11 +37,13 @@ public class Sprite extends Parent {
     int hSquare;
     int nframes = 0;
     FrameAnimationTimer[] frameAnimTimer;
+    String colorFX;
     int k;
     Animation[] ptList;
     FXBoard fbx;
 
-    public Sprite(int w, int h,int wboardBox,int hBoardBox,String img,FXBoard b) {
+    public Sprite(String colorFX,int w, int h,int wboardBox,int hBoardBox,String img,FXBoard b) {
+    	this.colorFX=colorFX;
         this.w = w;
         this.h = h;
         this.wSquare=wboardBox;
@@ -169,7 +171,13 @@ public class Sprite extends Parent {
                        )  + BackGround.hPointTable+10;
                         
                 return y;
-    }    
+    }
+
+	@Override
+	public String toString() {
+		return "Sprite [colorFX=" + colorFX + "]";
+	}    
     
+
     
 }

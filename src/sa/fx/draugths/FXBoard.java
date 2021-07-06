@@ -14,17 +14,24 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
+import javafx.scene.paint.Color;
 import sa.boardgame.console.imp.AutomaPlayer;
 import sa.boardgame.console.imp.ConsoleRendering;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
+import sa.fx.draugths.event.SelectEventPlayer;
 import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
 import sa.fx.draugths.screen.BackGround;
+import sa.fx.draugths.sprite.AlienPiece;
+import sa.fx.draugths.sprite.HumanPiece;
+import sa.fx.draugths.sprite.MonsterSprite;
+import sa.fx.draugths.sprite.MoonSoldier;
 import sa.fx.draugths.sprite.Sprite;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Board;
@@ -149,13 +156,13 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         int decodeCol = decodeColor(color);
         SpritePiece sp = null;
         int k = -1;
-        System.out.println("--------" + pedinaList[decodeCol].size() + "-------------");
+        BCDraugthsApp.log.info("--------" + pedinaList[decodeCol].size() + "-------------");
         for (k = 0; k < pedinaList[decodeCol].size(); k++) {
             SpritePiece pedina = (SpritePiece) pedinaList[decodeCol].get(k);
             if (pedina != null) {
                 Piece p = pedina.getBoardPieceLink();
 
-                System.out.println(k + ")" + "p.i=" + p.getI() + ",p.j=" + p.getJ() + ",p.color=" + (p.getColor() == Checker.BLACK ? "BLACK" : "WHITE"));
+                BCDraugthsApp.log.info(k + ")" + pedina);
                 if (!eated && p.getI() == i1
                         && p.getJ() == j1) {
                     sp = (SpritePiece) pedinaList[decodeCol].get(k);
@@ -166,7 +173,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
                 }
             } else {
-                System.out.println(k + ")sp=null");
+            	BCDraugthsApp.log.info(k + ")sp=null");
             }
             if (sp != null) {
                 break;
@@ -175,7 +182,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         }
         //if(sp==null ) System.exit(-1);
 
-        System.out.println("The sprite is k=" + k+" ,sprite scelto "+sp);
+        BCDraugthsApp.log.info("The sprite is k=" + k+" ,sprite scelto "+sp);
         return sp;
     }
 
@@ -212,7 +219,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         
         
 
-        
+    	BCDraugthsApp.log.info("BUILD "+player.getName()+" LEVEL="+level);
         for (int i = 0; i < list.length; i++) {
             
             
@@ -229,9 +236,9 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                     
             double y = Sprite.convertBoardIposition(y1,hBoardSquare);
             
-            SpritePiece pedina = SpritePiece.buildPedina(
+            SpritePiece pedina = buildPedina(
                     wBoardSquare, hBoardSquare, 
-                    player.getColor(), pedinaChar, level,this);
+                    player.getColor(), pedinaChar, level);
             pedina.setK(i);
             add(pedina,color);
             pedina.setX(x
@@ -293,7 +300,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         int color=p.getBoardPieceLink().getColor();
         int n = p.getK();
         set(n,color, null);
-        System.out.println("list after remove"+ this);
+        BCDraugthsApp.log.info("list after remove"+ this);
     }
     
 
@@ -388,7 +395,70 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
  
     }
     
+    public  SpritePiece buildPedina(int wb,int hb,int c,Piece pa,int level){
+
+        if(level==1)  return buildPedinaLevel1( wb, hb, c, pa);
+        else if(level==2) return  buildPedinaLevel2( wb, hb, c, pa);
+        return null;
+    }
     
+    public  SpritePiece  buildPedinaLevel1(int wboardBox,int hBoardBox,
+            int color,Piece pedinassociated) {
+    String imagePedina=null;
+    SpritePiece pedina=null;    
+    if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
+     if (Checker.BLACK == color) {
+         imagePedina = "alien_checker.png";
+         pedina= new AlienPiece(Checker.BLACK,pedinassociated,  wboardBox,
+                 hBoardBox,imagePedina,this);
+         if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
+     } else {
+         imagePedina = "soldier_checker.png";
+         pedina= new HumanPiece(Checker.WHITE,  pedinassociated,wboardBox,
+                 hBoardBox, imagePedina,this);
+         if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
+     }
+     Reflection reflection = new Reflection();
+     reflection.setFraction(0.7);
+     DropShadow dropShadow = new DropShadow();
+     dropShadow.setRadius(20.0);
+     dropShadow.setOffsetX(0.0);
+     dropShadow.setOffsetY(0.0);
+     dropShadow.setColor(Color.BLACK);
+     pedina.setEffect(dropShadow);
+     pedina.setOnMouseClicked(new SelectEventPlayer(this,pedina));
+ 
+     return pedina;
+
+ }
+    
+    public  SpritePiece  buildPedinaLevel2(int wboardBox,int hBoardBox, int color,
+            Piece pedinassociated) {
+    String imagePedina=null;
+    SpritePiece pedina=null;    
+    if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
+     if (Checker.BLACK == color) {
+         imagePedina = "black_chekers4.png";
+         pedina= new MonsterSprite(Checker.BLACK, pedinassociated,  wboardBox, hBoardBox,imagePedina,this);
+         if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
+     } else {
+         imagePedina = "white_cheker_moonsoldier.png";
+         pedina= new MoonSoldier(Checker.WHITE, pedinassociated,wboardBox,hBoardBox, imagePedina,this);
+         if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
+     }
+     Reflection reflection = new Reflection();
+     reflection.setFraction(0.7);
+     DropShadow dropShadow = new DropShadow();
+     dropShadow.setRadius(20.0);
+     dropShadow.setOffsetX(0.0);
+     dropShadow.setOffsetY(0.0);
+     dropShadow.setColor(Color.BLACK);
+     pedina.setEffect(dropShadow);
+     pedina.setOnMouseClicked(new SelectEventPlayer(this,pedina));
+ 
+     return pedina;
+
+ }     
     
      @Override
 	public void renderCommad() {

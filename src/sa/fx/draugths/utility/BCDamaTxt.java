@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.players.FXPlayer;
 import sa.fx.draugths.sprite.HumanPiece;
@@ -56,8 +57,8 @@ public class BCDamaTxt extends Application{
          Checker ck2=new Checker(1, 0, Side.SOUTH_BOARD);
          FXBoard fbx=new FXBoard(1, null);
          
-        SpritePiece p=SpritePiece.buildPedina(64, 64, 0, ck, 1,null);
-        SpritePiece p1=SpritePiece.buildPedina(64, 64, 0,ck2, 1,null);
+        SpritePiece p=fbx.buildPedina(64, 64, 0, ck, 1);
+        SpritePiece p1=fbx.buildPedina(64, 64, 0,ck2, 1);
         p.setFXBoard(fbx);
         p1.setFXBoard(fbx);
         c.getGraphicsContext2D().drawImage(img, 0, 0);
@@ -78,8 +79,8 @@ public class BCDamaTxt extends Application{
        
         Move m=new Move(0, 0,ck2 ,ck, Move.EAT);
         //p1.play(m);
-       System.out.println("--->"+b.contains(200, 0));
-       System.out.println(b+"-test2-->"+b.intersects(b1)+"--->\n"+b1);
+        BCDraugthsApp.log.info("--->"+b.contains(200, 0));
+        BCDraugthsApp.log.info(b+"-test2-->"+b.intersects(b1)+"--->\n"+b1);
        // System.out.println( p1.getLayoutX()+","+p1.getLayoutY()+"--->"+ b.contains(b1)+b1.intersects(b));
         //n.fireEvent(new Event());
         primaryStage.show();

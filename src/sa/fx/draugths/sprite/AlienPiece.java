@@ -32,9 +32,9 @@ public class AlienPiece extends SpritePiece {
     int color;
     BCDraugthsApp bcdg;
 
-    AlienPiece(int color, Piece boardPiece, int wbBox, int hbBox, 
+   public AlienPiece(int color, Piece boardPiece, int wbBox, int hbBox, 
             String img, FXBoard board) {
-        super(wbBox, hbBox, img,board);
+        super("Alien",wbBox, hbBox, img,board);
         this.color = color;
         this.boardPieceLink = boardPiece;
 

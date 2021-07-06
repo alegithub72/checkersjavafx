@@ -20,6 +20,7 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.*;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
@@ -36,9 +37,9 @@ public class HumanPiece extends SpritePiece {
     int color;
 
    
-    HumanPiece(int color, Piece boardPiece,
+    public HumanPiece(int color, Piece boardPiece,
             int wbBox, int hbBox, String img, FXBoard board) {
-        super( wbBox, hbBox, img,board);
+        super( "Soldier",wbBox, hbBox, img,board);
         this.color = color;
        
         this.boardPieceLink = boardPiece;
@@ -56,7 +57,7 @@ public class HumanPiece extends SpritePiece {
         if (by ==Piece.CHECKER) {
            
             if(!draugthTransform)  setEatedAnimation(10, 12, 0.35d, false, 100, FrameAnimationTimer.BITE);
-            else System.out.println("Errorre.........");
+            else BCDraugthsApp.log.info("Errorre.........");
         
         } else if (by ==Piece.DRAUGTH)  {
         
@@ -141,7 +142,7 @@ public class HumanPiece extends SpritePiece {
         //to.setAbsolute(true);
         to.setX(x0);
         to.setY(y0);
-        System.out.println("x0="+x0+",y0="+y0+",x1="+x1+",y1="+y1);
+        BCDraugthsApp.log.info("Sprite from screen(x0,y0)=( "+x0+","+y0+"), to(x1,y1)=("+x1+","+y1+")");
         Path path = new Path();
         path.getElements().addAll(
            
@@ -298,7 +299,7 @@ public class HumanPiece extends SpritePiece {
     @Override
     public void animDamaEat(Move m) {
         ParallelTransition ptMissile = new ParallelTransition();
-        extraSprite[0]= new Sprite(64, 64, 64, 64, "missile2.png",this.fbx);
+        extraSprite[0]= new Sprite("Missile",64, 64, 64, 64, "missile2.png",this.fbx);
       
         this.fbx.add(extraSprite[0]);
         //x missile.toFront();

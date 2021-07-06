@@ -6,9 +6,13 @@
 package sa.fx.draugths;
 
 import java.net.URL;
+import java.util.logging.StreamHandler;
+import java.util.logging.Formatter;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-
+import java.util.logging.SimpleFormatter;
 
 import javafx.animation.ParallelTransition;
 import javafx.application.Application;
@@ -33,49 +37,21 @@ import sa.gameboard.core.Game;
 public class BCDraugthsApp extends Application {
 
     private Game game;
-
- 
-   // 
     StartScreen startScreen;
-    //private Group boardGroup;
     RecordScreen recordScreen;
     AudioClip music;
     private ParallelTransition pt;
     private AnimationPedinaMove anim;
-
     FXBoard fxb;
-
-    public FXBoard getFxb() {
-        return fxb;
-    }
-
-
+    public static boolean debug;
+	public static java.util.logging.Logger  log;
     //PathTransition pathTransition;
-
     Group root;
-
-
-
-
-
-
-
-
-
-
-
-
     //RotateTransition rotateTransition;
     public String confirmCommand;
-
     Stage primaryStage;
-  
-
     ImageView description;
-    public static boolean debug;
     static double scale = 0.78;
-
-
 
 
 
@@ -108,9 +84,11 @@ public class BCDraugthsApp extends Application {
     
     public void initDama() {
 
-
-            
-
+        debug = true;
+    	log=   Logger.getAnonymousLogger();
+		System.setProperty("java.util.logging.SimpleFormatter.format",  "%4$s: %5$s %n");	
+		if(debug)  log.setLevel(Level.INFO);  
+		else log.setLevel(Level.OFF);
         
 
             
@@ -125,11 +103,9 @@ public class BCDraugthsApp extends Application {
     public void start(Stage primaryStage) {
         //TODO: gestire gli screen di inizio gioco non  con il background del gioco,
         // possibile di rinominare ed usare Background class per questo ruolo di screen before play
-        debug = true;
-        //initDama();
+        initDama();
         root=new Group();
         drawStartScreen();
-        
         Scene scene = new Scene(root,startScreen.getWidthScreen()
                 ,startScreen.getHeightScreen(), Color.BLACK);
 
@@ -159,15 +135,13 @@ public static void main(String[] args) {
 }
 
 
-
-
     public void restartGame() {
         try {
             stop();
             start(primaryStage);
           
         } catch (Exception ex) {
-            Logger.getLogger(BCDraugthsApp.class.getName()).log(Level.SEVERE, null, ex);
+            log.info(ex.getMessage());
         }
 
     }
@@ -182,7 +156,7 @@ public static void main(String[] args) {
   public void drawRecordScreen(){
       
         root.getChildren().remove(fxb);
-        System.out.println("index of fxb ="+root.getChildren().contains(fxb));
+        BCDraugthsApp.log.info("index of fxb ="+root.getChildren().contains(fxb));
         //fxb=new FXBoardClass(0, this);
         recordScreen = new RecordScreen();
         root.getChildren().add(recordScreen);

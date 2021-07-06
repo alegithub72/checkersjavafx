@@ -11,6 +11,7 @@ import javafx.animation.AnimationTimer;
 import javafx.geometry.Bounds;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.event.CollisionSpriteEvent;
 import sa.fx.draugths.sprite.Sprite;
 
@@ -109,7 +110,7 @@ public class FrameAnimationTimer extends AnimationTimer{
             Bounds shotSceneBound=shot.localToScene(shot.getBoundsInLocal());
             Bounds targetSceneBound=target.localToScene(target.getBoundsInLocal());
             if( targetSceneBound.contains(shotSceneBound.getMinX(),shotSceneBound.getMinY())){
-                System.out.println("INTERSECTION DETECTED!!!!!!!");
+                BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
             CollisionSpriteEvent c=new CollisionSpriteEvent(p, null, CollisionSpriteEvent.COLLISION_SPRITE);
             p.fireEvent(c);                
             }

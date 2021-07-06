@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.sprite.HumanPiece;
 
 /**
@@ -41,7 +42,7 @@ public class BCDama extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+            	BCDraugthsApp.log.info("Hello World!");
             }//test 2
         });
 

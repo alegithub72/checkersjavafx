@@ -56,8 +56,8 @@ public abstract class SpritePiece extends Sprite{
     
     
     
-    public SpritePiece(int wboardBox,int hBoardBox, String img,FXBoard b) {
-        super(SPRITE_W, SPRITE_H, wboardBox, hBoardBox,  img,b);
+    public SpritePiece(String colorFX,int wboardBox,int hBoardBox, String img,FXBoard b) {
+        super(colorFX,SPRITE_W, SPRITE_H, wboardBox, hBoardBox,  img,b);
         this.setScaleX(0.64);
         this.setScaleY(0.64);
 
@@ -156,72 +156,9 @@ public abstract class SpritePiece extends Sprite{
         return Duration.seconds(1.5);
     }   
     
-        public static SpritePiece buildPedina(int wb,int hb,int c,Piece pa,int level,
-                FXBoard board){
-            System.out.println("LEVEL="+level);
-            if(level==1)  return buildPedinaLevel1( wb, hb, c, pa,board);
-            else if(level==2) return  buildPedinaLevel2( wb, hb, c, pa,board);
-            return null;
-        }
-    
-    
-       public static SpritePiece  buildPedinaLevel1(int wboardBox,int hBoardBox,
-               int color,Piece pedinassociated, FXBoard board) {
-       String imagePedina=null;
-       SpritePiece pedina=null;    
-       if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
-        if (Checker.BLACK == color) {
-            imagePedina = "alien_checker.png";
-            pedina= new AlienPiece(Checker.BLACK,pedinassociated,  wboardBox,
-                    hBoardBox,imagePedina,board);
-            if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
-        } else {
-            imagePedina = "soldier_checker.png";
-            pedina= new HumanPiece(Checker.WHITE,  pedinassociated,wboardBox,
-                    hBoardBox, imagePedina,board);
-            if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
-        }
-        Reflection reflection = new Reflection();
-        reflection.setFraction(0.7);
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setRadius(20.0);
-        dropShadow.setOffsetX(0.0);
-        dropShadow.setOffsetY(0.0);
-        dropShadow.setColor(Color.BLACK);
-        pedina.setEffect(dropShadow);
-        pedina.setOnMouseClicked(new SelectEventPlayer(board,pedina));
-    
-        return pedina;
 
-    }
-       
-       public static SpritePiece  buildPedinaLevel2(int wboardBox,int hBoardBox, int color,
-               Piece pedinassociated, FXBoard board) {
-       String imagePedina=null;
-       SpritePiece pedina=null;    
-       if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
-        if (Checker.BLACK == color) {
-            imagePedina = "black_chekers4.png";
-            pedina= new MonsterSprite(Checker.BLACK, pedinassociated,  wboardBox, hBoardBox,imagePedina,board);
-            if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
-        } else {
-            imagePedina = "white_cheker_moonsoldier.png";
-            pedina= new MoonSoldier(Checker.WHITE, pedinassociated,wboardBox,hBoardBox, imagePedina,board);
-            if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
-        }
-        Reflection reflection = new Reflection();
-        reflection.setFraction(0.7);
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setRadius(20.0);
-        dropShadow.setOffsetX(0.0);
-        dropShadow.setOffsetY(0.0);
-        dropShadow.setColor(Color.BLACK);
-        pedina.setEffect(dropShadow);
-        pedina.setOnMouseClicked(new SelectEventPlayer(board,pedina));
     
-        return pedina;
-
-    }       
+      
     
     AudioClip buildMedia(String sound){
         ClassLoader classLoader = getClass().getClassLoader();
@@ -278,7 +215,12 @@ public abstract class SpritePiece extends Sprite{
     public abstract void buildPedinaMovePath(Move m);
     public abstract void buildDamaMovePath(Move m);
     public abstract void buildPedinaMoveEatPath(Move m);
-    public abstract void buildDamaMoveEatPath(Move m);    
+    public abstract void buildDamaMoveEatPath(Move m);
+
+	@Override
+	public String toString() {
+		return "SpritePiece [piece "+(boardPieceLink.getColor()==Piece.BLACK?"BLACK":"WHITE")+"= (" + boardPieceLink.getI()+","+boardPieceLink.getJ()+") " + ", colorFX=" + colorFX + "]";
+	}    
 
 
     

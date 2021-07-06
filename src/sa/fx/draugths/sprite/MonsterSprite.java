@@ -18,7 +18,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
-
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
@@ -42,7 +42,7 @@ public class MonsterSprite extends AlienPiece {
     
     @Override
     public void buildDestroyAnimation(int by) {
-        System.out.println("EAT BY "+((by==Piece.CHECKER)?"CHECKERS":"DAMA"));
+    	BCDraugthsApp.log.info("EAT BY "+((by==Piece.CHECKER)?"CHECKERS":"DAMA"));
         if (by==Piece.CHECKER ) {
             buildGenericFrameAnimation(15, 19, 0.2d, false, 0, FrameAnimationTimer.EXPLOSION);
         } else {
@@ -141,7 +141,7 @@ public class MonsterSprite extends AlienPiece {
         pt.getChildren().add(pathTransition);
 
         
-         extraSprite[0] =new Sprite(64*3, 96, wSquare, hSquare,  "LASERmONSTER.png",this.fbx);
+         extraSprite[0] =new Sprite("Laser",64*3, 96, wSquare, hSquare,  "LASERmONSTER.png",this.fbx);
                 PathTransition pathTransition2 = new PathTransition();
                 		pathTransition2.setDuration(Duration.seconds(2));
                 		pathTransition2.setPath(path2);
