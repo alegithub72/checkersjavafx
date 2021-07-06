@@ -29,8 +29,8 @@ import sa.gameboard.core.Piece;
  * @author ale2s_000
  */
 public abstract class SpritePiece extends Sprite{
-    public  static final int SPRITE_H = 64;
-    public static final int SPRITE_W = 64;  
+    public  static final int SPRITE_H = 100;
+    public static final int SPRITE_W = 100;  
 
     Piece boardPieceLink;
     boolean draugthTransform=false;
@@ -58,6 +58,8 @@ public abstract class SpritePiece extends Sprite{
     
     public SpritePiece(int wboardBox,int hBoardBox, String img,FXBoard b) {
         super(SPRITE_W, SPRITE_H, wboardBox, hBoardBox,  img,b);
+        this.setScaleX(0.64);
+        this.setScaleY(0.64);
 
     }
     void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
@@ -169,12 +171,12 @@ public abstract class SpritePiece extends Sprite{
        SpritePiece pedina=null;    
        if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");
         if (Checker.BLACK == color) {
-            imagePedina = "black_checker.png";
+            imagePedina = "alien_checker.png";
             pedina= new AlienPiece(Checker.BLACK,pedinassociated,  wboardBox,
                     hBoardBox,imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
         } else {
-            imagePedina = "militaryCheckers1_1.png";
+            imagePedina = "soldier_checker.png";
             pedina= new HumanPiece(Checker.WHITE,  pedinassociated,wboardBox,
                     hBoardBox, imagePedina,board);
             if(pedinassociated.getType()==Checker.DRAUGTH) pedina.setFrameDama();
@@ -232,7 +234,7 @@ public abstract class SpritePiece extends Sprite{
     
 
    protected void  animPedinaMove(Move m) {
-    
+	   //TODO:
         buildPedinaMovePath(m);
         buildFrameMoveAnimation( 0, true);
         ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, w, h,this.fbx));

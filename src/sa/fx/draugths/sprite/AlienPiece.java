@@ -6,7 +6,6 @@
 package sa.fx.draugths.sprite;
 
 import sa.boardgame.core.moves.*;
-
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.scene.image.Image;
@@ -51,7 +50,7 @@ public class AlienPiece extends SpritePiece {
 
     public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(5, 6, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+            frameAnimTimer[0] = new FrameAnimationTimer(3, 5, this, frac, ciclyc, 50, FrameAnimationTimer.MOVEBLACK);
         } else {
             frameAnimTimer[0] = new FrameAnimationTimer(2, 4, this, frac, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_B);
         }
@@ -60,8 +59,8 @@ public class AlienPiece extends SpritePiece {
 
     public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
 
-       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(5, 7, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
-       else frameAnimTimer[0] = new FrameAnimationTimer(2, 4, this, frac, ciclyc, 2, FrameAnimationTimer.DAMAMOVE_B);
+       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(3, 5, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+       else frameAnimTimer[0] = new FrameAnimationTimer(3, 5, this, frac, ciclyc, 2, FrameAnimationTimer.DAMAMOVE_B);
     }
 
     
@@ -105,7 +104,7 @@ public class AlienPiece extends SpritePiece {
         path.getElements().add(new MoveTo(x0, y0)); 
         		path.getElements().add(quadTo);
         
-
+        		
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
@@ -115,9 +114,11 @@ public class AlienPiece extends SpritePiece {
         pathTransition.setNode(this);
         pathTransition.setOrientation(PathTransition.OrientationType.NONE);
         pathTransition.setCycleCount(1);
+        
         pathTransition.setAutoReverse(true);
                 
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
+       if(BCDraugthsApp.debug)  this.fbx.add(path);
         pt.getChildren().add(pathTransition);
 
     }
@@ -139,12 +140,12 @@ public class AlienPiece extends SpritePiece {
         Path path = null;
         Color color = Color.CHARTREUSE;
         quadTo.setControlX(x1);
-        quadTo.setControlY(y1 - (h * 2));
+        quadTo.setControlY(y1 - (hSquare * 2));
         quadTo2.setControlX(x1);
-        quadTo2.setControlY(y1 - (h * 2));
-        xe = Sprite.convertBoardIpositionCenter(m.getEat().getJ() , wSquare);
+        quadTo2.setControlY(y1 - (hSquare * 2));
+        xe = Sprite.convertBoardJpositionCenter(m.getEat().getJ() , wSquare);
                 //(m.getEat().getI() * wboardBox) + (wboardBox / 2);
-        ye = Sprite.convertBoardJpositionCenter(m.getEat().getI() , hSquare);
+        ye = Sprite.convertBoardIpositionCenter(m.getEat().getI() , hSquare);
                 //(m.getEat().getJ() * hBoardBox) + (hBoardBox / 2);
         quadTo.setX(xe);
         quadTo.setY(ye);
@@ -160,7 +161,10 @@ public class AlienPiece extends SpritePiece {
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
-   
+        
+      
+        
+     
         
         
         PathTransition pathTransition = new PathTransition();
@@ -175,7 +179,7 @@ public class AlienPiece extends SpritePiece {
         //pathTransition.setNode(laser);
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
-
+        if(BCDraugthsApp.debug)  this.fbx.add(path);
         
     }
 
@@ -197,9 +201,9 @@ public class AlienPiece extends SpritePiece {
         Path path = null;
         Color color = Color.CHARTREUSE;
         quadTo.setControlX(x1);
-        quadTo.setControlY(y1 - (h * 2));
+        quadTo.setControlY(y1 - (hSquare * 2));
         quadTo2.setControlX(x1);
-        quadTo2.setControlY(y1 - (h * 2));
+        quadTo2.setControlY(y1 - (hSquare * 2));
         xe = Sprite.convertBoardJpositionCenter(m.getEat().getJ(), wSquare);
                 
                 //(m.getEat().getI() * wSquare) + (wSquare / 2);

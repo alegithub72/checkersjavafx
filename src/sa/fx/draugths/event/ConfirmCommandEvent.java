@@ -37,6 +37,7 @@ public class ConfirmCommandEvent implements EventHandler<MouseEvent>{
         if(!mousePlayer.makeMove(m)) throw new RuntimeException("Move not executed");
         mousePlayer.setMoveChoose(-1);
         bb.updateInterface(mousePlayer.getName(),m);
+        mousePlayer.deleteMoveChoose();
         //app.makePlayer2Move();
         event.consume();
     }

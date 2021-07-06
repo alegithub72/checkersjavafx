@@ -62,8 +62,9 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
             for (int i = 0; i < movesMouse.size(); i++) {
                 //TODO: internare la funzione remove 
                 this.board.remove(movesMouse.get(i));
-                movesMouse.remove(i);
+               // movesMouse.remove(i);
             }
+            movesMouse=new ArrayList();
 
         }
     }
@@ -163,7 +164,8 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 }
 
                 ImageView imagePunt = new ImageView(new Image("puntatore.png"));
-
+                imagePunt.setScaleX(0.64);
+                imagePunt.setScaleY(0.64);
                 punteImage[i] = imagePunt;
                 punteImage[i].setOnMouseClicked(new ConfirmCommandEvent(this, i,board));
                 double xp =Sprite.convertBoardJposition(m.getJ1()  , board.wBoardSquare);

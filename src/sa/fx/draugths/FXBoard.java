@@ -119,7 +119,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
            // game.playGame();
 
             game.setHuman(mousePlayer);           
-            load("board.txt");
+            //load("board.txt");
  
             if(game!=null) game.addRenderInterface(this);
 

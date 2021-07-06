@@ -8,7 +8,7 @@ package sa.fx.draugths.animation;
 import sa.boardgame.core.moves.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
+import javafx.scene.Node;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
@@ -47,7 +47,7 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-
+    	Node n =null;
         p.stop();
         if(e!=null) e.stop();
         if(m.getP().getColor()==Checker.WHITE) fxboard.getBackGround().updatePoint(m.calculateValue());

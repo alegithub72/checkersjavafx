@@ -42,6 +42,7 @@ public class HumanPiece extends SpritePiece {
         this.color = color;
        
         this.boardPieceLink = boardPiece;
+
     }
     
 

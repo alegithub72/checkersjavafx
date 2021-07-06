@@ -72,7 +72,7 @@ public class BCDraugthsApp extends Application {
   
 
     ImageView description;
-    boolean debug;
+    public static boolean debug;
     static double scale = 0.78;
 
 
@@ -125,7 +125,7 @@ public class BCDraugthsApp extends Application {
     public void start(Stage primaryStage) {
         //TODO: gestire gli screen di inizio gioco non  con il background del gioco,
         // possibile di rinominare ed usare Background class per questo ruolo di screen before play
-        debug = false;
+        debug = true;
         //initDama();
         root=new Group();
         drawStartScreen();
