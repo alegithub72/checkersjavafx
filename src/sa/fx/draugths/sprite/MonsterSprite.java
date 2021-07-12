@@ -5,9 +5,6 @@
  */
 package sa.fx.draugths.sprite;
 
-import sa.boardgame.core.moves.*;
-import sa.gameboard.core.Checker;
-import sa.gameboard.core.Piece;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.PathTransition.OrientationType;
@@ -18,11 +15,14 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
+import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.fx.draugths.utility.BoardHW;
+import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
@@ -32,8 +32,8 @@ import sa.gameboard.core.Piece;
 public class MonsterSprite extends AlienPiece {
  
     public MonsterSprite(int color, Piece boardPiece, 
-            int wbBox, int hbBox, String img, FXBoard board) {
-        super(color,  boardPiece, wbBox, hbBox, img,board);
+            BoardHW boardHW, String img, FXBoard board) {
+        super(boardPiece,boardHW, board);
        
         setFrame(0);
     }
@@ -51,18 +51,19 @@ public class MonsterSprite extends AlienPiece {
 
     }
     @Override
-    public void setFrameDama() {
+    public SpritePiece loadDraugthFrame() {
             if (boardPieceLink.getType() == Checker.DRAUGTH
                 && draugthTransform == false) {
             draugthTransform = true;
             frameImages = new Image("black_dama2.png");
-            imgView.setImage(frameImages);
+            setImage(frameImages);
             buildFrameImages();
             AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
             ach.play();
         }
         setFrame(0); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
     
     @Override
@@ -86,13 +87,13 @@ public class MonsterSprite extends AlienPiece {
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo quadTo = new QuadCurveTo();
         QuadCurveTo quadTo2 = new QuadCurveTo();
-        double x0 = Sprite.convertBoardIpositionCenter(m.getP().getJ(), wSquare);
+        double x0 = convertBoardJtoPositionXCenter(m.getP().getJ(), wSquare);
                 //m.getP().getI() * wSquare + ((wSquare / 2));
-        double y0 = Sprite.convertBoardJpositionCenter(m.getP().getI(), hSquare);
+        double y0 = convertBoardItoPositionYCenter(m.getP().getI(), hSquare);
                 //m.getP().getJ() * hSquare + ((hSquare / 2));
-        double x1 =  Sprite.convertBoardIpositionCenter(m.getJ1(), wSquare);
+        double x1 =  convertBoardJtoPositionXCenter(m.getJ1(), wSquare);
                 //(m.getI1() * wSquare) + ((wSquare / 2));
-        double y1 =Sprite.convertBoardJpositionCenter(m.getI1(), hSquare);
+        double y1 =convertBoardItoPositionYCenter(m.getI1(), hSquare);
                 //(m.getJ1() * hSquare) + ((hSquare / 2));
         double xe = 0;
         double ye = 0;
@@ -102,9 +103,9 @@ public class MonsterSprite extends AlienPiece {
         quadTo.setControlY(y1 - (hSquare * 2));
         quadTo2.setControlX(x1);
         quadTo2.setControlY(y1 - (hSquare * 2));
-        xe = Sprite.convertBoardIpositionCenter(m.getP().getJ(), wSquare);
+        xe = convertBoardJtoPositionXCenter(m.getP().getJ(), wSquare);
                 //(m.getEat().getI() * wSquare) + (wSquare / 2);
-        ye =Sprite.convertBoardJpositionCenter(m.getI1(), hSquare);
+        ye =convertBoardItoPositionYCenter(m.getI1(), hSquare);
                 //(m.getEat().getJ() * hSquare) + (hSquare / 2);
         quadTo.setX(xe);
         quadTo.setY(ye);
@@ -141,7 +142,7 @@ public class MonsterSprite extends AlienPiece {
         pt.getChildren().add(pathTransition);
 
         
-         extraSprite[0] =new Sprite("Laser",64*3, 96, wSquare, hSquare,  "LASERmONSTER.png",this.fbx);
+         extraSprite[0] =new Sprite("LASERmONSTER.png");
                 PathTransition pathTransition2 = new PathTransition();
                 		pathTransition2.setDuration(Duration.seconds(2));
                 		pathTransition2.setPath(path2);

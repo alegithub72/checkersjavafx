@@ -8,7 +8,6 @@ package sa.fx.draugths.players;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-
 import sa.boardgame.core.players.AIPlayer;
 import sa.gameboard.core.Checker;
 

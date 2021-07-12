@@ -5,11 +5,13 @@
  */
 package sa.fx.draugths.animation;
 
-import sa.boardgame.core.moves.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import sa.boardgame.core.moves.Move;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
+import sa.fx.draugths.event.SelectEventPlayer;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 
@@ -48,19 +50,40 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
     	Node n =null;
+    	BCDraugthsApp.log.info(" associated to sprite :"+p);
+    	BCDraugthsApp.log.info(" eventSource:"+event.getSource());
+    	BCDraugthsApp.log.info(" eventTarget:"+event.getTarget());
         p.stop();
         if(e!=null) e.stop();
+        //TODO: fire point event...
         if(m.getP().getColor()==Checker.WHITE) fxboard.getBackGround().updatePoint(m.calculateValue());
-       if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
+      
+        if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
             fxboard.getGame().getBoard().getColorSideNorth()==m.getP().getColor() &&
-            m.getI1()==7) {
-            p.setFrameDama();
-
+            m.getI1()==7 && m.getP().getType()!=Checker.DRAUGTH) {
+    	   
+    	    fxboard.remove(p);
+    	    SpritePiece dama=  fxboard.buildPedina(p.getBoardPieceLink().getColor(), 
+    	    		p.getBoardPieceLink(), fxboard.getLevel());
+    	    		
+    	    dama.setDraugthTransform(true);
+            dama.recalculateXYPosition();
+            dama.setOnMouseClicked(new SelectEventPlayer(fxboard,dama));
+            fxboard.add(dama);
+            fxboard.replace(  p.getK() , p.getBoardPieceLink().getColor(), dama);            
 
         }else if((m.getType()==Move.MOVE || m.getType()==Move.EAT) &&
                 this.fxboard.getGame().getBoard().getBoardSideSouth()==m.getP().getColor()  &&
-                m.getI1()==0){
-                p.setFrameDama();
+                m.getI1()==0 && m.getP().getType()!=Checker.DRAUGTH){
+     	   fxboard.remove(p);
+     	   SpritePiece dama=fxboard.buildPedina(p.getBoardPieceLink().getColor(), 
+   	    		p.getBoardPieceLink(), fxboard.getLevel());
+     	   dama.setDraugthTransform(true);
+           fxboard.add(dama);
+           fxboard.replace(  p.getK(),p.getBoardPieceLink().getColor(),   dama);
+           dama.recalculateXYPosition();
+           dama.setOnMouseClicked(new SelectEventPlayer(fxboard,dama));
+           
         }
 
         if (e != null) {

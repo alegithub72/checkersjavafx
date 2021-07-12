@@ -24,16 +24,16 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sa.fx.draugths.BCDraugthsApp;
-import sa.fx.draugths.sprite.HumanPiece;
+import sa.fx.draugths.sprite.SoldierPiece;
 
 /**
  *
  * @author ale2s_000
  */
 public class BCDama extends Application {
-    HumanPiece pedinaB[];
-    HumanPiece pedinaW[];
-    HumanPiece pedina;
+    SoldierPiece pedinaB[];
+    SoldierPiece pedinaW[];
+    SoldierPiece pedina;
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();

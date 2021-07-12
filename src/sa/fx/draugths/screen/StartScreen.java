@@ -54,10 +54,10 @@ public class StartScreen extends Parent {
     
     public StartScreen(int level,FXBoard b){
         this.fbx=b;
-        c=new Canvas(700, 730);
+        c=new Canvas(800, 830);
         getChildren().add(c);
-        widthScreen=700;
-        heightScreen=740 ; 
+        widthScreen=800;
+        heightScreen=840 ; 
         this.level=level;
         drawScreen();
 

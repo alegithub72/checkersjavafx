@@ -6,13 +6,8 @@
 package sa.fx.draugths;
 
 import java.net.URL;
-import java.util.logging.StreamHandler;
-import java.util.logging.Formatter;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import javafx.animation.ParallelTransition;
 import javafx.application.Application;

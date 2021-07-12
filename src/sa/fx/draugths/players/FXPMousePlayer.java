@@ -8,7 +8,6 @@ package sa.fx.draugths.players;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,7 +20,9 @@ import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.event.ConfirmCommandEvent;
+import sa.fx.draugths.screen.BackGround;
 import sa.fx.draugths.sprite.Sprite;
+import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 
 /**
@@ -115,15 +116,16 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     @Override
     public String drawMoveChoose() {
     	String str="";
+    
         for (int i = 0; i < possibleMove.size(); i++) {
             Move m = possibleMove.get(i);
-
+        	SpritePiece sp= board.getSpritePiece(m.getP().getI(), m.getP().getJ(),m.getP().getColor(),false);
             if (m != Move.NULLMOVE) {
                 QuadCurveTo quadTo = new QuadCurveTo();
                 quadTo.setAbsolute(true);
-                double x0 =Sprite.convertBoardJpositionCenter(m.getP().getJ() , board.wBoardSquare);
+                double x0 =sp.convertBoardJtoPositionXCenter(m.getP().getJ() , FXBoard.boardHW.getW());
                        // m.getP().getI() * board.wBoardSquare;
-                double y0 =Sprite.convertBoardIpositionCenter(m.getP().getI() , board.hBoardSquare);
+                double y0 =sp.convertBoardItoPositionYCenter(m.getP().getI() , FXBoard.boardHW.getH());
                        // m.getP().getJ() * board.hBoardSquare;
                 double inc = 100;
                 Color color = Color.WHITE;
@@ -133,9 +135,9 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                     quadTo.setControlX(x0 - inc);
                 }
                 
-                double x1 =Sprite.convertBoardJpositionCenter(m.getJ1()  , board.wBoardSquare);
+                double x1 =sp.convertBoardJtoPositionXCenter(m.getJ1()  ,FXBoard.boardHW.getW());
                         //(m.getI1() * board.wBoardSquare) + 32;
-                double y1 =Sprite.convertBoardIpositionCenter(m.getI1() , board.hBoardSquare);
+                double y1 =sp.convertBoardItoPositionYCenter(m.getI1() ,FXBoard.boardHW.getH());
                        // (m.getJ1() * board.hBoardSquare) + 32;
                 quadTo.setControlY(y0);
                 quadTo.setX(x0);
@@ -168,9 +170,9 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 imagePunt.setScaleY(0.64);
                 punteImage[i] = imagePunt;
                 punteImage[i].setOnMouseClicked(new ConfirmCommandEvent(this, i,board));
-                double xp =Sprite.convertBoardJposition(m.getJ1()  , board.wBoardSquare);
+                double xp =sp.convertBoardJtoPositionX(m.getJ1()  , FXBoard.boardHW.getW());
                         //(m.getI1() * board.wBoardSquare) + 32;
-                double yp =Sprite.convertBoardIposition(m.getI1() , board.hBoardSquare);
+                double yp =sp.convertBoardItoPositionY(m.getI1() , FXBoard.boardHW.getH());
                        // (m.getJ1() * board.hBoardSquare) + 32;
                 punteImage[i].setX(xp);
                 punteImage[i].setY(yp);
@@ -187,7 +189,6 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
 
 
-    
-    
+
     
 }

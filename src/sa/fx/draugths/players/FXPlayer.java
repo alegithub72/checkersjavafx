@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
-import sa.boardgame.core.moves.*;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.FXBoard;
 import sa.gameboard.core.Checker;

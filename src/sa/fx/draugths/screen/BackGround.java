@@ -32,8 +32,8 @@ import sa.fx.draugths.animation.ScreenPauseInterface;
  */
 public class BackGround extends Parent implements ScreenPauseInterface {
 
-    double wBackground=700;
-    double hBackgroud=700;
+    double wBackground=800;
+    double hBackgroud=800;
     static public double hPointTable=30;
     Canvas c;
     Text scoreLabel;

@@ -25,7 +25,7 @@ import sa.boardgame.core.players.Player;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.players.FXPlayer;
-import sa.fx.draugths.sprite.HumanPiece;
+import sa.fx.draugths.sprite.SoldierPiece;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Game;
@@ -42,7 +42,7 @@ public class BCDamaTxt extends Application{
     Player player2;
     FXPlayer player1;
     TextField command;
-    HumanPiece select;
+    SoldierPiece select;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -57,10 +57,9 @@ public class BCDamaTxt extends Application{
          Checker ck2=new Checker(1, 0, Side.SOUTH_BOARD);
          FXBoard fbx=new FXBoard(1, null);
          
-        SpritePiece p=fbx.buildPedina(64, 64, 0, ck, 1);
-        SpritePiece p1=fbx.buildPedina(64, 64, 0,ck2, 1);
-        p.setFXBoard(fbx);
-        p1.setFXBoard(fbx);
+        SpritePiece p=fbx.buildPedina( 0, ck, 1);
+        SpritePiece p1=fbx.buildPedina( 0,ck2, 1);
+
         c.getGraphicsContext2D().drawImage(img, 0, 0);
         boardGroup.getChildren().add(c);
         boardGroup.getChildren().add(p);
@@ -69,18 +68,18 @@ public class BCDamaTxt extends Application{
         p1.setY(0);
         Scene scene = new Scene(boardGroup,w,h, Color.BLACK);
         primaryStage.setScene(scene);
-        Node n1=p1.getImg();
-        Node n=p.getImg();
+//        Node n1=p1.getImg();
+//        Node n=p.getImg();
        // Point2D po= n1.localToScene(p1.getX(), p1.getY());
         
        // System.out.println("po1  ="+po);
-       Bounds b= n.getBoundsInLocal();
-       Bounds b1=n1.getBoundsInLocal();
+//       Bounds b= n.getBoundsInLocal();
+//       Bounds b1=n1.getBoundsInLocal();
        
         Move m=new Move(0, 0,ck2 ,ck, Move.EAT);
         //p1.play(m);
-        BCDraugthsApp.log.info("--->"+b.contains(200, 0));
-        BCDraugthsApp.log.info(b+"-test2-->"+b.intersects(b1)+"--->\n"+b1);
+        //BCDraugthsApp.log.info("--->"+b.contains(200, 0));
+        //BCDraugthsApp.log.info(b+"-test2-->"+b.intersects(b1)+"--->\n"+b1);
        // System.out.println( p1.getLayoutX()+","+p1.getLayoutY()+"--->"+ b.contains(b1)+b1.intersects(b));
         //n.fireEvent(new Event());
         primaryStage.show();

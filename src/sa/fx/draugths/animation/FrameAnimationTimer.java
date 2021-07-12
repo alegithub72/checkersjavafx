@@ -98,6 +98,9 @@ public class FrameAnimationTimer extends AnimationTimer{
 
         long intervalTemp=System.currentTimeMillis()-before;
         double lx=0,ly=0;
+        BCDraugthsApp.log.info("id="+p.getId());
+        BCDraugthsApp.log.info(p+" (x,y)="+(p.getTranslateX())+","+(p.getTranslateY()));
+        
         if(target!=null) {
 
            // System.out.println("scene shot x="+shotSceneBound.getMinX());
@@ -121,7 +124,7 @@ public class FrameAnimationTimer extends AnimationTimer{
             
             before=System.currentTimeMillis();
             p.setFrame(i);
- 
+            p.toFront();
                    
             i++;
             if(this.ciclyc){

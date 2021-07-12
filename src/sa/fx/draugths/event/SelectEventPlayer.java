@@ -7,6 +7,7 @@ package sa.fx.draugths.event;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.sprite.SpritePiece;
 
@@ -38,7 +39,7 @@ public class SelectEventPlayer implements EventHandler<MouseEvent> {
         fxb.getMousePlayer().choosePiece();
                 
         }
-                  
+       BCDraugthsApp.log.info(" c;liecked id="+p.getId());
         event.consume();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

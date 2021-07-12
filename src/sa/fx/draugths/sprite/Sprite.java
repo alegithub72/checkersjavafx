@@ -7,6 +7,7 @@ package sa.fx.draugths.sprite;
 
 import javafx.animation.Animation;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
@@ -20,51 +21,30 @@ import sa.fx.draugths.screen.BackGround;
  *
  * @author appleale
  */
-public class Sprite extends Parent {
+public class Sprite extends ImageView {
   
     
     
-    ImageView imgView;
-
-
-    public static int MOVE_TRANSITION = 0;
+	public static int MOVE_TRANSITION = 0;
     Image frameImages;
-    Sprite[] extraSprite=new Sprite[2];
     Rectangle2D[] frames;
     int w;
     int h;
-    int wSquare;
-    int hSquare;
     int nframes = 0;
-    FrameAnimationTimer[] frameAnimTimer;
-    String colorFX;
     int k;
-    Animation[] ptList;
-    FXBoard fbx;
-
-    public Sprite(String colorFX,int w, int h,int wboardBox,int hBoardBox,String img,FXBoard b) {
-    	this.colorFX=colorFX;
-        this.w = w;
-        this.h = h;
-        this.wSquare=wboardBox;
-        this.hSquare=hBoardBox;
-        this.fbx=b;
+    public Sprite(String img) {
+		super();
         frameImages = new Image(img);
-        
+        this.h=(int)frameImages.getHeight();
+        this.w=(int)frameImages.getHeight();
+        setImage(frameImages);
         buildFrameImages();
-        imgView = new ImageView(frameImages);
-        imgView.setViewport(frames[0]);  
-        getChildren().add(imgView);
-        ptList=new Animation[5];
+        setViewport(frames[0]); 
 
-        frameAnimTimer=new FrameAnimationTimer[2];
         
     }
     
-    public void setFXBoard(FXBoard b){
-        this.fbx=b;
-    }
-    
+
     
     public void buildFrameImages(){
         int n = (frameImages.widthProperty().intValue() / w);
@@ -73,11 +53,8 @@ public class Sprite extends Parent {
             frames[i] = new Rectangle2D(i * w, 0, w, h);
         }
     }    
-    public Node getImg(){
-    return imgView;
-    }
-    protected Sprite() {
-    }
+
+
 
     public int getK() {
         return k;
@@ -89,23 +66,11 @@ public class Sprite extends Parent {
 
     public void setFrame(int i) {
         this.nframes = i;
-        imgView.setViewport(frames[i]);
+        setViewport(frames[i]);
     }
 
-    public void setX(double x) {
-        imgView.setX(x);
-    }
 
-    public void setY(double y) {
-        imgView.setY(y);
-    }
 
-    public double getX(){
-       return  imgView.getX();
-    }    
-    public double getY(){
-        return imgView.getY();
-    }
     
     
     public int getW() {
@@ -124,59 +89,52 @@ public class Sprite extends Parent {
         this.h = h;
     }
 
-    public boolean isAnimMoveFinish() {
-        return ptList[TRANSITION_STEP.FULL_STEP].getStatus() == Animation.Status.STOPPED;
-    }
 
-    public void removeAnimationSetting() {
-        for (int i = 0; i < ptList.length; i++) {
-            ptList[i] = null;
-        }
-        for (int i = 0; i < frameAnimTimer.length; i++) {
-             if(frameAnimTimer[i]!=null) frameAnimTimer[i].stop();
-            frameAnimTimer[i] = null;
-        }
-
-    }
-    
-    public void stopAnimation(int n){
-       if(frameAnimTimer[n]!=null) frameAnimTimer[n].stop();
-    }
-    public void removeExtraSprite(int n){
-        if(extraSprite[n]!=null) fbx.remove(extraSprite[n]);
-    }
-    public static double convertBoardJposition(int i,int w){
-    
-                double x = ((i * w) + (w / 2)) 
-                    - (SpritePiece.SPRITE_W/2);
-                return x;
-    }
-     public static double convertBoardIposition(int j,int h){
-        double y = ((j * h) + (h / 2)) 
-                    - (SpritePiece.SPRITE_H/2)
-                    +BackGround.hPointTable+10;
+     public  double convertBoardItoPositionY(int i,int hboard){
+     	int hadjust=0;
+     	if(this.h>hboard) hadjust=(this.h-hboard)/2;
+        double y = (i * hboard )+(BackGround.hPointTable-hadjust)
+                    ;
         return y;
     }   
-    public static double convertBoardJpositionCenter(int j,int w){
-    
-                double x = ((j * w) 
-                        + (w / 2)
-                        );
+
+    public  double convertBoardJtoPositionX(int j,int wboard){
+    	int wadjust=0;
+    	if(this.w>wboard) wadjust=(this.w-wboard)/2;
+                double x = (j * wboard )-(wadjust);
                 return x;
-    }
-    public static double convertBoardIpositionCenter(int i,int h){
-    
-                double y = ((i * h)
-                        + (h / 2)
-                       )  + BackGround.hPointTable+10;
+    }       
+    public  double convertBoardJtoScenePositionX(int j,int wboard){
+    	int wadjust=0;
+    	if(this.w>wboard) wadjust=(this.w-wboard)/2;
+                double x = (j * wboard )-(wadjust) - (wboard / 4);
+                return x;
+    }     
+    public  double convertBoardItoScenePositionY(int i,int hboard){
+     	int hadjust=0;
+     	if(this.h>hboard) hadjust=(this.h-hboard)/2;
+        double y = (i * hboard )
+                    ;
+        return y;
+    } 
+    public  double convertBoardItoPositionYCenter(int i,int hboard){
+     	int hadjust=0;
+     	if(this.h>hboard) hadjust=(this.h-hboard)/2;
+                double y = ((i * hboard)
+                        + (hboard / 2)+(BackGround.hPointTable-hadjust)
+                       ) ;
                         
                 return y;
     }
 
-	@Override
-	public String toString() {
-		return "Sprite [colorFX=" + colorFX + "]";
-	}    
+    public  double convertBoardJtoPositionXCenter(int j,int wboard){
+    	int wadjust=0;
+    	if(this.w>wboard) wadjust=(this.w-wboard)/2;
+                double x = ((j * wboard) 
+                        + (wboard / 2)-wadjust
+                        );
+                return x;
+    }
     
 
     

@@ -10,17 +10,16 @@ import java.net.URL;
 
 
 import javafx.animation.Animation;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Reflection;
+import javafx.geometry.Point2D;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
-import sa.fx.draugths.event.SelectEventPlayer;
+import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
@@ -29,15 +28,52 @@ import sa.gameboard.core.Piece;
  * @author ale2s_000
  */
 public abstract class SpritePiece extends Sprite{
-    public  static final int SPRITE_H = 100;
-    public static final int SPRITE_W = 100;  
+
+
 
     Piece boardPieceLink;
     boolean draugthTransform=false;
 
 
+
+
+
+
+	public int[] MOVE_FRAME=new int[2];
+    public int[] EAT_MOVE_FRAME=new int[2];
+    public int[] EATED_ANIM_FRAME=new int[2];
+    SpritePiece eated;
+	public   int srpiteH ;
+	public   int spriteW ;
+	int wSquare;
+	int hSquare;
+	String colorFX;
+	FXBoard fbx;
+	Sprite[] extraSprite=new Sprite[2];
+	FrameAnimationTimer[] frameAnimTimer;
+	Animation[] ptList;
     
     
+    
+    
+    public SpritePiece(String colorFX,BoardHW boardHW, String img,FXBoard b) {
+        super(img);
+        this.colorFX=colorFX;
+        this.wSquare=boardHW.getH();
+        this.hSquare=boardHW.getW();
+        this.fbx=b;
+        ptList=new Animation[5];
+        frameAnimTimer=new FrameAnimationTimer[2];        
+        setScaleX(0.64);
+        setScaleY(0.64);
+        w=(int)(w*0.64);
+        h=(int)(w*0.64);
+
+    }
+    void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
+        frameAnimTimer[0] = new FrameAnimationTimer(f1, f2, this, frac, ciclyc, interval, sound);
+    }    
+
     
     
     public Piece getBoardPieceLink() {
@@ -47,27 +83,13 @@ public abstract class SpritePiece extends Sprite{
     public void setBoardPieceLink(Piece boardPiece) {
         this.boardPieceLink = boardPiece;
     }
+    public boolean isDraugthTransform() {
+		return draugthTransform;
+	}
 
-    
-    
-    
-    SpritePiece eated;
-    
-    
-    
-    
-    public SpritePiece(String colorFX,int wboardBox,int hBoardBox, String img,FXBoard b) {
-        super(colorFX,SPRITE_W, SPRITE_H, wboardBox, hBoardBox,  img,b);
-        this.setScaleX(0.64);
-        this.setScaleY(0.64);
-
-    }
-    void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
-        frameAnimTimer[0] = new FrameAnimationTimer(f1, f2, this, frac, ciclyc, interval, sound);
-    }    
-
-    
-    
+	public void setDraugthTransform(boolean draugthTransform) {
+		this.draugthTransform = draugthTransform;
+	}
     
 
 
@@ -123,10 +145,15 @@ public abstract class SpritePiece extends Sprite{
     
     public void start(Move m){
 
-        if(ptList!=null && ptList.length>0 && ptList[TRANSITION_STEP.FULL_STEP]!=null) 
+        if(ptList!=null && ptList.length>0 && ptList[TRANSITION_STEP.FULL_STEP]!=null) {
             ptList[TRANSITION_STEP.FULL_STEP].play();
-        for(int h=0;h<frameAnimTimer.length;h++)
-            if(frameAnimTimer[h]!=null) frameAnimTimer[0].start();
+            
+        }
+        for(int h=0;h<frameAnimTimer.length;h++) {
+            if(frameAnimTimer[h]!=null) {
+            	frameAnimTimer[0].start();
+            }
+        }
         
         if(eated!=null) eated.start(m);
         //check this code.................when intersect lauch the destruction 
@@ -205,23 +232,48 @@ public abstract class SpritePiece extends Sprite{
     }       
     
     public void removeAnimationSetting() {
-        super.removeAnimationSetting();
         eated = null;
     }
     public abstract void buildDestroyAnimation(int by);
     public abstract void buildFrameMoveAnimation( double frac, boolean ciclyc);
     public abstract void buildFrameEatMoveAnimation( double frac, boolean ciclyc);
-    public abstract void setFrameDama();
     public abstract void buildPedinaMovePath(Move m);
     public abstract void buildDamaMovePath(Move m);
     public abstract void buildPedinaMoveEatPath(Move m);
     public abstract void buildDamaMoveEatPath(Move m);
+    public abstract SpritePiece loadDraugthFrame() ;
 
 	@Override
 	public String toString() {
 		return "SpritePiece [piece "+(boardPieceLink.getColor()==Piece.BLACK?"BLACK":"WHITE")+"= (" + boardPieceLink.getI()+","+boardPieceLink.getJ()+") " + ", colorFX=" + colorFX + "]";
 	}    
 
+	public void recalculateXYPosition() {
+		BCDraugthsApp.log.info(" recalculate (i,j):"+boardPieceLink.getI()+","+boardPieceLink.getJ());
+        double x = convertBoardJtoScenePositionX(boardPieceLink.getJ(), wSquare);
+        double y = convertBoardItoScenePositionY(boardPieceLink.getI(),hSquare);    
+
+        BCDraugthsApp.log.info("recalculate (x,y):"+x+","+y);
+        Point2D reloc= screenToLocal(new Point2D(x, y));
+        //relocate(reloc.getX(), reloc.getY());
+		setX(x);setY(y);
+		  //setX(reloc.getX()); setY(reloc.getY());
+
+        ////this.toFront();
+        //BCDraugthsApp.log.info("recalculate screenToLocal(x,y):"+reloc.getX()+","+reloc.getX());
+	}
+    public void removeExtraSprite(int n){
+        if(extraSprite[n]!=null) fbx.remove(extraSprite[n]);
+    }
+    public boolean isAnimMoveFinish() {
+        return ptList[TRANSITION_STEP.FULL_STEP].getStatus() == Animation.Status.STOPPED;
+    }
+
 
     
+    public void stopAnimation(int n){
+       if(frameAnimTimer[n]!=null) frameAnimTimer[n].stop();
+    }
+
+  
 }
