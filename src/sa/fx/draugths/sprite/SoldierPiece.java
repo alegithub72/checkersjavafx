@@ -10,8 +10,6 @@ import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.EventHandler;
-import javafx.geometry.Point2D;
-import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;

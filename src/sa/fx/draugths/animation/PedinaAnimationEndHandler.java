@@ -7,7 +7,6 @@ package sa.fx.draugths.animation;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;

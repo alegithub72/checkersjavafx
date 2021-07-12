@@ -8,13 +8,10 @@ package sa.fx.draugths.sprite;
 
 import java.net.URL;
 
-
 import javafx.animation.Animation;
-import javafx.geometry.Point2D;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;

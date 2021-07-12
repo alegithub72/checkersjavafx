@@ -20,8 +20,6 @@ import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.event.ConfirmCommandEvent;
-import sa.fx.draugths.screen.BackGround;
-import sa.fx.draugths.sprite.Sprite;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 

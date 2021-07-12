@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -29,10 +28,9 @@ import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
 import sa.fx.draugths.screen.BackGround;
 import sa.fx.draugths.sprite.AlienPiece;
-import sa.fx.draugths.sprite.SoldierPiece;
 import sa.fx.draugths.sprite.MonsterSprite;
 import sa.fx.draugths.sprite.MoonSoldier;
-import sa.fx.draugths.sprite.Sprite;
+import sa.fx.draugths.sprite.SoldierPiece;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Board;

@@ -10,9 +10,7 @@ package sa.fx.draugths.utility;
 
 
 import javafx.application.Application;
-import javafx.geometry.Bounds;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TextArea;
@@ -22,7 +20,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.players.FXPlayer;
 import sa.fx.draugths.sprite.SoldierPiece;
