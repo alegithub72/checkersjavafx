@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -225,27 +226,40 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
             Piece pedinaChar = list[i];
             if(pedinaChar!=null){
-            int j1 = pedinaChar.getJ(); 
-            int i1 = pedinaChar.getI();
+
 
             
             SpritePiece pedina = buildPedina(player.getColor(), pedinaChar, level);
-
-            double x = pedina.convertBoardJtoPositionX(j1, boardHW.getW());
-                    
-            double y = pedina.convertBoardItoPositionY(i1,boardHW.getH());
-            pedina.setK(i);
-            add(pedina,player.getColor());
-            pedina.setX(x);
-            pedina.setY(y);
-            BCDraugthsApp.log.info("(i,j)=("+i1+","+j1+")");
-            BCDraugthsApp.log.info("(x,y)=("+x+","+y+")");
+            positionPedina(pedina,pedinaChar);
             getChildren().add(pedina);
             }else add(null,player.getColor());
         }
     }    
 
-    
+    public void positionPedina(SpritePiece pedina,Piece pedinaChar) {
+        int j1 = pedinaChar.getJ(); 
+        int i1 = pedinaChar.getI();
+        double x = pedina.convertBoardJtoPositionX(j1, boardHW.getW());
+        double y = pedina.convertBoardItoPositionY(i1,boardHW.getH());
+        pedina.setK(pedinaChar.getPos());
+        add(pedina,pedinaChar.getColor());
+
+
+        BCDraugthsApp.log.info("(i,j)=("+i1+","+j1+")");
+        BCDraugthsApp.log.info("(x,y)=("+x+","+y+")");
+        pedina.setX(x);
+        pedina.setY(y);
+        if(pedinaChar.getColor()==Checker.BLACK && pedinaChar.getType()==Checker.DRAUGTH) {
+        		BCDraugthsApp.log.info("no scale");
+        }else {
+            pedina.setScaleX(0.64);
+            pedina.setScaleY(0.64);
+        	pedina.setW((int)(pedina.getW()*0.64));
+        	pedina.setH((int)(pedina.getH()*0.64));        	
+        }
+
+    	
+    }
     public void winConditionMessage(int win){
             Image winText = null;
             ImageView imageView = new ImageView();
@@ -407,8 +421,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
          pedina.EATED_ANIM_FRAME[1]=12;
          pedina.EAT_MOVE_FRAME[0]=3;
          pedina.EAT_MOVE_FRAME[1]=5;
-         
-         
+
          if(charPiece.getType()==Checker.DRAUGTH) {
              pedina= new AlienPiece(charPiece, boardHW,this);
              pedina=pedina.loadDraugthFrame();
@@ -419,6 +432,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 	         pedina.EAT_MOVE_FRAME[0]=3;
 	         pedina.EAT_MOVE_FRAME[1]=5;
          }
+
      } else {
              pedina= new SoldierPiece( charPiece,boardHW, this);
 	         pedina.MOVE_FRAME[0]=5;
@@ -427,6 +441,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 	         pedina.EATED_ANIM_FRAME[1]=12;
 	         pedina.EAT_MOVE_FRAME[0]=2;
 	         pedina.EAT_MOVE_FRAME[1]=3;
+
          if(charPiece.getType()==Checker.DRAUGTH) {
         	 pedina= new SoldierPiece( charPiece,boardHW, this);
         	 pedina=pedina.loadDraugthFrame();
@@ -437,6 +452,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
              pedina.EAT_MOVE_FRAME[0]=2;
              pedina.EAT_MOVE_FRAME[1]=3;
          }
+
      }
      Reflection reflection = new Reflection();
      reflection.setFraction(0.7);
@@ -446,6 +462,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
      dropShadow.setOffsetY(0.0);
      dropShadow.setColor(Color.BLACK);
      pedina.setEffect(dropShadow);
+
      pedina.setOnMouseClicked(new SelectEventPlayer(this,pedina));
  
      return pedina;

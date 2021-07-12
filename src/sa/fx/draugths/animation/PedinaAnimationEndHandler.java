@@ -7,6 +7,7 @@ package sa.fx.draugths.animation;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
@@ -67,7 +68,7 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
     	    		p.getBoardPieceLink(), fxboard.getLevel());
     	    		
     	    dama.setDraugthTransform(true);
-            dama.recalculateXYPosition();
+            fxboard.positionPedina(dama, p.getBoardPieceLink());
             dama.setOnMouseClicked(new SelectEventPlayer(fxboard,dama));
             fxboard.add(dama);
             fxboard.replace(  p.getK() , p.getBoardPieceLink().getColor(), dama);            
@@ -79,9 +80,10 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
      	   SpritePiece dama=fxboard.buildPedina(p.getBoardPieceLink().getColor(), 
    	    		p.getBoardPieceLink(), fxboard.getLevel());
      	   dama.setDraugthTransform(true);
+     	   
            fxboard.add(dama);
            fxboard.replace(  p.getK(),p.getBoardPieceLink().getColor(),   dama);
-           dama.recalculateXYPosition();
+           fxboard.positionPedina(dama, p.getBoardPieceLink());
            dama.setOnMouseClicked(new SelectEventPlayer(fxboard,dama));
            
         }

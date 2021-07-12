@@ -102,21 +102,9 @@ public class Sprite extends ImageView {
     	int wadjust=0;
     	if(this.w>wboard) wadjust=(this.w-wboard)/2;
                 double x = (j * wboard )-(wadjust);
-                return x;
+                return x; 
     }       
-    public  double convertBoardJtoScenePositionX(int j,int wboard){
-    	int wadjust=0;
-    	if(this.w>wboard) wadjust=(this.w-wboard)/2;
-                double x = (j * wboard )-(wadjust) - (wboard / 4);
-                return x;
-    }     
-    public  double convertBoardItoScenePositionY(int i,int hboard){
-     	int hadjust=0;
-     	if(this.h>hboard) hadjust=(this.h-hboard)/2;
-        double y = (i * hboard )
-                    ;
-        return y;
-    } 
+
     public  double convertBoardItoPositionYCenter(int i,int hboard){
      	int hadjust=0;
      	if(this.h>hboard) hadjust=(this.h-hboard)/2;

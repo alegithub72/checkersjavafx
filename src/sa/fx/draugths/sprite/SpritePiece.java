@@ -64,10 +64,10 @@ public abstract class SpritePiece extends Sprite{
         this.fbx=b;
         ptList=new Animation[5];
         frameAnimTimer=new FrameAnimationTimer[2];        
-        setScaleX(0.64);
-        setScaleY(0.64);
-        w=(int)(w*0.64);
-        h=(int)(w*0.64);
+//        setScaleX(0.64);
+//        setScaleY(0.64);
+//        w=(int)(w*0.64);
+//        h=(int)(w*0.64);
 
     }
     void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
@@ -248,20 +248,7 @@ public abstract class SpritePiece extends Sprite{
 		return "SpritePiece [piece "+(boardPieceLink.getColor()==Piece.BLACK?"BLACK":"WHITE")+"= (" + boardPieceLink.getI()+","+boardPieceLink.getJ()+") " + ", colorFX=" + colorFX + "]";
 	}    
 
-	public void recalculateXYPosition() {
-		BCDraugthsApp.log.info(" recalculate (i,j):"+boardPieceLink.getI()+","+boardPieceLink.getJ());
-        double x = convertBoardJtoScenePositionX(boardPieceLink.getJ(), wSquare);
-        double y = convertBoardItoScenePositionY(boardPieceLink.getI(),hSquare);    
 
-        BCDraugthsApp.log.info("recalculate (x,y):"+x+","+y);
-        Point2D reloc= screenToLocal(new Point2D(x, y));
-        //relocate(reloc.getX(), reloc.getY());
-		setX(x);setY(y);
-		  //setX(reloc.getX()); setY(reloc.getY());
-
-        ////this.toFront();
-        //BCDraugthsApp.log.info("recalculate screenToLocal(x,y):"+reloc.getX()+","+reloc.getX());
-	}
     public void removeExtraSprite(int n){
         if(extraSprite[n]!=null) fbx.remove(extraSprite[n]);
     }
