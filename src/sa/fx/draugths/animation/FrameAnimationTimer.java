@@ -13,6 +13,7 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.event.CollisionSpriteEvent;
+import sa.fx.draugths.event.EatAnimPieceEvent;
 import sa.fx.draugths.sprite.Sprite;
 
 
@@ -53,9 +54,9 @@ public class FrameAnimationTimer extends AnimationTimer{
     boolean ciclyc;
     double frac;
     boolean startMusic=true;
-
+    boolean fireOnce=false;
     
-    public FrameAnimationTimer(int f1, int f2, Sprite p,double frac,boolean cyclic,long interval,String sound) {
+    public FrameAnimationTimer(int f1, int f2,int frameX ,Sprite p,double frac,boolean cyclic,long interval,String sound) {
         this.f1 = f1;
         this.f2 = f2;
         target=null;
@@ -98,8 +99,8 @@ public class FrameAnimationTimer extends AnimationTimer{
 
         long intervalTemp=System.currentTimeMillis()-before;
         double lx=0,ly=0;
-        BCDraugthsApp.log.info("id="+p.getId());
-        BCDraugthsApp.log.info(p+" (x,y)="+(p.getTranslateX())+","+(p.getTranslateY()));
+//        BCDraugthsApp.log.info("id="+p.getId());
+//        BCDraugthsApp.log.info(p+" (x,y)="+(p.getTranslateX())+","+(p.getTranslateY()));
         
         if(target!=null) {
 
@@ -130,6 +131,7 @@ public class FrameAnimationTimer extends AnimationTimer{
             if(this.ciclyc){
                 if(i>f2) i=f1;
             }else if(!this.ciclyc && (i>f2) )  i=f2;
+            if(fireOnce) p.fireEvent(new EatAnimPieceEvent(p, target, EatAnimPieceEvent.EATANIM_EVENT));
         } 
 
              

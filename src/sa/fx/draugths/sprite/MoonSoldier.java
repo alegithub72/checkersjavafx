@@ -25,9 +25,9 @@ public class MoonSoldier extends SoldierPiece {
     public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
 
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(5, 6, this, frac, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER);
+            frameAnimTimer[0] = new FrameAnimationTimer(5, 6, 0,this, frac, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER);
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(1, 2, this, frac, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W);
+            frameAnimTimer[0] = new FrameAnimationTimer(1, 2,0, this, frac, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W);
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 
@@ -42,7 +42,7 @@ public class MoonSoldier extends SoldierPiece {
     
     @Override
     public SpritePiece loadDraugthFrame() {
-            if (boardPieceLink.getType() == Checker.DRAUGTH
+            if (piece.getType() == Checker.DRAUGTH
                 && draugthTransform == false) {
             draugthTransform = true;
             frameImages = new Image("white_dama_moonsoldier.png");

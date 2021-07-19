@@ -52,7 +52,7 @@ public class MonsterSprite extends AlienPiece {
     }
     @Override
     public SpritePiece loadDraugthFrame() {
-            if (boardPieceLink.getType() == Checker.DRAUGTH
+            if (piece.getType() == Checker.DRAUGTH
                 && draugthTransform == false) {
             draugthTransform = true;
             frameImages = new Image("black_dama2.png");
@@ -69,16 +69,16 @@ public class MonsterSprite extends AlienPiece {
     @Override
     public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(2, 3, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+            frameAnimTimer[0] = new FrameAnimationTimer(2, 3,0, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(1, 4, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
+            frameAnimTimer[0] = new FrameAnimationTimer(1, 4,0 ,this, frac, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
         }
 
     }    
     public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
 
-       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(4, 7, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
-       else frameAnimTimer[0] = new FrameAnimationTimer(2, 4, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
+       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(4, 7, 4,this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+       else frameAnimTimer[0] = new FrameAnimationTimer(2, 4, 2,this, frac, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
     }    
     
     @Override
@@ -155,10 +155,10 @@ public class MonsterSprite extends AlienPiece {
         pt.getChildren().add(pathTransition2);
         fbx.add(extraSprite[0]);
         extraSprite[0].setVisible(true);
-        frameAnimTimer[1] = new FrameAnimationTimer(0, 1, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
+        frameAnimTimer[1] = new FrameAnimationTimer(0, 1,0, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
         frameAnimTimer[1].start();
         buildFrameEatMoveAnimation( 0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m,eated, w, h,this.fbx));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m,eated));
         eated.buildDestroyAnimation(m.getP().getType());
 
 

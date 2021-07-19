@@ -8,7 +8,6 @@ package sa.fx.draugths.animation;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.sprite.SoldierPiece;
 
 /**
@@ -19,14 +18,14 @@ public class AnimationPedinaMove extends Transition  {
     SoldierPiece pedina;
     Move m;
     int f1,f2;
-    BCDraugthsApp bcdg;
-    private AnimationPedinaMove(int f1, int f2, SoldierPiece p,Move m,BCDraugthsApp bcdg){
+
+    private AnimationPedinaMove(int f1, int f2, SoldierPiece p,Move m){
         this.f1=f1;
         this.f2=f2;
         this.pedina=p;
         this.m=m;
         setCycleDuration(Duration.millis(2000));
-        this.bcdg=bcdg;                 
+             
         
 
     }    

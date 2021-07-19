@@ -35,12 +35,12 @@ public class AlienPiece extends SpritePiece {
     
    public AlienPiece( Piece boardPiece, BoardHW boardHW, FXBoard board) {
         super("Alien",boardHW, CHEKCER_IMAGE,board);
-        this.boardPieceLink = boardPiece;
+        this.piece = boardPiece;
 
     }
    private AlienPiece(String img, Piece boardPiece, BoardHW boardHW, FXBoard board) {
        super("Alien",boardHW, img,board);
-       this.boardPieceLink = boardPiece;
+       this.piece = boardPiece;
 
    }
 
@@ -53,27 +53,27 @@ public class AlienPiece extends SpritePiece {
 
     public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, frac, ciclyc, 50, FrameAnimationTimer.MOVEBLACK);
+            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],0, this, frac, ciclyc, 50, FrameAnimationTimer.MOVEBLACK);
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, frac, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_B);
+            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], 0,this, frac, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_B);
         }
 
     }
 
     public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
 
-       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1], this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
-       else frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1], this, frac, ciclyc, 2, FrameAnimationTimer.DAMAMOVE_B);
+       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+       else frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0] ,this, frac, ciclyc, 2, FrameAnimationTimer.DAMAMOVE_B);
     }
 
     
 
     public SpritePiece loadDraugthFrame() {
     	SpritePiece sp=null;
-        if (boardPieceLink.getType() == Checker.DRAUGTH &&
+        if (piece.getType() == Checker.DRAUGTH &&
                 draugthTransform==false) {
             draugthTransform=true;
-            sp=new AlienPiece(DRAUGTH_IMAGE,this.boardPieceLink, FXBoard.boardHW, this.fbx);       
+            sp=new AlienPiece(DRAUGTH_IMAGE,this.piece, FXBoard.boardHW, this.fbx);       
             AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
             ach.play();

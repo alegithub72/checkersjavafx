@@ -25,6 +25,7 @@ import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.screen.StartScreen;
 import sa.gameboard.core.Game;
 
+
 /**
  *
  * @author ale2s_000
@@ -106,15 +107,17 @@ public class BCDraugthsApp extends Application {
 
        primaryStage.setScene(scene);
        primaryStage.show();
+       
 
     }
    public void levelUp(int level,int point){
             root.getChildren().remove(fxb);
             fxb=new FXBoard(level,this);
             fxb.startLevel(point);
+
             root.getChildren().remove(startScreen);
             root.getChildren().add(fxb);         
-               
+
    }
 
 
@@ -185,7 +188,6 @@ public static void main(String[] args) {
             public void handle(MouseEvent event) {
                     //level++;
                     music.stop();
-                   
                     fxb.setLevel(1);
                     //System.out.println("level="+level);
                     fxb.startLevel(0);
@@ -193,7 +195,9 @@ public static void main(String[] args) {
                     root.getChildren().add(fxb);                
                 event.consume();
             }
-        });        
+        });      
+
+                
   }
   
 }

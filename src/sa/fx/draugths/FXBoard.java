@@ -23,6 +23,12 @@ import sa.boardgame.console.imp.AutomaPlayer;
 import sa.boardgame.console.imp.ConsoleRendering;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
+import sa.fx.draugths.event.DraugthTransformEvent;
+import sa.fx.draugths.event.EatAnimPieceEvent;
+import sa.fx.draugths.event.EatPieceEvent;
+import sa.fx.draugths.event.EatPieceSelectEvent;
+import sa.fx.draugths.event.EndTurnEvent;
+import sa.fx.draugths.event.PointUpdateEvent;
 import sa.fx.draugths.event.SelectEventPlayer;
 import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
@@ -49,12 +55,102 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     private boolean on = false;
     private Game game;
     private SpritePiece select;
+    //TODO: fire event to valorize eated anim element....
+    private SpritePiece eated;
     private FXAIPlayer1 computerPlayer;
     private FXPMousePlayer mousePlayer;
     private BCDraugthsApp app;
     private boolean turn;
+    BackGround backGround;
+    private TextField command;
+    final static public BoardHW boardHW=  new BoardHW(100, 100); 
+    
+    public FXBoard(int l,BCDraugthsApp app) {
+        this.pedinaList = new ArrayList[2];
+        turn=false;
+        this.app=app;
+        this.pedinaList[0] = new ArrayList();
+        this.pedinaList[1] = new ArrayList();
+        String[] part1=new String[]{"p55","0","p35","0","p46","1"
+        ,"p24","1","p44","1","p66","0","p15","1","p26","0","p15","0",
+        "p77","0","p33","1","p55","0","p04","0","p22","0","p11","0"};
+            String[] part2=new String[]{""};
+        this.level=l;
+            //HBox infoPanel=new HBox();
+            computerPlayer = new FXAIPlayer1();
+            mousePlayer = new FXPMousePlayer(this);
+            AutomaPlayer automa=new AutomaPlayer(mousePlayer.getColor(), "Automa");
+            automa.setCommand(part1);
+            
+            game = new Game(automa, computerPlayer,Board.CHECKERS_GAME);
+            //game.setDamaSystem((DamaInterface) this);
+            
+            ConsoleRendering console = new ConsoleRendering();
+            game.addRenderInterface(console);
+           // game.playGame();
 
-    final static public BoardHW boardHW=  new BoardHW(100, 100);
+            game.setHuman(mousePlayer);           
+            //load("board.txt");
+ 
+            if(game!=null) game.addRenderInterface(this);
+            addEventHandler( PointUpdateEvent.MOVE_UPDATE, new EventHandler<PointUpdateEvent>() {
+
+    			@Override
+    			public void handle(PointUpdateEvent event) {
+    				BCDraugthsApp.log.info("INTERCEPETD HANLDER");
+    				Move m=event.getMove();
+    				backGround.updatePoint(m.calculateValue());
+    			}
+            	
+            });
+            addEventHandler(DraugthTransformEvent.DRAUGTH_EVENT, new EventHandler<DraugthTransformEvent>() {
+
+				@Override
+				public void handle(DraugthTransformEvent event) {
+					SpritePiece p= (SpritePiece)event.getTarget();
+					transformInDraugth(p);
+				}
+
+	
+			});
+
+            addEventHandler(EatPieceEvent.EAT_EVENT, new EventHandler<EatPieceEvent>() {
+
+				@Override
+				public void handle(EatPieceEvent event) {
+					SpritePiece e=event.getEat();
+					removeSpritePiece(e);
+					BCDraugthsApp.log.info("eated "+e);
+					
+				}
+			});   
+            addEventHandler(EndTurnEvent.END_TURN, new EventHandler<EndTurnEvent>() {
+
+				@Override
+				public void handle(EndTurnEvent event) {
+					turnEnd();
+					
+				}
+			});
+            addEventHandler(EatPieceSelectEvent.EAT_SELECT, new EventHandler<EatPieceSelectEvent>() {
+
+				@Override
+				public void handle(EatPieceSelectEvent event) {
+					Move m=	event.getMove();
+					eated=getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(),m.getEat().isEated());
+					
+				}
+			});
+            addEventHandler(EatAnimPieceEvent.EATANIM_EVENT, new EventHandler<EatAnimPieceEvent>() {
+
+				@Override
+				public void handle(EatAnimPieceEvent event) {
+					eated.start(null);
+					
+				}
+			});
+        
+    }
     public FXPMousePlayer getMousePlayer() {
         return mousePlayer;
     }
@@ -71,7 +167,6 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     }
     
 
-    BackGround backGround;
 
     
     public SpritePiece getSelect() {
@@ -100,39 +195,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         this.level = level;
     }
     
-    public FXBoard(int l,BCDraugthsApp app) {
-        this.pedinaList = new ArrayList[2];
-        turn=false;
-        this.app=app;
-        this.pedinaList[0] = new ArrayList();
-        this.pedinaList[1] = new ArrayList();
-        String[] part1=new String[]{"p55","0","p35","0","p46","1"
-        ,"p24","1","p44","1","p66","0","p15","1","p26","0","p15","0",
-        "p77","0","p33","1","p55","0","p04","0","p22","0","p11","0"};
-            String[] part2=new String[]{""};
-        this.level=l;
-            //HBox infoPanel=new HBox();
-            computerPlayer = new FXAIPlayer1();
-            mousePlayer = new FXPMousePlayer(this);
-            AutomaPlayer automa=new AutomaPlayer(mousePlayer.getColor(), "Automa");
-            automa.setCommand(part1);
-            
-            game = new Game(automa, computerPlayer,Board.CHECKERS_GAME);
-            //game.setDamaSystem((DamaInterface) this);
-            
-            ConsoleRendering console = new ConsoleRendering();
-            game.addRenderInterface(console);
-           // game.playGame();
 
-            game.setHuman(mousePlayer);           
-            load("board.txt");
- 
-            if(game!=null) game.addRenderInterface(this);
-
-
-               
-        
-    }
     void load(String file) {
     	
         try {
@@ -370,7 +433,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
         return win;
     }    
-    private TextField command;
+
     public TextField getCommand() {
         return command;
     }    
@@ -494,6 +557,19 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
      return pedina;
 
  }     
+    
+    void transformInDraugth(SpritePiece p) {
+	    remove(p);
+	    SpritePiece dama=  buildPedina(p.getBoardPieceLink().getColor(), 
+	    		p.getBoardPieceLink(), getLevel());
+	    		
+	    dama.setDraugthTransform(true);
+        positionPedina(dama, p.getBoardPieceLink());
+        dama.setOnMouseClicked(new SelectEventPlayer(this,dama));
+        add(dama);
+        replace(  p.getK() , p.getBoardPieceLink().getColor(), dama);        	
+    	
+    }
     
      @Override
 	public void renderCommad() {

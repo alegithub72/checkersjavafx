@@ -16,6 +16,8 @@ import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.fx.draugths.event.EatPieceEvent;
+import sa.fx.draugths.event.EatPieceSelectEvent;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
@@ -28,14 +30,8 @@ public abstract class SpritePiece extends Sprite{
 
 
 
-    Piece boardPieceLink;
+    Piece piece;
     boolean draugthTransform=false;
-
-
-
-
-
-
 	public int[] MOVE_FRAME=new int[2];
     public int[] EAT_MOVE_FRAME=new int[2];
     public int[] EATED_ANIM_FRAME=new int[2];
@@ -68,17 +64,17 @@ public abstract class SpritePiece extends Sprite{
 
     }
     void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
-        frameAnimTimer[0] = new FrameAnimationTimer(f1, f2, this, frac, ciclyc, interval, sound);
+        frameAnimTimer[0] = new FrameAnimationTimer(f1, f2,0, this, frac, ciclyc, interval, sound);
     }    
 
     
     
     public Piece getBoardPieceLink() {
-        return boardPieceLink;
+        return piece;
     }
 
     public void setBoardPieceLink(Piece boardPiece) {
-        this.boardPieceLink = boardPiece;
+        this.piece = boardPiece;
     }
     public boolean isDraugthTransform() {
 		return draugthTransform;
@@ -106,8 +102,8 @@ public abstract class SpritePiece extends Sprite{
 
             
         } else if (m.getType() == Move.EAT) {
-            
-            eated = fbx.getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(),m.getEat().isEated()); 
+          
+           fireEvent(new EatPieceSelectEvent(m,this,EatPieceSelectEvent.EAT_SELECT));  //0eated = fbx. 
           //  System.out.println("EAT ELIMATION of"+eated.getK()+")");
            if(m.getP().getType()==Checker.DRAUGTH){
                animDamaEat(m);
@@ -198,7 +194,7 @@ public abstract class SpritePiece extends Sprite{
 	   //TODO:
         buildPedinaMovePath(m);
         buildFrameMoveAnimation( 0, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, w, h,this.fbx));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }  
    
@@ -206,7 +202,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMovePath(m);
         buildFrameMoveAnimation( 0, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, w, h,this.fbx));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }     
    
@@ -214,7 +210,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildPedinaMoveEatPath(m);
         buildFrameEatMoveAnimation( 0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, w, h,this.fbx));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated));
         eated.buildDestroyAnimation(m.getP().getType());
 
 
@@ -223,7 +219,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMoveEatPath(m);
         buildFrameEatMoveAnimation(0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated, w, h,this.fbx));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated));
        // this.eated=eated;
        eated.buildDestroyAnimation(m.getP().getType());
     }       
@@ -242,7 +238,7 @@ public abstract class SpritePiece extends Sprite{
 
 	@Override
 	public String toString() {
-		return "SpritePiece [piece "+(boardPieceLink.getColor()==Piece.BLACK?"BLACK":"WHITE")+"= (" + boardPieceLink.getI()+","+boardPieceLink.getJ()+") " + ", colorFX=" + colorFX + "]";
+		return "SpritePiece [piece "+(piece.getColor()==Piece.BLACK?"BLACK":"WHITE")+"= (" + piece.getI()+","+piece.getJ()+") " + ", colorFX=" + colorFX + "]";
 	}    
 
 
