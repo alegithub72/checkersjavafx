@@ -22,12 +22,12 @@ public class MoonSoldier extends SoldierPiece {
     final static  String DRAUGTH_IMAGE="white_dama_moonsoldier.png";
     static final  String CHEKCER_IMAGE="white_cheker_moonsoldier.png";
     @Override
-    public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
+    public void buildFrameMoveAnimation( boolean ciclyc) {
 
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(5, 6, 0,this, frac, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER);
+            frameAnimTimer[0] = new FrameAnimationTimer(5, 6, 0,this, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER);
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(1, 2,0, this, frac, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W);
+            frameAnimTimer[0] = new FrameAnimationTimer(1, 2,0, this, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W);
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 

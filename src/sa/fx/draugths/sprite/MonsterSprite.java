@@ -44,9 +44,9 @@ public class MonsterSprite extends AlienPiece {
     public void buildDestroyAnimation(int by) {
     	BCDraugthsApp.log.info("EAT BY "+((by==Piece.CHECKER)?"CHECKERS":"DAMA"));
         if (by==Piece.CHECKER ) {
-            buildGenericFrameAnimationDestroy(15, 19, 0.2d, false, 0, FrameAnimationTimer.EXPLOSION);
+            buildGenericFrameAnimationDestroy(15, 19, false, 0, FrameAnimationTimer.EXPLOSION);
         } else {
-            buildGenericFrameAnimationDestroy(8, 14, 0, false, 0, FrameAnimationTimer.EXPLOSION);
+            buildGenericFrameAnimationDestroy(8, 14,  false, 0, FrameAnimationTimer.EXPLOSION);
         }
 
     }
@@ -67,18 +67,18 @@ public class MonsterSprite extends AlienPiece {
     }
     
     @Override
-    public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
+    public void buildFrameMoveAnimation(boolean ciclyc) {
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(2, 3,0, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+            frameAnimTimer[0] = new FrameAnimationTimer(2, 3,0, this,  ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(1, 4,0 ,this, frac, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
+            frameAnimTimer[0] = new FrameAnimationTimer(1, 4,0 ,this, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
         }
 
     }    
     public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
 
-       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(4, 7, 4,this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
-       else frameAnimTimer[0] = new FrameAnimationTimer(2, 4, 2,this, frac, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
+       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(4, 7, 4,this, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+       else frameAnimTimer[0] = new FrameAnimationTimer(2, 4, 2,this, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
     }    
     
     @Override

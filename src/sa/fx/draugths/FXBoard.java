@@ -89,7 +89,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
            // game.playGame();
 
             game.setHuman(mousePlayer);           
-           // load("board.txt");
+            load("boardDamaTest.txt");
  
             if(game!=null) game.addRenderInterface(this);
             addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
@@ -520,8 +520,8 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
          if(charPiece.getType()==Checker.DRAUGTH) {
         	 pedina= new SoldierPiece( charPiece,boardHW, this);
         	 pedina=pedina.loadDraugthFrame();
-             pedina.MOVE_FRAME[0]=5;
-             pedina.MOVE_FRAME[1]=6;
+             pedina.MOVE_FRAME[0]=1;
+             pedina.MOVE_FRAME[1]=2;
              pedina.EATED_ANIM_FRAME[0]=7;
              pedina.EATED_ANIM_FRAME[1]=11;
              pedina.EAT_MOVE_FRAME[0]=2;

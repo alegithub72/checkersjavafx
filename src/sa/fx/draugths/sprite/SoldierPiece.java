@@ -6,12 +6,16 @@
 package sa.fx.draugths.sprite;
 
 
+import java.util.Iterator;
+
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
@@ -21,6 +25,7 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
+import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.animation.event.EventCollisionSprite;
 import sa.fx.draugths.utility.BoardHW;
@@ -61,23 +66,23 @@ public class SoldierPiece extends SpritePiece {
     public void buildDestroyAnimation(int by) {
         if (by ==Piece.CHECKER) {
            
-            if(!draugthTransform)  frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],-1, this,  0.35d, false, 100, FrameAnimationTimer.BITE);
+            if(!draugthTransform)  frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],-1, this, false, 100, FrameAnimationTimer.BITE);
             else BCDraugthsApp.log.info("Errorre.........");
         
         } else if (by ==Piece.DRAUGTH)  {
         
-          if(draugthTransform) frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],-1, this,  0.4d, false, 100, FrameAnimationTimer.BITE) ;
-          else frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], -1,this, 0.35d, false, 100, FrameAnimationTimer.BITE) ; 
+          if(draugthTransform) frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],-1, this, false, 100, FrameAnimationTimer.BITE) ;
+          else frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], -1,this, false, 100, FrameAnimationTimer.BITE) ; 
               
         }
     }
 
-    public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
+    public void buildFrameMoveAnimation( boolean ciclyc) {
 
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],0, this, frac, ciclyc, 100, FrameAnimationTimer.MOVEWHITE);
+            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],-1, this, ciclyc, 100, FrameAnimationTimer.MOVEWHITE);
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(1, 2,0, this, frac, ciclyc, 0, FrameAnimationTimer.DAMAMOVE_W);
+            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],-1, this, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W);
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 
@@ -85,8 +90,8 @@ public class SoldierPiece extends SpritePiece {
 
 
 
-    public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
-        frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, frac, ciclyc, 100, FrameAnimationTimer.FIRE);
+    public void buildFrameEatMoveAnimation( boolean ciclyc) {
+        frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, ciclyc, 100, FrameAnimationTimer.FIRE);
 
     }
 
@@ -260,62 +265,101 @@ public class SoldierPiece extends SpritePiece {
 
     public void buildDamaMoveEatPath(Move m) {
         ParallelTransition pt = new ParallelTransition(this);
-        QuadCurveTo arc = new QuadCurveTo();
+        ParallelTransition pt2 = new ParallelTransition(this);
         //javafx.scene.shape.
+    
         double x0 = convertBoardJtoPositionXCenter(m.getP().getJ(), wSquare);
                 //(m.getP().getI() * wSquare) + ((wSquare / 2));
-        double y0 = convertBoardItoPositionYCenter(m.getP().getI(), hSquare);
+        double y0 = convertBoardItoPositionYCenter((m.getP().getI()), hSquare);
+        double ydecollo0 = convertBoardItoPositionYCenter((m.getP().getI()-1), hSquare);
                 //(m.getP().getJ() * hSquare) + ((hSquare / 2));
-
+        
         Color color = Color.CHARTREUSE;
         double x1 =convertBoardJtoPositionXCenter(m.getJ1(), wSquare);
                 //(m.getI1() * wSquare) + ((wSquare / 2));
+        double ydecollo1 =convertBoardItoPositionYCenter(m.getI1()-1, hSquare);
         double y1 =convertBoardItoPositionYCenter(m.getI1(), hSquare);
                 //(m.getJ1() * hSquare) + ((hSquare / 2));
-        arc.setX(x1);
-        arc.setY(y1);
+        LineTo moveDecollo0 = new LineTo();
+        moveDecollo0.setX(x0);
+        moveDecollo0.setY(ydecollo0);
         /**
          * if (m.x > m.getP().getX()) arc.setXAxisRotation(3.14/3); else arc.setXAxisRotation(3.14);
          */
 
-        arc.setControlX(x0);
-        arc.setControlY(y1 - (hSquare * 2));
-
+        //arc.setControlX(x0);
+        //arc.setControlY(y1 - (hSquare * 2));
+        LineTo moveAree = new LineTo();
+        moveAree.setX(x1);
+        moveAree.setY(ydecollo1);
+        LineTo moveAtteraggio = new LineTo();
+        moveAtteraggio.setX(x1);
+        moveAtteraggio.setY(y1);
         MoveTo from = new MoveTo(x0, y0);
+        MoveTo start2 = new MoveTo(x0, ydecollo0);
         Path path = new Path();
              path.getElements().add(from);
-             path.getElements().add(arc);
-             
+             path.getElements().add(moveDecollo0);
+
+
+        Path pathSecondHalf = new Path(); 
+        	pathSecondHalf.getElements().add(start2);
+        	pathSecondHalf.getElements().add(moveAree);
+        	pathSecondHalf.getElements().add(moveAtteraggio);
+        	
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
-
+        
+        Color color2 = Color.BROWN;
+        pathSecondHalf.setStroke(color2);
+        pathSecondHalf.setStrokeWidth(2);
+        pathSecondHalf.getStrokeDashArray().setAll(5d, 5d);
+        
         PathTransition pathTransition = new PathTransition();
           pathTransition.setDuration(Duration.seconds(1));
           pathTransition.setPath(path);
           pathTransition.setNode(this);
           pathTransition.setOrientation(PathTransition.OrientationType.NONE);
           pathTransition.setCycleCount(1);
-          pathTransition.setAutoReverse(false);
+          pathTransition.setAutoReverse(true);
                 //
-        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
+          
+          PathTransition pathTransition2 = new PathTransition();
+          pathTransition2.setDuration(Duration.seconds(2));
+          pathTransition2.setPath(pathSecondHalf);
+          pathTransition2.setNode(this);
+          pathTransition2.setOrientation(PathTransition.OrientationType.NONE);
+          pathTransition2.setCycleCount(1);
+          pathTransition2.setAutoReverse(true); 
+          
+        parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP] = pt;
+        parallelTransition[TRANSITION_STEP.SECOND_HALF_STEP] = pt2;
+        parallelTransition[TRANSITION_STEP.SECOND_HALF_STEP].setDelay(Duration.seconds(1.2));
         pt.getChildren().add(pathTransition);
-        if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
+        pt2.getChildren().add(pathTransition2);
+        
+        if(BCDraugthsApp.debug)   {
+        	this.getFxBoard().add(path);
+        	this.getFxBoard().add(pathSecondHalf);
+        }
 
     }
 
     @Override
     public void animDamaEat(Move m) {
+    	parallelTransition=new ParallelTransition[5];
         ParallelTransition ptMissile = new ParallelTransition();
         extraSprite[0]= new Sprite("missile2.png");
         
         this.getFxBoard().add(extraSprite[0]);
         //x missile.toFront();
         double x =convertBoardJtoPositionXCenter( m.getP().getJ(),wSquare);
-        double y = convertBoardItoPositionYCenter(m.getP().getI(), hSquare);
+        double y = convertBoardItoPositionYCenter(m.getP().getI()-1, hSquare);
                 //m.getP().getJ();
-        double xe=convertBoardJtoPositionXCenter(m.getJ1(), wSquare);
-        double ye=convertBoardItoPositionYCenter(m.getI1(), hSquare);
+        double xe=convertBoardJtoPositionXCenter(m.getEat().getJ(), wSquare);
+        double ye=convertBoardItoPositionYCenter(m.getEat().getI(), hSquare);
+        extraSprite[0].setVisible(false);
         extraSprite[0].setX(x);
         extraSprite[0].setY(y);
         QuadCurveTo qTO=new QuadCurveTo();
@@ -324,8 +368,8 @@ public class SoldierPiece extends SpritePiece {
         mt.setY(y);
         qTO.setX(xe);
         qTO.setY(ye);
-        qTO.setControlX(x);
-        qTO.setControlY(y);
+        qTO.setControlX(x-150);
+        qTO.setControlY(y-150);
         /**
          * missile.setX(x*wBoardSquare);
         missile.setY((y*hBoardSquare));
@@ -342,54 +386,57 @@ public class SoldierPiece extends SpritePiece {
         pathMissileTransition.setNode(extraSprite[0]);
         pathMissileTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         pathMissileTransition.setCycleCount(1);
-        pathMissileTransition.setAutoReverse(false);
+        pathMissileTransition.setAutoReverse(true);
                 //.build();
 
         //table.getChildren().add(path);
         ptMissile.getChildren().add(pathMissileTransition);
-
+        if(BCDraugthsApp.debug)   {
+        	this.getFxBoard().add(path);
+        }
         buildDamaMoveEatPath(m);
-        SpritePiece eated= this.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getI(), m.getEat().getColor(), true);
+        SpritePiece eated= this.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), true);
         parallelTransition[TRANSITION_STEP.MISSILE_FULL_STEP] = ptMissile;
-        frameAnimTimer[1] = new FrameAnimationTimer(3, 4, this,extraSprite[0],eated, 0, true, 10, FrameAnimationTimer.MISSILE);
-        frameAnimTimer[1].start();
+       // frameAnimTimer[SHOT_ANIM] = new SimpleFrameAnimationTimer(0, 2, extraSprite[0],true,50,SimpleFrameAnimationTimer.MISSILE); 
+        		//frameAnimTimer[MOVE_ANIM].start();
         
 
        // eated.buildDestroyAnimation(Piece.DRAUGTH);
-        buildFrameMoveAnimation(0, true);
+       // buildFrameMoveAnimation( true);
         //setFrame(3);
-        ptMissile.play();
-        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        frameAnimTimer[MOVE_ANIM] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this,extraSprite[0],eated,true,50,SimpleFrameAnimationTimer.DAMAMOVE_W);
+        parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP].setOnFinished(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				 extraSprite[0].setVisible(true);
+				 ptMissile.play();
+		         parallelTransition[TRANSITION_STEP.SECOND_HALF_STEP].play();
+				 //frameAnimTimer[0].start();
+		       
+			}
+		});
+       
+      
+        parallelTransition[TRANSITION_STEP.SECOND_HALF_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
         
     }
 
     @Override
     protected void playAnimDamaEat() {
-
-       /* ptList[TRANSITION_STEP.MISSILE_FULL_STEP].setOnFinished(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-
-                extraSprite[0].setVisible(false);
-                frameAnimTimer[1].stop();
-                start(m);
-                eated.start(m);
-                event.consume();
-
-            }
-        });*/
-        this.getParent().addEventHandler(EventCollisionSprite.COLLISION_SPRITE, new EventHandler<EventCollisionSprite>(){
-            @Override
-            public void handle(EventCollisionSprite event) {
-               extraSprite[0].setVisible(false);
-               frameAnimTimer[1].stop();
-                start();
-              //  eated.start(m);
-                event.consume();
+        for(int h=0;h<frameAnimTimer.length;h++) {
+            if(frameAnimTimer[h]!=null) {
+            	frameAnimTimer[h].start();
             }
         }
-        );       
+    	if(parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP]!=null)
+    		parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP].play();
+            
+        
+
+        if(fxBoard!=null) fxBoard.setAnimationOn(true);
+
+  
 
     }
 

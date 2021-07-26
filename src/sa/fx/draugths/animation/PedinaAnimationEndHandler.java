@@ -84,7 +84,7 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
         	BCDraugthsApp.log.info("PedinaAnimationEndHandler..end...."+p.getColorFX());
         	fxBoard.fireEvent(new EventEndTurn(p, fxBoard,EventEndTurn.END_TURN));
 
-     
+            //fxBoard.setAnimationOn(false);
     }
 
 }

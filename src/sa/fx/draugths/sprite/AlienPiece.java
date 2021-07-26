@@ -48,22 +48,22 @@ public class AlienPiece extends SpritePiece {
 
     @Override
     public void buildDestroyAnimation(int by) {
-        buildGenericFrameAnimationDestroy(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], 0.2d, false, 50, FrameAnimationTimer.EXPLOSION);
+        buildGenericFrameAnimationDestroy(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],  false, 50, FrameAnimationTimer.EXPLOSION);
     }
 
-    public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
+    public void buildFrameMoveAnimation( boolean ciclyc) {
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],0, this, frac, ciclyc, 50, FrameAnimationTimer.MOVEBLACK);
+            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],0, this,  ciclyc, 50, FrameAnimationTimer.MOVEBLACK);
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], 0,this, frac, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_B);
+            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], 0,this, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_B);
         }
 
     }
 
-    public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
+    public void buildFrameEatMoveAnimation( boolean ciclyc) {
 
-       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, frac, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
-       else frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0] ,this, frac, ciclyc, 2, FrameAnimationTimer.DAMAMOVE_B);
+       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+       else frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0] ,this, ciclyc, 2, FrameAnimationTimer.DAMAMOVE_B);
     }
 
     

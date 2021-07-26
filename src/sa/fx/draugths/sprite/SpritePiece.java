@@ -15,6 +15,7 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
+import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.event.EventEatPieceSelect;
 import sa.fx.draugths.utility.BoardHW;
@@ -36,6 +37,7 @@ public abstract class SpritePiece extends Sprite{
     public int[] EATED_ANIM_FRAME=new int[2];
     public static int DESTORY_ANIM=1;
     public static int MOVE_ANIM=0;
+    public static int SHOT_ANIM=2;
 	public   int srpiteH ;
 	public   int spriteW ;
 	int wSquare;
@@ -43,7 +45,7 @@ public abstract class SpritePiece extends Sprite{
 	String colorFX;
 	FXBoard fxBoard;
 	Sprite[] extraSprite=new Sprite[2];
-	FrameAnimationTimer[] frameAnimTimer;
+	SimpleFrameAnimationTimer[] frameAnimTimer;
 	Animation[] parallelTransition;
 	boolean eatedAnim;
     
@@ -58,12 +60,12 @@ public abstract class SpritePiece extends Sprite{
         this.hSquare=boardHW.getW();
         this.fxBoard=b;
         parallelTransition=new Animation[5];
-        frameAnimTimer=new FrameAnimationTimer[2];        
+        frameAnimTimer=new SimpleFrameAnimationTimer[3];        
 
 
     }
-    void buildGenericFrameAnimationDestroy(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
-        frameAnimTimer[DESTORY_ANIM] = new FrameAnimationTimer(f1, f2,-1, this, frac, ciclyc, interval, sound);
+    void buildGenericFrameAnimationDestroy(int f1, int f2, boolean ciclyc, long interval, String sound) {
+        frameAnimTimer[DESTORY_ANIM] = new FrameAnimationTimer(f1, f2,-1, this,  ciclyc, interval, sound);
     }    
 
     
@@ -171,7 +173,14 @@ public abstract class SpritePiece extends Sprite{
         if(fxBoard!=null) fxBoard.setAnimationOn(true);
       
     }    
-    
+    public void destory() {
+        for(int h=0;h<frameAnimTimer.length;h++) {
+            if(frameAnimTimer[h]!=null) {
+            	frameAnimTimer[h].start();
+            }
+        }
+    	
+    }
     public void stop() {
 
 
@@ -190,8 +199,8 @@ public abstract class SpritePiece extends Sprite{
             
         }
         setFrame(0);
-        parallelTransition=new Animation[2];
-        frameAnimTimer=new FrameAnimationTimer[2];
+        parallelTransition=new Animation[3];
+        frameAnimTimer=new FrameAnimationTimer[5];
     }
     
     public Duration getAnimDuration() {
@@ -215,7 +224,7 @@ public abstract class SpritePiece extends Sprite{
    protected void  animPedinaMove(Move m) {
 	   //TODO:
         buildPedinaMovePath(m);
-        buildFrameMoveAnimation( 0, true);
+        buildFrameMoveAnimation(true);
         parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }  
@@ -223,7 +232,7 @@ public abstract class SpritePiece extends Sprite{
    protected void  animDamaMove(Move m) {
     
         buildDamaMovePath(m);
-        buildFrameMoveAnimation( 0, true);
+        buildFrameMoveAnimation( true);
         parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }     
@@ -231,7 +240,7 @@ public abstract class SpritePiece extends Sprite{
    protected void  animPedinaEat(Move m) {
     
         buildPedinaMoveEatPath(m);
-        buildFrameEatMoveAnimation( 0f, true);
+        buildFrameEatMoveAnimation( true);
         parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
        // eated.buildDestroyAnimation(m.getP().getType());
 
@@ -240,7 +249,7 @@ public abstract class SpritePiece extends Sprite{
    protected void  animDamaEat(Move m) {
     
         buildDamaMoveEatPath(m);
-        buildFrameEatMoveAnimation(0f, true);
+        buildFrameEatMoveAnimation( true);
         parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
        // this.eated=eated;
      //  eated.buildDestroyAnimation(m.getP().getType());
@@ -248,8 +257,8 @@ public abstract class SpritePiece extends Sprite{
     
 
     public abstract void buildDestroyAnimation(int by);
-    public abstract void buildFrameMoveAnimation( double frac, boolean ciclyc);
-    public abstract void buildFrameEatMoveAnimation( double frac, boolean ciclyc);
+    public abstract void buildFrameMoveAnimation( boolean ciclyc);
+    public abstract void buildFrameEatMoveAnimation( boolean ciclyc);
     public abstract void buildPedinaMovePath(Move m);
     public abstract void buildDamaMovePath(Move m);
     public abstract void buildPedinaMoveEatPath(Move m);
