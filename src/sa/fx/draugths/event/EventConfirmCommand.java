@@ -17,12 +17,12 @@ import sa.fx.draugths.players.FXPMousePlayer;
  *
  * @author ale2s_000
  */
-public class ConfirmCommandEvent implements EventHandler<MouseEvent>{
+public class EventConfirmCommand implements EventHandler<MouseEvent>{
     int n;
     FXBoard bb;
     FXPMousePlayer mousePlayer;
     
-  public   ConfirmCommandEvent(FXPMousePlayer mousePLayer,int n,FXBoard bb){
+  public   EventConfirmCommand(FXPMousePlayer mousePLayer,int n,FXBoard bb){
         this.n=n;
         this.bb=bb;
         mousePlayer=mousePLayer;

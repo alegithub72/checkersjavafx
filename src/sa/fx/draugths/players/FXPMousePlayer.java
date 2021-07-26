@@ -19,7 +19,7 @@ import javafx.scene.shape.QuadCurveTo;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.event.ConfirmCommandEvent;
+import sa.fx.draugths.event.EventConfirmCommand;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Checker;
 
@@ -167,7 +167,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 imagePunt.setScaleX(0.64);
                 imagePunt.setScaleY(0.64);
                 punteImage[i] = imagePunt;
-                punteImage[i].setOnMouseClicked(new ConfirmCommandEvent(this, i,board));
+                punteImage[i].setOnMouseClicked(new EventConfirmCommand(this, i,board));
                 double xp =sp.convertBoardJtoPositionX(m.getJ1()  , FXBoard.boardHW.getW());
                         //(m.getI1() * board.wBoardSquare) + 32;
                 double yp =sp.convertBoardItoPositionY(m.getI1() , FXBoard.boardHW.getH());

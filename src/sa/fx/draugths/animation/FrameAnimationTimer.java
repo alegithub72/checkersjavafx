@@ -12,9 +12,10 @@ import javafx.geometry.Bounds;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.fx.draugths.BCDraugthsApp;
-import sa.fx.draugths.event.CollisionSpriteEvent;
-import sa.fx.draugths.event.EatAnimPieceEvent;
+import sa.fx.draugths.animation.event.EventCollisionSprite;
+import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.sprite.Sprite;
+import sa.fx.draugths.sprite.SpritePiece;
 
 
 /**
@@ -43,23 +44,24 @@ public class FrameAnimationTimer extends AnimationTimer{
     public String sound;
     public Sprite p;
     public Sprite shot;
-    public Sprite target;
+
     int i;
     long before;
     long interval=0;  
     AudioClip mediaPlayer;
     Duration half;
    // private PathTransition pathTransition;
-
+    SpritePiece target;
     boolean ciclyc;
     double frac;
     boolean startMusic=true;
-    boolean fireOnce=false;
+    int frameX;
     
     public FrameAnimationTimer(int f1, int f2,int frameX ,Sprite p,double frac,boolean cyclic,long interval,String sound) {
         this.f1 = f1;
         this.f2 = f2;
-        target=null;
+        this.frameX=frameX;
+        
         shot=null;
         this.p = p;
         this.sound=sound;
@@ -74,10 +76,10 @@ public class FrameAnimationTimer extends AnimationTimer{
         i=this.f1;
         this.interval=interval;
     }
-    public FrameAnimationTimer(int f1, int f2, Sprite source,Sprite shot,Sprite target,double frac,boolean cyclic,long interval,String sound) {
+    public FrameAnimationTimer(int f1, int f2, Sprite source,Sprite shot,SpritePiece eated,double frac,boolean cyclic,long interval,String sound) {
         this.f1 = f1;
         this.f2 = f2;
-        this.target=target;
+        this.target=eated;
         this.p = source;
         this.sound=sound;
         this.shot=shot;
@@ -102,24 +104,26 @@ public class FrameAnimationTimer extends AnimationTimer{
 //        BCDraugthsApp.log.info("id="+p.getId());
 //        BCDraugthsApp.log.info(p+" (x,y)="+(p.getTranslateX())+","+(p.getTranslateY()));
         
-        if(target!=null) {
+        //if(target!=null) {
 
            // System.out.println("scene shot x="+shotSceneBound.getMinX());
             //System.out.println("scene shot y="+shotSceneBound.getMinY());
             //System.out.println("scene target x="+targetSceneBound.getMinX());
             //System.out.println("scene target y="+targetSceneBound.getMinY());
             //System.out.println(" shot intercept target="+targetSceneBound.contains(shotSceneBound.getMinX(),shotSceneBound.getMinY()));
-        }
-        if(target!=null ){
-            Bounds shotSceneBound=shot.localToScene(shot.getBoundsInLocal());
-            Bounds targetSceneBound=target.localToScene(target.getBoundsInLocal());
-            if( targetSceneBound.contains(shotSceneBound.getMinX(),shotSceneBound.getMinY())){
-                BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
-            CollisionSpriteEvent c=new CollisionSpriteEvent(p, null, CollisionSpriteEvent.COLLISION_SPRITE);
-            p.fireEvent(c);                
-            }
-
-        }
+        //}
+		
+		  if(target!=null ){ Bounds
+		  shotSceneBound=shot.localToScene(shot.getBoundsInLocal()); Bounds
+		  targetSceneBound=target.localToScene(target.getBoundsInLocal()); if(
+		  targetSceneBound.contains(shotSceneBound.getMinX(),shotSceneBound.getMinY()))
+		  { BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
+		  EventCollisionSprite c=new EventCollisionSprite(target, null,
+		  EventCollisionSprite.COLLISION_SPRITE);
+		  p.fireEvent(c); }
+		  
+		  }
+		 
         playEffect();
         if(i<=f2  && intervalTemp>this.interval) {
             
@@ -131,7 +135,7 @@ public class FrameAnimationTimer extends AnimationTimer{
             if(this.ciclyc){
                 if(i>f2) i=f1;
             }else if(!this.ciclyc && (i>f2) )  i=f2;
-            if(fireOnce) p.fireEvent(new EatAnimPieceEvent(p, target, EatAnimPieceEvent.EATANIM_EVENT));
+            if(frameX==i) p.fireEvent(new EventEatAnimPiece(p, p, EventEatAnimPiece.EATANIM_EVENT));
         } 
 
              

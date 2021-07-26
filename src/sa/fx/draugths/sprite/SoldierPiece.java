@@ -22,7 +22,7 @@ import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
-import sa.fx.draugths.event.CollisionSpriteEvent;
+import sa.fx.draugths.animation.event.EventCollisionSprite;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
@@ -208,7 +208,7 @@ public class SoldierPiece extends SpritePiece {
                 //.build();
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
-        if(BCDraugthsApp.debug)  this.fbx.add(path);
+        if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
 
     }
 
@@ -286,16 +286,16 @@ public class SoldierPiece extends SpritePiece {
         path.getStrokeDashArray().setAll(5d, 5d);
 
         PathTransition pathTransition = new PathTransition();
-          pathTransition.setDuration(Duration.seconds(2));
+          pathTransition.setDuration(Duration.seconds(1));
           pathTransition.setPath(path);
           pathTransition.setNode(this);
           pathTransition.setOrientation(PathTransition.OrientationType.NONE);
           pathTransition.setCycleCount(1);
-          pathTransition.setAutoReverse(true);
+          pathTransition.setAutoReverse(false);
                 //
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
-        if(BCDraugthsApp.debug)  this.fbx.add(path);
+        if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
 
     }
 
@@ -303,14 +303,14 @@ public class SoldierPiece extends SpritePiece {
     public void animDamaEat(Move m) {
         ParallelTransition ptMissile = new ParallelTransition();
         extraSprite[0]= new Sprite("missile2.png");
-      
-        this.fbx.add(extraSprite[0]);
+        
+        this.getFxBoard().add(extraSprite[0]);
         //x missile.toFront();
         double x =convertBoardJtoPositionXCenter( m.getP().getJ(),wSquare);
         double y = convertBoardItoPositionYCenter(m.getP().getI(), hSquare);
                 //m.getP().getJ();
-        double xe=convertBoardJtoPositionXCenter(eated.piece.getJ(), wSquare);
-        double ye=convertBoardItoPositionYCenter(eated.piece.getI(), hSquare);
+        double xe=convertBoardJtoPositionXCenter(m.getJ1(), wSquare);
+        double ye=convertBoardItoPositionYCenter(m.getI1(), hSquare);
         extraSprite[0].setX(x);
         extraSprite[0].setY(y);
         QuadCurveTo qTO=new QuadCurveTo();
@@ -344,23 +344,22 @@ public class SoldierPiece extends SpritePiece {
         ptMissile.getChildren().add(pathMissileTransition);
 
         buildDamaMoveEatPath(m);
-
+        SpritePiece eated= this.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getI(), m.getEat().getColor(), true);
         ptList[TRANSITION_STEP.MISSILE_FULL_STEP] = ptMissile;
         frameAnimTimer[1] = new FrameAnimationTimer(3, 4, this,extraSprite[0],eated, 0, true, 10, FrameAnimationTimer.MISSILE);
         frameAnimTimer[1].start();
         
 
-        
-        eated.buildDestroyAnimation(Piece.DRAUGTH);
+       // eated.buildDestroyAnimation(Piece.DRAUGTH);
         buildFrameMoveAnimation(0, true);
         //setFrame(3);
         ptMissile.play();
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m, eated));
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
         
     }
 
     @Override
-    protected void playAnimDamaEat(Move m) {
+    protected void playAnimDamaEat() {
 
        /* ptList[TRANSITION_STEP.MISSILE_FULL_STEP].setOnFinished(new EventHandler<ActionEvent>() {
 
@@ -375,13 +374,13 @@ public class SoldierPiece extends SpritePiece {
 
             }
         });*/
-        this.getParent().addEventHandler(CollisionSpriteEvent.COLLISION_SPRITE, new EventHandler<CollisionSpriteEvent>(){
+        this.getParent().addEventHandler(EventCollisionSprite.COLLISION_SPRITE, new EventHandler<EventCollisionSprite>(){
             @Override
-            public void handle(CollisionSpriteEvent event) {
+            public void handle(EventCollisionSprite event) {
                extraSprite[0].setVisible(false);
                frameAnimTimer[1].stop();
-                start(m);
-                eated.start(m);
+                start();
+              //  eated.start(m);
                 event.consume();
             }
         }
@@ -394,7 +393,7 @@ public class SoldierPiece extends SpritePiece {
         if (piece.getType() == Checker.DRAUGTH &&
                 draugthTransform==false) {
             draugthTransform=true;
-            sp=new SoldierPiece(DRAUGTH_IMAGE, this.piece, FXBoard.boardHW, this.fbx);       
+            sp=new SoldierPiece(DRAUGTH_IMAGE, this.piece, FXBoard.boardHW, this.getFxBoard());       
             AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
             ach.play();

@@ -73,7 +73,7 @@ public class AlienPiece extends SpritePiece {
         if (piece.getType() == Checker.DRAUGTH &&
                 draugthTransform==false) {
             draugthTransform=true;
-            sp=new AlienPiece(DRAUGTH_IMAGE,this.piece, FXBoard.boardHW, this.fbx);       
+            sp=new AlienPiece(DRAUGTH_IMAGE,this.piece, FXBoard.boardHW, this.getFxBoard());       
             AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
             ach.play();
@@ -122,7 +122,7 @@ public class AlienPiece extends SpritePiece {
         pathTransition.setAutoReverse(true);
                 
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
-       if(BCDraugthsApp.debug)  this.fbx.add(path);
+       if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
         pt.getChildren().add(pathTransition);
 
     }
@@ -183,7 +183,7 @@ public class AlienPiece extends SpritePiece {
         //pathTransition.setNode(laser);
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
-        if(BCDraugthsApp.debug)  this.fbx.add(path);
+        if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
         
     }
 
@@ -282,7 +282,7 @@ public class AlienPiece extends SpritePiece {
                 pathTransition.setAutoReverse(false);
                // .build();
         ptList[TRANSITION_STEP.FULL_STEP] = pt;
-        if(BCDraugthsApp.debug)  this.fbx.add(path);
+        if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
         pt.getChildren().add(pathTransition);
 
     }

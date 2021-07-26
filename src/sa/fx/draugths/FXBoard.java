@@ -23,13 +23,13 @@ import sa.boardgame.console.imp.AutomaPlayer;
 import sa.boardgame.console.imp.ConsoleRendering;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
-import sa.fx.draugths.event.DraugthTransformEvent;
-import sa.fx.draugths.event.EatAnimPieceEvent;
-import sa.fx.draugths.event.EatPieceEvent;
-import sa.fx.draugths.event.EatPieceSelectEvent;
-import sa.fx.draugths.event.EndTurnEvent;
-import sa.fx.draugths.event.PointUpdateEvent;
-import sa.fx.draugths.event.SelectEventPlayer;
+import sa.fx.draugths.animation.event.EventDraugthTransform;
+import sa.fx.draugths.animation.event.EventEatAnimPiece;
+import sa.fx.draugths.animation.event.EventRemoveEatPiece;
+import sa.fx.draugths.event.EventEatPieceSelect;
+import sa.fx.draugths.event.EventEndTurn;
+import sa.fx.draugths.event.EventPointUpdate;
+import sa.fx.draugths.event.EventSelectionPlayer;
 import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
 import sa.fx.draugths.screen.BackGround;
@@ -90,63 +90,68 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
            // game.playGame();
 
             game.setHuman(mousePlayer);           
-            //load("board.txt");
+            load("board.txt");
  
             if(game!=null) game.addRenderInterface(this);
-            addEventHandler( PointUpdateEvent.MOVE_UPDATE, new EventHandler<PointUpdateEvent>() {
+            addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
 
     			@Override
-    			public void handle(PointUpdateEvent event) {
+    			public void handle(EventPointUpdate event) {
     				BCDraugthsApp.log.info("INTERCEPETD HANLDER");
     				Move m=event.getMove();
     				backGround.updatePoint(m.calculateValue());
+    				event.consume();
     			}
             	
             });
-            addEventHandler(DraugthTransformEvent.DRAUGTH_EVENT, new EventHandler<DraugthTransformEvent>() {
+            addEventHandler(EventDraugthTransform.DRAUGTH_EVENT, new EventHandler<EventDraugthTransform>() {
 
 				@Override
-				public void handle(DraugthTransformEvent event) {
+				public void handle(EventDraugthTransform event) {
 					SpritePiece p= (SpritePiece)event.getTarget();
 					transformInDraugth(p);
+					event.consume();
 				}
 
 	
 			});
 
-            addEventHandler(EatPieceEvent.EAT_EVENT, new EventHandler<EatPieceEvent>() {
+            addEventHandler(EventRemoveEatPiece.EAT_EVENT, new EventHandler<EventRemoveEatPiece>() {
 
 				@Override
-				public void handle(EatPieceEvent event) {
-					SpritePiece e=event.getEat();
-					removeSpritePiece(e);
-					BCDraugthsApp.log.info("eated "+e);
-					
+				public void handle(EventRemoveEatPiece event) {
+	
+					if(eated!=null)removeSpritePiece(eated);
+					BCDraugthsApp.log.info("eated "+eated);
+					event.consume();
 				}
 			});   
-            addEventHandler(EndTurnEvent.END_TURN, new EventHandler<EndTurnEvent>() {
+            addEventHandler(EventEndTurn.END_TURN, new EventHandler<EventEndTurn>() {
 
 				@Override
-				public void handle(EndTurnEvent event) {
+				public void handle(EventEndTurn event) {
+					BCDraugthsApp.log.info(" turn end---");
 					turnEnd();
-					
+				
 				}
 			});
-            addEventHandler(EatPieceSelectEvent.EAT_SELECT, new EventHandler<EatPieceSelectEvent>() {
+            addEventHandler(EventEatPieceSelect.EAT_SELECT, new EventHandler<EventEatPieceSelect>() {
 
 				@Override
-				public void handle(EatPieceSelectEvent event) {
+				public void handle(EventEatPieceSelect event) {
 					Move m=	event.getMove();
 					eated=getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(),m.getEat().isEated());
-					
+					eated.buildDestroyAnimation(m.getEat().getType());
+					event.consume();
 				}
 			});
-            addEventHandler(EatAnimPieceEvent.EATANIM_EVENT, new EventHandler<EatAnimPieceEvent>() {
+            addEventHandler(EventEatAnimPiece.EATANIM_EVENT, new EventHandler<EventEatAnimPiece>() {
 
 				@Override
-				public void handle(EatAnimPieceEvent event) {
-					eated.start(null);
-					
+				public void handle(EventEatAnimPiece event) {
+					if(eated!=null)eated.start();
+					eated=null;
+					event.consume();
 				}
 			});
         
@@ -524,7 +529,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
      dropShadow.setColor(Color.BLACK);
      pedina.setEffect(dropShadow);
 
-     pedina.setOnMouseClicked(new SelectEventPlayer(this,pedina));
+     pedina.setOnMouseClicked(new EventSelectionPlayer(this,pedina));
  
      return pedina;
 
@@ -552,7 +557,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
      dropShadow.setOffsetY(0.0);
      dropShadow.setColor(Color.BLACK);
      pedina.setEffect(dropShadow);
-     pedina.setOnMouseClicked(new SelectEventPlayer(this,pedina));
+     pedina.setOnMouseClicked(new EventSelectionPlayer(this,pedina));
  
      return pedina;
 
@@ -565,7 +570,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 	    		
 	    dama.setDraugthTransform(true);
         positionPedina(dama, p.getBoardPieceLink());
-        dama.setOnMouseClicked(new SelectEventPlayer(this,dama));
+        dama.setOnMouseClicked(new EventSelectionPlayer(this,dama));
         add(dama);
         replace(  p.getK() , p.getBoardPieceLink().getColor(), dama);        	
     	

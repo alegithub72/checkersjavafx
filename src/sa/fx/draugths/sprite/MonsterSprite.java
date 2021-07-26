@@ -153,13 +153,13 @@ public class MonsterSprite extends AlienPiece {
                 
     
         pt.getChildren().add(pathTransition2);
-        fbx.add(extraSprite[0]);
+        getFxBoard().add(extraSprite[0]);
         extraSprite[0].setVisible(true);
         frameAnimTimer[1] = new FrameAnimationTimer(0, 1,0, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
         frameAnimTimer[1].start();
         buildFrameEatMoveAnimation( 0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m,eated));
-        eated.buildDestroyAnimation(m.getP().getType());
+        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+      
 
 
     }     

@@ -15,12 +15,12 @@ import sa.fx.draugths.sprite.SpritePiece;
  *
  * @author ale2s_000
  */
-public class SelectEventPlayer implements EventHandler<MouseEvent> {
+public class EventSelectionPlayer implements EventHandler<MouseEvent> {
 
     FXBoard fxb;
     SpritePiece p;
 
-    public SelectEventPlayer(FXBoard board,SpritePiece p) {
+    public EventSelectionPlayer(FXBoard board,SpritePiece p) {
         this.fxb = board;
         this.p=p;
     }

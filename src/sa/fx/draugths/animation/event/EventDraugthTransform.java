@@ -1,11 +1,11 @@
-package sa.fx.draugths.event;
+package sa.fx.draugths.animation.event;
 
 import javafx.event.Event;
 import javafx.event.EventTarget;
 import javafx.event.EventType;
 import sa.fx.draugths.sprite.SpritePiece;
 
-public class DraugthTransformEvent extends Event{
+public class EventDraugthTransform extends Event{
 
 
 
@@ -14,8 +14,8 @@ public class DraugthTransformEvent extends Event{
 	 */
 	SpritePiece p;
 	private static final long serialVersionUID = -2332571104664340411L;
-    public static final EventType<DraugthTransformEvent> DRAUGTH_EVENT=new EventType<>(Event.ANY,"DRAUGTH_EVENT");
-    public DraugthTransformEvent(SpritePiece source, EventTarget target, EventType<DraugthTransformEvent> eventType) {
+    public static final EventType<EventDraugthTransform> DRAUGTH_EVENT=new EventType<>(Event.ANY,"DRAUGTH_EVENT");
+    public EventDraugthTransform(SpritePiece source, EventTarget target, EventType<EventDraugthTransform> eventType) {
         super(source, target, eventType);
         this.p=source;
 	}
