@@ -44,9 +44,9 @@ public class MonsterSprite extends AlienPiece {
     public void buildDestroyAnimation(int by) {
     	BCDraugthsApp.log.info("EAT BY "+((by==Piece.CHECKER)?"CHECKERS":"DAMA"));
         if (by==Piece.CHECKER ) {
-            buildGenericFrameAnimation(15, 19, 0.2d, false, 0, FrameAnimationTimer.EXPLOSION);
+            buildGenericFrameAnimationDestroy(15, 19, 0.2d, false, 0, FrameAnimationTimer.EXPLOSION);
         } else {
-            buildGenericFrameAnimation(8, 14, 0, false, 0, FrameAnimationTimer.EXPLOSION);
+            buildGenericFrameAnimationDestroy(8, 14, 0, false, 0, FrameAnimationTimer.EXPLOSION);
         }
 
     }
@@ -138,7 +138,7 @@ public class MonsterSprite extends AlienPiece {
               
 
         //pathTransition.setNode(laser);
-        ptList[TRANSITION_STEP.FULL_STEP] = pt;
+                parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
 
         
@@ -155,10 +155,10 @@ public class MonsterSprite extends AlienPiece {
         pt.getChildren().add(pathTransition2);
         getFxBoard().add(extraSprite[0]);
         extraSprite[0].setVisible(true);
-        frameAnimTimer[1] = new FrameAnimationTimer(0, 1,0, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
+       // frameAnimTimer[1] = new FrameAnimationTimer(0, 1,0, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
         frameAnimTimer[1].start();
         buildFrameEatMoveAnimation( 0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
       
 
 

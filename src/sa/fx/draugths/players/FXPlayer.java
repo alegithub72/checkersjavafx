@@ -21,7 +21,7 @@ import sa.gameboard.core.Checker;
  */
 public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent>  {
 
-    FXBoard board;
+	FXBoard board;
     Group table;
     public FXPlayer(Group table,FXBoard board) {
         super(Checker.WHITE);

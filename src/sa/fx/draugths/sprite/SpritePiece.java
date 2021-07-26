@@ -34,7 +34,8 @@ public abstract class SpritePiece extends Sprite{
 	public int[] MOVE_FRAME=new int[2];
     public int[] EAT_MOVE_FRAME=new int[2];
     public int[] EATED_ANIM_FRAME=new int[2];
-
+    public static int DESTORY_ANIM=1;
+    public static int MOVE_ANIM=0;
 	public   int srpiteH ;
 	public   int spriteW ;
 	int wSquare;
@@ -43,32 +44,37 @@ public abstract class SpritePiece extends Sprite{
 	FXBoard fxBoard;
 	Sprite[] extraSprite=new Sprite[2];
 	FrameAnimationTimer[] frameAnimTimer;
-	Animation[] ptList;
+	Animation[] parallelTransition;
+	boolean eatedAnim;
     
     
     
     
-    public SpritePiece(String colorFX,BoardHW boardHW, String img,FXBoard b) {
+
+	public SpritePiece(String colorFX,BoardHW boardHW, String img,FXBoard b) {
         super(img);
         this.colorFX=colorFX;
         this.wSquare=boardHW.getH();
         this.hSquare=boardHW.getW();
         this.fxBoard=b;
-        ptList=new Animation[5];
+        parallelTransition=new Animation[5];
         frameAnimTimer=new FrameAnimationTimer[2];        
-//        setScaleX(0.64);
-//        setScaleY(0.64);
-//        w=(int)(w*0.64);
-//        h=(int)(w*0.64);
+
 
     }
-    void buildGenericFrameAnimation(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
-        frameAnimTimer[0] = new FrameAnimationTimer(f1, f2,0, this, frac, ciclyc, interval, sound);
+    void buildGenericFrameAnimationDestroy(int f1, int f2, double frac, boolean ciclyc, long interval, String sound) {
+        frameAnimTimer[DESTORY_ANIM] = new FrameAnimationTimer(f1, f2,-1, this, frac, ciclyc, interval, sound);
     }    
 
     
     
 
+	public String getColorFX() {
+		return colorFX;
+	}
+	public void setColorFX(String colorFX) {
+		this.colorFX = colorFX;
+	}
 	public FXBoard getFxBoard() {
 		return fxBoard;
 	}
@@ -87,7 +93,12 @@ public abstract class SpritePiece extends Sprite{
 		this.draugthTransform = draugthTransform;
 	}
     
-
+    public boolean isEatedAnim() {
+		return eatedAnim;
+	}
+	public void setEatedAnim(boolean eatedAnim) {
+		this.eatedAnim = eatedAnim;
+	}
 
     public int getFrame() {
         return this.nframes;
@@ -141,13 +152,13 @@ public abstract class SpritePiece extends Sprite{
     
     public void start(){
 
-        if(ptList!=null && ptList.length>0 && ptList[TRANSITION_STEP.FULL_STEP]!=null) {
-            ptList[TRANSITION_STEP.FULL_STEP].play();
+        if(parallelTransition!=null && parallelTransition.length>0 && parallelTransition[TRANSITION_STEP.FULL_STEP]!=null) {
+            parallelTransition[TRANSITION_STEP.FULL_STEP].play();
             
         }
         for(int h=0;h<frameAnimTimer.length;h++) {
             if(frameAnimTimer[h]!=null) {
-            	frameAnimTimer[0].start();
+            	frameAnimTimer[h].start();
             }
         }
         
@@ -157,22 +168,30 @@ public abstract class SpritePiece extends Sprite{
         //Bounds d= eated.getBoundsInLocal();
         //this.intersects(d);
         //bcdg.removePuntatori();
-        if(fxBoard!=null) fxBoard.setOn(true);
+        if(fxBoard!=null) fxBoard.setAnimationOn(true);
       
     }    
     
     public void stop() {
 
-        frameAnimTimer[0].stop();
-        for (int i = 0; i < ptList.length; i++) {
-            Animation a = ptList[i];
+
+        for(int h=0;h<frameAnimTimer.length;h++) {
+            if(frameAnimTimer[h]!=null) {
+            	frameAnimTimer[h].stop();
+            	frameAnimTimer[h]=null;
+            }
+        }
+        
+        for (int i = 0; i < parallelTransition.length; i++) {
+            Animation a = parallelTransition[i];
             if(a!=null) a.stop();
-            if(a!=null) fxBoard.remove(a);
-            ptList[i]=null;
+            //TODO: mai inserite sul board
+          //  if(a!=null) fxBoard.remove(a);
+            
         }
         setFrame(0);
-
-        
+        parallelTransition=new Animation[2];
+        frameAnimTimer=new FrameAnimationTimer[2];
     }
     
     public Duration getAnimDuration() {
@@ -197,7 +216,7 @@ public abstract class SpritePiece extends Sprite{
 	   //TODO:
         buildPedinaMovePath(m);
         buildFrameMoveAnimation( 0, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }  
    
@@ -205,7 +224,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMovePath(m);
         buildFrameMoveAnimation( 0, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }     
    
@@ -213,7 +232,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildPedinaMoveEatPath(m);
         buildFrameEatMoveAnimation( 0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
        // eated.buildDestroyAnimation(m.getP().getType());
 
 
@@ -222,7 +241,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMoveEatPath(m);
         buildFrameEatMoveAnimation(0f, true);
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
        // this.eated=eated;
      //  eated.buildDestroyAnimation(m.getP().getType());
     }       
@@ -247,7 +266,7 @@ public abstract class SpritePiece extends Sprite{
         if(extraSprite[n]!=null) fxBoard.remove(extraSprite[n]);
     }
     public boolean isAnimMoveFinish() {
-        return ptList[TRANSITION_STEP.FULL_STEP].getStatus() == Animation.Status.STOPPED;
+        return parallelTransition[TRANSITION_STEP.FULL_STEP].getStatus() == Animation.Status.STOPPED;
     }
 
 

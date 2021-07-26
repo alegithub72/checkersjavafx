@@ -12,18 +12,16 @@ public class EventDraugthTransform extends Event{
 	/**
 	 * 
 	 */
-	SpritePiece p;
+	SpritePiece pieceToTrasform;
+
 	private static final long serialVersionUID = -2332571104664340411L;
     public static final EventType<EventDraugthTransform> DRAUGTH_EVENT=new EventType<>(Event.ANY,"DRAUGTH_EVENT");
     public EventDraugthTransform(SpritePiece source, EventTarget target, EventType<EventDraugthTransform> eventType) {
         super(source, target, eventType);
-        this.p=source;
+        this.pieceToTrasform=source;
 	}
-	public SpritePiece getP() {
-		return p;
-	}
-	public void setP(SpritePiece p) {
-		this.p = p;
+	public SpritePiece getPieceToTrasform() {
+		return pieceToTrasform;
 	}
 
     

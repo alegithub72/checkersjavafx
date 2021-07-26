@@ -61,13 +61,13 @@ public class SoldierPiece extends SpritePiece {
     public void buildDestroyAnimation(int by) {
         if (by ==Piece.CHECKER) {
            
-            if(!draugthTransform)  frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],0, this,  0.35d, false, 100, FrameAnimationTimer.BITE);
+            if(!draugthTransform)  frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],-1, this,  0.35d, false, 100, FrameAnimationTimer.BITE);
             else BCDraugthsApp.log.info("Errorre.........");
         
         } else if (by ==Piece.DRAUGTH)  {
         
-          if(draugthTransform) frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],0, this,  0.4d, false, 100, FrameAnimationTimer.BITE) ;
-          else frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], 0,this, 0.35d, false, 100, FrameAnimationTimer.BITE) ; 
+          if(draugthTransform) frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],-1, this,  0.4d, false, 100, FrameAnimationTimer.BITE) ;
+          else frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], -1,this, 0.35d, false, 100, FrameAnimationTimer.BITE) ; 
               
         }
     }
@@ -83,19 +83,7 @@ public class SoldierPiece extends SpritePiece {
 
     }
 
-    @Override
-    public void animPedinaEat(Move m) {
-        super.animPedinaEat(m);
-        RotateTransition rotateTransition = new RotateTransition();
-                // .node(p)
-        rotateTransition.setDuration(Duration.seconds(1));
-        rotateTransition.setFromAngle(0);
-        rotateTransition.setToAngle(+1080);
-        rotateTransition.setCycleCount(1);
-        rotateTransition.setAutoReverse(false);
-                //.build();
-        ((ParallelTransition) ptList[TRANSITION_STEP.FULL_STEP]).getChildren().add(rotateTransition);
-    }
+
 
     public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
         frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, frac, ciclyc, 100, FrameAnimationTimer.FIRE);
@@ -155,10 +143,10 @@ public class SoldierPiece extends SpritePiece {
         pathTransition.setAutoReverse(true);
                 //
         
-        ptList[TRANSITION_STEP.FULL_STEP] = pt;
+        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
         BCDraugthsApp.log.info(this+"  from ("+x0+","+ y0+") to ("+x1+","+y1+")");
         pt.getChildren().add(pathTransition);
-
+        if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
     }
 
     public void buildDamaMovePath(Move m) {
@@ -199,20 +187,21 @@ public class SoldierPiece extends SpritePiece {
         path.getStrokeDashArray().setAll(5d, 5d);
 
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(2));
+        pathTransition.setDuration(Duration.seconds(1));
         pathTransition.setPath(path);
         pathTransition.setNode(this);
         pathTransition.setOrientation(PathTransition.OrientationType.NONE);
         pathTransition.setCycleCount(1);
         pathTransition.setAutoReverse(true);
                 //.build();
-        ptList[TRANSITION_STEP.FULL_STEP] = pt;
+        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
         if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
 
     }
 
     public void buildPedinaMoveEatPath(Move m) {
+    	 parallelTransition[TRANSITION_STEP.FULL_STEP] =null;
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo arc = new QuadCurveTo();
         //javafx.scene.shape.
@@ -241,15 +230,31 @@ public class SoldierPiece extends SpritePiece {
         path.getStrokeDashArray().setAll(5d, 5d);
 
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(1));
+        pathTransition.setDuration(Duration.seconds(2));
         pathTransition.setPath(path);
         pathTransition.setNode(this);
         pathTransition.setOrientation(PathTransition.OrientationType.NONE);
         pathTransition.setCycleCount(1);
-        pathTransition.setAutoReverse(true);
+        pathTransition.setAutoReverse(false);
+
+
                 //.build();
-        ptList[TRANSITION_STEP.FULL_STEP] = pt;
+        RotateTransition rotateTransition = new RotateTransition();
+                // .node(p)
+        rotateTransition.setDuration(Duration.seconds(2));
+        rotateTransition.setFromAngle(0);
+        rotateTransition.setToAngle(+1080);
+        rotateTransition.setCycleCount(1);
+        rotateTransition.setNode(this);
+        rotateTransition.setAutoReverse(true);
+                //.build();
+       // rotateTransition;
+        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
+//        pt.setCycleCount(1);
+//        pt.setAutoReverse(true);
         pt.getChildren().add(pathTransition);
+        if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
+        pt.getChildren().add(rotateTransition);
 
     }
 
@@ -293,7 +298,7 @@ public class SoldierPiece extends SpritePiece {
           pathTransition.setCycleCount(1);
           pathTransition.setAutoReverse(false);
                 //
-        ptList[TRANSITION_STEP.FULL_STEP] = pt;
+        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
         if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
 
@@ -345,7 +350,7 @@ public class SoldierPiece extends SpritePiece {
 
         buildDamaMoveEatPath(m);
         SpritePiece eated= this.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getI(), m.getEat().getColor(), true);
-        ptList[TRANSITION_STEP.MISSILE_FULL_STEP] = ptMissile;
+        parallelTransition[TRANSITION_STEP.MISSILE_FULL_STEP] = ptMissile;
         frameAnimTimer[1] = new FrameAnimationTimer(3, 4, this,extraSprite[0],eated, 0, true, 10, FrameAnimationTimer.MISSILE);
         frameAnimTimer[1].start();
         
@@ -354,7 +359,7 @@ public class SoldierPiece extends SpritePiece {
         buildFrameMoveAnimation(0, true);
         //setFrame(3);
         ptMissile.play();
-        ptList[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
         
     }
 

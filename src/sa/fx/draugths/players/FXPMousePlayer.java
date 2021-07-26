@@ -30,7 +30,7 @@ import sa.gameboard.core.Checker;
 public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEvent> {
 
 
-    FXBoard board;
+	FXBoard board;
     ImageView punteImage[];
     List movesMouse;
 
@@ -100,7 +100,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     
     @Override
     public void handle(MouseEvent event) {
-        if (!board.isOn()) {
+        if (!board.isAnimationOn()) {
             if (board.getSelect() != null) {
                 choosePiece();
             }

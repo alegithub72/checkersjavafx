@@ -80,7 +80,7 @@ public class BCDraugthsApp extends Application {
     
     public void initDama() {
 
-        debug = true;
+        debug = false;
     	log=   Logger.getAnonymousLogger();
 		System.setProperty("java.util.logging.SimpleFormatter.format",  "%4$s: %5$s %n");	
 		if(debug)  log.setLevel(Level.INFO);  

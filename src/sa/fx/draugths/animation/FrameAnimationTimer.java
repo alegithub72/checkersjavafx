@@ -42,7 +42,7 @@ public class FrameAnimationTimer extends AnimationTimer{
     public static String ACHW="Achievement.wav";
     public static String ACHB="pluck.wav";
     public String sound;
-    public Sprite p;
+    public SpritePiece p;
     public Sprite shot;
 
     int i;
@@ -56,12 +56,13 @@ public class FrameAnimationTimer extends AnimationTimer{
     double frac;
     boolean startMusic=true;
     int frameX;
+    boolean once;
     
-    public FrameAnimationTimer(int f1, int f2,int frameX ,Sprite p,double frac,boolean cyclic,long interval,String sound) {
+    public FrameAnimationTimer(int f1, int f2,int frameX ,SpritePiece p,double frac,boolean cyclic,long interval,String sound) {
         this.f1 = f1;
         this.f2 = f2;
         this.frameX=frameX;
-        
+        once=false;
         shot=null;
         this.p = p;
         this.sound=sound;
@@ -76,13 +77,14 @@ public class FrameAnimationTimer extends AnimationTimer{
         i=this.f1;
         this.interval=interval;
     }
-    public FrameAnimationTimer(int f1, int f2, Sprite source,Sprite shot,SpritePiece eated,double frac,boolean cyclic,long interval,String sound) {
+    public FrameAnimationTimer(int f1, int f2, SpritePiece source,Sprite shot,SpritePiece eated,double frac,boolean cyclic,long interval,String sound) {
         this.f1 = f1;
         this.f2 = f2;
         this.target=eated;
         this.p = source;
         this.sound=sound;
         this.shot=shot;
+        once=false;
         if(sound!=null){
         mediaPlayer=buildMedia(sound);
 
@@ -135,7 +137,10 @@ public class FrameAnimationTimer extends AnimationTimer{
             if(this.ciclyc){
                 if(i>f2) i=f1;
             }else if(!this.ciclyc && (i>f2) )  i=f2;
-            if(frameX==i) p.fireEvent(new EventEatAnimPiece(p, p, EventEatAnimPiece.EATANIM_EVENT));
+            if(frameX==i && !once && !p.isEatedAnim()) {
+            	p.fireEvent(new EventEatAnimPiece(p, p, EventEatAnimPiece.EATANIM_EVENT));
+            	once=true;
+            }
         } 
 
              

@@ -17,7 +17,7 @@ import sa.fx.draugths.sprite.SpritePiece;
  */
 public class EventSelectionPlayer implements EventHandler<MouseEvent> {
 
-    FXBoard fxb;
+	FXBoard fxb;
     SpritePiece p;
 
     public EventSelectionPlayer(FXBoard board,SpritePiece p) {
@@ -28,7 +28,7 @@ public class EventSelectionPlayer implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-        if(!this.fxb.isOn()){
+        if(!this.fxb.isAnimationOn()){
         if(this.fxb.getSelect()!=null && this.fxb.getSelect()!=p ){
             this.fxb.getSelect().setFrame(0);
 
@@ -39,7 +39,7 @@ public class EventSelectionPlayer implements EventHandler<MouseEvent> {
         fxb.getMousePlayer().choosePiece();
                 
         }
-       BCDraugthsApp.log.info(" c;liecked id="+p.getId());
+       BCDraugthsApp.log.info(" cliecked id="+p.getId());
         event.consume();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

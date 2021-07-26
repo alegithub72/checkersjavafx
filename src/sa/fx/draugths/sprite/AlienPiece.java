@@ -48,7 +48,7 @@ public class AlienPiece extends SpritePiece {
 
     @Override
     public void buildDestroyAnimation(int by) {
-        buildGenericFrameAnimation(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], 0.2d, false, 50, FrameAnimationTimer.EXPLOSION);
+        buildGenericFrameAnimationDestroy(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], 0.2d, false, 50, FrameAnimationTimer.EXPLOSION);
     }
 
     public void buildFrameMoveAnimation(double frac, boolean ciclyc) {
@@ -121,7 +121,7 @@ public class AlienPiece extends SpritePiece {
         
         pathTransition.setAutoReverse(true);
                 
-        ptList[TRANSITION_STEP.FULL_STEP] = pt;
+        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
        if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
         pt.getChildren().add(pathTransition);
 
@@ -181,7 +181,7 @@ public class AlienPiece extends SpritePiece {
                 //.build();
 
         //pathTransition.setNode(laser);
-        ptList[TRANSITION_STEP.FULL_STEP] = pt;
+        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
         if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
         
@@ -239,7 +239,7 @@ public class AlienPiece extends SpritePiece {
                 pathTransition.setAutoReverse(true);
                 //.build();
         
-        ptList[TRANSITION_STEP.FULL_STEP] = pt;
+        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
     }
 
@@ -281,7 +281,7 @@ public class AlienPiece extends SpritePiece {
                 pathTransition.setCycleCount(1);
                 pathTransition.setAutoReverse(false);
                // .build();
-        ptList[TRANSITION_STEP.FULL_STEP] = pt;
+        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
         if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
         pt.getChildren().add(pathTransition);
 
