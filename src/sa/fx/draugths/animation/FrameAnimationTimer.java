@@ -7,11 +7,8 @@ package sa.fx.draugths.animation;
 
 import java.net.URL;
 
-import javafx.animation.AnimationTimer;
 import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
 import javafx.scene.media.AudioClip;
-import javafx.util.Duration;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.event.EventCollisionSprite;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
@@ -21,14 +18,14 @@ import sa.fx.draugths.sprite.SpritePiece;
 
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
 
     public SpritePiece piece;
     public Sprite shot;
 
-    long interval=0;  
+  
 
    // private PathTransition pathTransition;
     SpritePiece target;
@@ -42,7 +39,7 @@ public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
         this.frameX=frameX;
         once=false;
         this.piece = p;
-       
+        
 
     }
     public FrameAnimationTimer(int f1, int f2, SpritePiece p,Sprite shot,SpritePiece eated,boolean cyclic,long interval,String sound) {
@@ -93,7 +90,7 @@ public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
 		 
         playEffect();
         if(i<=f2  && intervalTemp>this.interval) {
-            
+        	BCDraugthsApp.log.info(" interval:"+intervalTemp+">"+interval);
             before=System.currentTimeMillis();
             p.setFrame(i);
             p.toFront();
@@ -134,7 +131,7 @@ public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
         // //To change body of generated methods, choose Tools | Templates.
         
     }
-    
+    @Override
     void playEffect(){
         
        if(mediaPlayer!=null)  {

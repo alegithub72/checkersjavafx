@@ -13,7 +13,7 @@ import sa.fx.draugths.sprite.SpritePiece;
 
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public class EventCollisionSprite extends Event{
     

@@ -17,6 +17,7 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
+import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Checker;
@@ -53,17 +54,17 @@ public class AlienPiece extends SpritePiece {
 
     public void buildFrameMoveAnimation( boolean ciclyc) {
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],0, this,  ciclyc, 50, FrameAnimationTimer.MOVEBLACK);
+            frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this,  ciclyc, 50, FrameAnimationTimer.MOVEBLACK));
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], 0,this, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_B);
+            frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],this, ciclyc, 50, FrameAnimationTimer.DAMAMOVE_B));
         }
 
     }
 
     public void buildFrameEatMoveAnimation( boolean ciclyc) {
 
-       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
-       else frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0] ,this, ciclyc, 2, FrameAnimationTimer.DAMAMOVE_B);
+       if(draugthTransform==false) frameAnimTimer.add( new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, ciclyc, 100, FrameAnimationTimer.MOVEBLACK));
+       else frameAnimTimer.add( new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0] ,this, ciclyc, 2, FrameAnimationTimer.DAMAMOVE_B));
     }
 
     
@@ -113,7 +114,7 @@ public class AlienPiece extends SpritePiece {
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(1));
+        pathTransition.setDuration(Duration.seconds(1.5));
         pathTransition.setPath(path);
         pathTransition.setNode(this);
         pathTransition.setOrientation(PathTransition.OrientationType.NONE);

@@ -7,7 +7,7 @@ package sa.fx.draugths.animation;
 
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public interface ScreenPauseInterface {
     public void goAhead();

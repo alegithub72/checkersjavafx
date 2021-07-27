@@ -15,7 +15,7 @@ import sa.gameboard.core.Piece;
 
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public class MoonSoldier extends SoldierPiece {
     
@@ -25,9 +25,9 @@ public class MoonSoldier extends SoldierPiece {
     public void buildFrameMoveAnimation( boolean ciclyc) {
 
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(5, 6, 0,this, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER);
+        	frameAnimTimer.add(  new FrameAnimationTimer(5, 6, 0,this, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER));
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(1, 2,0, this, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W);
+        	frameAnimTimer.add( new FrameAnimationTimer(1, 2,0, this, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W));
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 

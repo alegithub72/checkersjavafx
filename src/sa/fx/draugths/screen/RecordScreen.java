@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public class RecordScreen  extends Parent{
    

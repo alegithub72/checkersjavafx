@@ -6,8 +6,6 @@
 package sa.fx.draugths.sprite;
 
 
-import java.util.Iterator;
-
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
@@ -27,7 +25,6 @@ import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
-import sa.fx.draugths.animation.event.EventCollisionSprite;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
@@ -63,16 +60,16 @@ public class SoldierPiece extends SpritePiece {
 
 
 
-    public void buildDestroyAnimation(int by) {
+    public synchronized void buildDestroyAnimation(int by) {
         if (by ==Piece.CHECKER) {
            
-            if(!draugthTransform)  frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],-1, this, false, 100, FrameAnimationTimer.BITE);
+        	if(!draugthTransform)  frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], this, false, 100, FrameAnimationTimer.BITE));
             else BCDraugthsApp.log.info("Errorre.........");
         
         } else if (by ==Piece.DRAUGTH)  {
         
-          if(draugthTransform) frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],-1, this, false, 100, FrameAnimationTimer.BITE) ;
-          else frameAnimTimer[0] =new FrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], -1,this, false, 100, FrameAnimationTimer.BITE) ; 
+          if(draugthTransform) frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], this, false, 100, FrameAnimationTimer.BITE) );
+          else frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], this, false, 100, FrameAnimationTimer.BITE) ); 
               
         }
     }
@@ -80,9 +77,9 @@ public class SoldierPiece extends SpritePiece {
     public void buildFrameMoveAnimation( boolean ciclyc) {
 
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],-1, this, ciclyc, 100, FrameAnimationTimer.MOVEWHITE);
+        	frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 100, FrameAnimationTimer.MOVEWHITE));
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],-1, this, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W);
+        	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 50, FrameAnimationTimer.DAMAMOVE_W));
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 
@@ -91,7 +88,7 @@ public class SoldierPiece extends SpritePiece {
 
 
     public void buildFrameEatMoveAnimation( boolean ciclyc) {
-        frameAnimTimer[0] = new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, ciclyc, 100, FrameAnimationTimer.FIRE);
+    	frameAnimTimer.add( new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, ciclyc, 50, FrameAnimationTimer.FIRE));
 
     }
 
@@ -192,7 +189,7 @@ public class SoldierPiece extends SpritePiece {
         path.getStrokeDashArray().setAll(5d, 5d);
 
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(1));
+        pathTransition.setDuration(Duration.seconds(1.5));
         pathTransition.setPath(path);
         pathTransition.setNode(this);
         pathTransition.setOrientation(PathTransition.OrientationType.NONE);
@@ -235,7 +232,7 @@ public class SoldierPiece extends SpritePiece {
         path.getStrokeDashArray().setAll(5d, 5d);
 
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(2));
+        pathTransition.setDuration(Duration.seconds(1.5));
         pathTransition.setPath(path);
         pathTransition.setNode(this);
         pathTransition.setOrientation(PathTransition.OrientationType.NONE);
@@ -246,7 +243,7 @@ public class SoldierPiece extends SpritePiece {
                 //.build();
         RotateTransition rotateTransition = new RotateTransition();
                 // .node(p)
-        rotateTransition.setDuration(Duration.seconds(2));
+        rotateTransition.setDuration(Duration.seconds(1.5));
         rotateTransition.setFromAngle(0);
         rotateTransition.setToAngle(+1080);
         rotateTransition.setCycleCount(1);
@@ -404,7 +401,7 @@ public class SoldierPiece extends SpritePiece {
        // eated.buildDestroyAnimation(Piece.DRAUGTH);
        // buildFrameMoveAnimation( true);
         //setFrame(3);
-        frameAnimTimer[MOVE_ANIM] = new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this,extraSprite[0],eated,true,50,SimpleFrameAnimationTimer.DAMAMOVE_W);
+        frameAnimTimer.add(new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this,extraSprite[0],eated,true,50,SimpleFrameAnimationTimer.DAMAMOVE_W));
         parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP].setOnFinished(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -424,9 +421,9 @@ public class SoldierPiece extends SpritePiece {
 
     @Override
     protected void playAnimDamaEat() {
-        for(int h=0;h<frameAnimTimer.length;h++) {
-            if(frameAnimTimer[h]!=null) {
-            	frameAnimTimer[h].start();
+        for(int h=0;h<frameAnimTimer.size();h++) {
+            if(frameAnimTimer.get(h)!=null) {
+            	frameAnimTimer.get(h).start();
             }
         }
     	if(parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP]!=null)

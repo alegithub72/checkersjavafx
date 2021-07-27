@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public class CanvasTest extends Application {
     

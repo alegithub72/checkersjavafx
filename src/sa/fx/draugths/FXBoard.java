@@ -46,7 +46,7 @@ import sa.gameboard.core.interfaces.GraficBoardInterface;
 
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public class FXBoard extends Parent implements GraficBoardInterface  {
 
@@ -89,7 +89,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
            // game.playGame();
 
             game.setHuman(mousePlayer);           
-            load("boardDamaTest.txt");
+            if(BCDraugthsApp.debug) load("boardDamaTest.txt");
  
             if(game!=null) game.addRenderInterface(this);
             addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
@@ -502,10 +502,10 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
              pedina=pedina.loadDraugthFrame();
 	         pedina.MOVE_FRAME[0]=2;
 	         pedina.MOVE_FRAME[1]=4;
-	         pedina.EATED_ANIM_FRAME[0]=9;
-	         pedina.EATED_ANIM_FRAME[1]=19;
-	         pedina.EAT_MOVE_FRAME[0]=3;
-	         pedina.EAT_MOVE_FRAME[1]=5;
+	         pedina.EATED_ANIM_FRAME[0]=5;
+	         pedina.EATED_ANIM_FRAME[1]=10;
+	         pedina.EAT_MOVE_FRAME[0]=2;
+	         pedina.EAT_MOVE_FRAME[1]=4;
          }
 
      } else {

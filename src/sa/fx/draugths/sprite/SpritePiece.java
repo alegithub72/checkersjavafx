@@ -7,6 +7,8 @@ package sa.fx.draugths.sprite;
 
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.animation.Animation;
 import javafx.scene.media.AudioClip;
@@ -45,8 +47,8 @@ public abstract class SpritePiece extends Sprite{
 	String colorFX;
 	FXBoard fxBoard;
 	Sprite[] extraSprite=new Sprite[2];
-	SimpleFrameAnimationTimer[] frameAnimTimer;
-	Animation[] parallelTransition;
+	List<SimpleFrameAnimationTimer> frameAnimTimer=new ArrayList<SimpleFrameAnimationTimer>();
+	Animation[] parallelTransition=new Animation[5];
 	boolean eatedAnim;
     
     
@@ -59,13 +61,13 @@ public abstract class SpritePiece extends Sprite{
         this.wSquare=boardHW.getH();
         this.hSquare=boardHW.getW();
         this.fxBoard=b;
-        parallelTransition=new Animation[5];
-        frameAnimTimer=new SimpleFrameAnimationTimer[3];        
+
+                
 
 
     }
     void buildGenericFrameAnimationDestroy(int f1, int f2, boolean ciclyc, long interval, String sound) {
-        frameAnimTimer[DESTORY_ANIM] = new FrameAnimationTimer(f1, f2,-1, this,  ciclyc, interval, sound);
+        frameAnimTimer.add( new SimpleFrameAnimationTimer(f1, f2, this,  ciclyc, interval, sound));
     }    
 
     
@@ -158,9 +160,9 @@ public abstract class SpritePiece extends Sprite{
             parallelTransition[TRANSITION_STEP.FULL_STEP].play();
             
         }
-        for(int h=0;h<frameAnimTimer.length;h++) {
-            if(frameAnimTimer[h]!=null) {
-            	frameAnimTimer[h].start();
+        for(int h=0;h<frameAnimTimer.size();h++) {
+            if(frameAnimTimer.get(h)!=null) {
+            	frameAnimTimer.get(h).start();
             }
         }
         
@@ -174,9 +176,9 @@ public abstract class SpritePiece extends Sprite{
       
     }    
     public void destory() {
-        for(int h=0;h<frameAnimTimer.length;h++) {
-            if(frameAnimTimer[h]!=null) {
-            	frameAnimTimer[h].start();
+        for(int h=0;h<frameAnimTimer.size();h++) {
+            if(frameAnimTimer.get(h)!=null) {
+            	frameAnimTimer.get(h).start();
             }
         }
     	
@@ -184,12 +186,12 @@ public abstract class SpritePiece extends Sprite{
     public void stop() {
 
 
-        for(int h=0;h<frameAnimTimer.length;h++) {
-            if(frameAnimTimer[h]!=null) {
-            	frameAnimTimer[h].stop();
-            	frameAnimTimer[h]=null;
+        for(int h=0;h<frameAnimTimer.size();h++) {
+            if(frameAnimTimer.get(h)!=null) {
+            	frameAnimTimer.get(h).stop();
             }
         }
+        frameAnimTimer=new ArrayList<SimpleFrameAnimationTimer>();
         
         for (int i = 0; i < parallelTransition.length; i++) {
             Animation a = parallelTransition[i];
@@ -200,7 +202,7 @@ public abstract class SpritePiece extends Sprite{
         }
         setFrame(0);
         parallelTransition=new Animation[3];
-        frameAnimTimer=new FrameAnimationTimer[5];
+        
     }
     
     public Duration getAnimDuration() {
@@ -279,10 +281,7 @@ public abstract class SpritePiece extends Sprite{
     }
 
 
-    
-    public void stopAnimation(int n){
-       if(frameAnimTimer[n]!=null) frameAnimTimer[n].stop();
-    }
+
 
   
 }

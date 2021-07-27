@@ -11,7 +11,7 @@ import javafx.event.EventHandler;
 
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public class ScreenPause extends Transition{
     long duration=0;

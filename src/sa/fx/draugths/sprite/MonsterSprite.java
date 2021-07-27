@@ -27,7 +27,7 @@ import sa.gameboard.core.Piece;
 
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public class MonsterSprite extends AlienPiece {
  
@@ -69,16 +69,16 @@ public class MonsterSprite extends AlienPiece {
     @Override
     public void buildFrameMoveAnimation(boolean ciclyc) {
         if (!draugthTransform) {
-            frameAnimTimer[0] = new FrameAnimationTimer(2, 3,0, this,  ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
+        	frameAnimTimer.add( new FrameAnimationTimer(2, 3,0, this,  ciclyc, 100, FrameAnimationTimer.MOVEBLACK));
         } else {
-            frameAnimTimer[0] = new FrameAnimationTimer(1, 4,0 ,this, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
+        	frameAnimTimer.add(new FrameAnimationTimer(1, 4,0 ,this, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER));
         }
 
     }    
     public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
 
-       if(draugthTransform==false) frameAnimTimer[0] = new FrameAnimationTimer(4, 7, 4,this, ciclyc, 100, FrameAnimationTimer.MOVEBLACK);
-       else frameAnimTimer[0] = new FrameAnimationTimer(2, 4, 2,this, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER);
+       if(draugthTransform==false) frameAnimTimer.add( new FrameAnimationTimer(4, 7, 4,this, ciclyc, 100, FrameAnimationTimer.MOVEBLACK));
+       else frameAnimTimer.add(new FrameAnimationTimer(2, 4, 2,this, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER));
     }    
     
     @Override
@@ -156,7 +156,7 @@ public class MonsterSprite extends AlienPiece {
         getFxBoard().add(extraSprite[0]);
         extraSprite[0].setVisible(true);
        // frameAnimTimer[1] = new FrameAnimationTimer(0, 1,0, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
-        frameAnimTimer[1].start();
+        frameAnimTimer.get(1).start();
         buildFrameEatMoveAnimation( 0f, true);
         parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
       

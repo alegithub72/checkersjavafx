@@ -12,7 +12,7 @@ import sa.fx.draugths.screen.BackGround;
 
 /**
  *
- * @author appleale
+ * @author Alessio Sardaro
  */
 public class Sprite extends ImageView {
   
