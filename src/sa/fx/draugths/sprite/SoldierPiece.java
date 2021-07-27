@@ -6,6 +6,7 @@
 package sa.fx.draugths.sprite;
 
 
+import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
@@ -394,13 +395,14 @@ public class SoldierPiece extends SpritePiece {
         buildDamaMoveEatPath(m);
         SpritePiece eated= this.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), true);
         parallelTransition[TRANSITION_STEP.MISSILE_FULL_STEP] = ptMissile;
-       // frameAnimTimer[SHOT_ANIM] = new SimpleFrameAnimationTimer(0, 2, extraSprite[0],true,50,SimpleFrameAnimationTimer.MISSILE); 
+//        frameAnimTimer.add( new SimpleFrameAnimationTimer(0, 2, extraSprite[0],false,50,SimpleFrameAnimationTimer.MISSILE)); 
         		//frameAnimTimer[MOVE_ANIM].start();
         
 
        // eated.buildDestroyAnimation(Piece.DRAUGTH);
        // buildFrameMoveAnimation( true);
         //setFrame(3);
+        
         frameAnimTimer.add(new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this,extraSprite[0],eated,true,50,SimpleFrameAnimationTimer.DAMAMOVE_W));
         parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP].setOnFinished(new EventHandler<ActionEvent>() {
 
@@ -408,6 +410,9 @@ public class SoldierPiece extends SpritePiece {
 			public void handle(ActionEvent event) {
 				 extraSprite[0].setVisible(true);
 				 ptMissile.play();
+				 SimpleFrameAnimationTimer missileAnim=new SimpleFrameAnimationTimer(0, 2, extraSprite[0],false,50,SimpleFrameAnimationTimer.MISSILE);
+				 missileAnim.start();
+				 frameAnimTimer.add(missileAnim);
 		         parallelTransition[TRANSITION_STEP.SECOND_HALF_STEP].play();
 				 //frameAnimTimer[0].start();
 		       

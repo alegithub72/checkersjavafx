@@ -37,9 +37,7 @@ public abstract class SpritePiece extends Sprite{
 	public int[] MOVE_FRAME=new int[2];
     public int[] EAT_MOVE_FRAME=new int[2];
     public int[] EATED_ANIM_FRAME=new int[2];
-    public static int DESTORY_ANIM=1;
-    public static int MOVE_ANIM=0;
-    public static int SHOT_ANIM=2;
+
 	public   int srpiteH ;
 	public   int spriteW ;
 	int wSquare;
