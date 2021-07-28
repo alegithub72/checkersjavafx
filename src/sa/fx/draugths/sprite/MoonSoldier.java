@@ -27,7 +27,7 @@ public class MoonSoldier extends SoldierPiece {
         if (!draugthTransform) {
         	frameAnimTimer.add(  new FrameAnimationTimer(5, 6, 0,this, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER));
         } else {
-        	frameAnimTimer.add( new FrameAnimationTimer(1, 2,0, this, ciclyc, 100, FrameAnimationTimer.DAMAMOVE_W));
+        	frameAnimTimer.add( new FrameAnimationTimer(1, 2,0, this, ciclyc, 100, FrameAnimationTimer.ELICOPTER));
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 

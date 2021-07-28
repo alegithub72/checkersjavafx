@@ -69,7 +69,7 @@ public class MonsterSprite extends AlienPiece {
     @Override
     public void buildFrameMoveAnimation(boolean ciclyc) {
         if (!draugthTransform) {
-        	frameAnimTimer.add( new FrameAnimationTimer(2, 3,0, this,  ciclyc, 100, FrameAnimationTimer.MOVEBLACK));
+        	frameAnimTimer.add( new FrameAnimationTimer(2, 3,0, this,  ciclyc, 100, FrameAnimationTimer.CLOPETE));
         } else {
         	frameAnimTimer.add(new FrameAnimationTimer(1, 4,0 ,this, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER));
         }
@@ -77,7 +77,7 @@ public class MonsterSprite extends AlienPiece {
     }    
     public void buildFrameEatMoveAnimation(double frac, boolean ciclyc) {
 
-       if(draugthTransform==false) frameAnimTimer.add( new FrameAnimationTimer(4, 7, 4,this, ciclyc, 100, FrameAnimationTimer.MOVEBLACK));
+       if(draugthTransform==false) frameAnimTimer.add( new FrameAnimationTimer(4, 7, 4,this, ciclyc, 100, FrameAnimationTimer.CLOPETE));
        else frameAnimTimer.add(new FrameAnimationTimer(2, 4, 2,this, ciclyc, 100, FrameAnimationTimer.MOVEMONSTER));
     }    
     
@@ -138,7 +138,7 @@ public class MonsterSprite extends AlienPiece {
               
 
         //pathTransition.setNode(laser);
-                parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
+                transition[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
 
         
@@ -158,7 +158,7 @@ public class MonsterSprite extends AlienPiece {
        // frameAnimTimer[1] = new FrameAnimationTimer(0, 1,0, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
         frameAnimTimer.get(1).start();
         buildFrameEatMoveAnimation( 0f, true);
-        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
       
 
 

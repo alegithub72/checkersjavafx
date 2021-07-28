@@ -15,7 +15,6 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
@@ -46,7 +45,7 @@ public abstract class SpritePiece extends Sprite{
 	FXBoard fxBoard;
 	Sprite[] extraSprite=new Sprite[2];
 	List<SimpleFrameAnimationTimer> frameAnimTimer=new ArrayList<SimpleFrameAnimationTimer>();
-	Animation[] parallelTransition=new Animation[5];
+	Animation[] transition=new Animation[5];
 	boolean eatedAnim;
     
     
@@ -154,8 +153,8 @@ public abstract class SpritePiece extends Sprite{
     
     public void start(){
 
-        if(parallelTransition!=null && parallelTransition.length>0 && parallelTransition[TRANSITION_STEP.FULL_STEP]!=null) {
-            parallelTransition[TRANSITION_STEP.FULL_STEP].play();
+        if(transition!=null && transition.length>0 && transition[TRANSITION_STEP.FULL_STEP]!=null) {
+            transition[TRANSITION_STEP.FULL_STEP].play();
             
         }
         for(int h=0;h<frameAnimTimer.size();h++) {
@@ -191,15 +190,15 @@ public abstract class SpritePiece extends Sprite{
         }
         frameAnimTimer=new ArrayList<SimpleFrameAnimationTimer>();
         
-        for (int i = 0; i < parallelTransition.length; i++) {
-            Animation a = parallelTransition[i];
+        for (int i = 0; i < transition.length; i++) {
+            Animation a = transition[i];
             if(a!=null) a.stop();
             //TODO: mai inserite sul board
           //  if(a!=null) fxBoard.remove(a);
             
         }
         setFrame(0);
-        parallelTransition=new Animation[3];
+        transition=new Animation[3];
         
     }
     
@@ -225,7 +224,7 @@ public abstract class SpritePiece extends Sprite{
 	   //TODO:
         buildPedinaMovePath(m);
         buildFrameMoveAnimation(true);
-        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }  
    
@@ -233,15 +232,15 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMovePath(m);
         buildFrameMoveAnimation( true);
-        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }     
    
    protected void  animPedinaEat(Move m) {
     
         buildPedinaMoveEatPath(m);
-        buildFrameEatMoveAnimation( true);
-        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        buildFrameEatMoveAnimation( m,true);
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
        // eated.buildDestroyAnimation(m.getP().getType());
 
 
@@ -249,8 +248,8 @@ public abstract class SpritePiece extends Sprite{
    protected void  animDamaEat(Move m) {
     
         buildDamaMoveEatPath(m);
-        buildFrameEatMoveAnimation( true);
-        parallelTransition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        buildFrameEatMoveAnimation( m,true);
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
        // this.eated=eated;
      //  eated.buildDestroyAnimation(m.getP().getType());
     }       
@@ -258,7 +257,7 @@ public abstract class SpritePiece extends Sprite{
 
     public abstract void buildDestroyAnimation(int by);
     public abstract void buildFrameMoveAnimation( boolean ciclyc);
-    public abstract void buildFrameEatMoveAnimation( boolean ciclyc);
+    public abstract void buildFrameEatMoveAnimation( Move m,boolean ciclyc);
     public abstract void buildPedinaMovePath(Move m);
     public abstract void buildDamaMovePath(Move m);
     public abstract void buildPedinaMoveEatPath(Move m);
@@ -275,7 +274,7 @@ public abstract class SpritePiece extends Sprite{
         if(extraSprite[n]!=null) fxBoard.remove(extraSprite[n]);
     }
     public boolean isAnimMoveFinish() {
-        return parallelTransition[TRANSITION_STEP.FULL_STEP].getStatus() == Animation.Status.STOPPED;
+        return transition[TRANSITION_STEP.FULL_STEP].getStatus() == Animation.Status.STOPPED;
     }
 
 

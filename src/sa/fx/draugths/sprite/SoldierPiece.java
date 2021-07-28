@@ -6,7 +6,6 @@
 package sa.fx.draugths.sprite;
 
 
-import javafx.animation.AnimationTimer;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
@@ -78,9 +77,9 @@ public class SoldierPiece extends SpritePiece {
     public void buildFrameMoveAnimation( boolean ciclyc) {
 
         if (!draugthTransform) {
-        	frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 100, FrameAnimationTimer.MOVEWHITE));
+        	frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 100, FrameAnimationTimer.JUNGLE));
         } else {
-        	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 25, FrameAnimationTimer.DAMAMOVE_W));
+        	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 
@@ -88,9 +87,16 @@ public class SoldierPiece extends SpritePiece {
 
 
 
-    public void buildFrameEatMoveAnimation( boolean ciclyc) {
-    	frameAnimTimer.add( new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, ciclyc, 50, FrameAnimationTimer.FIRE));
+    public void buildFrameEatMoveAnimation( Move m,boolean ciclyc) {
+    	
+    if (!draugthTransform) {
+    	frameAnimTimer.add( new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, ciclyc, 100, FrameAnimationTimer.FIRE));
 
+    } else {
+    	//TODO:not used
+    	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
+        //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
+    	}
     }
 
 
@@ -146,7 +152,7 @@ public class SoldierPiece extends SpritePiece {
         pathTransition.setAutoReverse(true);
                 //
         
-        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
+        transition[TRANSITION_STEP.FULL_STEP] = pt;
         BCDraugthsApp.log.info(this+"  from ("+x0+","+ y0+") to ("+x1+","+y1+")");
         pt.getChildren().add(pathTransition);
         if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
@@ -197,14 +203,14 @@ public class SoldierPiece extends SpritePiece {
         pathTransition.setCycleCount(1);
         pathTransition.setAutoReverse(true);
                 //.build();
-        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
+        transition[TRANSITION_STEP.FULL_STEP] = pt;
         pt.getChildren().add(pathTransition);
         if(BCDraugthsApp.debug)   this.getFxBoard().add(path);
 
     }
 
     public void buildPedinaMoveEatPath(Move m) {
-    	 parallelTransition[TRANSITION_STEP.FULL_STEP] =null;
+    	 transition[TRANSITION_STEP.FULL_STEP] =null;
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo arc = new QuadCurveTo();
         //javafx.scene.shape.
@@ -252,7 +258,7 @@ public class SoldierPiece extends SpritePiece {
         rotateTransition.setAutoReverse(true);
                 //.build();
        // rotateTransition;
-        parallelTransition[TRANSITION_STEP.FULL_STEP] = pt;
+        transition[TRANSITION_STEP.FULL_STEP] = pt;
 //        pt.setCycleCount(1);
 //        pt.setAutoReverse(true);
         pt.getChildren().add(pathTransition);
@@ -331,9 +337,9 @@ public class SoldierPiece extends SpritePiece {
           pathTransition2.setCycleCount(1);
           pathTransition2.setAutoReverse(true); 
           
-        parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP] = pt;
-        parallelTransition[TRANSITION_STEP.SECOND_HALF_STEP] = pt2;
-        parallelTransition[TRANSITION_STEP.SECOND_HALF_STEP].setDelay(Duration.seconds(1));
+        transition[TRANSITION_STEP.FIRST_HALF_STEP] = pt;
+        transition[TRANSITION_STEP.SECOND_HALF_STEP] = pt2;
+        transition[TRANSITION_STEP.SECOND_HALF_STEP].setDelay(Duration.seconds(1));
         pt.getChildren().add(pathTransition);
         pt2.getChildren().add(pathTransition2);
         
@@ -346,7 +352,7 @@ public class SoldierPiece extends SpritePiece {
 
     @Override
     public void animDamaEat(Move m) {
-    	parallelTransition=new ParallelTransition[5];
+    	transition=new ParallelTransition[5];
         ParallelTransition ptMissile = new ParallelTransition();
         extraSprite[0]= new Sprite("missile2.png");
         
@@ -380,7 +386,7 @@ public class SoldierPiece extends SpritePiece {
                 )
                 ;
         PathTransition pathMissileTransition = new PathTransition();
-        pathMissileTransition.setDuration(Duration.seconds(0.3));
+        pathMissileTransition.setDuration(Duration.seconds(1));
         pathMissileTransition.setPath(path);
         pathMissileTransition.setNode(extraSprite[0]);
         pathMissileTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
@@ -395,7 +401,7 @@ public class SoldierPiece extends SpritePiece {
         }
         buildDamaMoveEatPath(m);
         SpritePiece eated= this.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), true);
-        parallelTransition[TRANSITION_STEP.MISSILE_FULL_STEP] = ptMissile;
+        transition[TRANSITION_STEP.MISSILE_FULL_STEP] = ptMissile;
 //        frameAnimTimer.add( new SimpleFrameAnimationTimer(0, 2, extraSprite[0],false,50,SimpleFrameAnimationTimer.MISSILE)); 
         		//frameAnimTimer[MOVE_ANIM].start();
         
@@ -404,24 +410,24 @@ public class SoldierPiece extends SpritePiece {
        // buildFrameMoveAnimation( true);
         //setFrame(3);
         
-        frameAnimTimer.add(new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this,extraSprite[0],eated,true,25,SimpleFrameAnimationTimer.DAMAMOVE_W));
-        parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP].setOnFinished(new EventHandler<ActionEvent>() {
+        frameAnimTimer.add(new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this,extraSprite[0],eated,true,25,SimpleFrameAnimationTimer.ELICOPTER));
+        transition[TRANSITION_STEP.FIRST_HALF_STEP].setOnFinished(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				 extraSprite[0].setVisible(true);
 				 ptMissile.play();
-				 SimpleFrameAnimationTimer missileAnim=new SimpleFrameAnimationTimer(0, 7, extraSprite[0],false,50,SimpleFrameAnimationTimer.MISSILE);
+				 SimpleFrameAnimationTimer missileAnim=new SimpleFrameAnimationTimer(0, 7, extraSprite[0],true,50,SimpleFrameAnimationTimer.MISSILE);
 				 missileAnim.start();
 				 frameAnimTimer.add(missileAnim);
-		         parallelTransition[TRANSITION_STEP.SECOND_HALF_STEP].play();
+		         transition[TRANSITION_STEP.SECOND_HALF_STEP].play();
 				 //frameAnimTimer[0].start();
 		       
 			}
 		});
        
       
-        parallelTransition[TRANSITION_STEP.SECOND_HALF_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        transition[TRANSITION_STEP.SECOND_HALF_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
         
     }
 
@@ -432,8 +438,8 @@ public class SoldierPiece extends SpritePiece {
             	frameAnimTimer.get(h).start();
             }
         }
-    	if(parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP]!=null)
-    		parallelTransition[TRANSITION_STEP.FIRST_HALF_STEP].play();
+    	if(transition[TRANSITION_STEP.FIRST_HALF_STEP]!=null)
+    		transition[TRANSITION_STEP.FIRST_HALF_STEP].play();
             
         
 

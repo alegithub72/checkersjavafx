@@ -39,7 +39,7 @@ public class BCDraugthsApp extends Application {
     private ParallelTransition pt;
     private AnimationPedinaMove anim;
     FXBoard fxb;
-    public static boolean debug;
+    public static boolean debug=true;
 	public static java.util.logging.Logger  log;
     //PathTransition pathTransition;
     Group root;
@@ -80,7 +80,7 @@ public class BCDraugthsApp extends Application {
     
     public void initDama() {
 
-        debug = false;
+
     	log=   Logger.getAnonymousLogger();
 		System.setProperty("java.util.logging.SimpleFormatter.format",  "%4$s: %5$s %n");	
 		if(debug)  log.setLevel(Level.INFO);  

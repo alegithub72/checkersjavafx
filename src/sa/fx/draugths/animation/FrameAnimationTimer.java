@@ -137,7 +137,7 @@ public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
        if(mediaPlayer!=null)  {
        if(startMusic) {
            if(this.sound==FIRE|| 
-                   this.sound==EAT ||this.sound==MOVEBLACK ||this.sound==DAMAMOVE_B||this.sound==MOVESPACESOLDIER ) {
+                   this.sound==SPEEDY_BITE ||this.sound==CLOPETE ||this.sound==CLOPETE_DOUBLE||this.sound==MOVESPACESOLDIER ) {
              // mediaPlayer.setCycleCount(10);
                //mediaPlayer.seek(Duration.ONE);
                //mediaPlayer.setPriority(1);

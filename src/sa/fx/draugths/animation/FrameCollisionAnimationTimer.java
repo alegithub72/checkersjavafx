@@ -7,75 +7,79 @@ package sa.fx.draugths.animation;
 
 import java.net.URL;
 
-import javafx.animation.AnimationTimer;
+import javafx.geometry.Bounds;
 import javafx.scene.media.AudioClip;
-import sa.fx.draugths.sprite.Sprite;
+import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.animation.event.EventEatAnimPiece;
+import sa.fx.draugths.sprite.SpritePiece;
 
 
 /**
  *
  * @author Alessio Sardaro
  */
-public class SimpleFrameAnimationTimer extends AnimationTimer{
-    public int f1,f2;
-    public static String FIRE="fire5.wav";
-    public static String SPEEDY_BITE="speedy_bite.wav";
-    public static String BITE="Dogbite.wav";
-    public static String BIG_BITE="lion_roar_2.mp3";
-    public static String JUNGLE="jungle_drum.wav";
-    public static String MOVESPACESOLDIER="jerpack.wav";
-    public static String CLOPETE_DOUBLE="moveAlien2.wav";
-    public static String MOVEMONSTER="UFO.wav";
-    public static String EXPLOSIONMONSTER="Fireball.wav";
-    public static String MISSILE="top.wav";
-    public static String ELICOPTER="elicopter.wav";
-    public static String CLOPETE="move_alien.wav";
-    public static String EXPLOSION="Fireball.wav";
-    public static String BIGEXPLOSION="explos.wav";
-    public static String MUSIC="muppet.mp3";
-    public static String ACHW="Achievement.wav";
-    public static String ACHB="pluck.wav";
-    public String sound;
-    public Sprite p;
+public class FrameCollisionAnimationTimer extends SimpleFrameAnimationTimer{
+
+    public SpritePiece piece;
+    SpritePiece target;
+
+  
+
+   // private PathTransition pathTransition;
 
 
-    int i;
-   
-   
-    long interval=0;  
-    AudioClip mediaPlayer;
-   
-   
-    boolean ciclyc;
-    long before;
-    boolean startMusic=true;
-
+    boolean once;
     
-    public SimpleFrameAnimationTimer(int f1, int f2,Sprite p,boolean cyclic,long interval,String sound) {
-     	this.f1 = f1;
-        this.f2 = f2;
-        this.p = p;
-        this.sound=sound;
-        if(sound!=null){
-        mediaPlayer=buildMedia(sound);
-            
-        }
-        this.ciclyc=cyclic;
-        before=System.currentTimeMillis();
-        i=this.f1;
-        this.interval=interval;
+    public FrameCollisionAnimationTimer(int f1, int f2 ,SpritePiece p,SpritePiece target,boolean cyclic,long interval,String sound) {
+    	super(f1, f2, p, cyclic, interval, sound);
+    	this.piece=p;
+        this.target=target;
+        once=false;
+        this.piece = p;
+        
+
     }
-    
+
+     
     
     @Override  
     public void handle(long now) {
-    	
-        long intervalTemp=System.currentTimeMillis()-before;
 
+        long intervalTemp=System.currentTimeMillis()-before;
+        double lx=0,ly=0;
+       // BCDraugthsApp.log.info("id="+p.getId());
+//        BCDraugthsApp.log.info(p+" (x,y)="+(p.getTranslateX())+","+(p.getTranslateY()));
+        
+        //if(target!=null) {
+
+           // System.out.println("scene shot x="+shotSceneBound.getMinX());
+            //System.out.println("scene shot y="+shotSceneBound.getMinY());
+            //System.out.println("scene target x="+targetSceneBound.getMinX());
+            //System.out.println("scene target y="+targetSceneBound.getMinY());
+            //System.out.println(" shot intercept target="+targetSceneBound.contains(shotSceneBound.getMinX(),shotSceneBound.getMinY()));
+        //}
+		
+		  if(target!=null ){ 
+			  Bounds pSceneBound=piece.localToScene(piece.getBoundsInLocal()); 
+			  Bounds targetSceneBound=target.localToScene(target.getBoundsInLocal()); 
+			  //BCDraugthsApp.log.info("shotbound="+shotSceneBound+" "+shot.getX()+","+shot.getY());
+			  if(  pSceneBound.intersects(targetSceneBound) && !once)
+			  { 
+			  	BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
+            	piece.fireEvent(new EventEatAnimPiece(p, p, EventEatAnimPiece.EATANIM_EVENT));
+//			  	target.buildDestroyAnimation(piece.getBoardPieceLink().getType());
+//			  	target.destory();
+			  	once=true;
+			  	//shot.setVisible(false);
+			  	//piece.getFxBoard().remove(shot);
+			  	//p.fireEvent(c);
+		  }
+		  
+		  }
 		 
         playEffect();
         if(i<=f2  && intervalTemp>this.interval) {
-            
+        	BCDraugthsApp.log.info(" interval:"+intervalTemp+">"+interval);
             before=System.currentTimeMillis();
             p.setFrame(i);
             p.toFront();
@@ -84,7 +88,7 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
             if(this.ciclyc){
                 if(i>f2) i=f1;
             }else if(!this.ciclyc && (i>f2) )  i=f2;
-
+    
         } 
 
              
@@ -113,7 +117,7 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
         // //To change body of generated methods, choose Tools | Templates.
         
     }
-    
+    @Override
     void playEffect(){
         
        if(mediaPlayer!=null)  {
