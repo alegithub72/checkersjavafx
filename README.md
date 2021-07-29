@@ -12,7 +12,8 @@ To run the game:
 
 Some screenshot:
 
-![screesho_check_1](https://user-images.githubusercontent.com/26597373/120767886-edd6d380-c51b-11eb-9262-362aa5805dd8.PNG)
+![screenshot1](https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_1.PNG)
 <br>
+![screenshot3](https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_4.PNG)
 <br>
-![screenshot6](https://user-images.githubusercontent.com/26597373/121335849-3f67cf80-c91b-11eb-8ac7-f4b031c42f57.jpg)
+![screenshot2](https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_2.PNG)
