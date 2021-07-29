@@ -39,7 +39,7 @@ public class BCDraugthsApp extends Application {
     private ParallelTransition pt;
     private AnimationPedinaMove anim;
     FXBoard fxb;
-    public static boolean debug=true;
+    public static boolean debug=false;
 	public static java.util.logging.Logger  log;
     //PathTransition pathTransition;
     Group root;

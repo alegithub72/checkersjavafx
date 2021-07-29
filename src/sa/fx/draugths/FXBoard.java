@@ -63,7 +63,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     private boolean turn;
     BackGround backGround;
     private TextField command;
-    //Group zGroup;
+    Group zGroup;
     final static public BoardHW boardHW=  new BoardHW(100, 100); 
     
     public FXBoard(int l,BCDraugthsApp app) {
@@ -72,7 +72,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         this.app=app;
         this.pedinaList[0] = new ArrayList();
         this.pedinaList[1] = new ArrayList();
-        //zGroup=new Group();
+        zGroup=new Group();
         String[] part1=new String[]{"p55","0","p35","0","p46","1"
         ,"p24","1","p44","1","p66","0","p15","1","p26","0","p15","0",
         "p77","0","p33","1","p55","0","p04","0","p22","0","p11","0"};
@@ -92,7 +92,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
            // game.playGame();
 
             game.setHuman(mousePlayer);           
-            if(BCDraugthsApp.debug) load("boardDamaTest.txt");
+            if(BCDraugthsApp.debug) load("boardDamaAlienTest.txt");
  
             if(game!=null) game.addRenderInterface(this);
             addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
@@ -150,7 +150,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 					Move m=	event.getMove();
 					BCDraugthsApp.log.info("EventEatPieceSelect HANLDER..."+eated);
 					eated=getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(),m.getEat().isEated());
-					eated.buildDestroyAnimation(m.getEat().getType());
+					eated.buildDestroyAnimation(m.getP().getType());
 					eated.setEatedAnim(true);
 					BCDraugthsApp.log.info("EventEatPieceSelect HANLDER..."+eated);
 					event.consume();
@@ -161,7 +161,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 				@Override
 				public void handle(EventEatAnimPiece event) {
 					BCDraugthsApp.log.info("EventEatAnimPiece HANLDER start anim..."+eated);
-					eated.toFront();					
+					eated.setViewOrder(-1000);
 					if(eated!=null)eated.start();
 
 					eated=null;
@@ -311,8 +311,8 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             
             SpritePiece pedina = buildPedina(player.getColor(), pedinaChar, level);
             positionPedina(pedina,pedinaChar);
-            getChildren().add(pedina);
-            //zGroup.getChildren().add(pedina);
+            //getChildren().add(pedina);
+            zGroup.getChildren().add(pedina);
 
             }else add(null,player.getColor());
         }
@@ -332,7 +332,11 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         pedina.setX(x);
         pedina.setY(y);
         if(pedinaChar.getColor()==Checker.BLACK && pedinaChar.getType()==Checker.DRAUGTH) {
-        		BCDraugthsApp.log.info("no scale");
+        		BCDraugthsApp.log.info("also scale");
+                pedina.setScaleX(0.64);
+                pedina.setScaleY(0.64);
+            	pedina.setW((int)(pedina.getW()*0.64));
+            	pedina.setH((int)(pedina.getH()*0.64));           		
         }else {
             pedina.setScaleX(0.64);
             pedina.setScaleY(0.64);
@@ -400,7 +404,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         
         drawPiecePlayer(computerPlayer);
         drawPiecePlayer(mousePlayer);
-        //getChildren().add(zGroup);
+        getChildren().add(zGroup);
     
     }
     public void  startLevel(int point){
@@ -410,11 +414,11 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     
     }
     public void remove(Object  o){
-        getChildren().remove(o);
+    	zGroup.getChildren().remove(o);
     }
     
     public void add(Node o){
-        getChildren().add(o);
+    	zGroup.getChildren().add(o);
             
         }
             
@@ -506,11 +510,11 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
          if(charPiece.getType()==Checker.DRAUGTH) {
              pedina= new AlienPiece(charPiece, boardHW,this);
              pedina=pedina.loadDraugthFrame();
-	         pedina.MOVE_FRAME[0]=2;
+	         pedina.MOVE_FRAME[0]=1;
 	         pedina.MOVE_FRAME[1]=4;
-	         pedina.EATED_ANIM_FRAME[0]=5;
-	         pedina.EATED_ANIM_FRAME[1]=10;
-	         pedina.EAT_MOVE_FRAME[0]=2;
+	         pedina.EATED_ANIM_FRAME[0]=7;
+	         pedina.EATED_ANIM_FRAME[1]=12;
+	         pedina.EAT_MOVE_FRAME[0]=1;
 	         pedina.EAT_MOVE_FRAME[1]=4;
          }
 
@@ -529,7 +533,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
              pedina.MOVE_FRAME[0]=1;
              pedina.MOVE_FRAME[1]=5;
              pedina.EATED_ANIM_FRAME[0]=7;
-             pedina.EATED_ANIM_FRAME[1]=11;
+             pedina.EATED_ANIM_FRAME[1]=10;
              pedina.EAT_MOVE_FRAME[0]=1;
              pedina.EAT_MOVE_FRAME[1]=5;
          }
@@ -587,6 +591,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         positionPedina(dama, p.getBoardPieceLink());
         dama.setOnMouseClicked(new EventSelectionPlayer(this,dama));
         add(dama);
+        
         replace(  p.getK() , p.getBoardPieceLink().getColor(), dama);        	
         remove(p);
     }

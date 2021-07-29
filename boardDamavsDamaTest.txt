@@ -1,0 +1,5 @@
+i:5,j:3,color:0,type:4,side:SOUTH_BOARD
+i:4,j:4,color:1,type:2,side:NORTH_BOARD
+i:4,j:2,color:1,type:2,side:NORTH_BOARD
+i:6,j:2,color:1,type:4,side:NORTH_BOARD
+i:6,j:4,color:1,type:2,side:NORTH_BOARD

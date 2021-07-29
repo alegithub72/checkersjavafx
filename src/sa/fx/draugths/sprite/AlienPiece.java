@@ -8,6 +8,8 @@ package sa.fx.draugths.sprite;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.SequentialTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
@@ -18,9 +20,9 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
-import sa.fx.draugths.animation.FrameCollisionAnimationTimer;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
@@ -33,7 +35,7 @@ public class AlienPiece extends SpritePiece {
 
 
     BCDraugthsApp bcdg;
-    final static  String DRAUGTH_IMAGE="black_dama.png";
+    final static  String DRAUGTH_IMAGE="alien_checker_dama.png";
     static final  String CHEKCER_IMAGE="alien_checker.png";
     
    public AlienPiece( Piece boardPiece, BoardHW boardHW, FXBoard board) {
@@ -51,6 +53,7 @@ public class AlienPiece extends SpritePiece {
 
     @Override
     public void buildDestroyAnimation(int by) {
+    	
         buildGenericFrameAnimationDestroy(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],  false, 25, FrameAnimationTimer.EXPLOSION);
     }
 
@@ -65,8 +68,8 @@ public class AlienPiece extends SpritePiece {
 
     public void buildFrameEatMoveAnimation( Move m,boolean ciclyc) {
     	SpritePiece eated=getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(),m.getEat().getColor(), false);
-       if(draugthTransform==false) frameAnimTimer.add( new FrameCollisionAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1], this,eated, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
-       else frameAnimTimer.add( new FrameCollisionAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],this,eated, ciclyc, 2, FrameAnimationTimer.CLOPETE));
+       if(draugthTransform==false) frameAnimTimer.add( new SimpleFrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1], this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
+       else frameAnimTimer.add( new SimpleFrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
     }
 
     
@@ -184,6 +187,16 @@ public class AlienPiece extends SpritePiece {
         pathTransition.setOrientation(PathTransition.OrientationType.NONE);
         pathTransition.setCycleCount(1);
         pathTransition.setAutoReverse(true);
+        pathTransition.setOnFinished(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				BCDraugthsApp.log.info("At end of animation...");
+            	fireEvent(new EventEatAnimPiece(null,null , EventEatAnimPiece.EATANIM_EVENT));
+				
+			}
+		});
+        
         
         PathTransition pathTransition2 = new PathTransition();
         pathTransition2.setDuration(Duration.seconds(0.5));
@@ -193,7 +206,7 @@ public class AlienPiece extends SpritePiece {
         pathTransition2.setCycleCount(1);
         pathTransition2.setAutoReverse(true);        
                 //.build();
-        pathTransition2.setDelay(Duration.seconds(0.4));
+        pathTransition2.setDelay(Duration.seconds(0.6));
         //pathTransition.setNode(laser);
         transition[TRANSITION_STEP.FULL_STEP] = sq;
         sq.getChildren().add(pathTransition);
@@ -208,7 +221,7 @@ public class AlienPiece extends SpritePiece {
 
     @Override
     public void buildDamaMoveEatPath(Move m) {
-        ParallelTransition pt = new ParallelTransition(this);
+        SequentialTransition sq = new SequentialTransition(this);
         QuadCurveTo quadTo = new QuadCurveTo();
         QuadCurveTo quadTo2 = new QuadCurveTo();
         double x0 = convertBoardJtoPositionXCenter(m.getP().getJ(), wSquare);
@@ -221,7 +234,7 @@ public class AlienPiece extends SpritePiece {
                 //(m.getJ1() * hBoardBox) + ((hBoardBox / 2));
         double xe = 0;
         double ye = 0;
-        Path path = null;
+       
         Color color = Color.CHARTREUSE;
         quadTo.setControlX(x1);
         quadTo.setControlY(y1 - (hSquare * 2));
@@ -237,29 +250,54 @@ public class AlienPiece extends SpritePiece {
         quadTo.setY(ye);
         quadTo2.setX(x1);
         quadTo2.setY(y1);
-        path = new Path();
+        Path path = new Path();
+
         path.getElements().add(new MoveTo(x0, y0));
         path.getElements().add(quadTo);
-        
-        path.getElements().add(new MoveTo(xe, ye));
-        path.getElements().add(quadTo2);
+        Path path2 = new Path();
+        path2.getElements().add(new MoveTo(xe, ye));
+        path2.getElements().add(quadTo2);
 
         path.setStroke(color);
         path.setStrokeWidth(2);
         path.getStrokeDashArray().setAll(5d, 5d);
-
+        path2.setStroke(color);
+        path2.setStrokeWidth(2);
+        path2.getStrokeDashArray().setAll(5d, 5d);
         
         PathTransition pathTransition = new PathTransition();
-                pathTransition.setDuration(Duration.seconds(2));
+                pathTransition.setDuration(Duration.seconds(0.5));
                 pathTransition.setPath(path);
                 pathTransition.setNode(this);
                 pathTransition.setOrientation(PathTransition.OrientationType.NONE);
                 pathTransition.setCycleCount(1);
                 pathTransition.setAutoReverse(true);
                 //.build();
+         pathTransition.setOnFinished(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				BCDraugthsApp.log.info("At end of animation...");
+            	fireEvent(new EventEatAnimPiece(null,null , EventEatAnimPiece.EATANIM_EVENT));
+				
+			}
+		});
+        PathTransition pathTransition2 = new PathTransition();
+        pathTransition2.setDuration(Duration.seconds(1));
+        pathTransition2.setPath(path2);
+        pathTransition2.setNode(this);
+        pathTransition2.setOrientation(PathTransition.OrientationType.NONE);
+        pathTransition2.setCycleCount(1);
+        pathTransition2.setAutoReverse(true);
+        pathTransition2.setDelay(Duration.seconds(0.5));
         
-        transition[TRANSITION_STEP.FULL_STEP] = pt;
-        pt.getChildren().add(pathTransition);
+        transition[TRANSITION_STEP.FULL_STEP] = sq;
+        if(BCDraugthsApp.debug)   {
+        	this.getFxBoard().add(path);
+        	this.getFxBoard().add(path2);
+        }
+        sq.getChildren().add(pathTransition);
+        sq.getChildren().add(pathTransition2);
     }
 
     @Override
