@@ -11,9 +11,9 @@ To run the game:
 2. mvn clean javafx:run
 
 Some screenshot:
-
-![screenshot1](https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_1.PNG)
 <br>
-![screenshot3](https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_4.PNG)
-<br>
-![screenshot2](https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_2.PNG)
+<div sgtyle="display: flex;flex-direction:column;">
+<img src="https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_1.PNG" width="200" height="200" />
+<img src="https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_4.PNG" width="200" height="200" />
+<img src="https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_2.PNG" width="200" height="200" />
+</div>
