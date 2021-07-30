@@ -63,13 +63,13 @@ public class SoldierPiece extends SpritePiece {
     public synchronized void buildDestroyAnimation(int by) {
         if (by ==Piece.CHECKER) {
            
-        	if(!draugthTransform)  frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], this, false, 100, FrameAnimationTimer.BITE));
+        	if(!draugthTransform)  frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], this, false, 25, FrameAnimationTimer.BITE));
             else BCDraugthsApp.log.info("Errorre.........");
         
         } else if (by ==Piece.DRAUGTH)  {
         
-          if(draugthTransform) frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], this, false, 100, FrameAnimationTimer.BITE) );
-          else frameAnimTimer.add(new SimpleFrameAnimationTimer(14,17, this, false, 100, FrameAnimationTimer.BITE) ); 
+          if(draugthTransform) frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], this, false, 25, FrameAnimationTimer.BITE) );
+          else frameAnimTimer.add(new SimpleFrameAnimationTimer(12,17, this, false, 25, FrameAnimationTimer.BITE) ); 
               
         }
     }

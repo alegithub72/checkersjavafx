@@ -26,6 +26,7 @@ import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.ScreenPause;
 import sa.fx.draugths.animation.ScreenPauseInterface;
 
+
 /**
  *
  * @author ale2s_000
@@ -78,22 +79,42 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     }
 
     public void drawBackGround(){
-        Image images=null;
-     
-           // getChildren().remove(start);
             drawScoreBar();
-        
-   
-        
+            Image empty=null;
+            Image full=null;
         if (level==1) {
-              images = new Image("forestBoard2.png");
+              //images = new Image("forestBoardsvg.png");
+               empty=new Image("forestaBoxEmpty.png");
+               full=new Image("forestaBox.png");
               
 
         }else if(level==2){
-            images = new Image("moonBoard.png");
+            empty=new Image("forestaBoxEmpty.png");
+            full=new Image("forestaBox.png");
 
         }
-        c.getGraphicsContext2D().drawImage(images, 0, 31);
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
+                    	c.getGraphicsContext2D().drawImage(empty, i*100, (j*100)+30); 	
+                    } else if (j % 2 != 0) {
+                    	 c.getGraphicsContext2D().drawImage(full, i*100, (j*100)+30); 	
+                    }
+                } else if (i % 2 != 0) {
+                    if (j % 2 != 0) {
+                    	 c.getGraphicsContext2D().drawImage(empty, i*100, (j*100)+30); 
+                    } else if (j % 2 == 0) {
+                    	c.getGraphicsContext2D().drawImage(full, i*100,( j*100)+30); 
+                    }
+                }
+
+            }
+
+        }
+        
 
 
     
