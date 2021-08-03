@@ -83,17 +83,24 @@ public class BackGround extends Parent implements ScreenPauseInterface {
             Image empty=null;
             Image full=null;
         if (level==1) {
+        	
               //images = new Image("forestBoardsvg.png");
                empty=new Image("forestaBoxEmpty.png");
                full=new Image("forestaBox.png");
               
 
         }else if(level==2){
-            empty=new Image("forestaBoxEmpty.png");
-            full=new Image("forestaBox.png");
+        	
+            empty=new Image("desertBoxEmpty.png");
+            full=new Image("desertBox.png");
 
+        }else if(level==3){
+            
+            full=new Image("iceBoxEmpty.png");
+            empty=new Image("iceBox.png");
+            
         }
-
+        
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
 
@@ -101,13 +108,13 @@ public class BackGround extends Parent implements ScreenPauseInterface {
                     if (j % 2 == 0) {
                     	c.getGraphicsContext2D().drawImage(empty, i*100, (j*100)+30); 	
                     } else if (j % 2 != 0) {
-                    	 c.getGraphicsContext2D().drawImage(full, i*100, (j*100)+30); 	
+                    	c.getGraphicsContext2D().drawImage(full, i*100, (j*100)+30); 	
                     }
                 } else if (i % 2 != 0) {
                     if (j % 2 != 0) {
                     	 c.getGraphicsContext2D().drawImage(empty, i*100, (j*100)+30); 
                     } else if (j % 2 == 0) {
-                    	c.getGraphicsContext2D().drawImage(full, i*100,( j*100)+30); 
+                    	c.getGraphicsContext2D().drawImage(full, i*100, (j*100)+30); 	
                     }
                 }
 
@@ -224,8 +231,9 @@ public class BackGround extends Parent implements ScreenPauseInterface {
                 imagesDesc = new Image("desc1.png");
             } else if (level == 2) {
                 imagesDesc = new Image("desc2.png");
+            }else if (level == 3) {
+                imagesDesc = new Image("desc2.png");
             }
-            
             c.getGraphicsContext2D().fillRect(0, 0, wBackground, wBackground);
             c.getGraphicsContext2D().drawImage(imagesDesc, 0, 0);
             ScreenPause p=new ScreenPause(1.5d,this);

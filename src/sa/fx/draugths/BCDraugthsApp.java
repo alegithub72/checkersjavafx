@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.animation.ParallelTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -36,10 +35,9 @@ public class BCDraugthsApp extends Application {
     StartScreen startScreen;
     RecordScreen recordScreen;
     AudioClip music;
-    private ParallelTransition pt;
     private AnimationPedinaMove anim;
     FXBoard fxb;
-    public static boolean debug=false;
+    public static boolean debug;
 	public static java.util.logging.Logger  log;
     //PathTransition pathTransition;
     Group root;
@@ -48,7 +46,7 @@ public class BCDraugthsApp extends Application {
     Stage primaryStage;
     ImageView description;
     static double scale = 0.78;
-
+    int level;
 
 
 
@@ -80,15 +78,23 @@ public class BCDraugthsApp extends Application {
     
     public void initDama() {
 
-
+        if(System.getProperty("checkers.debug")!=null)
+            debug="true".equals(""+System.getProperty("checkers.debug"));
+        else debug=false;
+        
     	log=   Logger.getAnonymousLogger();
-		System.setProperty("java.util.logging.SimpleFormatter.format",  "%4$s: %5$s %n");	
+		System.setProperty("java.util.logging.SimpleFormatter.format",  "%2$s   %4$s: %5$s %n");	
+		//java.util.logging.SimpleFormatter.format
 		if(debug)  log.setLevel(Level.INFO);  
 		else log.setLevel(Level.OFF);
-        
 
-            
-            
+        if(System.getProperty("checkers.level")!=null)
+            level=Integer.valueOf(System.getProperty("checkers.level"));
+        else level=1;
+        
+        log.info("level system="+level);
+        log.info("level system="+debug);
+
 
         
 
@@ -112,6 +118,8 @@ public class BCDraugthsApp extends Application {
     }
    public void levelUp(int level,int point){
             root.getChildren().remove(fxb);
+
+            log.info("system level="+level);
             fxb=new FXBoard(level,this);
             fxb.startLevel(point);
 
@@ -164,6 +172,7 @@ public static void main(String[] args) {
             public void handle(MouseEvent event) {
                     music.play();
                     root.getChildren().remove(recordScreen);
+                    level=1;
                     drawStartScreen();
                 event.consume();
             }
@@ -179,7 +188,7 @@ public static void main(String[] args) {
         music.setCycleCount(AudioClip.INDEFINITE);
         music.play(); 
         root.getChildren().remove(fxb);
-        fxb=new FXBoard(0,this);
+        fxb=new FXBoard(level,this);
         startScreen=new StartScreen(0,fxb);
         root.getChildren().add(startScreen);
         startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -188,9 +197,9 @@ public static void main(String[] args) {
             public void handle(MouseEvent event) {
                     //level++;
                     music.stop();
-                    fxb.setLevel(1);
+                    //fxb.setLevel(1);
                     //System.out.println("level="+level);
-                    fxb.startLevel(0);
+                    fxb.startLevel(level);
                     root.getChildren().remove(startScreen);
                     root.getChildren().add(fxb);                
                 event.consume();

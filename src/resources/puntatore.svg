@@ -36,35 +36,35 @@
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="g4973-3-7" />
   <g
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="Image 1"
-     style="display:inline;opacity:0.640138">
+     style="display:inline;opacity:1">
     <g
        id="g4973-3-7"
        inkscape:label="pedina1"
-       style="display:inline;fill:#b3b3b3;stroke:#f2f2f2"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:0.639216;stroke:#000000;stroke-width:0.523875;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:0.523875, 0.523875;stroke-dashoffset:0;stroke-opacity:1"
        transform="scale(3.7795275)"
        inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\puntatore.png"
        inkscape:export-xdpi="125.88688"
        inkscape:export-ydpi="125.88688">
       <path
-         style="display:inline;fill:#b3b3b3;fill-opacity:1;stroke:#f2f2f2;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.52387501;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.52387501,0.52387501;stroke-dashoffset:0;stroke-opacity:1"
          d="m 2.7432267,11.064347 c 0,0 -0.4164513,2.640186 0.1828813,4.238475 0.9030892,2.408342 6.6269589,5.001722 9.921336,5.291667 5.475824,0.481938 8.242921,-0.901092 9.921336,-3.175 0.997045,-1.350791 0.137162,-6.263701 0.137162,-6.263701 v 0 0"
          id="path4971-6-5"
          sodipodi:nodetypes="csssccc"
          inkscape:label="border" />
       <path
          id="path4969-3-3"
-         style="display:inline;fill:#b3b3b3;fill-opacity:1;stroke:#f2f2f2;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;paint-order:stroke fill markers;stop-color:#000000"
+         style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.81491704;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.81491704,0.81491704;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;stop-color:#000000"
          d="M 22.448737,11.110066 C 22.171825,12.290043 20.890521,14.719618 12.417412,14.157359 7.0886068,13.80375 3.137111,12.321774 3.1089907,11.110066 3.0286687,7.6489976 7.4383412,5.7404851 12.778864,5.7404851 c 5.340523,0 10.312453,2.6314165 9.669873,5.3695809 z"
          inkscape:label="circle"
          sodipodi:nodetypes="sssss" />
     </g>
     <path
-       style="fill:#333333;fill-opacity:0.639216;stroke:#ececec;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#030303;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        d="M 24.625722,30.245013 51.730542,44.127971 77.347903,30.57556 58.688742,29.749194 68.952406,3.9498388 35.732474,4.7762052 43.301604,30.07974 Z"
        id="path3807"
        sodipodi:nodetypes="cccccccc"

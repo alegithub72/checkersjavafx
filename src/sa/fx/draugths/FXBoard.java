@@ -65,6 +65,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     private TextField command;
     Group zGroup;
     final static public BoardHW boardHW=  new BoardHW(100, 100); 
+    int level;
     
     public FXBoard(int l,BCDraugthsApp app) {
         this.pedinaList = new ArrayList[2];
@@ -78,6 +79,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         "p77","0","p33","1","p55","0","p04","0","p22","0","p11","0"};
             String[] part2=new String[]{""};
         this.level=l;
+        BCDraugthsApp.log.info(" level="+level);
             //HBox infoPanel=new HBox();
             computerPlayer = new FXAIPlayer1();
             mousePlayer = new FXPMousePlayer(this);
@@ -204,7 +206,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     public void setBackGround(BackGround backGround) {
         this.backGround = backGround;
     }
-    int level = 0;
+
 
     public int getLevel() {
         return level;
@@ -263,7 +265,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         }
         //if(sp==null ) System.exit(-1);
 
-        BCDraugthsApp.log.info("getSpritePiece ..The sprite is k=" + k+" ,sprite scelto "+sp);
+        BCDraugthsApp.log.info(" ..The sprite is k=" + k+" ,sprite scelto "+sp);
         return sp;
     }
 
@@ -299,7 +301,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         
         
 
-    	BCDraugthsApp.log.info("BUILD "+player.getName()+" LEVEL="+level);
+    	BCDraugthsApp.log.info("BUILD "+player.getName()+" LEVEL="+this.level);
         for (int i = 0; i < list.length; i++) {
             
             
@@ -378,7 +380,10 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
                 @Override
                 public void handle(MouseEvent event) {
-                   if(isLastLevel() || level==0)  app.drawRecordScreen();
+                   if(isLastLevel() || level==0)  {
+                	   app.drawRecordScreen();
+              
+                   }
                    else  app.levelUp(level,backGround.getPoint());
                    //TODO mettere una classe che per record of fame
                     event.consume();
@@ -490,8 +495,9 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     public  SpritePiece buildPedina(int color,Piece charPiece,int level){
 
         if(level==1)  return buildPedinaLevel1( color, charPiece);
-        else if(level==2) return  buildPedinaLevel2( color, charPiece);
-        return null;
+        else if(level==2) return  buildPedinaLevel1( color, charPiece);
+        else if(level==3) return  buildPedinaLevel1( color, charPiece);
+        else return null;
     }
     
     public  SpritePiece  buildPedinaLevel1(int playerColor,Piece charPiece) {
@@ -500,8 +506,8 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
      if (Checker.BLACK == playerColor) {
 
          pedina= new AlienPiece(charPiece,  boardHW,this);
-         pedina.MOVE_FRAME[0]=4;
-         pedina.MOVE_FRAME[1]=5;
+         pedina.MOVE_FRAME[0]=0;
+         pedina.MOVE_FRAME[1]=1;
          pedina.EATED_ANIM_FRAME[0]=6;
          pedina.EATED_ANIM_FRAME[1]=12;
          pedina.EAT_MOVE_FRAME[0]=3;
@@ -603,6 +609,6 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 	}
 
 	public boolean isLastLevel(){
-        return (level==3);
+        return (level>3);
     }       
 }

@@ -154,7 +154,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                         //new CubicCurveTo(0, 120, 0, 240, 380, 240)
                         );
                 str=str+(" cursor  x0="+x0+",y0="+y0+",x1="+x1+",y1="+y1);
-                path.setStroke(Color.WHITE);
+                path.setStroke(Color.BLACK);
                 path.setOpacity(0.6);
                 path.setStrokeWidth(2);
                 path.getStrokeDashArray().setAll(5d, 5d);
@@ -166,6 +166,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 ImageView imagePunt = new ImageView(new Image("puntatore.png"));
                 imagePunt.setScaleX(0.64);
                 imagePunt.setScaleY(0.64);
+                imagePunt.setOpacity(0.6);
                 punteImage[i] = imagePunt;
                 punteImage[i].setOnMouseClicked(new EventConfirmCommand(this, i,board));
                 double xp =sp.convertBoardJtoPositionX(m.getJ1()  , FXBoard.boardHW.getW());
