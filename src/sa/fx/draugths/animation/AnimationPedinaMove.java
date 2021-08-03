@@ -12,7 +12,7 @@ import sa.fx.draugths.sprite.SoldierPiece;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class AnimationPedinaMove extends Transition  {
     SoldierPiece pedina;

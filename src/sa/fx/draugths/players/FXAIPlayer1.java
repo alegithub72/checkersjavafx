@@ -13,7 +13,7 @@ import sa.gameboard.core.Checker;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class FXAIPlayer1 extends AIPlayer implements EventHandler<MouseEvent> {
 

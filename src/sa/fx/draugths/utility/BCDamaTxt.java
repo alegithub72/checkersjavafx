@@ -30,7 +30,7 @@ import sa.gameboard.core.Piece.Side;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class BCDamaTxt extends Application{
 

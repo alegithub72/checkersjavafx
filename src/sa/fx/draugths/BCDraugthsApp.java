@@ -27,7 +27,7 @@ import sa.gameboard.core.Game;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class BCDraugthsApp extends Application {
 

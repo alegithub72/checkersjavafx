@@ -32,7 +32,7 @@ import sa.gameboard.core.Piece;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class SoldierPiece extends SpritePiece {
 

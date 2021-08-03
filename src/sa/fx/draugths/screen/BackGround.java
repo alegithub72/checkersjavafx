@@ -29,7 +29,7 @@ import sa.fx.draugths.animation.ScreenPauseInterface;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class BackGround extends Parent implements ScreenPauseInterface {
 

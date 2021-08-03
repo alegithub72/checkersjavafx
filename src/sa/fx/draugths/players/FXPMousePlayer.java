@@ -25,7 +25,7 @@ import sa.gameboard.core.Checker;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEvent> {
 
@@ -166,7 +166,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 ImageView imagePunt = new ImageView(new Image("puntatore.png"));
                 imagePunt.setScaleX(0.64);
                 imagePunt.setScaleY(0.64);
-                imagePunt.setOpacity(0.6);
+                imagePunt.setOpacity(0.3);
                 punteImage[i] = imagePunt;
                 punteImage[i].setOnMouseClicked(new EventConfirmCommand(this, i,board));
                 double xp =sp.convertBoardJtoPositionX(m.getJ1()  , FXBoard.boardHW.getW());

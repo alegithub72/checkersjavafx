@@ -15,7 +15,7 @@ import sa.fx.draugths.players.FXPMousePlayer;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class EventConfirmCommand implements EventHandler<MouseEvent>{
     int n;

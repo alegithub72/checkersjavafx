@@ -51,11 +51,10 @@ import sa.gameboard.core.interfaces.GraficBoardInterface;
  */
 public class FXBoard extends Parent implements GraficBoardInterface  {
 
-    private final List pedinaList[];
+    private final List<SpritePiece> pedinaList[];
     private boolean animationOn = false;
     private Game game;
     private SpritePiece select;
-    //TODO: fire event to valorize eated anim element....
     private SpritePiece eated;
     private FXAIPlayer1 computerPlayer;
     private FXPMousePlayer mousePlayer;
@@ -71,13 +70,13 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         this.pedinaList = new ArrayList[2];
         turn=false;
         this.app=app;
-        this.pedinaList[0] = new ArrayList();
-        this.pedinaList[1] = new ArrayList();
+        this.pedinaList[0] = new ArrayList<SpritePiece>();
+        this.pedinaList[1] = new ArrayList<SpritePiece>();
         zGroup=new Group();
         String[] part1=new String[]{"p55","0","p35","0","p46","1"
         ,"p24","1","p44","1","p66","0","p15","1","p26","0","p15","0",
         "p77","0","p33","1","p55","0","p04","0","p22","0","p11","0"};
-            String[] part2=new String[]{""};
+        //    String[] part2=new String[]{""};
         this.level=l;
         BCDraugthsApp.log.info(" level="+level);
             //HBox infoPanel=new HBox();
@@ -517,7 +516,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
              pedina= new AlienPiece(charPiece, boardHW,this);
              pedina=pedina.loadDraugthFrame();
 	         pedina.MOVE_FRAME[0]=1;
-	         pedina.MOVE_FRAME[1]=4;
+	         pedina.MOVE_FRAME[1]=3;
 	         pedina.EATED_ANIM_FRAME[0]=7;
 	         pedina.EATED_ANIM_FRAME[1]=12;
 	         pedina.EAT_MOVE_FRAME[0]=1;

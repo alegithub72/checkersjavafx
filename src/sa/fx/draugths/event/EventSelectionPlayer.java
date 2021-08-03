@@ -13,7 +13,7 @@ import sa.fx.draugths.sprite.SpritePiece;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class EventSelectionPlayer implements EventHandler<MouseEvent> {
 

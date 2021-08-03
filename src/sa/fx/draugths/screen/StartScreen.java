@@ -21,7 +21,7 @@ import sa.fx.draugths.FXBoard;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class StartScreen extends Parent {
 

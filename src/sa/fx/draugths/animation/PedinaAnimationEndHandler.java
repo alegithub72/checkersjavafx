@@ -20,7 +20,7 @@ import sa.gameboard.core.Checker;
 
 /**
  *
- * @author ale2s_000
+ * @author  Alessio Sardaro
  */
 public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
 
