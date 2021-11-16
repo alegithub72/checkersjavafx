@@ -231,7 +231,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
                 imagesDesc = new Image("desc1.png");
             } else if (level == 2) {
                 imagesDesc = new Image("desc2.png");
-            }else if (level == 3) {
+            }else if (level >= 3) {
                 imagesDesc = new Image("desc2.png");
             }
             c.getGraphicsContext2D().fillRect(0, 0, wBackground, wBackground);
@@ -242,7 +242,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         
     
     }
-    public void goAhead(){
+    public void goAhead() throws Exception{
         drawBackGround();
         board.drawBoard();
     }

@@ -30,8 +30,8 @@ public class FrameCollisionAnimationTimer extends SimpleFrameAnimationTimer{
 
     boolean once;
     
-    public FrameCollisionAnimationTimer(int f1, int f2 ,SpritePiece p,SpritePiece target,boolean cyclic,long interval,String sound) {
-    	super(f1, f2, p, cyclic, interval, sound);
+    public FrameCollisionAnimationTimer(FrameInfo[] frames ,SpritePiece p,SpritePiece target,boolean cyclic,long interval,String sound) {
+    	super(frames, p, cyclic, interval, sound);
     	this.piece=p;
         this.target=target;
         once=false;
@@ -78,16 +78,20 @@ public class FrameCollisionAnimationTimer extends SimpleFrameAnimationTimer{
 		  }
 		 
         playEffect();
-        if(i<=f2  && intervalTemp>this.interval) {
+        if(intervalTemp>this.interval) {
         	BCDraugthsApp.log.info(" interval:"+intervalTemp+">"+interval);
             before=System.currentTimeMillis();
-            p.setFrame(i);
+            p.setFrame(frames[i].getFrameNumber());
             p.toFront();
-                   
-            i++;
+            frameCount++;       
+            if(frames[i].getDuration()>=frameCount) {
+            	i++;
+            	frameCount=0;
+            }                 
+
             if(this.ciclyc){
-                if(i>f2) i=f1;
-            }else if(!this.ciclyc && (i>f2) )  i=f2;
+                if(i>=frames.length) i=0;
+            }else if(!this.ciclyc && (i>=frames.length) )  i=frames.length-1;
     
         } 
 
@@ -113,7 +117,7 @@ public class FrameCollisionAnimationTimer extends SimpleFrameAnimationTimer{
     public void start() {
         super.start();
    
-        this.i=f1;
+        this.i=0;
         // //To change body of generated methods, choose Tools | Templates.
         
     }

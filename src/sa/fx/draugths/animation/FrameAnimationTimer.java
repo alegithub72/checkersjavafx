@@ -30,23 +30,21 @@ public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
    // private PathTransition pathTransition;
     SpritePiece target;
 
-    int frameX;
+
     boolean once;
     
-    public FrameAnimationTimer(int f1, int f2,int frameX ,SpritePiece p,boolean cyclic,long interval,String sound) {
-    	super(f1, f2, p, cyclic, interval, sound);
+    public FrameAnimationTimer(FrameInfo[] frames ,SpritePiece p,boolean cyclic,long interval,String sound) {
+    	super(frames, p, cyclic, interval, sound);
     	this.piece=p;
-        this.frameX=frameX;
         once=false;
         this.piece = p;
         
 
     }
-    public FrameAnimationTimer(int f1, int f2, SpritePiece p,Sprite shot,SpritePiece eated,boolean cyclic,long interval,String sound) {
-    	super(f1, f2, p, cyclic, interval, sound);
+    public FrameAnimationTimer(FrameInfo[] frames, SpritePiece p,Sprite shot,SpritePiece eated,boolean cyclic,long interval,String sound) {
+    	super(frames, p, cyclic, interval, sound);
     	this.piece=p;
         this.target=eated;
-        this.frameX=-1;
         this.shot=shot;
         once=false;
     }    
@@ -87,22 +85,24 @@ public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
 		  }
 		  
 		  }
-		 
+	 
         playEffect();
-        if(i<=f2  && intervalTemp>this.interval) {
+
+        if(intervalTemp>this.interval) {
         	BCDraugthsApp.log.info(" interval:"+intervalTemp+">"+interval);
             before=System.currentTimeMillis();
-            p.setFrame(i);
+            p.setFrame(frames[i].getFrameNumber());
             p.toFront();
                    
-            i++;
-            if(this.ciclyc){
-                if(i>f2) i=f1;
-            }else if(!this.ciclyc && (i>f2) )  i=f2;
-            if(frameX==i && !once && !piece.isEatedAnim()) {
-            	piece.fireEvent(new EventEatAnimPiece(p, p, EventEatAnimPiece.EATANIM_EVENT));
-            	once=true;
+            frameCount++;       
+            if(frames[i].getDuration()>=frameCount) {
+            	i++;
+            	frameCount=0;
             }
+            if(this.ciclyc){
+                if(i>=frames.length) i=0;
+            }else if(!this.ciclyc && (i>=frames.length) )  i=frames.length-1;
+
         } 
 
              
@@ -127,7 +127,7 @@ public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
     public void start() {
         super.start();
    
-        this.i=f1;
+        this.i=0;
         // //To change body of generated methods, choose Tools | Templates.
         
     }
@@ -147,6 +147,10 @@ public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
            
 
                mediaPlayer.play();
+        	if( !once && !piece.isEatedAnim()) {
+   	        	piece.fireEvent(new EventEatAnimPiece(p, p, EventEatAnimPiece.EATANIM_EVENT));
+   	        	once=true;
+   	        }	
                startMusic=false;
            }
            

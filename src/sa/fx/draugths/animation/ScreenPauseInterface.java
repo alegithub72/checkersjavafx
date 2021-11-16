@@ -10,6 +10,6 @@ package sa.fx.draugths.animation;
  * @author Alessio Sardaro
  */
 public interface ScreenPauseInterface {
-    public void goAhead();
+    public void goAhead()throws Exception;
     
 }

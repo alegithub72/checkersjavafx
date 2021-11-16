@@ -24,6 +24,7 @@ import sa.boardgame.console.imp.AutomaPlayer;
 import sa.boardgame.console.imp.ConsoleRendering;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
+import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.event.EventDraugthTransform;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.event.EventEatPieceSelect;
@@ -66,7 +67,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     final static public BoardHW boardHW=  new BoardHW(100, 100); 
     int level;
     
-    public FXBoard(int l,BCDraugthsApp app) {
+    public FXBoard(int l,BCDraugthsApp app)throws Exception {
         this.pedinaList = new ArrayList[2];
         turn=false;
         this.app=app;
@@ -113,10 +114,15 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 				@Override
 				public void handle(EventDraugthTransform event) {
 
-					SpritePiece p= event.getPieceToTrasform();
-					BCDraugthsApp.log.info("EventDraugthTransform HANLDER..."+p);
-					transformInDraugth(p);
-					event.consume();
+					try {
+						SpritePiece p= event.getPieceToTrasform();
+						BCDraugthsApp.log.info("EventDraugthTransform HANLDER..."+p);
+						transformInDraugth(p);
+						event.consume();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 
 	
@@ -162,8 +168,11 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 				@Override
 				public void handle(EventEatAnimPiece event) {
 					BCDraugthsApp.log.info("EventEatAnimPiece HANLDER start anim..."+eated);
-					eated.setViewOrder(-1000);
-					if(eated!=null)eated.start();
+
+					if(eated!=null) {
+						eated.setViewOrder(-1000);
+						eated.start();
+					}
 
 					eated=null;
 					event.consume();
@@ -289,7 +298,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         pedinaList[z].set(n, p);
     }
 
-    private void drawPiecePlayer(Player player) {
+    private void drawPiecePlayer(Player player)throws Exception {
         Piece[] list = null;
         if (player.getColor() == Checker.BLACK) {
             list = game.getBoard().getBlackPieces();
@@ -383,7 +392,14 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                 	   app.drawRecordScreen();
               
                    }
-                   else  app.levelUp(level,backGround.getPoint());
+                   else  {
+                	   try {
+						app.levelUp(level,backGround.getPoint());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                   }
                    //TODO mettere una classe che per record of fame
                     event.consume();
                 }
@@ -404,7 +420,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
     
     @Override
-    public void drawBoard(){
+    public void drawBoard()throws Exception{
         
         drawPiecePlayer(computerPlayer);
         drawPiecePlayer(mousePlayer);
@@ -491,7 +507,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
  
     }
     
-    public  SpritePiece buildPedina(int color,Piece charPiece,int level){
+    public  SpritePiece buildPedina(int color,Piece charPiece,int level)throws Exception{
 
         if(level==1)  return buildPedinaLevel1( color, charPiece);
         else if(level==2) return  buildPedinaLevel1( color, charPiece);
@@ -499,65 +515,102 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         else return null;
     }
     
-    public  SpritePiece  buildPedinaLevel1(int playerColor,Piece charPiece) {
-    SpritePiece pedina=null;    
-    if(playerColor!=charPiece.getColor()) throw new RuntimeException("Disegual color");
-     if (Checker.BLACK == playerColor) {
+	public SpritePiece buildPedinaLevel1(int playerColor, Piece charPiece) throws Exception {
+		if (playerColor != charPiece.getColor())
+			throw new Exception("Disegual color");
+		SpritePiece pedina = null;
 
-         pedina= new AlienPiece(charPiece,  boardHW,this);
-         pedina.MOVE_FRAME[0]=0;
-         pedina.MOVE_FRAME[1]=1;
-         pedina.EATED_ANIM_FRAME[0]=6;
-         pedina.EATED_ANIM_FRAME[1]=12;
-         pedina.EAT_MOVE_FRAME[0]=3;
-         pedina.EAT_MOVE_FRAME[1]=5;
+		if (Checker.BLACK == playerColor) {
 
-         if(charPiece.getType()==Checker.DRAUGTH) {
-             pedina= new AlienPiece(charPiece, boardHW,this);
-             pedina=pedina.loadDraugthFrame();
-	         pedina.MOVE_FRAME[0]=1;
-	         pedina.MOVE_FRAME[1]=3;
-	         pedina.EATED_ANIM_FRAME[0]=7;
-	         pedina.EATED_ANIM_FRAME[1]=12;
-	         pedina.EAT_MOVE_FRAME[0]=1;
-	         pedina.EAT_MOVE_FRAME[1]=4;
-         }
+			pedina = new AlienPiece(charPiece, boardHW, this);
+			if (charPiece.getType() == Checker.CHECKER) {
+				FrameInfo[] move = { new FrameInfo(0, 1), new FrameInfo(1, 1) };
+				pedina.MOVE_FRAME = move;				
+//         pedina.MOVE_FRAME[0]=0;
+//         pedina.MOVE_FRAME[1]=1;
+				FrameInfo[] eat = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
+						new FrameInfo(9, 1), new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1) };
+				pedina.EATED_ANIM_FRAME = eat;				
+//         pedina.EATED_ANIM_FRAME[0]=6;
+//         pedina.EATED_ANIM_FRAME[1]=12;
+				FrameInfo[] moveat = { new FrameInfo(3, 1), new FrameInfo(5, 1),
+						new FrameInfo(4, 1), new FrameInfo(5, 1)};
+				pedina.EAT_MOVE_FRAME = moveat;		
+//		         pedina.EAT_MOVE_FRAME[0]=3;
+//		         pedina.EAT_MOVE_FRAME[1]=5;				
+			} else if (charPiece.getType() == Checker.DRAUGTH) {
+				pedina = new AlienPiece(charPiece, boardHW, this);
+				pedina = pedina.loadDraugthFrame();
+				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
+				pedina.MOVE_FRAME = move;							
+//	         pedina.MOVE_FRAME[0]=1;
+//	         pedina.MOVE_FRAME[1]=3;
+				FrameInfo[] eat = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
+						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1)};
+				pedina.EATED_ANIM_FRAME = eat;					
+//	         pedina.EATED_ANIM_FRAME[0]=7;
+//	         pedina.EATED_ANIM_FRAME[1]=12;
+				FrameInfo[] moveat = { new FrameInfo(1, 1),
+						new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1)};
+				pedina.EAT_MOVE_FRAME = moveat;				
+//         pedina.EAT_MOVE_FRAME[0]=1;
+//         pedina.EAT_MOVE_FRAME[1]=4;
+			}
 
-     } else {
-             pedina= new SoldierPiece( charPiece,boardHW, this);
-	         pedina.MOVE_FRAME[0]=7;
-	         pedina.MOVE_FRAME[1]=8;
-	         pedina.EATED_ANIM_FRAME[0]=10;
-	         pedina.EATED_ANIM_FRAME[1]=17;
-	         pedina.EAT_MOVE_FRAME[0]=2;
-	         pedina.EAT_MOVE_FRAME[1]=5;
+		} else if (Checker.WHITE == playerColor) {
+			pedina = new SoldierPiece(charPiece, boardHW, this);
+			if (charPiece.getType() == Checker.CHECKER) {
+				FrameInfo[] move = { new FrameInfo(7, 1), new FrameInfo(8, 1) };
+				pedina.MOVE_FRAME = move;
+//	         pedina.MOVE_FRAME[0]=7;
+//	         pedina.MOVE_FRAME[1]=8;
+				FrameInfo[] eat = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
+						new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
+						new FrameInfo(17, 1) };
+				pedina.EATED_ANIM_FRAME = eat;
+//	         pedina.EATED_ANIM_FRAME[0]=10;
+//	         pedina.EATED_ANIM_FRAME[1]=17;
+				FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
+						new FrameInfo(5, 1) };
+				pedina.EAT_MOVE_FRAME = moveat;
+//	         pedina.EAT_MOVE_FRAME[0]=2;
+//	         pedina.EAT_MOVE_FRAME[1]=5;
+			} else if (charPiece.getType() == Checker.DRAUGTH) {
+				pedina = new SoldierPiece(charPiece, boardHW, this);
+				pedina = pedina.loadDraugthFrame();
+				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1) ,
+						new FrameInfo(3, 1), new FrameInfo(4, 1), new FrameInfo(5, 1)};
+				pedina.MOVE_FRAME=move;
+//             pedina.MOVE_FRAME[0]=1;
+//             pedina.MOVE_FRAME[1]=5;
+				FrameInfo[] eat = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
+						new FrameInfo(10, 1) };
+				pedina.EAT_MOVE_FRAME = eat;
+//             pedina.EATED_ANIM_FRAME[0]=7;
+//             pedina.EATED_ANIM_FRAME[1]=10;
+				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
+						new FrameInfo(4, 1),new FrameInfo(5, 1)  };				
+				pedina.EAT_MOVE_FRAME=moveat;
+//             pedina.EAT_MOVE_FRAME[0]=1;
+//             pedina.EAT_MOVE_FRAME[1]=5;
+			}
 
-         if(charPiece.getType()==Checker.DRAUGTH) {
-        	 pedina= new SoldierPiece( charPiece,boardHW, this);
-        	 pedina=pedina.loadDraugthFrame();
-             pedina.MOVE_FRAME[0]=1;
-             pedina.MOVE_FRAME[1]=5;
-             pedina.EATED_ANIM_FRAME[0]=7;
-             pedina.EATED_ANIM_FRAME[1]=10;
-             pedina.EAT_MOVE_FRAME[0]=1;
-             pedina.EAT_MOVE_FRAME[1]=5;
-         }
+		}
+		Reflection reflection = new Reflection();
+		reflection.setFraction(0.7);
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setRadius(20.0);
+		dropShadow.setOffsetX(0.0);
+		dropShadow.setOffsetY(0.0);
+		dropShadow.setColor(Color.BLACK);
+		if (pedina != null) {
+			pedina.setEffect(dropShadow);
+			pedina.setOnMouseClicked(new EventSelectionPlayer(this, pedina));
+		}
 
-     }
-     Reflection reflection = new Reflection();
-     reflection.setFraction(0.7);
-     DropShadow dropShadow = new DropShadow();
-     dropShadow.setRadius(20.0);
-     dropShadow.setOffsetX(0.0);
-     dropShadow.setOffsetY(0.0);
-     dropShadow.setColor(Color.BLACK);
-     pedina.setEffect(dropShadow);
+		return pedina;
 
-     pedina.setOnMouseClicked(new EventSelectionPlayer(this,pedina));
- 
-     return pedina;
-
- }
+	}
     
     public  SpritePiece  buildPedinaLevel2( int color,
             Piece pedinassociated) {
@@ -587,7 +640,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
  }     
     
-    void transformInDraugth(SpritePiece p) {
+    void transformInDraugth(SpritePiece p)throws Exception {
 	    //remove(p);
 	    SpritePiece dama=  buildPedina(p.getBoardPieceLink().getColor(), 
 	    		p.getBoardPieceLink(), getLevel());

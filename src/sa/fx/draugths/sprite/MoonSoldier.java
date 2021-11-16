@@ -25,9 +25,9 @@ public class MoonSoldier extends SoldierPiece {
     public void buildFrameMoveAnimation( boolean ciclyc) {
 
         if (!draugthTransform) {
-        	frameAnimTimer.add(  new FrameAnimationTimer(5, 6, 0,this, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER));
+//        	frameAnimTimer.add(  new FrameAnimationTimer(5, 6, 0,this, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER));
         } else {
-        	frameAnimTimer.add( new FrameAnimationTimer(1, 2,0, this, ciclyc, 100, FrameAnimationTimer.ELICOPTER));
+//        	frameAnimTimer.add( new FrameAnimationTimer(1, 2,0, this, ciclyc, 100, FrameAnimationTimer.ELICOPTER));
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 

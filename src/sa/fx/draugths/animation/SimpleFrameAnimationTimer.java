@@ -6,9 +6,11 @@
 package sa.fx.draugths.animation;
 
 import java.net.URL;
+import java.util.List;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.media.AudioClip;
+import sa.fx.draugths.sprite.AlienPiece;
 import sa.fx.draugths.sprite.Sprite;
 
 
@@ -17,30 +19,30 @@ import sa.fx.draugths.sprite.Sprite;
  * @author Alessio Sardaro
  */
 public class SimpleFrameAnimationTimer extends AnimationTimer{
-    public int f1,f2;
-    public static String FIRE="fire5.wav";
-    public static String SPEEDY_BITE="speedy_bite.wav";
-    public static String BITE="Dogbite.wav";
-    public static String BIG_BITE="lion_roar_2.mp3";
-    public static String JUNGLE="jungle_drum.wav";
-    public static String MOVESPACESOLDIER="jerpack.wav";
-    public static String CLOPETE_DOUBLE="moveAlien2.wav";
-    public static String MOVEMONSTER="UFO.wav";
-    public static String EXPLOSIONMONSTER="Fireball.wav";
-    public static String MISSILE="top.wav";
-    public static String ELICOPTER="elicopter.wav";
-    public static String CLOPETE="move_alien.wav";
-    public static String EXPLOSION="Fireball.wav";
-    public static String BIGEXPLOSION="explos.wav";
-    public static String MUSIC="muppet.mp3";
-    public static String ACHW="Achievement.wav";
-    public static String ACHB="pluck.wav";
-    public String sound;
-    public Sprite p;
+	FrameInfo[]  frames;
+    public static final String FIRE="fire5.wav";
+    public static final String SPEEDY_BITE="speedy_bite.wav";
+    public static final String BITE="Dogbite.wav";
+    public static final String BIG_BITE="lion_roar_2.mp3";
+    public static final String JUNGLE="jungle_drum.wav";
+    public static final String MOVESPACESOLDIER="jerpack.wav";
+    public static final String CLOPETE_DOUBLE="moveAlien2.wav";
+    public static final String MOVEMONSTER="UFO.wav";
+    public static final String EXPLOSIONMONSTER="Fireball.wav";
+    public static final String MISSILE="top.wav";
+    public static final String ELICOPTER="elicopter.wav";
+    public static final String CLOPETE="move_alien.wav";
+    public static final String EXPLOSION="Fireball.wav";
+    public static final String BIGEXPLOSION="explos.wav";
+    public static final String MUSIC="muppet.mp3";
+    public static final String ACHW="Achievement.wav";
+    public static final String ACHB="pluck.wav";
+    String sound;
+    Sprite p;
 
 
     int i;
-   
+    int frameCount=0;
    
     long interval=0;  
     AudioClip mediaPlayer;
@@ -51,9 +53,8 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
     boolean startMusic=true;
 
     
-    public SimpleFrameAnimationTimer(int f1, int f2,Sprite p,boolean cyclic,long interval,String sound) {
-     	this.f1 = f1;
-        this.f2 = f2;
+    public SimpleFrameAnimationTimer(FrameInfo[] frames,Sprite p,boolean cyclic,long interval,String sound) {
+    	this.frames=frames;
         this.p = p;
         this.sound=sound;
         if(sound!=null){
@@ -62,7 +63,6 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
         }
         this.ciclyc=cyclic;
         before=System.currentTimeMillis();
-        i=this.f1;
         this.interval=interval;
     }
     
@@ -74,16 +74,22 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
 
 		 
         playEffect();
-        if(i<=f2  && intervalTemp>this.interval) {
+        if(intervalTemp>this.interval) {
             
             before=System.currentTimeMillis();
-            p.setFrame(i);
+            p.setFrame(frames[i].getFrameNumber());
             p.toFront();
-                   
-            i++;
-            if(this.ciclyc){
-                if(i>f2) i=f1;
-            }else if(!this.ciclyc && (i>f2) )  i=f2;
+            frameCount++;
+            if(p instanceof AlienPiece)
+            System.out.println("Alien duration:"+frames[i].getDuration()+", framecoutn"+frameCount);
+            if(frameCount>=frames[i].getDuration()) {
+            	i++;
+            	frameCount=0;
+                if(this.ciclyc){
+                    if(i>=frames.length) i=0;
+                }else if(!this.ciclyc && (i>=(frames.length) ))  i=frames.length-1;            	
+            }
+
 
         } 
 
@@ -109,7 +115,7 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
     public void start() {
         super.start();
    
-        this.i=f1;
+        this.i=0;
         // //To change body of generated methods, choose Tools | Templates.
         
     }

@@ -54,22 +54,22 @@ public class AlienPiece extends SpritePiece {
     @Override
     public void buildDestroyAnimation(int by) {
     	
-        buildGenericFrameAnimationDestroy(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1],  false, 25, FrameAnimationTimer.EXPLOSION);
+        buildGenericFrameAnimationDestroy(EATED_ANIM_FRAME,  false, 25, FrameAnimationTimer.EXPLOSION);
     }
 
     public void buildFrameMoveAnimation( boolean ciclyc) {
         if (!draugthTransform) {
-            frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this,  ciclyc, 50, FrameAnimationTimer.CLOPETE));
+            frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME, this,  ciclyc, 50, FrameAnimationTimer.CLOPETE));
         } else {
-            frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1],this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
+            frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME,this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
         }
 
     }
 
     public void buildFrameEatMoveAnimation( Move m,boolean ciclyc) {
     	SpritePiece eated=getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(),m.getEat().getColor(), false);
-       if(draugthTransform==false) frameAnimTimer.add( new SimpleFrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1], this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
-       else frameAnimTimer.add( new SimpleFrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
+       if(draugthTransform==false) frameAnimTimer.add( new SimpleFrameAnimationTimer(EAT_MOVE_FRAME, this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
+       else frameAnimTimer.add( new SimpleFrameAnimationTimer(EAT_MOVE_FRAME,this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
     }
 
     

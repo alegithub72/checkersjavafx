@@ -15,6 +15,7 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.FXBoard;
+import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
@@ -33,9 +34,9 @@ public abstract class SpritePiece extends Sprite{
 
     Piece piece;
     boolean draugthTransform=false;
-	public int[] MOVE_FRAME=new int[2];
-    public int[] EAT_MOVE_FRAME=new int[2];
-    public int[] EATED_ANIM_FRAME=new int[2];
+	public FrameInfo[] MOVE_FRAME;
+    public FrameInfo[] EAT_MOVE_FRAME;
+    public FrameInfo[] EATED_ANIM_FRAME;
 
 	public   int srpiteH ;
 	public   int spriteW ;
@@ -63,8 +64,8 @@ public abstract class SpritePiece extends Sprite{
 
 
     }
-    void buildGenericFrameAnimationDestroy(int f1, int f2, boolean ciclyc, long interval, String sound) {
-        frameAnimTimer.add( new SimpleFrameAnimationTimer(f1, f2, this,  ciclyc, interval, sound));
+    void buildGenericFrameAnimationDestroy(FrameInfo[] frames, boolean ciclyc, long interval, String sound) {
+        frameAnimTimer.add( new SimpleFrameAnimationTimer(frames, this,  ciclyc, interval, sound));
     }    
 
     

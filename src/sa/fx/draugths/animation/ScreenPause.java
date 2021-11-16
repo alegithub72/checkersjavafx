@@ -26,7 +26,12 @@ public class ScreenPause extends Transition{
         this.setOnFinished(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                i.goAhead();
+                try {
+					i.goAhead();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
             
     

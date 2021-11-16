@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>checkersfx</groupId>
 	<artifactId>chekcersfx</artifactId>
-	<version>2.0</version>
+	<version>3.2</version>
 	<packaging>jar</packaging>
-	<name>chekcers</name> 
+	<name>Chekcers Invader</name> 
 	<!-- https://search.maven.org
-https://repository.apache.org
+https://repository.apache.org 
 https://mvnrepository.com -->
 	<properties>
 		<!-- maven.compiler.source>1.8</maven.compiler.source>
@@ -18,6 +18,13 @@ https://mvnrepository.com -->
         <maven.compiler.target>16</maven.compiler.target>
  
 	</properties>
+<distributionManagement>
+   <repository>
+     <id>github</id>
+     <name>GitHub alegithub72 Apache Maven Packages</name>
+     <url>https://maven.pkg.github.com/alegithub72/checkersjavafx</url>
+   </repository>
+</distributionManagement>		
 	<dependencies>
 		<dependency>
 			<groupId>checkersengine</groupId>

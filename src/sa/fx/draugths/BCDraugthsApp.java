@@ -102,7 +102,7 @@ public class BCDraugthsApp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception{
         //TODO: gestire gli screen di inizio gioco non  con il background del gioco,
         // possibile di rinominare ed usare Background class per questo ruolo di screen before play
         initDama();
@@ -116,7 +116,7 @@ public class BCDraugthsApp extends Application {
        
 
     }
-   public void levelUp(int level,int point){
+   public void levelUp(int level,int point)throws Exception{
             root.getChildren().remove(fxb);
 
             log.info("system level="+level);
@@ -170,18 +170,23 @@ public static void main(String[] args) {
            
             @Override
             public void handle(MouseEvent event) {
-                    music.play();
-                    root.getChildren().remove(recordScreen);
-                    level=1;
-                    drawStartScreen();
-                event.consume();
+                    try {
+						music.play();
+						root.getChildren().remove(recordScreen);
+						level=1;
+						drawStartScreen();
+						event.consume();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
             }
         });     
      
      
  }
   
-  public void drawStartScreen(){
+  public void drawStartScreen()throws Exception{
         
       
         music = buildMedia(FrameAnimationTimer.MUSIC);

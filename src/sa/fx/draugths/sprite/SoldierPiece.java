@@ -22,6 +22,7 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
+import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
@@ -63,13 +64,13 @@ public class SoldierPiece extends SpritePiece {
     public synchronized void buildDestroyAnimation(int by) {
         if (by ==Piece.CHECKER) {
            
-        	if(!draugthTransform)  frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], this, false, 25, FrameAnimationTimer.BITE));
+        	if(!draugthTransform)  frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME, this, false, 25, FrameAnimationTimer.BITE));
             else BCDraugthsApp.log.info("Errorre.........");
         
         } else if (by ==Piece.DRAUGTH)  {
         
-          if(draugthTransform) frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME[0], EATED_ANIM_FRAME[1], this, false, 25, FrameAnimationTimer.BITE) );
-          else frameAnimTimer.add(new SimpleFrameAnimationTimer(12,17, this, false, 25, FrameAnimationTimer.BITE) ); 
+          if(draugthTransform) frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME, this, false, 25, FrameAnimationTimer.BITE) );
+          else frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME, this, false, 25, FrameAnimationTimer.BITE) ); 
               
         }
     }
@@ -77,9 +78,9 @@ public class SoldierPiece extends SpritePiece {
     public void buildFrameMoveAnimation( boolean ciclyc) {
 
         if (!draugthTransform) {
-        	frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 100, FrameAnimationTimer.JUNGLE));
+        	frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME, this, ciclyc, 100, FrameAnimationTimer.JUNGLE));
         } else {
-        	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
+        	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME, this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 
@@ -90,11 +91,11 @@ public class SoldierPiece extends SpritePiece {
     public void buildFrameEatMoveAnimation( Move m,boolean ciclyc) {
     	
     if (!draugthTransform) {
-    	frameAnimTimer.add( new FrameAnimationTimer(EAT_MOVE_FRAME[0], EAT_MOVE_FRAME[1],EAT_MOVE_FRAME[0], this, ciclyc, 100, FrameAnimationTimer.FIRE));
+    	frameAnimTimer.add( new FrameAnimationTimer(EAT_MOVE_FRAME, this, ciclyc, 100, FrameAnimationTimer.FIRE));
 
     } else {
     	//TODO:not used
-    	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
+    	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME, this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
         //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
     	}
     }
@@ -410,14 +411,18 @@ public class SoldierPiece extends SpritePiece {
        // buildFrameMoveAnimation( true);
         //setFrame(3);
         
-        frameAnimTimer.add(new FrameAnimationTimer(MOVE_FRAME[0], MOVE_FRAME[1], this,extraSprite[0],eated,true,25,SimpleFrameAnimationTimer.ELICOPTER));
+        frameAnimTimer.add(new FrameAnimationTimer(MOVE_FRAME, this,extraSprite[0],eated,true,25,SimpleFrameAnimationTimer.ELICOPTER));
         transition[TRANSITION_STEP.FIRST_HALF_STEP].setOnFinished(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				 extraSprite[0].setVisible(true);
 				 ptMissile.play();
-				 SimpleFrameAnimationTimer missileAnim=new SimpleFrameAnimationTimer(0, 7, extraSprite[0],true,50,SimpleFrameAnimationTimer.MISSILE);
+				 SimpleFrameAnimationTimer missileAnim=new SimpleFrameAnimationTimer(
+						 new FrameInfo[] {new FrameInfo(0,1),
+								 new FrameInfo(1,1),new FrameInfo(2,1),new FrameInfo(3,1),
+								 new FrameInfo(4,1),new FrameInfo(5,1),new FrameInfo(6,1),new FrameInfo(7,1)} 
+						 ,extraSprite[0],true,50,SimpleFrameAnimationTimer.MISSILE);
 				 missileAnim.start();
 				 frameAnimTimer.add(missileAnim);
 		         transition[TRANSITION_STEP.SECOND_HALF_STEP].play();
