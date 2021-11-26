@@ -76,8 +76,8 @@ public class FrameAnimationTimer extends SimpleFrameAnimationTimer{
 			  	BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
 			  	EventCollisionSprite c=new EventCollisionSprite(target, null,
 			  			EventCollisionSprite.COLLISION_SPRITE);
-			  	target.buildDestroyAnimation(piece.getBoardPieceLink().getType());
-			  	target.destory();
+			  	target.buildKilledSequence(piece.getBoardPieceLink().getType());
+			  	target.playKilled();
 			  	once=true;
 			  	//shot.setVisible(false);
 			  	piece.getFxBoard().remove(shot);

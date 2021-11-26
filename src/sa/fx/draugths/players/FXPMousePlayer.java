@@ -21,7 +21,7 @@ import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.event.EventConfirmCommand;
 import sa.fx.draugths.sprite.SpritePiece;
-import sa.gameboard.core.Checker;
+import sa.gameboard.core.Piece;
 
 /**
  *
@@ -69,7 +69,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     }
 
     public FXPMousePlayer(FXBoard board) {
-        super(Checker.WHITE);
+        super(Piece.WHITE);
         this.board = board;
  
 

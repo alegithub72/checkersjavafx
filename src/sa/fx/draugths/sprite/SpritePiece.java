@@ -14,6 +14,7 @@ import javafx.animation.Animation;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
@@ -21,7 +22,6 @@ import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.event.EventEatPieceSelect;
 import sa.fx.draugths.utility.BoardHW;
-import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
@@ -34,18 +34,17 @@ public abstract class SpritePiece extends Sprite{
 
     Piece piece;
     boolean draugthTransform=false;
-	public FrameInfo[] MOVE_FRAME;
-    public FrameInfo[] EAT_MOVE_FRAME;
-    public FrameInfo[] EATED_ANIM_FRAME;
+	FrameInfo[] moveSequenceFrame;
+    FrameInfo[] eatMoveSequenceFrame;
+    FrameInfo[] killSequenceFrame;
 
-	public   int srpiteH ;
-	public   int spriteW ;
+
 	int wSquare;
 	int hSquare;
 	String colorFX;
 	FXBoard fxBoard;
 	Sprite[] extraSprite=new Sprite[2];
-	List<SimpleFrameAnimationTimer> frameAnimTimer=new ArrayList<SimpleFrameAnimationTimer>();
+	List<SimpleFrameAnimationTimer> frameAnimTimer=new ArrayList<>();
 	Animation[] transition=new Animation[5];
 	boolean eatedAnim;
     
@@ -53,8 +52,8 @@ public abstract class SpritePiece extends Sprite{
     
     
 
-	public SpritePiece(String colorFX,BoardHW boardHW, String img,FXBoard b) {
-        super(img);
+	protected SpritePiece(String colorFX,BoardHW boardHW, String img,FXBoard b) {
+        super(img,colorFX);
         this.colorFX=colorFX;
         this.wSquare=boardHW.getH();
         this.hSquare=boardHW.getW();
@@ -64,11 +63,20 @@ public abstract class SpritePiece extends Sprite{
 
 
     }
-    void buildGenericFrameAnimationDestroy(FrameInfo[] frames, boolean ciclyc, long interval, String sound) {
+    void buildDefaultKillAnimation(FrameInfo[] frames, boolean ciclyc, long interval, String sound) {
         frameAnimTimer.add( new SimpleFrameAnimationTimer(frames, this,  ciclyc, interval, sound));
     }    
 
-    
+
+	public void addMoveSequenceFrame(FrameInfo[] moveSequenceFrame) {
+		this.moveSequenceFrame = moveSequenceFrame;
+	}
+	public void addEatMoveSequenceFrame(FrameInfo[] eatMoveSequenceFrame) {
+		this.eatMoveSequenceFrame = eatMoveSequenceFrame;
+	}
+	public void addKillSequenceFrame(FrameInfo[] killSequenceFrame) {
+		this.killSequenceFrame = killSequenceFrame;
+	}
     
 
 	public String getColorFX() {
@@ -108,24 +116,23 @@ public abstract class SpritePiece extends Sprite{
     public void play(Move m) {
 
          if (m.getType() == Move.MOVE ) {           
-         if( Checker.DRAUGTH==m.getP().getType() ) {
-             animDamaMove(m);
+         if( Piece.DRAUGTH==m.getP().getType() ) {
+             buildAnimDamaMove(m);
              playAnimDamaMove();
          }else{
-             animPedinaMove(m);
+             buildAnimPedinaMove(m);
              playAnimPedinaMove();
          }
 
             
         } else if (m.getType() == Move.EAT) {
           
-           fireEvent(new EventEatPieceSelect(m,this,EventEatPieceSelect.EAT_SELECT));  //0eated = fbx. 
-          //  System.out.println("EAT ELIMATION of"+eated.getK()+")");
-           if(m.getP().getType()==Checker.DRAUGTH){
-               animDamaEat(m);
+           fireEvent(new EventEatPieceSelect(m,this,EventEatPieceSelect.EAT_SELECT));  
+           if(m.getP().getType()==Piece.DRAUGTH){
+               builAnimDamaEat(m);
                playAnimDamaEat();
            }else {
-               animPedinaEat(m);
+               buildAnimPedinaEat(m);
                playAnimPedinaEat();
            
            }
@@ -134,25 +141,25 @@ public abstract class SpritePiece extends Sprite{
 
     }
     protected void playAnimDamaMove(){
-        start();
+        playAnim();
         
     }
     
     protected void playAnimPedinaMove(){
-        start();
+        playAnim();
         
     }
     protected void playAnimPedinaEat(){
-        start();
+        playAnim();
         
     }
     
     protected void playAnimDamaEat(){
-        start();
+        playAnim();
         
     }
     
-    public void start(){
+    private void playAnim(){
 
         if(transition!=null && transition.length>0 && transition[TRANSITION_STEP.FULL_STEP]!=null) {
             transition[TRANSITION_STEP.FULL_STEP].play();
@@ -167,13 +174,11 @@ public abstract class SpritePiece extends Sprite{
 
         //check this code.................when intersect lauch the destruction 
         //event...
-        //Bounds d= eated.getBoundsInLocal();
-        //this.intersects(d);
-        //bcdg.removePuntatori();
+
         if(fxBoard!=null) fxBoard.setAnimationOn(true);
       
     }    
-    public void destory() {
+    public void playKilled() {
         for(int h=0;h<frameAnimTimer.size();h++) {
             if(frameAnimTimer.get(h)!=null) {
             	frameAnimTimer.get(h).start();
@@ -181,21 +186,21 @@ public abstract class SpritePiece extends Sprite{
         }
     	
     }
-    public void stop() {
+    public void stopPlayAnimation() {
 
-
+    	
         for(int h=0;h<frameAnimTimer.size();h++) {
             if(frameAnimTimer.get(h)!=null) {
+            	BCDraugthsApp.log.info(h+")Stop:"+this);
             	frameAnimTimer.get(h).stop();
             }
         }
-        frameAnimTimer=new ArrayList<SimpleFrameAnimationTimer>();
+        frameAnimTimer=new ArrayList<>();
         
         for (int i = 0; i < transition.length; i++) {
             Animation a = transition[i];
             if(a!=null) a.stop();
-            //TODO: mai inserite sul board
-          //  if(a!=null) fxBoard.remove(a);
+
             
         }
         setFrame(0);
@@ -221,44 +226,43 @@ public abstract class SpritePiece extends Sprite{
     
     
 
-   protected void  animPedinaMove(Move m) {
-	   //TODO:
+   protected void  buildAnimPedinaMove(Move m) {
+
         buildPedinaMovePath(m);
-        buildFrameMoveAnimation(true);
+        buildMoveSequence(true);
         transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }  
    
-   protected void  animDamaMove(Move m) {
+   protected void  buildAnimDamaMove(Move m) {
     
         buildDamaMovePath(m);
-        buildFrameMoveAnimation( true);
+        buildMoveSequence( true);
         transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
 
     }     
    
-   protected void  animPedinaEat(Move m) {
+   protected void  buildAnimPedinaEat(Move m) {
     
         buildPedinaMoveEatPath(m);
-        buildFrameEatMoveAnimation( m,true);
+        buildMoveEatSequence( m,true);
         transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
-       // eated.buildDestroyAnimation(m.getP().getType());
+
 
 
     } 
-   protected void  animDamaEat(Move m) {
+   protected void  builAnimDamaEat(Move m) {
     
         buildDamaMoveEatPath(m);
-        buildFrameEatMoveAnimation( m,true);
+        buildMoveEatSequence( m,true);
         transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
-       // this.eated=eated;
-     //  eated.buildDestroyAnimation(m.getP().getType());
+
     }       
     
 
-    public abstract void buildDestroyAnimation(int by);
-    public abstract void buildFrameMoveAnimation( boolean ciclyc);
-    public abstract void buildFrameEatMoveAnimation( Move m,boolean ciclyc);
+    public abstract void buildKilledSequence(int by);
+    public abstract void buildMoveSequence( boolean ciclyc);
+    public abstract void buildMoveEatSequence( Move m,boolean ciclyc);
     public abstract void buildPedinaMovePath(Move m);
     public abstract void buildDamaMovePath(Move m);
     public abstract void buildPedinaMoveEatPath(Move m);
@@ -267,7 +271,7 @@ public abstract class SpritePiece extends Sprite{
 
 	@Override
 	public String toString() {
-		return "SpritePiece [piece "+(piece.getColor()==Piece.BLACK?"BLACK":"WHITE")+"= (" + piece.getI()+","+piece.getJ()+") " + ", colorFX=" + colorFX + "]";
+		return "SpritePiece [piece "+(piece.getColor()==Piece.BLACK?"BLACK":"WHITE")+"-"+piece.getPos()+"(" + piece.getI()+","+piece.getJ()+") " + ", colorFX=" + colorFX + "]";
 	}    
 
 

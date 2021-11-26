@@ -5,6 +5,8 @@
  */
 package sa.fx.draugths.sprite;
 
+import java.util.Arrays;
+
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,15 +20,19 @@ public class Sprite extends ImageView {
   
     
     
-	public static int MOVE_TRANSITION = 0;
+
     Image frameImages;
     Rectangle2D[] frames;
+    String imgUrl;
     int w;
     int h;
     int nframes = 0;
     int k;
-    public Sprite(String img) {
+    String name;
+    public Sprite(String img,String name) {
 		super();
+		this.name=name;
+		this.imgUrl=img;
         frameImages = new Image(img);
         this.h=(int)frameImages.getHeight();
         this.w=(int)frameImages.getHeight();
@@ -39,11 +45,18 @@ public class Sprite extends ImageView {
     
 
     
-    public void buildFrameImages(){
+    @Override
+	public String toString() {
+		return "Sprite [frames=" + Arrays.toString(frames) + ", k=" + k + ", name=" + name + "]";
+	}
+
+
+
+	public void buildFrameImages(){
         int n = (frameImages.widthProperty().intValue() / w);
         frames = new Rectangle2D[n];
         for (int i = 0; i < n; i++) {
-            frames[i] = new Rectangle2D(i * w, 0, w, h);
+            frames[i] = new Rectangle2D(i *(double)w, 0, w, h);
         }
     }    
 
@@ -85,36 +98,43 @@ public class Sprite extends ImageView {
 
      public  double convertBoardItoPositionY(int i,int hboard){
      	int hadjust=0;
+ 
      	if(this.h>hboard) hadjust=(this.h-hboard)/2;
-        double y = (i * hboard )+(BackGround.hPointTable-hadjust)
+     	return (i * hboard )+(BackGround.hPointTable-hadjust)
                     ;
-        return y;
+        
     }   
 
     public  double convertBoardJtoPositionX(int j,int wboard){
     	int wadjust=0;
-    	if(this.w>wboard) wadjust=(this.w-wboard)/2;
-                double x = (j * wboard )-(wadjust);
-                return x; 
+    	
+    	if(this.w>wboard) {
+    		wadjust=(this.w-wboard)/2;
+    	}
+        return (j * wboard )-((double)wadjust);
+         
     }       
 
     public  double convertBoardItoPositionYCenter(int i,int hboard){
      	int hadjust=0;
-     	if(this.h>hboard) hadjust=(this.h-hboard)/2;
-                double y = ((i * hboard)
-                        + (hboard / 2)+(BackGround.hPointTable-hadjust)
-                       ) ;
+     	
+     	if(this.h>hboard) {
+     		hadjust=(this.h-hboard)/2;
+     	}
+        return ((i * hboard) + (hboard / 2d)+
+        		(BackGround.hPointTable-hadjust));
                         
-                return y;
+
     }
 
     public  double convertBoardJtoPositionXCenter(int j,int wboard){
     	int wadjust=0;
-    	if(this.w>wboard) wadjust=(this.w-wboard)/2;
-                double x = ((j * wboard) 
-                        + (wboard / 2)-wadjust
-                        );
-                return x;
+    	
+    	if(this.w>wboard) {
+    		wadjust=(this.w-wboard)/2;
+    	}
+        return ((j * wboard)+ (wboard / 2)-wadjust);
+        
     }
     
 

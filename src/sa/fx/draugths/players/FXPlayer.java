@@ -13,7 +13,7 @@ import javafx.scene.Group;
 import javafx.scene.text.Text;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.FXBoard;
-import sa.gameboard.core.Checker;
+import sa.gameboard.core.Piece;
 
 /**
  *
@@ -24,7 +24,7 @@ public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent> 
 	FXBoard board;
     Group table;
     public FXPlayer(Group table,FXBoard board) {
-        super(Checker.WHITE);
+        super(Piece.WHITE);
         this.board=board;
         this.table=table;
     }
@@ -50,8 +50,8 @@ public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent> 
         board.playComputerPlayer();
         
         board.getCommand().setText("");
-        if (board.winCondition() == Checker.WHITE) table.getChildren().add(new Text("IL BIANCO HA VINTOOOOOOO"));
-        else if (board.winCondition() == Checker.BLACK) table.getChildren().add(new Text("IL NERO HA VINTOOOOOOO"));
+        if (board.winCondition() == Piece.WHITE) table.getChildren().add(new Text("IL BIANCO HA VINTOOOOOOO"));
+        else if (board.winCondition() == Piece.BLACK) table.getChildren().add(new Text("IL NERO HA VINTOOOOOOO"));
 
         event.consume();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

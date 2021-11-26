@@ -27,7 +27,6 @@ import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.utility.BoardHW;
-import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 
@@ -38,13 +37,13 @@ import sa.gameboard.core.Piece;
 public class SoldierPiece extends SpritePiece {
 
     int color;
-    static final String CHEKCER_IMAGE="soldier_checker.png";
-    static final String DRAUGTH_IMAGE="soldier_checker_dama.png";
+    private static final String CHECKER_SOLDIER_IMAGE="soldier_checker.png";
+    private static final String DRAUGTH_SOLDIER_IMAGE="soldier_checker_dama.png";
 
     
     public SoldierPiece( Piece boardPiece,
             BoardHW boardHW,  FXBoard board) {
-        super( "Soldier",boardHW, CHEKCER_IMAGE,board);
+        super( "Soldier",boardHW, CHECKER_SOLDIER_IMAGE,board);
         this.color = boardPiece.getColor();
         this.piece = boardPiece;
 
@@ -61,44 +60,45 @@ public class SoldierPiece extends SpritePiece {
 
 
 
-    public synchronized void buildDestroyAnimation(int by) {
+    public synchronized void buildKilledSequence(int by) {
         if (by ==Piece.CHECKER) {
            
-        	if(!draugthTransform)  frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME, this, false, 25, FrameAnimationTimer.BITE));
+        	if(!draugthTransform)  frameAnimTimer.add(new SimpleFrameAnimationTimer(killSequenceFrame, this, false, 25, FrameAnimationTimer.BITE));
             else BCDraugthsApp.log.info("Errorre.........");
         
         } else if (by ==Piece.DRAUGTH)  {
         
-          if(draugthTransform) frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME, this, false, 25, FrameAnimationTimer.BITE) );
-          else frameAnimTimer.add(new SimpleFrameAnimationTimer(EATED_ANIM_FRAME, this, false, 25, FrameAnimationTimer.BITE) ); 
+          if(draugthTransform) frameAnimTimer.add(new SimpleFrameAnimationTimer(killSequenceFrame, this, false, 25, FrameAnimationTimer.BITE) );
+          else frameAnimTimer.add(new SimpleFrameAnimationTimer(killSequenceFrame, this, false, 25, FrameAnimationTimer.BITE) ); 
               
         }
     }
 
-    public void buildFrameMoveAnimation( boolean ciclyc) {
+    public void buildMoveSequence( boolean ciclyc) {
 
         if (!draugthTransform) {
-        	frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME, this, ciclyc, 100, FrameAnimationTimer.JUNGLE));
+        	frameAnimTimer.add( new SimpleFrameAnimationTimer(moveSequenceFrame, this, ciclyc, 100, FrameAnimationTimer.JUNGLE));
         } else {
-        	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME, this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
+        	frameAnimTimer.add(new SimpleFrameAnimationTimer(moveSequenceFrame, this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
             //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
         }
 
     }
 
+	@Override
+	public void buildMoveEatSequence(Move m, boolean ciclyc) {
+	    if (!draugthTransform) {
+	    	frameAnimTimer.add( new FrameAnimationTimer(eatMoveSequenceFrame, this, ciclyc, 100, FrameAnimationTimer.FIRE));
+
+	    } else {
+	    	//TODO:not used
+	    	frameAnimTimer.add(new SimpleFrameAnimationTimer(eatMoveSequenceFrame, this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
+	        //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
+	    	}
+		
+	}
 
 
-    public void buildFrameEatMoveAnimation( Move m,boolean ciclyc) {
-    	
-    if (!draugthTransform) {
-    	frameAnimTimer.add( new FrameAnimationTimer(EAT_MOVE_FRAME, this, ciclyc, 100, FrameAnimationTimer.FIRE));
-
-    } else {
-    	//TODO:not used
-    	frameAnimTimer.add(new SimpleFrameAnimationTimer(MOVE_FRAME, this, ciclyc, 20, FrameAnimationTimer.ELICOPTER));
-        //t = new MoveAnimePedinaTimer(5, 6, this, frac, ciclyc, 100,MoveAnimePedinaTimer.DAMAMOVE_W);
-    	}
-    }
 
 
 
@@ -352,10 +352,10 @@ public class SoldierPiece extends SpritePiece {
     }
 
     @Override
-    public void animDamaEat(Move m) {
+    public void builAnimDamaEat(Move m) {
     	transition=new ParallelTransition[5];
         ParallelTransition ptMissile = new ParallelTransition();
-        extraSprite[0]= new Sprite("missile2.png");
+        extraSprite[0]= new Sprite("missile2.png","missile");
         
         this.getFxBoard().add(extraSprite[0]);
         //x missile.toFront();
@@ -411,7 +411,7 @@ public class SoldierPiece extends SpritePiece {
        // buildFrameMoveAnimation( true);
         //setFrame(3);
         
-        frameAnimTimer.add(new FrameAnimationTimer(MOVE_FRAME, this,extraSprite[0],eated,true,25,SimpleFrameAnimationTimer.ELICOPTER));
+        frameAnimTimer.add(new FrameAnimationTimer(moveSequenceFrame, this,extraSprite[0],eated,true,25,SimpleFrameAnimationTimer.ELICOPTER));
         transition[TRANSITION_STEP.FIRST_HALF_STEP].setOnFinished(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -456,10 +456,10 @@ public class SoldierPiece extends SpritePiece {
 
     public SpritePiece loadDraugthFrame() {
     	SpritePiece sp=null;
-        if (piece.getType() == Checker.DRAUGTH &&
+        if (piece.getType() == Piece.DRAUGTH &&
                 draugthTransform==false) {
             draugthTransform=true;
-            sp=new SoldierPiece(DRAUGTH_IMAGE, this.piece, FXBoard.boardHW, this.getFxBoard());       
+            sp=new SoldierPiece(DRAUGTH_SOLDIER_IMAGE, this.piece, FXBoard.boardHW, this.getFxBoard());       
             AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
             ach.play();
@@ -476,6 +476,8 @@ public class SoldierPiece extends SpritePiece {
         return sp;
 
     }
+
+
 
 
 }

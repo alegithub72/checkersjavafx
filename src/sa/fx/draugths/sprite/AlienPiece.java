@@ -24,7 +24,6 @@ import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.utility.BoardHW;
-import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
@@ -35,11 +34,11 @@ public class AlienPiece extends SpritePiece {
 
 
     BCDraugthsApp bcdg;
-    final static  String DRAUGTH_IMAGE="alien_checker_dama.png";
-    static final  String CHEKCER_IMAGE="alien_checker.png";
+    private static final  String DRAUGTH_ALIEN_IMAGE="alien_checker_dama.png";
+    private static final  String CHEKCER_ALIEN_IMAGE="alien_checker.png";
     
    public AlienPiece( Piece boardPiece, BoardHW boardHW, FXBoard board) {
-        super("Alien",boardHW, CHEKCER_IMAGE,board);
+        super("Alien",boardHW, CHEKCER_ALIEN_IMAGE,board);
         this.piece = boardPiece;
 
     }
@@ -52,34 +51,36 @@ public class AlienPiece extends SpritePiece {
 
 
     @Override
-    public void buildDestroyAnimation(int by) {
+    public void buildKilledSequence(int by) {
     	
-        buildGenericFrameAnimationDestroy(EATED_ANIM_FRAME,  false, 25, FrameAnimationTimer.EXPLOSION);
+        buildDefaultKillAnimation(killSequenceFrame,  false, 25, FrameAnimationTimer.EXPLOSION);
     }
 
-    public void buildFrameMoveAnimation( boolean ciclyc) {
+    public void buildMoveSequence( boolean ciclyc) {
         if (!draugthTransform) {
-            frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME, this,  ciclyc, 50, FrameAnimationTimer.CLOPETE));
+            frameAnimTimer.add( new SimpleFrameAnimationTimer(moveSequenceFrame, this,  ciclyc, 50, FrameAnimationTimer.CLOPETE));
         } else {
-            frameAnimTimer.add( new SimpleFrameAnimationTimer(MOVE_FRAME,this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
+            frameAnimTimer.add( new SimpleFrameAnimationTimer(moveSequenceFrame,this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
         }
 
     }
 
-    public void buildFrameEatMoveAnimation( Move m,boolean ciclyc) {
-    	SpritePiece eated=getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(),m.getEat().getColor(), false);
-       if(draugthTransform==false) frameAnimTimer.add( new SimpleFrameAnimationTimer(EAT_MOVE_FRAME, this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
-       else frameAnimTimer.add( new SimpleFrameAnimationTimer(EAT_MOVE_FRAME,this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
-    }
+    @Override
+	public void buildMoveEatSequence(Move m, boolean ciclyc) {
+    	//SpritePiece eated=getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(),m.getEat().getColor(), false);
+        if(draugthTransform==false) frameAnimTimer.add( new SimpleFrameAnimationTimer(eatMoveSequenceFrame, this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
+        else frameAnimTimer.add( new SimpleFrameAnimationTimer(eatMoveSequenceFrame,this, ciclyc, 50, FrameAnimationTimer.CLOPETE_DOUBLE));
+		
+	}
 
     
 
     public SpritePiece loadDraugthFrame() {
     	SpritePiece sp=null;
-        if (piece.getType() == Checker.DRAUGTH &&
+        if (piece.getType() == Piece.DRAUGTH &&
                 draugthTransform==false) {
             draugthTransform=true;
-            sp=new AlienPiece(DRAUGTH_IMAGE,this.piece, FXBoard.boardHW, this.getFxBoard());       
+            sp=new AlienPiece(DRAUGTH_ALIEN_IMAGE,this.piece, FXBoard.boardHW, this.getFxBoard());       
             AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
             ach.play();

@@ -10,7 +10,6 @@ import javafx.scene.media.AudioClip;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.utility.BoardHW;
-import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
@@ -22,7 +21,7 @@ public class MoonSoldier extends SoldierPiece {
     final static  String DRAUGTH_IMAGE="white_dama_moonsoldier.png";
     static final  String CHEKCER_IMAGE="white_cheker_moonsoldier.png";
     @Override
-    public void buildFrameMoveAnimation( boolean ciclyc) {
+    public void buildMoveSequence( boolean ciclyc) {
 
         if (!draugthTransform) {
 //        	frameAnimTimer.add(  new FrameAnimationTimer(5, 6, 0,this, ciclyc, 100, FrameAnimationTimer.MOVESPACESOLDIER));
@@ -42,7 +41,7 @@ public class MoonSoldier extends SoldierPiece {
     
     @Override
     public SpritePiece loadDraugthFrame() {
-            if (piece.getType() == Checker.DRAUGTH
+            if (piece.getType() == Piece.DRAUGTH
                 && draugthTransform == false) {
             draugthTransform = true;
             frameImages = new Image("white_dama_moonsoldier.png");

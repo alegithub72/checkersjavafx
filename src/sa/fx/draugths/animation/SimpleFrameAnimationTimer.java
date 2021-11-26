@@ -6,10 +6,10 @@
 package sa.fx.draugths.animation;
 
 import java.net.URL;
-import java.util.List;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.media.AudioClip;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.sprite.AlienPiece;
 import sa.fx.draugths.sprite.Sprite;
 
@@ -81,7 +81,7 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
             p.toFront();
             frameCount++;
             if(p instanceof AlienPiece)
-            System.out.println("Alien duration:"+frames[i].getDuration()+", framecoutn"+frameCount);
+            	BCDraugthsApp.log.info(p+"->Frame duration:"+frames[i].getDuration()+", framecount="+frameCount);
             if(frameCount>=frames[i].getDuration()) {
             	i++;
             	frameCount=0;

@@ -15,7 +15,7 @@ import sa.fx.draugths.animation.event.EventDraugthTransform;
 import sa.fx.draugths.event.EventEndTurn;
 import sa.fx.draugths.event.EventPointUpdate;
 import sa.fx.draugths.sprite.SpritePiece;
-import sa.gameboard.core.Checker;
+import sa.gameboard.core.Piece;
 
 
 /**
@@ -46,11 +46,11 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
 //    	BCDraugthsApp.log.info(" eventSource:"+event.getSource());
 //    	BCDraugthsApp.log.info(" eventTarget:"+event.getTarget());
     	//BCDraugthsApp.log.info(" eventType:"+event.getEventType());
-        p.stop();
+        p.stopPlayAnimation();
         FXBoard fxBoard=p.getFxBoard();
 
         //TODO: fire point event...
-        if(m.getP().getColor()==Checker.WHITE) {
+        if(m.getP().getColor()==Piece.WHITE) {
         	BCDraugthsApp.log.info("PedinaAnimationEndHandler fired PointUpdateEvent..."+p.getColorFX());
         	fxBoard.fireEvent(new EventPointUpdate(m,fxBoard, EventPointUpdate.MOVE_UPDATE));
         
@@ -58,11 +58,11 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
         // p.removeAnimationSetting();
 
         if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
-            m.getI1()==7 && m.getP().getType()!=Checker.DRAUGTH) {
+            m.getI1()==7 && m.getP().getType()!=Piece.DRAUGTH) {
         	fxBoard.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
         	BCDraugthsApp.log.info("PedinaAnimationEndHandler..fire....EventDraugthTransform...."+p.getColorFX());
         }else if((m.getType()==Move.MOVE || m.getType()==Move.EAT) &&
-                m.getI1()==0 && m.getP().getType()!=Checker.DRAUGTH){
+                m.getI1()==0 && m.getP().getType()!=Piece.DRAUGTH){
         	fxBoard.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
         	BCDraugthsApp.log.info("PedinaAnimationEndHandler..fire....EventDraugthTransform "+p.getColorFX());
            
@@ -73,6 +73,7 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
        if(m.getType()==Move.EAT) {
     	   SpritePiece eated= p.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), false);
     	   fxBoard.removeSpritePiece(eated);
+    	   eated.stopPlayAnimation();
        }
 
        

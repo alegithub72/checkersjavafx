@@ -22,7 +22,6 @@ import sa.fx.draugths.animation.FrameAnimationTimer;
 import sa.fx.draugths.animation.PedinaAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.utility.BoardHW;
-import sa.gameboard.core.Checker;
 import sa.gameboard.core.Piece;
 
 /**
@@ -41,7 +40,7 @@ public class MonsterSprite extends AlienPiece {
  
     
     @Override
-    public void buildDestroyAnimation(int by) {
+    public void buildKilledSequence(int by) {
     	BCDraugthsApp.log.info("EAT BY "+((by==Piece.CHECKER)?"CHECKERS":"DAMA"));
         if (by==Piece.CHECKER ) {
 //            buildGenericFrameAnimationDestroy(15, 19, false, 0, FrameAnimationTimer.EXPLOSION);
@@ -52,7 +51,7 @@ public class MonsterSprite extends AlienPiece {
     }
     @Override
     public SpritePiece loadDraugthFrame() {
-            if (piece.getType() == Checker.DRAUGTH
+            if (piece.getType() == Piece.DRAUGTH
                 && draugthTransform == false) {
             draugthTransform = true;
             frameImages = new Image("black_dama2.png");
@@ -67,7 +66,7 @@ public class MonsterSprite extends AlienPiece {
     }
     
     @Override
-    public void buildFrameMoveAnimation(boolean ciclyc) {
+    public void buildMoveSequence(boolean ciclyc) {
         if (!draugthTransform) {
 //        	frameAnimTimer.add( new FrameAnimationTimer(2, 3,0, this,  ciclyc, 100, FrameAnimationTimer.CLOPETE));
         } else {
@@ -82,7 +81,7 @@ public class MonsterSprite extends AlienPiece {
     }    
     
     @Override
-   protected void  animPedinaEat(Move m) {
+   protected void  buildAnimPedinaEat(Move m) {
     
         ParallelTransition pt = new ParallelTransition(this);
         QuadCurveTo quadTo = new QuadCurveTo();
@@ -142,7 +141,7 @@ public class MonsterSprite extends AlienPiece {
         pt.getChildren().add(pathTransition);
 
         
-         extraSprite[0] =new Sprite("LASERmONSTER.png");
+         extraSprite[0] =new Sprite("LASERmONSTER.png","Laser");
                 PathTransition pathTransition2 = new PathTransition();
                 		pathTransition2.setDuration(Duration.seconds(2));
                 		pathTransition2.setPath(path2);

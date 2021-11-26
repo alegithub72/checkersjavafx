@@ -9,7 +9,7 @@ package sa.fx.draugths.players;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import sa.boardgame.core.players.AIPlayer;
-import sa.gameboard.core.Checker;
+import sa.gameboard.core.Piece;
 
 /**
  *
@@ -20,7 +20,7 @@ public class FXAIPlayer1 extends AIPlayer implements EventHandler<MouseEvent> {
 
 
     public FXAIPlayer1() {
-        super(Checker.BLACK);
+        super(Piece.BLACK);
 
     }
 

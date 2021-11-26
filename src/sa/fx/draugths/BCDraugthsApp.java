@@ -38,7 +38,8 @@ public class BCDraugthsApp extends Application {
     private AnimationPedinaMove anim;
     FXBoard fxb;
     public static boolean debug;
-	public static java.util.logging.Logger  log;
+    public static boolean loadScenario;
+	public static java.util.logging.Logger  log=   Logger.getAnonymousLogger();
     //PathTransition pathTransition;
     Group root;
     //RotateTransition rotateTransition;
@@ -81,12 +82,16 @@ public class BCDraugthsApp extends Application {
         if(System.getProperty("checkers.debug")!=null)
             debug="true".equals(""+System.getProperty("checkers.debug"));
         else debug=false;
-        
-    	log=   Logger.getAnonymousLogger();
+        if(System.getProperty("checkers.loadScenario")!=null)
+        	loadScenario="true".equals(""+System.getProperty("checkers.loadScenario"));
+        else loadScenario=false;
+
 		System.setProperty("java.util.logging.SimpleFormatter.format",  "%2$s   %4$s: %5$s %n");	
 		//java.util.logging.SimpleFormatter.format
-		if(debug)  log.setLevel(Level.INFO);  
-		else log.setLevel(Level.OFF);
+		if(debug) 
+			log.setLevel(Level.INFO);  
+		else 
+			log.setLevel(Level.OFF);
 
         if(System.getProperty("checkers.level")!=null)
             level=Integer.valueOf(System.getProperty("checkers.level"));
