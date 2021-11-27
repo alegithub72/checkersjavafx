@@ -9,6 +9,7 @@ import java.net.URL;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.media.AudioClip;
+import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.sprite.AlienPiece;
 import sa.fx.draugths.sprite.Sprite;
@@ -38,8 +39,8 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
     public static final String ACHW="Achievement.wav";
     public static final String ACHB="pluck.wav";
     String sound;
-    Sprite p;
-
+    Sprite sprite;
+    Move move;
 
     int i;
     int frameCount=0;
@@ -53,9 +54,10 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
     boolean startMusic=true;
 
     
-    public SimpleFrameAnimationTimer(FrameInfo[] frames,Sprite p,boolean cyclic,long interval,String sound) {
+    public SimpleFrameAnimationTimer(FrameInfo[] frames,Sprite sprite,Move move,boolean cyclic,long interval,String sound) {
     	this.frames=frames;
-        this.p = p;
+        this.sprite = sprite;
+        this.move=move;
         this.sound=sound;
         if(sound!=null){
         mediaPlayer=buildMedia(sound);
@@ -65,7 +67,19 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
         before=System.currentTimeMillis();
         this.interval=interval;
     }
-    
+    public SimpleFrameAnimationTimer(FrameInfo[] frames,Sprite sprite,boolean cyclic,long interval,String sound) {
+    	this.frames=frames;
+        this.sprite = sprite;
+        this.move=null;
+        this.sound=sound;
+        if(sound!=null){
+        mediaPlayer=buildMedia(sound);
+            
+        }
+        this.ciclyc=cyclic;
+        before=System.currentTimeMillis();
+        this.interval=interval;
+    }
     
     @Override  
     public void handle(long now) {
@@ -77,11 +91,10 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
         if(intervalTemp>this.interval) {
             
             before=System.currentTimeMillis();
-            p.setFrame(frames[i].getFrameNumber());
-            p.toFront();
+            sprite.setFrame(frames[i].getFrameNumber());
+            sprite.toFront();
             frameCount++;
-            if(p instanceof AlienPiece)
-            	BCDraugthsApp.log.info(p+"->Frame duration:"+frames[i].getDuration()+", framecount="+frameCount);
+            BCDraugthsApp.log.info("sprite:"+sprite+",frames:"+frames[i]);
             if(frameCount>=frames[i].getDuration()) {
             	i++;
             	frameCount=0;
@@ -94,7 +107,7 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
         } 
 
              
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -104,20 +117,13 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
            mediaPlayer.stop();
            
        }
-        
-
-
-        //pathTransition.stop();
-       // super.stop(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void start() {
         super.start();
-   
         this.i=0;
-        // //To change body of generated methods, choose Tools | Templates.
-        
+       
     }
     
     void playEffect(){
@@ -126,9 +132,7 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
        if(startMusic) {
            if(this.sound==FIRE|| 
                    this.sound==SPEEDY_BITE ||this.sound==CLOPETE ||this.sound==CLOPETE_DOUBLE||this.sound==MOVESPACESOLDIER ) {
-             // mediaPlayer.setCycleCount(10);
-               //mediaPlayer.seek(Duration.ONE);
-               //mediaPlayer.setPriority(1);
+
                
                mediaPlayer.setCycleCount(AudioClip.INDEFINITE);
            }

@@ -17,7 +17,7 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameInfo;
-import sa.fx.draugths.animation.PedinaAnimationEndHandler;
+import sa.fx.draugths.animation.PieceAnimationEndHandler;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.event.EventEatPieceSelect;
@@ -182,6 +182,7 @@ public abstract class SpritePiece extends Sprite{
         for(int h=0;h<frameAnimTimer.size();h++) {
             if(frameAnimTimer.get(h)!=null) {
             	frameAnimTimer.get(h).start();
+
             }
         }
     	
@@ -230,7 +231,7 @@ public abstract class SpritePiece extends Sprite{
 
         buildPedinaMovePath(m);
         buildMoveSequence(true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
 
     }  
    
@@ -238,7 +239,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMovePath(m);
         buildMoveSequence( true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
 
     }     
    
@@ -246,7 +247,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildPedinaMoveEatPath(m);
         buildMoveEatSequence( m,true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
 
 
 
@@ -255,7 +256,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMoveEatPath(m);
         buildMoveEatSequence( m,true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
 
     }       
     

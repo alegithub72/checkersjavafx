@@ -8,7 +8,7 @@ package sa.fx.draugths.sprite;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.FrameAnimationTimer;
+import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;
 
@@ -47,7 +47,7 @@ public class MoonSoldier extends SoldierPiece {
             frameImages = new Image("white_dama_moonsoldier.png");
             setImage(frameImages);
             buildFrameImages();
-            AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
+            AudioClip ach = buildMedia(ShotDistanceFrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
             ach.play();
         }

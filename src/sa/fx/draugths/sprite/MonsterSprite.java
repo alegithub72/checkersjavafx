@@ -18,8 +18,8 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.FrameAnimationTimer;
-import sa.fx.draugths.animation.PedinaAnimationEndHandler;
+import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
+import sa.fx.draugths.animation.PieceAnimationEndHandler;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;
@@ -57,7 +57,7 @@ public class MonsterSprite extends AlienPiece {
             frameImages = new Image("black_dama2.png");
             setImage(frameImages);
             buildFrameImages();
-            AudioClip ach = buildMedia(FrameAnimationTimer.ACHB);
+            AudioClip ach = buildMedia(ShotDistanceFrameAnimationTimer.ACHB);
             ach.setCycleCount(1);
             ach.play();
         }
@@ -157,7 +157,7 @@ public class MonsterSprite extends AlienPiece {
        // frameAnimTimer[1] = new FrameAnimationTimer(0, 1,0, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
         frameAnimTimer.get(1).start();
         buildFrameEatMoveAnimation( 0f, true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PedinaAnimationEndHandler(this, m));
+        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
       
 
 

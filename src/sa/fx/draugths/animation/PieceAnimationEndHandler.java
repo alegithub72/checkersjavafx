@@ -22,7 +22,7 @@ import sa.gameboard.core.Piece;
  *
  * @author  Alessio Sardaro
  */
-public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
+public class PieceAnimationEndHandler implements EventHandler<ActionEvent> {
 
     SpritePiece p;
 
@@ -30,7 +30,7 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
 
     
     Move m;
-    public PedinaAnimationEndHandler(SpritePiece p, Move m) {
+    public PieceAnimationEndHandler(SpritePiece p, Move m) {
         this.p = p;
         this.m = m;
 
@@ -42,21 +42,13 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
     	Node n =null;
     	BCDraugthsApp.log.info("PedinaAnimationEndHandler..start fire...."+p.getColorFX());
-    	//BCDraugthsApp.log.info(" associated to sprite :"+p);
-//    	BCDraugthsApp.log.info(" eventSource:"+event.getSource());
-//    	BCDraugthsApp.log.info(" eventTarget:"+event.getTarget());
-    	//BCDraugthsApp.log.info(" eventType:"+event.getEventType());
         p.stopPlayAnimation();
         FXBoard fxBoard=p.getFxBoard();
-
-        //TODO: fire point event...
         if(m.getP().getColor()==Piece.WHITE) {
         	BCDraugthsApp.log.info("PedinaAnimationEndHandler fired PointUpdateEvent..."+p.getColorFX());
         	fxBoard.fireEvent(new EventPointUpdate(m,fxBoard, EventPointUpdate.MOVE_UPDATE));
         
         }
-        // p.removeAnimationSetting();
-
         if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
             m.getI1()==7 && m.getP().getType()!=Piece.DRAUGTH) {
         	fxBoard.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
@@ -67,25 +59,16 @@ public class PedinaAnimationEndHandler implements EventHandler<ActionEvent> {
         	BCDraugthsApp.log.info("PedinaAnimationEndHandler..fire....EventDraugthTransform "+p.getColorFX());
            
         }
-
-
-
-       if(m.getType()==Move.EAT) {
-    	   SpritePiece eated= p.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), false);
-    	   fxBoard.removeSpritePiece(eated);
-    	   eated.stopPlayAnimation();
-       }
-
-       
-        for(int h=0;h<2;h++){
-            p.removeExtraSprite(h);
-        }
-        //TODO:rimuovere da qui mettere da un altra parte...
-        	BCDraugthsApp.log.info("PedinaAnimationEndHandler..fire...EventEndTurn..."+p.getColorFX());
-        	BCDraugthsApp.log.info("PedinaAnimationEndHandler..end...."+p.getColorFX());
+        	if(m.getType()==Move.EAT) {
+        		SpritePiece eated= p.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), true);
+        		eated.stopPlayAnimation();
+        		p.getFxBoard().remove(eated);
+        	}
+        	
+        	BCDraugthsApp.log.info("...fire...EventEndTurn..."+p.getColorFX());
+        	BCDraugthsApp.log.info("..end...."+p.getColorFX());
         	fxBoard.fireEvent(new EventEndTurn(p, fxBoard,EventEndTurn.END_TURN));
 
-            //fxBoard.setAnimationOn(false);
     }
 
 }

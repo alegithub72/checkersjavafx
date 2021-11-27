@@ -94,7 +94,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
            // game.playGame();
 
             game.setHuman(mousePlayer);           
-            if(BCDraugthsApp.loadScenario) load("boardDamaAlienTest.txt");
+            if(BCDraugthsApp.loadScenario) load("boardDamaTest.txt");
  
             if(game!=null) game.addRenderInterface(this);
             addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
@@ -145,7 +145,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 				public void handle(EventEndTurn event) {
 					BCDraugthsApp.log.info("Turn end...EventEndTurn HANLDER..."+event.getEventType().getName()+","+event.getP().getColorFX());
 					turnEnd();
-			
+
 					event.consume();
 				}
 			});
@@ -163,7 +163,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 					event.consume();
 				}
 			});
-            addEventHandler(EventEatAnimPiece.EATANIM_EVENT, new EventHandler<EventEatAnimPiece>() {
+            addEventHandler(EventEatAnimPiece.KILLPLAY_EVENT, new EventHandler<EventEatAnimPiece>() {
 
 				@Override
 				public void handle(EventEatAnimPiece event) {
