@@ -16,10 +16,9 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
 import sa.fx.draugths.animation.PieceAnimationEndHandler;
+import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;
@@ -40,13 +39,8 @@ public class MonsterSprite extends AlienPiece {
  
     
     @Override
-    public void buildKilledSequence(int by) {
-    	BCDraugthsApp.log.info("EAT BY "+((by==Piece.CHECKER)?"CHECKERS":"DAMA"));
-        if (by==Piece.CHECKER ) {
-//            buildGenericFrameAnimationDestroy(15, 19, false, 0, FrameAnimationTimer.EXPLOSION);
-        } else {
-//            buildGenericFrameAnimationDestroy(8, 14,  false, 0, FrameAnimationTimer.EXPLOSION);
-        }
+    public void buildKilledSequence(Move m) {
+
 
     }
     @Override
@@ -137,7 +131,7 @@ public class MonsterSprite extends AlienPiece {
               
 
         //pathTransition.setNode(laser);
-                transition[TRANSITION_STEP.FULL_STEP] = pt;
+//                transition.add( pt);
         pt.getChildren().add(pathTransition);
 
         
@@ -155,9 +149,9 @@ public class MonsterSprite extends AlienPiece {
         getFxBoard().add(extraSprite[0]);
         extraSprite[0].setVisible(true);
        // frameAnimTimer[1] = new FrameAnimationTimer(0, 1,0, extraSprite[0], 0, true, 100, FrameAnimationTimer.FIRE);
-        frameAnimTimer.get(1).start();
+//        frameAnimTimer.get(1).start();
         buildFrameEatMoveAnimation( 0f, true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
+//        transition.get(TRANSITION_STEP.FULL_STEP).setOnFinished(new PieceAnimationEndHandler(this, m));
       
 
 

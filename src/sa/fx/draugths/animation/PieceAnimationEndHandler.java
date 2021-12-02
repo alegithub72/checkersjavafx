@@ -12,6 +12,7 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.event.EventDraugthTransform;
+import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.event.EventEndTurn;
 import sa.fx.draugths.event.EventPointUpdate;
 import sa.fx.draugths.sprite.SpritePiece;
@@ -41,34 +42,41 @@ public class PieceAnimationEndHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
     	Node n =null;
-    	BCDraugthsApp.log.info("PedinaAnimationEndHandler..start fire...."+p.getColorFX());
+    	BCDraugthsApp.log.info("----------------START-------------------"+p);
+    	BCDraugthsApp.log.info("...stop animation...");
         p.stopPlayAnimation();
         FXBoard fxBoard=p.getFxBoard();
         if(m.getP().getColor()==Piece.WHITE) {
-        	BCDraugthsApp.log.info("PedinaAnimationEndHandler fired PointUpdateEvent..."+p.getColorFX());
-        	fxBoard.fireEvent(new EventPointUpdate(m,fxBoard, EventPointUpdate.MOVE_UPDATE));
+        	BCDraugthsApp.log.info("FIRE..EventPointUpdate.MOVE_UPDATE");
+        	p.fireEvent(new EventPointUpdate(p,fxBoard,m, EventPointUpdate.MOVE_UPDATE));
         
         }
         if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
             m.getI1()==7 && m.getP().getType()!=Piece.DRAUGTH) {
-        	fxBoard.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
-        	BCDraugthsApp.log.info("PedinaAnimationEndHandler..fire....EventDraugthTransform...."+p.getColorFX());
+        	p.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
+        	BCDraugthsApp.log.info("FIRE...PedinaAnimationEndHandler..EventDraugthTransform.DRAUGTH_EVENT....");
         }else if((m.getType()==Move.MOVE || m.getType()==Move.EAT) &&
                 m.getI1()==0 && m.getP().getType()!=Piece.DRAUGTH){
-        	fxBoard.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
-        	BCDraugthsApp.log.info("PedinaAnimationEndHandler..fire....EventDraugthTransform "+p.getColorFX());
+        	p.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
+        	BCDraugthsApp.log.info("FIRE....EventDraugthTransform.DRAUGTH_EVENT.... ");
            
         }
-        	if(m.getType()==Move.EAT) {
-        		SpritePiece eated= p.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), true);
-        		eated.stopPlayAnimation();
-        		p.getFxBoard().remove(eated);
-        	}
-        	
-        	BCDraugthsApp.log.info("...fire...EventEndTurn..."+p.getColorFX());
-        	BCDraugthsApp.log.info("..end...."+p.getColorFX());
-        	fxBoard.fireEvent(new EventEndTurn(p, fxBoard,EventEndTurn.END_TURN));
+		
+		
+		  if(m.getType()==Move.EAT) { 
+			  SpritePiece eated=p.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), true);
+			  BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
+			  p.fireEvent(new EventRemoveEatPiece(eated, p.getFxBoard(),EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
+
+		  }
+		 
+		 
+        	
+        	BCDraugthsApp.log.info("EventEndTurn.END_TURN..."+p);
+        	fxBoard.fireEvent(new EventEndTurn(p, fxBoard,EventEndTurn.END_TURN));
+        	BCDraugthsApp.log.info("----------------END-------------------");
+        	event.consume();
     }
 
 }

@@ -39,9 +39,9 @@ public class EventSelectionPlayer implements EventHandler<MouseEvent> {
         fxb.getMousePlayer().choosePiece();
                 
         }
-       BCDraugthsApp.log.info(" cliecked id="+p.getId());
+       BCDraugthsApp.log.info("HANDLE  EventSelectionPlayer clicked id="+p);
         event.consume();
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 

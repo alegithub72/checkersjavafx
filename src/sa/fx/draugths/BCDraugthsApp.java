@@ -39,6 +39,7 @@ public class BCDraugthsApp extends Application {
     FXBoard fxb;
     public static boolean debug;
     public static boolean loadScenario;
+    public static boolean tracepath;
 	public static java.util.logging.Logger  log=   Logger.getAnonymousLogger();
     //PathTransition pathTransition;
     Group root;
@@ -85,6 +86,9 @@ public class BCDraugthsApp extends Application {
         if(System.getProperty("checkers.loadScenario")!=null)
         	loadScenario="true".equals(""+System.getProperty("checkers.loadScenario"));
         else loadScenario=false;
+        if(System.getProperty("checkers.tracepath")!=null)
+        	tracepath="true".equals(""+System.getProperty("checkers.tracepath"));
+        else tracepath=false;        
 
 		System.setProperty("java.util.logging.SimpleFormatter.format",  "%2$s   %4$s: %5$s %n");	
 		//java.util.logging.SimpleFormatter.format

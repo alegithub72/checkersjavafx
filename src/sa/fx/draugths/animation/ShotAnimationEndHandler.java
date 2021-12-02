@@ -1,7 +1,6 @@
 package sa.fx.draugths.animation;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.sprite.Sprite;

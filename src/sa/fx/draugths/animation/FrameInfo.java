@@ -24,6 +24,11 @@ public void setDuration(int duration) {
 	this.duration = duration;
 }
 
+@Override
+public String toString() {
+	return "FrameInfo [frameNumber=" + frameNumber + ", duration=" + duration + "]";
+}
+
 
 
 }

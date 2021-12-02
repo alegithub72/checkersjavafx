@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.animation.Animation;
+import javafx.animation.ParallelTransition;
+import javafx.animation.RotateTransition;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
@@ -18,8 +20,10 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.PieceAnimationEndHandler;
+import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
 import sa.fx.draugths.animation.TRANSITION_STEP;
+import sa.fx.draugths.animation.event.EventBuildSequence;
 import sa.fx.draugths.event.EventEatPieceSelect;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;
@@ -44,8 +48,8 @@ public abstract class SpritePiece extends Sprite{
 	String colorFX;
 	FXBoard fxBoard;
 	Sprite[] extraSprite=new Sprite[2];
-	List<SimpleFrameAnimationTimer> frameAnimTimer=new ArrayList<>();
-	Animation[] transition=new Animation[5];
+	
+	ParallelTransition pltransition;
 	boolean eatedAnim;
     
     
@@ -63,8 +67,11 @@ public abstract class SpritePiece extends Sprite{
 
 
     }
-    void buildDefaultKillAnimation(FrameInfo[] frames, boolean ciclyc, long interval, String sound) {
-        frameAnimTimer.add( new SimpleFrameAnimationTimer(frames, this,  ciclyc, interval, sound));
+    void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, String sound) {
+    	SimpleFrameAnimationTimer animationTimer=  new SimpleFrameAnimationTimer(frames, this,m,  ciclyc, interval, sound);
+    	animationTimer.setDuration(Duration.seconds(0.5));
+    	pltransition.getChildren().add(animationTimer );
+
     }    
 
 
@@ -114,7 +121,7 @@ public abstract class SpritePiece extends Sprite{
         return this.nframes;
     }    
     public void play(Move m) {
-
+   	 	 pltransition=new ParallelTransition();
          if (m.getType() == Move.MOVE ) {           
          if( Piece.DRAUGTH==m.getP().getType() ) {
              buildAnimDamaMove(m);
@@ -126,8 +133,7 @@ public abstract class SpritePiece extends Sprite{
 
             
         } else if (m.getType() == Move.EAT) {
-          
-           fireEvent(new EventEatPieceSelect(m,this,EventEatPieceSelect.EAT_SELECT));  
+        
            if(m.getP().getType()==Piece.DRAUGTH){
                builAnimDamaEat(m);
                playAnimDamaEat();
@@ -160,58 +166,30 @@ public abstract class SpritePiece extends Sprite{
     }
     
     private void playAnim(){
-
-        if(transition!=null && transition.length>0 && transition[TRANSITION_STEP.FULL_STEP]!=null) {
-            transition[TRANSITION_STEP.FULL_STEP].play();
-            
-        }
-        for(int h=0;h<frameAnimTimer.size();h++) {
-            if(frameAnimTimer.get(h)!=null) {
-            	frameAnimTimer.get(h).start();
-            }
-        }
-        
-
-        //check this code.................when intersect lauch the destruction 
-        //event...
-
+    	
         if(fxBoard!=null) fxBoard.setAnimationOn(true);
+        BCDraugthsApp.log.info("playAnim prima:"+pltransition.getStatus()+" pltransition="+pltransition);
+        pltransition.play();
+
+
+
       
     }    
     public void playKilled() {
-        for(int h=0;h<frameAnimTimer.size();h++) {
-            if(frameAnimTimer.get(h)!=null) {
-            	frameAnimTimer.get(h).start();
 
-            }
-        }
+    	pltransition.play();
     	
     }
     public void stopPlayAnimation() {
 
-    	
-        for(int h=0;h<frameAnimTimer.size();h++) {
-            if(frameAnimTimer.get(h)!=null) {
-            	BCDraugthsApp.log.info(h+")Stop:"+this);
-            	frameAnimTimer.get(h).stop();
-            }
-        }
-        frameAnimTimer=new ArrayList<>();
-        
-        for (int i = 0; i < transition.length; i++) {
-            Animation a = transition[i];
-            if(a!=null) a.stop();
-
-            
-        }
+        BCDraugthsApp.log.info("PL)Stop transition:"+ pltransition.getStatus()+" pltransition=:"+pltransition);
+        pltransition.stop();
         setFrame(0);
-        transition=new Animation[3];
+
         
     }
     
-    public Duration getAnimDuration() {
-        return Duration.seconds(1.5);
-    }   
+
     
 
     
@@ -231,7 +209,7 @@ public abstract class SpritePiece extends Sprite{
 
         buildPedinaMovePath(m);
         buildMoveSequence(true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
+        pltransition.setOnFinished(new PieceAnimationEndHandler(this, m));
 
     }  
    
@@ -239,7 +217,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMovePath(m);
         buildMoveSequence( true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
+        pltransition.setOnFinished(new PieceAnimationEndHandler(this, m));
 
     }     
    
@@ -247,7 +225,7 @@ public abstract class SpritePiece extends Sprite{
     
         buildPedinaMoveEatPath(m);
         buildMoveEatSequence( m,true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
+        pltransition.setOnFinished(new PieceAnimationEndHandler(this, m));
 
 
 
@@ -256,12 +234,12 @@ public abstract class SpritePiece extends Sprite{
     
         buildDamaMoveEatPath(m);
         buildMoveEatSequence( m,true);
-        transition[TRANSITION_STEP.FULL_STEP].setOnFinished(new PieceAnimationEndHandler(this, m));
+        pltransition.setOnFinished(new PieceAnimationEndHandler(this, m));
 
     }       
     
 
-    public abstract void buildKilledSequence(int by);
+    public abstract void buildKilledSequence(Move m);
     public abstract void buildMoveSequence( boolean ciclyc);
     public abstract void buildMoveEatSequence( Move m,boolean ciclyc);
     public abstract void buildPedinaMovePath(Move m);
@@ -280,7 +258,7 @@ public abstract class SpritePiece extends Sprite{
         if(extraSprite[n]!=null) fxBoard.remove(extraSprite[n]);
     }
     public boolean isAnimMoveFinish() {
-        return transition[TRANSITION_STEP.FULL_STEP].getStatus() == Animation.Status.STOPPED;
+        return pltransition.getStatus() == Animation.Status.STOPPED;
     }
 
 

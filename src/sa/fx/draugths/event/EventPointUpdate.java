@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventTarget;
 import javafx.event.EventType;
 import sa.boardgame.core.moves.Move;
+import sa.fx.draugths.sprite.SpritePiece;
 
 public class EventPointUpdate extends Event{
 
@@ -15,9 +16,9 @@ public class EventPointUpdate extends Event{
     private Move move;
 
 
-	public EventPointUpdate(Move source, EventTarget target, EventType<EventPointUpdate> eventType) {
+	public EventPointUpdate(SpritePiece source,EventTarget target,Move move,  EventType<EventPointUpdate> eventType) {
         super(source, target, eventType);
-        this.move=source;
+        this.move=move;
 	}
     
     

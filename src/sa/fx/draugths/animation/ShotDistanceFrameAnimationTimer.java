@@ -5,13 +5,9 @@
  */
 package sa.fx.draugths.animation;
 
-import java.net.URL;
-
-import javafx.geometry.Bounds;
 import javafx.scene.media.AudioClip;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
-import sa.fx.draugths.animation.event.EventCollisionSprite;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.sprite.Sprite;
 import sa.fx.draugths.sprite.SpritePiece;
@@ -24,73 +20,41 @@ import sa.fx.draugths.sprite.SpritePiece;
 public class ShotDistanceFrameAnimationTimer extends SimpleFrameAnimationTimer{
 
 
-    SpritePiece target;
+      boolean  once;
+      SpritePiece piece;
 
-
-    boolean once;
-    
-
-    public ShotDistanceFrameAnimationTimer(FrameInfo[] frames, Sprite sprite,Move move,SpritePiece eated,boolean cyclic,long interval,String sound) {
-    	super(frames, sprite,move, cyclic, interval, sound);
-        this.target=eated;
+    public ShotDistanceFrameAnimationTimer(FrameInfo[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,String sound) {
+    	super(frames, piece,move, cyclic, interval, sound);
+    	this.piece=piece;
         once=false;
     }    
      
     
-    @Override  
-    public void handle(long now) {
+	@Override
+	protected void interpolate(double frac) {
 
-        long intervalTemp=System.currentTimeMillis()-before;
-        double lx=0,ly=0;
- 
-        playEffect();
+    	BCDraugthsApp.log.info("interpolate:"+frac);
+    	framing(frac);
+    	if(frac>0) shotFireEvent();
 
-        if(intervalTemp>this.interval) {
-        	BCDraugthsApp.log.info(" sprite:"+sprite+",frame:"+frames[i]);
-            before=System.currentTimeMillis();
-            sprite.setFrame(frames[i].getFrameNumber());
-            sprite.toFront();
-                   
-            frameCount++;       
-            if(frames[i].getDuration()>=frameCount) {
-            	i++;
-            	frameCount=0;
-            }
-            if(this.ciclyc){
-                if(i>=frames.length) i=0;
-            }else if(!this.ciclyc && (i>=frames.length) )  i=frames.length-1;
-
-        }            
 
     }
 
-
-
-
-    @Override
-    void playEffect(){
-        
-       if(mediaPlayer!=null)  {
-       if(startMusic) {
-           if(this.sound==FIRE|| 
-                   this.sound==SPEEDY_BITE ||this.sound==CLOPETE ||this.sound==CLOPETE_DOUBLE||this.sound==MOVESPACESOLDIER ) {
-
-               
-               mediaPlayer.setCycleCount(AudioClip.INDEFINITE);
-           }
+    private synchronized void shotFireEvent() {
+    	if( !once ) {
+        	once=true;
+        	SpritePiece eated= piece.getFxBoard().getSpritePiece(move.getEat().getI(), move.getEat().getJ(), move.getEat().getColor(), true);
+    		BCDraugthsApp.log.info("FIRE EventEatAnimPiece.KILLPLAY_EVENT:"+eated);
+    		piece.getFxBoard().fireEvent(new EventEatAnimPiece(eated,piece.getFxBoard() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
            
-
-               mediaPlayer.play();
-        	if( !once && (this.move.getType()!=Move.EAT)) {
-   	        	sprite.fireEvent(new EventEatAnimPiece(sprite, sprite, EventEatAnimPiece.KILLPLAY_EVENT));
-   	        	once=true;
-   	        }	
-               startMusic=false;
-           }
-           
-       }        
-        
+           }    	
+    	
     }
+    
+	
+
+
+
     
     
 

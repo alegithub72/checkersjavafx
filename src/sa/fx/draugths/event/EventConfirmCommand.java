@@ -31,7 +31,7 @@ public class EventConfirmCommand implements EventHandler<MouseEvent>{
     @Override
     public void handle(MouseEvent event) {
         mousePlayer.setMoveChoose(n);
-        BCDraugthsApp.log.info("Hai scelto la mossa "+n+"°");
+        BCDraugthsApp.log.info("HANDLE EventConfirmCommand Hai scelto la mossa "+n+"°");
         Move m=mousePlayer.chooseMove();
 
         //System.out.println("m="+m+", p.i="+m.getP().getI()+",p.j="+m.getP().getJ());

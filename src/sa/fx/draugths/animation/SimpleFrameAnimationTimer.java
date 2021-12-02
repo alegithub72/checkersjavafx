@@ -8,10 +8,13 @@ package sa.fx.draugths.animation;
 import java.net.URL;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
+import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
-import sa.fx.draugths.sprite.AlienPiece;
 import sa.fx.draugths.sprite.Sprite;
 
 
@@ -19,7 +22,7 @@ import sa.fx.draugths.sprite.Sprite;
  *
  * @author Alessio Sardaro
  */
-public class SimpleFrameAnimationTimer extends AnimationTimer{
+public class SimpleFrameAnimationTimer extends Transition{
 	FrameInfo[]  frames;
     public static final String FIRE="fire5.wav";
     public static final String SPEEDY_BITE="speedy_bite.wav";
@@ -66,6 +69,7 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
         this.ciclyc=cyclic;
         before=System.currentTimeMillis();
         this.interval=interval;
+        addEndHandler();
     }
     public SimpleFrameAnimationTimer(FrameInfo[] frames,Sprite sprite,boolean cyclic,long interval,String sound) {
     	this.frames=frames;
@@ -74,57 +78,31 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
         this.sound=sound;
         if(sound!=null){
         mediaPlayer=buildMedia(sound);
+
             
         }
         this.ciclyc=cyclic;
         before=System.currentTimeMillis();
         this.interval=interval;
+        addEndHandler();
+     
     }
     
-    @Override  
-    public void handle(long now) {
+    public void setDuration(Duration s) {
+    	setCycleDuration(s);
     	
-        long intervalTemp=System.currentTimeMillis()-before;
-
-		 
-        playEffect();
-        if(intervalTemp>this.interval) {
-            
-            before=System.currentTimeMillis();
-            sprite.setFrame(frames[i].getFrameNumber());
-            sprite.toFront();
-            frameCount++;
-            BCDraugthsApp.log.info("sprite:"+sprite+",frames:"+frames[i]);
-            if(frameCount>=frames[i].getDuration()) {
-            	i++;
-            	frameCount=0;
-                if(this.ciclyc){
-                    if(i>=frames.length) i=0;
-                }else if(!this.ciclyc && (i>=(frames.length) ))  i=frames.length-1;            	
-            }
-
-
-        } 
-
-             
-
     }
 
-    @Override
-    public void stop() {
-       super.stop();
-       if(mediaPlayer!=null)  {
-           mediaPlayer.stop();
-           
-       }
-    }
 
-    @Override
-    public void start() {
-        super.start();
-        this.i=0;
-       
-    }
+    public Sprite getSprite() {
+		return sprite;
+	}
+	public void setSprite(Sprite sprite) {
+		this.sprite = sprite;
+	}
+	
+	
+
     
     void playEffect(){
         
@@ -153,6 +131,47 @@ public class SimpleFrameAnimationTimer extends AnimationTimer{
         return new AudioClip(url.toString());
                 
     }
-    
-    
+	@Override
+	protected void interpolate(double frac) {
+		framing(frac);
+
+
+		
+	}
+	protected void framing(double frac) {
+        long intervalTemp=System.currentTimeMillis()-before;
+
+
+        if(intervalTemp>this.interval) {
+        	
+            before=System.currentTimeMillis();
+            sprite.setFrame(frames[i].getFrameNumber());
+            playEffect();
+            sprite.toFront();
+            frameCount++;
+            BCDraugthsApp.log.info("sprite:"+sprite+",frames:"+frames[i]);
+            if(frameCount>=frames[i].getDuration()) {
+            	i++;
+            	frameCount=0;
+                if(this.ciclyc){
+                    if(i>=frames.length) i=0;
+                }else if(!this.ciclyc && (i>=(frames.length) ))  i=frames.length-1;            	
+            }
+  
+        } 
+
+
+		
+	}
+    private void addEndHandler() {
+        setOnFinished(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				  mediaPlayer.stop();
+				  event.consume();
+				
+			}
+		});   
+    }
 }

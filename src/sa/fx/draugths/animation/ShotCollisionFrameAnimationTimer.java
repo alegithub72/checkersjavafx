@@ -5,8 +5,6 @@
  */
 package sa.fx.draugths.animation;
 
-import java.net.URL;
-
 import javafx.geometry.Bounds;
 import javafx.scene.media.AudioClip;
 import sa.fx.draugths.BCDraugthsApp;
@@ -18,76 +16,43 @@ import sa.fx.draugths.sprite.SpritePiece;
  *
  * @author Alessio Sardaro
  */
-public class ShotCollisionFrameAnimationTimer extends ShotDistanceFrameAnimationTimer {
+public class ShotCollisionFrameAnimationTimer extends SimpleFrameAnimationTimer {
 
 	public Sprite shot;
-
+	SpritePiece target;
+	boolean once=false;
 	// private PathTransition pathTransition;
 
-	public ShotCollisionFrameAnimationTimer(FrameInfo[] frames, Sprite sprite, SpritePiece target, Sprite shot,
+	public ShotCollisionFrameAnimationTimer(FrameInfo[] frames, SpritePiece sprite, SpritePiece target, Sprite shot,
 			boolean cyclic, long interval, String sound) {
-		super(frames, sprite, null, target, cyclic, interval, sound);
+		super(frames, sprite, cyclic, interval, sound);
+		this.target=target;
 		this.shot = shot;
+	
 
 	}
 
 	@Override
-	public void handle(long now) {
+	public void interpolate(double now) {
 
-		long intervalTemp = System.currentTimeMillis() - before;
-		playEffect();
 		double lx = 0, ly = 0;
 		if (target != null) {
 			Bounds pSceneBound = shot.localToScene(shot.getBoundsInLocal());
 			Bounds targetSceneBound = target.localToScene(target.getBoundsInLocal());
 			if (pSceneBound.intersects(targetSceneBound) && !once) {
 				BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
-				sprite.fireEvent(new EventEatAnimPiece(sprite, sprite, EventEatAnimPiece.KILLPLAY_EVENT));
+				sprite.fireEvent(new EventEatAnimPiece(target,target.getFxBoard() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
 				once = true;
 				shot.setVisible(false);
 				target.getFxBoard().remove(shot);
 			}
 
 		}
+		super.interpolate(now);
 
-		if (intervalTemp > this.interval) {
-
-			before = System.currentTimeMillis();
-			sprite.setFrame(frames[i].getFrameNumber());
-			sprite.toFront();
-			frameCount++;
-			if (frames[i].getDuration() >= frameCount) {
-				i++;
-				frameCount = 0;
-			}
-
-			if (this.ciclyc) {
-				if (i >= frames.length)
-					i = 0;
-			} else if (!this.ciclyc && (i >= frames.length))
-				i = frames.length - 1;
-
-		}
 
 
 	}
 
-	@Override
-	void playEffect() {
-
-		if (mediaPlayer != null) {
-			if (startMusic) {
-				if (this.sound == FIRE || this.sound == SPEEDY_BITE || this.sound == CLOPETE
-						|| this.sound == CLOPETE_DOUBLE || this.sound == MOVESPACESOLDIER) {
-					mediaPlayer.setCycleCount(AudioClip.INDEFINITE);
-				}
-
-				mediaPlayer.play();
-				startMusic = false;
-			}
-
-		}
-
-	}
 
 }

@@ -22,9 +22,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
 import sa.fx.draugths.animation.ScreenPause;
 import sa.fx.draugths.animation.ScreenPauseInterface;
+import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
 
 
 /**
