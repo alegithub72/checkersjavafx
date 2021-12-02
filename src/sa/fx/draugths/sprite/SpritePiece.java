@@ -8,11 +8,13 @@ package sa.fx.draugths.sprite;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import javafx.animation.Animation;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
+import javafx.animation.Transition;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
@@ -50,6 +52,7 @@ public abstract class SpritePiece extends Sprite{
 	Sprite[] extraSprite=new Sprite[2];
 	
 	ParallelTransition pltransition;
+	Hashtable<String,Transition> steps;
 	boolean eatedAnim;
     
     
@@ -62,6 +65,7 @@ public abstract class SpritePiece extends Sprite{
         this.wSquare=boardHW.getH();
         this.hSquare=boardHW.getW();
         this.fxBoard=b;
+        steps=new Hashtable<>();
 
                 
 
@@ -122,6 +126,7 @@ public abstract class SpritePiece extends Sprite{
     }    
     public void play(Move m) {
    	 	 pltransition=new ParallelTransition();
+   	 	 steps=new Hashtable<String, Transition>();
          if (m.getType() == Move.MOVE ) {           
          if( Piece.DRAUGTH==m.getP().getType() ) {
              buildAnimDamaMove(m);

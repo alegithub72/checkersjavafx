@@ -7,6 +7,7 @@ package sa.fx.draugths.animation;
 
 import javafx.geometry.Bounds;
 import javafx.scene.media.AudioClip;
+import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.sprite.Sprite;
@@ -18,37 +19,47 @@ import sa.fx.draugths.sprite.SpritePiece;
  */
 public class ShotCollisionFrameAnimationTimer extends SimpleFrameAnimationTimer {
 
-	public Sprite shot;
+	Sprite shot;
+	SpritePiece piece;
 	SpritePiece target;
-	boolean once=false;
+	boolean once;
 	// private PathTransition pathTransition;
 
-	public ShotCollisionFrameAnimationTimer(FrameInfo[] frames, SpritePiece sprite, SpritePiece target, Sprite shot,
+	public ShotCollisionFrameAnimationTimer(FrameInfo[] frames, Move move, SpritePiece sprite, Sprite shot,
 			boolean cyclic, long interval, String sound) {
-		super(frames, sprite, cyclic, interval, sound);
-		this.target=target;
+		super(frames, shot,move, cyclic, interval, sound);
+	     this.piece=sprite;
 		this.shot = shot;
-	
+		once=false;
+		target=piece.getFxBoard().getSpritePiece(move.getEat().getI(),move.getEat().getJ(),move.getEat().getColor() , true);
 
 	}
 
 	@Override
 	public void interpolate(double now) {
-
+		
 		double lx = 0, ly = 0;
-		if (target != null) {
-			Bounds pSceneBound = shot.localToScene(shot.getBoundsInLocal());
-			Bounds targetSceneBound = target.localToScene(target.getBoundsInLocal());
-			if (pSceneBound.intersects(targetSceneBound) && !once) {
-				BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
-				sprite.fireEvent(new EventEatAnimPiece(target,target.getFxBoard() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
-				once = true;
-				shot.setVisible(false);
-				target.getFxBoard().remove(shot);
-			}
+		if(!once) {
+			
+			if (target != null) {
+				Bounds pSceneBound = shot.localToScene(shot.getBoundsInLocal());
+				
+				Bounds targetSceneBound = target.localToScene(target.getBoundsInLocal());
+				if (pSceneBound.intersects(targetSceneBound)) {
+					BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
+					sprite.fireEvent(new EventEatAnimPiece(target,target.getFxBoard() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
+					once = true;
+					shot.setVisible(false);
 
+				}
+
+			}			
+			
+			
 		}
-		super.interpolate(now);
+		
+
+		framing(now);
 
 
 

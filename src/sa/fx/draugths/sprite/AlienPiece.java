@@ -57,12 +57,15 @@ public class AlienPiece extends SpritePiece {
     }
 
     public void buildMoveSequence(boolean ciclyc) {
+    	SimpleFrameAnimationTimer transition=null;
         if (!draugthTransform) {
-        	SimpleFrameAnimationTimer transition=new  SimpleFrameAnimationTimer(moveSequenceFrame, this, ciclyc, 50, ShotDistanceFrameAnimationTimer.CLOPETE);
+        	transition=new  SimpleFrameAnimationTimer(moveSequenceFrame, this, ciclyc, 50, ShotDistanceFrameAnimationTimer.CLOPETE);
         	pltransition.getChildren().add(transition);
         	transition.setDuration(pltransition.getTotalDuration());
         } else {
-        	pltransition.getChildren().add( new SimpleFrameAnimationTimer(moveSequenceFrame,this ,ciclyc, 50, ShotDistanceFrameAnimationTimer.CLOPETE_DOUBLE));
+        	transition=new SimpleFrameAnimationTimer(moveSequenceFrame,this ,ciclyc, 50, ShotDistanceFrameAnimationTimer.CLOPETE_DOUBLE);
+        	pltransition.getChildren().add( transition);
+        	transition.setDuration(pltransition.getTotalDuration());
         }
 
     }
@@ -287,13 +290,13 @@ public class AlienPiece extends SpritePiece {
                 pathTransition.setCycleCount(1);
                 pathTransition.setAutoReverse(true);
                 //.build();
-                SpritePiece source=this;
+         SpritePiece eated=fxBoard.getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), true);      
          pathTransition.setOnFinished(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
 				BCDraugthsApp.log.info("FIRE EventEatAnimPiece.KILLPLAY_EVENT At end of animation...");
-            	fireEvent(new EventEatAnimPiece(source,source.getFxBoard() ,m, EventEatAnimPiece.KILLPLAY_EVENT));
+            	fireEvent(new EventEatAnimPiece(eated,fxBoard ,m, EventEatAnimPiece.KILLPLAY_EVENT));
 				
 			}
 		});
@@ -306,13 +309,14 @@ public class AlienPiece extends SpritePiece {
         pathTransition2.setAutoReverse(true);
         pathTransition2.setDelay(Duration.seconds(0.5));
         
-        pltransition.getChildren().add(sq);
+        
         if(BCDraugthsApp.tracepath)   {
         	this.getFxBoard().add(path);
         	this.getFxBoard().add(path2);
         }
         sq.getChildren().add(pathTransition);
         sq.getChildren().add(pathTransition2);
+        pltransition.getChildren().add(sq);
     }
 
     @Override

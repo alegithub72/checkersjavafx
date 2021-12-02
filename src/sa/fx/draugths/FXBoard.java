@@ -94,7 +94,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
            // game.playGame();
 
             game.setHuman(mousePlayer);           
-            if(BCDraugthsApp.loadScenario) load("boardPedinaWhiteTest.txt");
+            if(BCDraugthsApp.loadScenario) load("boardDamaAlienTest.txt");
  
             if(game!=null) game.addRenderInterface(this);
             addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
@@ -594,7 +594,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
 		}
 		Reflection reflection = new Reflection();
-		reflection.setFraction(0.7);
+		reflection.setFraction(0.1);
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setRadius(20.0);
 		dropShadow.setOffsetX(0.0);
@@ -602,6 +602,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 		dropShadow.setColor(Color.BLACK);
 		if (pedina != null) {
 			pedina.setEffect(dropShadow);
+			//pedina.setEffect(reflection);
 			pedina.setOnMouseClicked(new EventSelectionPlayer(this, pedina));
 		}
 

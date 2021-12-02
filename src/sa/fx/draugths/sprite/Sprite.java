@@ -44,11 +44,17 @@ public class Sprite extends ImageView {
     }
     
 
-    
-    @Override
+
+
+
+
+	@Override
 	public String toString() {
-		return "Sprite [frames=" + Arrays.toString(frames) + ", k=" + k + ", name=" + name + "]";
+		return "Sprite [k=" + k + ", name=" + name + "]";
 	}
+
+
+
 
 
 

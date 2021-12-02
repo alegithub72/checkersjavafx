@@ -47,7 +47,7 @@ public class SoldierPiece extends SpritePiece {
     int color;
     private static final String CHECKER_SOLDIER_IMAGE="soldier_checker.png";
     private static final String DRAUGTH_SOLDIER_IMAGE="soldier_checker_dama.png";
-
+    private static final String DAMA_TAKEOFF="DAMA_TAKEOFF";
     
     public SoldierPiece( Piece boardPiece,
             BoardHW boardHW,  FXBoard board) {
@@ -119,13 +119,13 @@ public class SoldierPiece extends SpritePiece {
 		SimpleFrameAnimationTimer transition=null;
 	    if (!draugthTransform) {
 	    	
-	    	transition= new ShotDistanceFrameAnimationTimer(eatMoveSequenceFrame, this,m, ciclyc, 20, ShotDistanceFrameAnimationTimer.FIRE);
+	    	transition= new ShotDistanceFrameAnimationTimer(eatMoveSequenceFrame, this,m, ciclyc, 20, SimpleFrameAnimationTimer.FIRE);
 	    	transition.setDuration(pltransition.getTotalDuration());
 
 
 	    } else {
-	    	//TODO:not used
-	    	transition=new SimpleFrameAnimationTimer(eatMoveSequenceFrame, this,m ,ciclyc, 20, ShotDistanceFrameAnimationTimer.ELICOPTER);
+
+	    	transition=new SimpleFrameAnimationTimer(eatMoveSequenceFrame,this ,ciclyc, 20, SimpleFrameAnimationTimer.ELICOPTER);
 	    	transition.setDuration(pltransition.getTotalDuration());
 	    	}
 	    pltransition.getChildren().add( transition);
@@ -312,8 +312,8 @@ public class SoldierPiece extends SpritePiece {
     }
 
     public void buildDamaMoveEatPath(Move m) {
-        ParallelTransition pt = new ParallelTransition(this);
-        ParallelTransition pt2 = new ParallelTransition(this);
+//        ParallelTransition pt = new ParallelTransition(this);
+//        ParallelTransition pt2 = new ParallelTransition(this);
         //javafx.scene.shape.
     
         double x0 = convertBoardJtoPositionXCenter(m.getP().getJ(), wSquare);
@@ -380,17 +380,20 @@ public class SoldierPiece extends SpritePiece {
           pathTransition2.setOrientation(PathTransition.OrientationType.NONE);
           pathTransition2.setCycleCount(1);
           pathTransition2.setAutoReverse(true); 
+          pathTransition2.setDelay(Duration.seconds(1));
           
        // transition[TRANSITION_STEP.FIRST_HALF_STEP] = pt;
 
        // transition[TRANSITION_STEP.SECOND_HALF_STEP] = pt2;
 
-        pt2.setDelay(Duration.seconds(1));
-        pt.getChildren().add(pathTransition);
-        pt2.getChildren().add(pathTransition2);
+//        pt2.setDelay(Duration.seconds(1));
+//        pt.getChildren().add(pathTransition);
+//        pt2.getChildren().add(pathTransition2);
+        steps.put(DAMA_TAKEOFF, pathTransition);
+        
         SequentialTransition seq=new SequentialTransition();
-        seq.getChildren().add(pt);
-        seq.getChildren().add(pt2);
+        seq.getChildren().add(pathTransition);
+        seq.getChildren().add(pathTransition2);
         pltransition.getChildren().add(seq);
         if(BCDraugthsApp.tracepath)   {
         	this.getFxBoard().add(path);
@@ -406,10 +409,10 @@ public class SoldierPiece extends SpritePiece {
         extraSprite[0]= new Sprite("missile2.png","missile");
         
         this.getFxBoard().add(extraSprite[0]);
-        //x missile.toFront();
+
         double x =convertBoardJtoPositionXCenter( m.getP().getJ(),wSquare);
         double y = convertBoardItoPositionYCenter(m.getP().getI()-1, hSquare);
-                //m.getP().getJ();
+
         double xe=convertBoardJtoPositionXCenter(m.getEat().getJ(), wSquare);
         double ye=convertBoardItoPositionYCenter(m.getEat().getI(), hSquare);
         extraSprite[0].setVisible(false);
@@ -435,34 +438,35 @@ public class SoldierPiece extends SpritePiece {
                 )
                 ;
         PathTransition pathMissileTransition = new PathTransition();
-        pathMissileTransition.setDuration(Duration.seconds(1));
+        pathMissileTransition.setDuration(Duration.seconds(0.8));
         pathMissileTransition.setPath(path);
         pathMissileTransition.setNode(extraSprite[0]);
         pathMissileTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         pathMissileTransition.setCycleCount(1);
         pathMissileTransition.setAutoReverse(true);
-                //.build();
 
-        //table.getChildren().add(path);
         ptMissile.getChildren().add(pathMissileTransition);
         if(BCDraugthsApp.tracepath)   {
         	this.getFxBoard().add(path);
         }
         
-      
-        buildDamaMoveEatPath(m);
-        SpritePiece eated= this.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), true);
-        Transition  transitionMissile=new ShotCollisionFrameAnimationTimer(moveSequenceFrame, this,eated,extraSprite[0],true,25,SimpleFrameAnimationTimer.ELICOPTER);
-        ptMissile.getChildren().add(transitionMissile);
-		 SimpleFrameAnimationTimer missileAnim=new SimpleFrameAnimationTimer(
+        
+
+        ShotCollisionFrameAnimationTimer missileAnim=new ShotCollisionFrameAnimationTimer(
 				 new FrameInfo[] {new FrameInfo(0,1),
 						 new FrameInfo(1,1),new FrameInfo(2,1),new FrameInfo(3,1),
 						 new FrameInfo(4,1),new FrameInfo(5,1),new FrameInfo(6,1),new FrameInfo(7,1)} 
-				 ,extraSprite[0],null,true,50,SimpleFrameAnimationTimer.MISSILE);
-		 ptMissile.getChildren().add(missileAnim);
-        //pltransition.getChildren().add(ptMissile);
-        pltransition.setOnFinished(new EventHandler<ActionEvent>() {
-        	 
+				 ,m,this,extraSprite[0],true,10,SimpleFrameAnimationTimer.MISSILE);
+		 missileAnim.setDuration(ptMissile.getTotalDuration());
+	    
+		 ptMissile.getChildren().add(missileAnim);       
+      
+        buildDamaMoveEatPath(m);
+
+
+
+        steps.get(DAMA_TAKEOFF).setOnFinished(new EventHandler<ActionEvent>() {
+
 
 			@Override
 			public void handle(ActionEvent event) {
@@ -472,23 +476,13 @@ public class SoldierPiece extends SpritePiece {
 		       
 			}
 		});
-       
+        buildMoveEatSequence(m, true);
         pathMissileTransition.setOnFinished(new ShotAnimationEndHandler(extraSprite[0],this));
-        ptMissile.setOnFinished(new PieceAnimationEndHandler(this, m));
+        pltransition.setOnFinished(new PieceAnimationEndHandler(this, m));
         
     }
 
-    @Override
-    protected void playAnimDamaEat() {
-    	pltransition.play();
-            
-        
 
-        if(fxBoard!=null) fxBoard.setAnimationOn(true);
-
-  
-
-    }
 
     public SpritePiece loadDraugthFrame() {
     	SpritePiece sp=null;
