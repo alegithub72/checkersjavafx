@@ -21,7 +21,6 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
-import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;

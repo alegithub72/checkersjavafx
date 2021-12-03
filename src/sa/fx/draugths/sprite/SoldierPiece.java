@@ -6,14 +6,10 @@
 package sa.fx.draugths.sprite;
 
 
-import java.util.ArrayList;
-
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
-import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
-import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
@@ -32,8 +28,7 @@ import sa.fx.draugths.animation.ShotAnimationEndHandler;
 import sa.fx.draugths.animation.ShotCollisionFrameAnimationTimer;
 import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
-import sa.fx.draugths.animation.TRANSITION_STEP;
-import sa.fx.draugths.animation.event.EventEatAnimPiece;
+import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;
 
@@ -75,7 +70,7 @@ public class SoldierPiece extends SpritePiece {
            
         	if(!draugthTransform) { 
 
-        		 transition= new SimpleFrameAnimationTimer(killSequenceFrame, this, false, 25, ShotDistanceFrameAnimationTimer.BITE);
+        		 transition= new SimpleFrameAnimationTimer(killSequenceFrame, this, false, 25, SimpleFrameAnimationTimer.BITE);
         		 transition.setDuration(Duration.seconds(0.5));
         		 
 
@@ -85,15 +80,31 @@ public class SoldierPiece extends SpritePiece {
         } else if (m.getP().getType()  ==Piece.DRAUGTH)  {
         
           if(draugthTransform) {
-        	   transition=new SimpleFrameAnimationTimer(killSequenceFrame, this, false, 25, ShotDistanceFrameAnimationTimer.BITE);
+        	   transition=new SimpleFrameAnimationTimer(killSequenceFrame, this, false, 25, SimpleFrameAnimationTimer.BITE);
         	   transition.setDuration(Duration.seconds(0.5));
           }
           else {
-        	   transition=new SimpleFrameAnimationTimer(killSequenceFrame, this, false, 25, ShotDistanceFrameAnimationTimer.BITE); 
+        	   transition=new SimpleFrameAnimationTimer(killSequenceFrame, this, false, 25, SimpleFrameAnimationTimer.BITE); 
         	   transition.setDuration(Duration.seconds(0.5));
           }
               
         }
+        SpritePiece eated=this;
+        transition.setOnFinished(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				  if(m.getType()==Move.EAT) { 
+					  
+					  BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
+					  fireEvent(new EventRemoveEatPiece(eated, fxBoard,EventRemoveEatPiece.REMOVE_PIECE_EVENT));
+
+
+				  }
+				
+			}
+		});
 		pltransition.getChildren().add( transition);
 
     }
@@ -455,8 +466,8 @@ public class SoldierPiece extends SpritePiece {
         ShotCollisionFrameAnimationTimer missileAnim=new ShotCollisionFrameAnimationTimer(
 				 new FrameInfo[] {new FrameInfo(0,1),
 						 new FrameInfo(1,1),new FrameInfo(2,1),new FrameInfo(3,1),
-						 new FrameInfo(4,1),new FrameInfo(5,1),new FrameInfo(6,1),new FrameInfo(7,1)} 
-				 ,m,this,extraSprite[0],true,10,SimpleFrameAnimationTimer.MISSILE);
+						 new FrameInfo(4,1),new FrameInfo(5,1),new FrameInfo(6,1),new FrameInfo(7,1),new FrameInfo(5,1),new FrameInfo(6,1),new FrameInfo(7,1)} 
+				 ,m,this,extraSprite[0],true,100,SimpleFrameAnimationTimer.MISSILE);
 		 missileAnim.setDuration(ptMissile.getTotalDuration());
 	    
 		 ptMissile.getChildren().add(missileAnim);       

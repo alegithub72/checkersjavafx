@@ -17,9 +17,7 @@ import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.PieceAnimationEndHandler;
 import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
-import sa.fx.draugths.animation.TRANSITION_STEP;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;
 

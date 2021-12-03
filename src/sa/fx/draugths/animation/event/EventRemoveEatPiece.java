@@ -3,7 +3,6 @@ package sa.fx.draugths.animation.event;
 import javafx.event.Event;
 import javafx.event.EventTarget;
 import javafx.event.EventType;
-import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.sprite.SpritePiece;
 
 public class EventRemoveEatPiece extends  EventAnimPiece{

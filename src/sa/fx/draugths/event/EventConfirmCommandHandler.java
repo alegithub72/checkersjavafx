@@ -6,6 +6,7 @@
 package sa.fx.draugths.event;
 
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
@@ -17,12 +18,13 @@ import sa.fx.draugths.players.FXPMousePlayer;
  *
  * @author  Alessio Sardaro
  */
-public class EventConfirmCommand implements EventHandler<MouseEvent>{
+public class EventConfirmCommandHandler implements EventHandler<MouseEvent>{
     int n;
     FXBoard bb;
     FXPMousePlayer mousePlayer;
     
-  public   EventConfirmCommand(FXPMousePlayer mousePLayer,int n,FXBoard bb){
+  public   EventConfirmCommandHandler(FXPMousePlayer mousePLayer,int n,FXBoard bb){
+	  	super();
         this.n=n;
         this.bb=bb;
         mousePlayer=mousePLayer;
@@ -30,6 +32,7 @@ public class EventConfirmCommand implements EventHandler<MouseEvent>{
     }
     @Override
     public void handle(MouseEvent event) {
+    	if(event.getEventType()==MouseEvent.MOUSE_CLICKED && event.getButton()==MouseButton.PRIMARY) {
         mousePlayer.setMoveChoose(n);
         BCDraugthsApp.log.info("HANDLE EventConfirmCommand Hai scelto la mossa "+n+"°");
         Move m=mousePlayer.chooseMove();
@@ -41,6 +44,7 @@ public class EventConfirmCommand implements EventHandler<MouseEvent>{
         mousePlayer.deleteMoveChoose();
         //app.makePlayer2Move();
         event.consume();
+    	}
     }
     
 }

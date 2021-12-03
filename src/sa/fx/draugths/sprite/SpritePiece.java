@@ -7,14 +7,13 @@ package sa.fx.draugths.sprite;
 
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.HashMap;
 
 import javafx.animation.Animation;
 import javafx.animation.ParallelTransition;
-import javafx.animation.RotateTransition;
 import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
@@ -22,11 +21,8 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.PieceAnimationEndHandler;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
 import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
-import sa.fx.draugths.animation.TRANSITION_STEP;
-import sa.fx.draugths.animation.event.EventBuildSequence;
-import sa.fx.draugths.event.EventEatPieceSelect;
+import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;
 
@@ -52,7 +48,7 @@ public abstract class SpritePiece extends Sprite{
 	Sprite[] extraSprite=new Sprite[2];
 	
 	ParallelTransition pltransition;
-	Hashtable<String,Transition> steps;
+	HashMap<String,Transition> steps;
 	boolean eatedAnim;
     
     
@@ -65,16 +61,33 @@ public abstract class SpritePiece extends Sprite{
         this.wSquare=boardHW.getH();
         this.hSquare=boardHW.getW();
         this.fxBoard=b;
-        steps=new Hashtable<>();
+        steps=new HashMap<>();
 
                 
 
 
     }
     void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, String sound) {
-    	SimpleFrameAnimationTimer animationTimer=  new SimpleFrameAnimationTimer(frames, this,m,  ciclyc, interval, sound);
-    	animationTimer.setDuration(Duration.seconds(0.5));
-    	pltransition.getChildren().add(animationTimer );
+    	SimpleFrameAnimationTimer transition=  new SimpleFrameAnimationTimer(frames, this,m,  ciclyc, interval, sound);
+    	transition.setDuration(Duration.seconds(0.5));
+    	pltransition.getChildren().add(transition );
+    	SpritePiece eated=this;
+        transition.setOnFinished(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				  if(m.getType()==Move.EAT) { 
+					  
+					  BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
+					  fireEvent(new EventRemoveEatPiece(eated, fxBoard,EventRemoveEatPiece.REMOVE_PIECE_EVENT));
+
+
+				  }
+				
+			}
+        });
+			
 
     }    
 
@@ -126,7 +139,7 @@ public abstract class SpritePiece extends Sprite{
     }    
     public void play(Move m) {
    	 	 pltransition=new ParallelTransition();
-   	 	 steps=new Hashtable<String, Transition>();
+   	 	 steps=new HashMap<>();
          if (m.getType() == Move.MOVE ) {           
          if( Piece.DRAUGTH==m.getP().getType() ) {
              buildAnimDamaMove(m);

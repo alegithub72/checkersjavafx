@@ -5,11 +5,9 @@
  */
 package sa.fx.draugths.animation;
 
-import javafx.scene.media.AudioClip;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
-import sa.fx.draugths.sprite.Sprite;
 import sa.fx.draugths.sprite.SpritePiece;
 
 

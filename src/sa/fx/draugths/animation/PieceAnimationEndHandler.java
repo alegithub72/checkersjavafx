@@ -12,7 +12,6 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.event.EventDraugthTransform;
-import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.event.EventEndTurn;
 import sa.fx.draugths.event.EventPointUpdate;
 import sa.fx.draugths.sprite.SpritePiece;
@@ -53,23 +52,18 @@ public class PieceAnimationEndHandler implements EventHandler<ActionEvent> {
         }
         if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
             m.getI1()==7 && m.getP().getType()!=Piece.DRAUGTH) {
-        	p.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
         	BCDraugthsApp.log.info("FIRE...PedinaAnimationEndHandler..EventDraugthTransform.DRAUGTH_EVENT....");
+        	p.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
+
         }else if((m.getType()==Move.MOVE || m.getType()==Move.EAT) &&
                 m.getI1()==0 && m.getP().getType()!=Piece.DRAUGTH){
+           	BCDraugthsApp.log.info("FIRE....EventDraugthTransform.DRAUGTH_EVENT.... ");
         	p.fireEvent(new EventDraugthTransform(p, fxBoard, EventDraugthTransform.DRAUGTH_EVENT));
-        	BCDraugthsApp.log.info("FIRE....EventDraugthTransform.DRAUGTH_EVENT.... ");
+ 
            
         }
 		
-		
-		  if(m.getType()==Move.EAT) { 
-			  SpritePiece eated=p.getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(), m.getEat().getColor(), true);
-			  BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
-			  p.fireEvent(new EventRemoveEatPiece(eated, p.getFxBoard(),EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
-
-		  }
 		 
 		 
         	

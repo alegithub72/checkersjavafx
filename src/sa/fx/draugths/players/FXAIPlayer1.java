@@ -9,6 +9,7 @@ package sa.fx.draugths.players;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import sa.boardgame.core.players.AIPlayer;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.gameboard.core.Piece;
 
 /**
@@ -26,7 +27,7 @@ public class FXAIPlayer1 extends AIPlayer implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-    
+    	BCDraugthsApp.log.info(".........................event:"+event.getEventType());
         event.consume();
         
     }

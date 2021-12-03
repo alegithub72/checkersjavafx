@@ -5,8 +5,6 @@
  */
 package sa.fx.draugths.sprite;
 
-import java.util.Arrays;
-
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

@@ -6,7 +6,6 @@
 package sa.fx.draugths.animation;
 
 import javafx.geometry.Bounds;
-import javafx.scene.media.AudioClip;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;

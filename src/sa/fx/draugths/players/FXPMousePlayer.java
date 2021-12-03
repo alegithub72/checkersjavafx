@@ -19,7 +19,7 @@ import javafx.scene.shape.QuadCurveTo;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.event.EventConfirmCommand;
+import sa.fx.draugths.event.EventConfirmCommandHandler;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Piece;
 
@@ -98,17 +98,21 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
     
     
-    @Override
-    public void handle(MouseEvent event) {
-        if (!board.isAnimationOn()) {
-            if (board.getSelect() != null) {
-                choosePiece();
-            }
+	@Override
+	public void handle(MouseEvent event) {
 
-        }
-        event.consume();
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+		if (event.getEventType() == MouseEvent.MOUSE_CLICKED && event.isPrimaryButtonDown()) {
+			if (!board.isAnimationOn()) {
+				if (board.getSelect() != null) {
+					choosePiece();
+				}
+
+			}
+			event.consume();
+			// throw new UnsupportedOperationException("Not supported yet."); //To change
+			// body of generated methods, choose Tools | Templates.
+		}
+	}
 
 
     @Override
@@ -168,7 +172,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 imagePunt.setScaleY(0.64);
                 imagePunt.setOpacity(0.3);
                 punteImage[i] = imagePunt;
-                punteImage[i].setOnMouseClicked(new EventConfirmCommand(this, i,board));
+                punteImage[i].setOnMouseClicked(new EventConfirmCommandHandler(this, i,board));
                 double xp =sp.convertBoardJtoPositionX(m.getJ1()  , FXBoard.boardHW.getW());
                         //(m.getI1() * board.wBoardSquare) + 32;
                 double yp =sp.convertBoardItoPositionY(m.getI1() , FXBoard.boardHW.getH());
