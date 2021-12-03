@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sa.fx.draugths.event;
+package sa.fx.draugths.board.event;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;

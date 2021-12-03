@@ -19,7 +19,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.fx.draugths.animation.AnimationPedinaMove;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
+import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.screen.StartScreen;
 import sa.gameboard.core.Game;
@@ -198,7 +198,7 @@ public static void main(String[] args) {
   public void drawStartScreen()throws Exception{
         
       
-        music = buildMedia(ShotDistanceFrameAnimationTimer.MUSIC);
+        music = buildMedia(ShotDistanceFrameAnimation.MUSIC);
         music.setCycleCount(AudioClip.INDEFINITE);
         music.play(); 
         root.getChildren().remove(fxb);

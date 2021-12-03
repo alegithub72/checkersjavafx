@@ -19,8 +19,8 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
-import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
+import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
+import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;
@@ -52,17 +52,17 @@ public class AlienPiece extends SpritePiece {
     @Override
     public void buildKilledSequence(Move m) {
     	pltransition=new ParallelTransition(this);
-        buildDefaultKillAnimation(killSequenceFrame,m,  false, 25, ShotDistanceFrameAnimationTimer.EXPLOSION);
+        buildDefaultKillAnimation(killSequenceFrame,m,  false, 25, ShotDistanceFrameAnimation.EXPLOSION);
     }
 
     public void buildMoveSequence(boolean ciclyc) {
-    	SimpleFrameAnimationTimer transition=null;
+    	SimpleFrameAnimation transition=null;
         if (!draugthTransform) {
-        	transition=new  SimpleFrameAnimationTimer(moveSequenceFrame, this, ciclyc, 50, ShotDistanceFrameAnimationTimer.CLOPETE);
+        	transition=new  SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 50, ShotDistanceFrameAnimation.CLOPETE);
         	pltransition.getChildren().add(transition);
         	transition.setDuration(pltransition.getTotalDuration());
         } else {
-        	transition=new SimpleFrameAnimationTimer(moveSequenceFrame,this ,ciclyc, 50, ShotDistanceFrameAnimationTimer.CLOPETE_DOUBLE);
+        	transition=new SimpleFrameAnimation(moveSequenceFrame,this ,ciclyc, 50, ShotDistanceFrameAnimation.CLOPETE_DOUBLE);
         	pltransition.getChildren().add( transition);
         	transition.setDuration(pltransition.getTotalDuration());
         }
@@ -72,14 +72,14 @@ public class AlienPiece extends SpritePiece {
     @Override
 	public void buildMoveEatSequence(Move m, boolean ciclyc) {
     	//SpritePiece eated=getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(),m.getEat().getColor(), false);
-    	SimpleFrameAnimationTimer transition=null;
+    	SimpleFrameAnimation transition=null;
         if(draugthTransform==false) {
-        	transition= new SimpleFrameAnimationTimer(eatMoveSequenceFrame, this,m, ciclyc, 50, ShotDistanceFrameAnimationTimer.CLOPETE_DOUBLE);
+        	transition= new SimpleFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 50, ShotDistanceFrameAnimation.CLOPETE_DOUBLE);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add(transition);
         }
         else {
-        	transition=new SimpleFrameAnimationTimer(eatMoveSequenceFrame,this,m, ciclyc, 50, ShotDistanceFrameAnimationTimer.CLOPETE_DOUBLE);
+        	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this,m, ciclyc, 50, ShotDistanceFrameAnimation.CLOPETE_DOUBLE);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add(transition );
         }
@@ -94,7 +94,7 @@ public class AlienPiece extends SpritePiece {
                 draugthTransform==false) {
             draugthTransform=true;
             sp=new AlienPiece(DRAUGTH_ALIEN_IMAGE,this.piece, FXBoard.boardHW, this.getFxBoard());       
-            AudioClip ach = buildMedia(ShotDistanceFrameAnimationTimer.ACHB);
+            AudioClip ach = buildMedia(ShotDistanceFrameAnimation.ACHB);
             ach.setCycleCount(1);
             ach.play();
             sp.setDraugthTransform(true);

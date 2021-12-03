@@ -1,4 +1,4 @@
-package sa.fx.draugths.event;
+package sa.fx.draugths.board.event;
 
 import javafx.event.Event;
 import javafx.event.EventTarget;

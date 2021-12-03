@@ -16,7 +16,7 @@ import sa.fx.draugths.sprite.SpritePiece;
  *
  * @author Alessio Sardaro
  */
-public class ShotCollisionFrameAnimationTimer extends SimpleFrameAnimationTimer {
+public class ShotCollisionFrameAnimation extends SimpleFrameAnimation {
 
 	Sprite shot;
 	SpritePiece piece;
@@ -24,7 +24,7 @@ public class ShotCollisionFrameAnimationTimer extends SimpleFrameAnimationTimer 
 	boolean once;
 	// private PathTransition pathTransition;
 
-	public ShotCollisionFrameAnimationTimer(FrameInfo[] frames, Move move, SpritePiece sprite, Sprite shot,
+	public ShotCollisionFrameAnimation(FrameInfo[] frames, Move move, SpritePiece sprite, Sprite shot,
 			boolean cyclic, long interval, String sound) {
 		super(frames, shot,move, cyclic, interval, sound);
 	     this.piece=sprite;

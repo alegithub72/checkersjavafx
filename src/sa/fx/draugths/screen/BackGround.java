@@ -24,7 +24,7 @@ import javafx.util.Duration;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.ScreenPause;
 import sa.fx.draugths.animation.ScreenPauseInterface;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimationTimer;
+import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 
 
 /**
@@ -186,7 +186,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
       //if(value>15) url=classLoader.getResource("simpletone.mp3"); 
       //else url=classLoader.getResource("pointUp.mp3"); 
-      url=classLoader.getResource(ShotDistanceFrameAnimationTimer.ACHW); 
+      url=classLoader.getResource(ShotDistanceFrameAnimation.ACHW); 
       
       AudioClip a=  new AudioClip(url.toString());
       a.setVolume(1);

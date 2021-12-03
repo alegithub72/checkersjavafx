@@ -12,8 +12,8 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.event.EventDraugthTransform;
-import sa.fx.draugths.event.EventEndTurn;
-import sa.fx.draugths.event.EventPointUpdate;
+import sa.fx.draugths.board.event.EventEndTurn;
+import sa.fx.draugths.board.event.EventPointUpdate;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Piece;
 

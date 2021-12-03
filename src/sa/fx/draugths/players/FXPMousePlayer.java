@@ -19,7 +19,7 @@ import javafx.scene.shape.QuadCurveTo;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.event.EventConfirmCommandHandler;
+import sa.fx.draugths.board.event.EventConfirmCommandHandler;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Piece;
 

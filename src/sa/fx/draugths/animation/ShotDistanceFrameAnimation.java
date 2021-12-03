@@ -15,13 +15,13 @@ import sa.fx.draugths.sprite.SpritePiece;
  *
  * @author Alessio Sardaro
  */
-public class ShotDistanceFrameAnimationTimer extends SimpleFrameAnimationTimer{
+public class ShotDistanceFrameAnimation extends SimpleFrameAnimation{
 
 
       boolean  once;
       SpritePiece piece;
 
-    public ShotDistanceFrameAnimationTimer(FrameInfo[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,String sound) {
+    public ShotDistanceFrameAnimation(FrameInfo[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,String sound) {
     	super(frames, piece,move, cyclic, interval, sound);
     	this.piece=piece;
         once=false;

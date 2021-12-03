@@ -21,7 +21,7 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.PieceAnimationEndHandler;
-import sa.fx.draugths.animation.SimpleFrameAnimationTimer;
+import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Piece;
@@ -68,7 +68,7 @@ public abstract class SpritePiece extends Sprite{
 
     }
     void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, String sound) {
-    	SimpleFrameAnimationTimer transition=  new SimpleFrameAnimationTimer(frames, this,m,  ciclyc, interval, sound);
+    	SimpleFrameAnimation transition=  new SimpleFrameAnimation(frames, this,m,  ciclyc, interval, sound);
     	transition.setDuration(Duration.seconds(0.5));
     	pltransition.getChildren().add(transition );
     	SpritePiece eated=this;

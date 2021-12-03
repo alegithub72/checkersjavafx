@@ -21,7 +21,7 @@ import sa.fx.draugths.sprite.Sprite;
  *
  * @author Alessio Sardaro
  */
-public class SimpleFrameAnimationTimer extends Transition{
+public class SimpleFrameAnimation extends Transition{
 	FrameInfo[]  frames;
     public static final String FIRE="fire5.wav";
     public static final String SPEEDY_BITE="speedy_bite.wav";
@@ -56,7 +56,7 @@ public class SimpleFrameAnimationTimer extends Transition{
     boolean startMusic=true;
 
     
-    public SimpleFrameAnimationTimer(FrameInfo[] frames,Sprite sprite,Move move,boolean cyclic,long interval,String sound) {
+    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,Move move,boolean cyclic,long interval,String sound) {
     	this.frames=frames;
         this.sprite = sprite;
         this.move=move;
@@ -70,7 +70,7 @@ public class SimpleFrameAnimationTimer extends Transition{
         this.interval=interval;
         addEndHandler();
     }
-    public SimpleFrameAnimationTimer(FrameInfo[] frames,Sprite sprite,boolean cyclic,long interval,String sound) {
+    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,boolean cyclic,long interval,String sound) {
     	this.frames=frames;
         this.sprite = sprite;
         this.move=null;
