@@ -197,7 +197,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     private void buildWaveLevel() {
     	 for (int i = 11; i >(11-(waveFromLevel()-1)); i--) {
     		 Piece p=  game.getAI().getBoard().getBlackPieces()[i];
-    		if(p!=null) p.setType(Piece.DRAUGTH);
+    		if(p!=null && waveFromLevel()>1) p.setType(Piece.DRAUGTH);
 		}
     	
     	
@@ -695,8 +695,8 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 		
 	  } 
 	private int waveFromLevel() {
-		BCDraugthsApp.log.info("wave--->"+java.lang.Math.round(level/FXBoard.MAX_LEVEL));
-    	return  java.lang.Math.round(level/FXBoard.MAX_LEVEL)+1;
+    	if(level%FXBoard.MAX_LEVEL==0)  return java.lang.Math.round(level/FXBoard.MAX_LEVEL);
+    	else return java.lang.Math.round(level/FXBoard.MAX_LEVEL)+1;
     	
 		
 	}

@@ -33,7 +33,7 @@ https://mvnrepository.com -->
 			<scope>compile</scope>
 			<!-- systemPath>${project.basedir}/lib/CheckersEngine.jar</systemPath-->
 		</dependency>
-		<!-- dependency>
+		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-base</artifactId>
 			<version>17-ea+11</version>
@@ -67,7 +67,7 @@ https://mvnrepository.com -->
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-media</artifactId>
 			<version>17-ea+11</version>
-		</dependency-->
+		</dependency>
 		<!--dependency>
     <groupId>eu.agrosense.client</groupId>
     <artifactId>util-javafx</artifactId>
