@@ -6,9 +6,9 @@ Copy the `ckeckersengine` directory  under `lib` in  your local `repository`.
 
 To run the game: 
 
-1. mvn pakcage 
+1. mvn clean compile 
 
-2. mvn clean javafx:run
+2. mvn javafx:run
 
 You can download and run inno setup installer :<a href="https://github.com/alegithub72/alegithub72/raw/main/cinvaders-x64bit-4.0.exe" >cinvaders-x64bit-4.0.exe</a> 
 
