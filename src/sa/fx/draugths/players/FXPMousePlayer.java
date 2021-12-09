@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.EventHandler;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -170,7 +171,14 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 ImageView imagePunt = new ImageView(new Image("puntatore.png"));
                 imagePunt.setScaleX(0.64);
                 imagePunt.setScaleY(0.64);
-                imagePunt.setOpacity(0.3);
+                imagePunt.setOpacity(0.4);
+        		DropShadow dropShadow = new DropShadow();
+        		dropShadow.setRadius(20.0);
+        		dropShadow.setOffsetX(0.0);
+        		dropShadow.setOffsetY(0.0);
+        		dropShadow.setColor(Color.BLACK);
+        		imagePunt.setEffect(dropShadow);
+        		//imagePunt.setEffect(new GaussianBlur());
                 punteImage[i] = imagePunt;
                 punteImage[i].setOnMouseClicked(new EventConfirmCommandHandler(this, i,board));
                 double xp =sp.convertBoardJtoPositionX(m.getJ1()  , FXBoard.boardHW.getW());

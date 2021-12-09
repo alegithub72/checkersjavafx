@@ -80,7 +80,7 @@ public class SoldierPiece extends SpritePiece {
         } else if (m.getP().getType()  ==Piece.DRAUGTH)  {
         
           if(draugthTransform) {
-        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SimpleFrameAnimation.BITE);
+        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false,40, SimpleFrameAnimation.BITE);
         	   transition.setDuration(Duration.seconds(0.5));
           }
           else {

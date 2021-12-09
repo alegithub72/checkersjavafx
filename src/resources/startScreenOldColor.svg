@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg838"
+   width="800"
+   height="830"
+   viewBox="0 0 800 830"
+   sodipodi:docname="startScreen2.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs842">
+    <marker
+       style="overflow:visible"
+       id="marker1349"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,5.92,0.8)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path1347" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DotL"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,5.92,0.8)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path1140" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4456">
+      <stop
+         style="stop-color:#ff00ff;stop-opacity:1;"
+         offset="0"
+         id="stop4452" />
+      <stop
+         style="stop-color:#ff00ff;stop-opacity:0;"
+         offset="1"
+         id="stop4454" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient146092">
+      <stop
+         style="stop-color:#00ffff;stop-opacity:1"
+         offset="0"
+         id="stop146088" />
+      <stop
+         style="stop-color:#000080;stop-opacity:1"
+         offset="1"
+         id="stop146090" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient145449">
+      <stop
+         style="stop-color:#00ffff;stop-opacity:1"
+         offset="0"
+         id="stop145445" />
+      <stop
+         style="stop-color:#000080;stop-opacity:1"
+         offset="1"
+         id="stop145447" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient146092"
+       id="linearGradient145451"
+       x1="169.84737"
+       y1="217.40947"
+       x2="159.53065"
+       y2="217.84586"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.90114946,0.15082176,-0.15691818,0.83480226,23.453532,30.967827)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient145449"
+       id="linearGradient145820"
+       x1="169.84737"
+       y1="217.40947"
+       x2="159.53065"
+       y2="217.84586"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.90114946,0.15082176,-0.15691818,0.83480226,23.453532,30.967827)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient146092"
+       id="linearGradient184212"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.90114946,0.15082176,-0.15691818,0.83480226,40.46408,3.9695007)"
+       x1="176.24025"
+       y1="216.87656"
+       x2="163.65871"
+       y2="217.814" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient146092"
+       id="linearGradient184214"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.90114946,0.15082176,-0.15691818,0.83480226,40.46408,3.9695007)"
+       x1="176.24025"
+       y1="216.87656"
+       x2="163.65871"
+       y2="217.814" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter3826"
+       x="-0.15162587"
+       y="-0.17131384"
+       width="1.3120723"
+       height="1.3432745">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.3317596"
+         id="feGaussianBlur3828" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1250"
+       x="-0.11789433"
+       y="-0.51702865"
+       width="1.2358607"
+       height="2.033497">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.7803211"
+         id="feGaussianBlur1252" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1545"
+       x="-0.13222767"
+       y="-0.57950874"
+       width="1.264455"
+       height="2.1584572">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.0463569"
+         id="feGaussianBlur1547" />
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4456"
+       id="linearGradient4460"
+       x1="-39.297543"
+       y1="227.8967"
+       x2="443.362"
+       y2="227.8967"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview840"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.77530034"
+     inkscape:cx="426.93132"
+     inkscape:cy="368.24439"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2"
+     width="700px"
+     inkscape:snap-global="false"
+     showguides="false" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 1"
+     style="display:inline">
+    <path
+       id="path4819"
+       style="fill:#000080;stroke:#4d4d4d;stroke-width:0.906442;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+       d="M 766.68874,465.44431 A 286.51619,261.1233 0 0 0 480.17282,726.56838 286.51619,261.1233 0 0 0 502.79421,827.99547 H 797.97158 V 467.0608 a 286.51619,261.1233 0 0 0 -31.28284,-1.61649 z" />
+    <path
+       style="fill:#217821;fill-opacity:1;stroke:none;stroke-width:1.13306px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 643.47284,823.67934 c -21.08303,-3.41309 -60.49805,-40.09923 -44.5362,-63.30262 8.15789,-11.85895 41.18213,-28.85377 54.92797,-38.84479 9.0967,-6.61184 13.05758,-17.0684 22.2681,-23.01913 9.72581,-6.28365 61.61977,-17.61852 74.22699,-11.50956 8.94855,4.3361 7.77267,7.53263 13.36085,12.94825 4.55925,4.41845 17.95468,-0.51555 28.20626,14.38697 0.77467,1.1261 -2.69553,61.75067 0,74.81218 0.75234,3.64551 7.08696,37.40609 5.93817,37.40609 -17.4977,0 -34.65878,-10.55314 -51.9589,-12.94826 -15.5365,-2.15096 -33.17644,0 -48.98981,0 -3.64978,0 -46.91138,5.50812 -47.50527,5.75478 -2.27418,0.94455 -3.46393,4.31609 -5.93816,4.31609 -3.76864,0 -6.62315,-4.31609 -10.39179,-4.31609"
+       id="path5482" />
+    <path
+       style="fill:#217821;fill-opacity:1;stroke:none;stroke-width:1.13306px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 616.75112,514.35973 c 11.80316,22.00203 14.84724,46.76496 20.78355,70.4961 1.69752,6.78602 2.71596,13.89633 5.93817,20.14174 13.21711,25.61794 33.87982,22.9316 53.44343,44.59957 5.52083,6.11469 19.2179,12.79105 22.26809,18.70304 0.26815,0.51973 2.44476,6.26292 2.96909,5.75479 6.40188,-6.20418 0.51021,-31.78538 1.48453,-40.28348 1.13882,-9.93278 4.93582,-19.13355 7.4227,-28.77392 0.36716,-1.42328 29.60148,-28.6585 34.14442,-34.52869 8.75472,-11.31249 17.66794,-70.63812 5.93816,-82.00567 -7.82348,-7.58188 -41.31949,-1.4387 -51.9589,-1.4387 -12.06085,0 -20.36318,2.56971 -31.17533,4.31609 -26.18098,4.22874 -55.3101,3.69996 -71.25791,23.01913 z"
+       id="path5484" />
+    <path
+       id="path4819-9"
+       style="display:inline;opacity:0.373702;fill:#000000;stroke:#4d4d4d;stroke-width:0.806841;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+       d="M 773.78543,506.05558 A 255.90632,231.63721 0 0 0 517.87936,737.69347 255.90632,231.63721 0 0 0 538.084,827.6674 H 801.72619 V 507.48952 a 255.90632,231.63721 0 0 0 -27.94076,-1.43394 z" />
+    <g
+       id="g268784"
+       inkscape:label="scarico"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       transform="matrix(1.7264463,0,0,1.6731321,111.68902,345.4495)">
+      <g
+         id="g237157"
+         inkscape:label="astronave"
+         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
+        <path
+           id="path144060-9"
+           style="display:inline;fill:url(#linearGradient184212);fill-opacity:1;stroke:url(#linearGradient184214);stroke-width:2.01693;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:80;paint-order:stroke fill markers;filter:url(#filter1545)"
+           d="m 172.65753,210.93531 c 8.09128,1.84707 9.08285,4.07729 -1.28753,3.92326 -3.18445,-0.0473 -6.27636,1.84369 -10.61179,0.32534 -3.44847,-1.20773 -7.30717,0.23031 -10.25128,-0.10162 -3.77394,-0.4255 -6.83581,-2.11609 -11.2772,-0.89834 -3.13161,0.85864 -5.41709,-1.31984 -5.01869,-3.43934 0.79682,-4.23899 10.37184,-6.51817 21.2311,-4.36347 1.96721,0.39038 4.61201,2.98689 8.50557,1.80974 3.23105,-0.97684 6.45244,2.22911 8.70982,2.74443 z"
+           sodipodi:nodetypes="sssssssss" />
+        <path
+           sodipodi:type="star"
+           style="display:inline;opacity:1;fill:#008080;fill-opacity:1;stroke:#008000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:stroke fill markers"
+           id="path148509-3"
+           inkscape:flatsided="true"
+           sodipodi:sides="5"
+           sodipodi:cx="124.99999"
+           sodipodi:cy="232.18391"
+           sodipodi:r1="8.7690773"
+           sodipodi:r2="7.0943322"
+           sodipodi:arg1="2.1815223"
+           sodipodi:arg2="2.8098408"
+           inkscape:rounded="0"
+           inkscape:randomized="0"
+           inkscape:transform-center-x="0.047669769"
+           inkscape:transform-center-y="-0.79190614"
+           d="m 119.97126,239.36782 -3.35753,-9.74657 8.232,-6.20506 8.44519,5.91164 -3.01259,9.85865 z"
+           transform="translate(15.010548,-24.998326)" />
+        <path
+           id="path2550"
+           style="display:inline;opacity:1;fill:#008080;fill-opacity:1;stroke:#008000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;paint-order:stroke fill markers"
+           d="m 151.94643,201.59305 c -2.48738,16.00647 -11.96422,28.28402 -36.21672,37.45546 -8.53216,3.22656 -63.565462,13.20843 -63.400968,-23.93499 0.0561,-12.66855 25.858075,-19.96815 48.964518,-23.54135 23.10644,-3.5732 52.59851,-2.49752 50.65317,10.02088 z"
+           sodipodi:nodetypes="sssss" />
+        <rect
+           style="display:inline;opacity:1;fill:#005500;fill-opacity:1;stroke:#002b00;stroke-width:2.4866;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:stroke fill markers"
+           id="rect108903"
+           width="6.5700536"
+           height="24.650475"
+           x="132.47218"
+           y="224.15375"
+           transform="matrix(0.97058907,-0.24074232,0.07647475,0.99707152,0,0)" />
+        <rect
+           style="display:inline;opacity:1;fill:#008080;fill-opacity:1;stroke:#008000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:stroke fill markers"
+           id="rect108799"
+           width="10.15958"
+           height="20.725544"
+           x="220.05061"
+           y="127.38747"
+           transform="rotate(25.452525)"
+           inkscape:label="sportello" />
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#17280b;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 129.29092,231.32783 c 0,0 7.0678,-4.68291 5.38553,5.29807 -1.48357,8.80213 -9.8279,4.40254 -9.8279,4.40254 z"
+           id="path30942"
+           sodipodi:nodetypes="cscc" />
+        <path
+           id="path144060"
+           style="display:inline;opacity:0.576125;mix-blend-mode:normal;fill:url(#linearGradient145820);fill-opacity:1;stroke:url(#linearGradient145451);stroke-width:2.01693;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:80;paint-order:stroke fill markers;filter:url(#filter1250)"
+           d="m 155.64698,237.93364 c 8.09128,1.84707 9.08285,4.07729 -1.28753,3.92326 -3.18445,-0.0473 -6.27636,1.84369 -10.61179,0.32534 -3.44847,-1.20773 -7.30717,0.23031 -10.25128,-0.10162 -3.77394,-0.4255 -6.83581,-4.11609 -11.2772,-2.89834 -3.13161,0.85864 -5.41709,0.68016 -5.01869,-1.43934 0.79682,-4.23899 10.37184,-6.51817 21.2311,-4.36347 1.96721,0.39038 4.61201,2.98689 8.50557,1.80974 3.23105,-0.97684 6.45244,2.22911 8.70982,2.74443 z"
+           sodipodi:nodetypes="sssssssss"
+           inkscape:label="fiamma" />
+        <path
+           id="path148509"
+           style="display:inline;opacity:1;fill:#008080;fill-opacity:1;stroke:#008000;stroke-width:3.30315;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:80;paint-order:stroke fill markers"
+           inkscape:label="motore"
+           inkscape:transform-center-x="0.057786685"
+           inkscape:transform-center-y="-0.79190614"
+           d="m 117.1434,239.36782 -11.8669,-5.6394 17.98697,-4.51932 10.02745,2.11873 c 0,0 -3.36817,-1.88522 -4.98685,3.66502 -1.85109,6.34718 1.33467,6.19363 1.33467,6.19363 z"
+           sodipodi:nodetypes="ccccscc" />
+        <path
+           id="rect108799-4"
+           style="display:inline;opacity:0.314879;fill:#000000;fill-opacity:1;stroke:none;stroke-width:5.13715;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:stroke fill markers"
+           inkscape:label="sportello"
+           d="m 239.28906,352.0293 c -7.68223,0.001 -15.70158,0.42218 -23.61328,1.17578 a 64.007451,57.610661 0 0 1 20.36133,42.12695 64.007451,57.610661 0 0 1 -0.97852,9.69141 26.996072,28.627196 39.435109 0 1 -3.03125,18.55273 26.996072,28.627196 39.435109 0 1 -17.14257,14.47071 64.007451,57.610661 0 0 1 -0.63477,0.54101 c 5.15206,-1.01999 9.13908,-2.08671 11.32617,-2.90039 1.75975,-0.65468 3.45826,-1.32271 5.12891,-1.99609 l 2.06445,0.96484 20.86914,2.98828 c -1.36872,-0.36585 -4.06454,-2.1117 -1.60156,-10.41992 1.60249,-5.40567 4.19626,-6.65491 6.11914,-6.74023 l -1.4082,-0.29297 c 2.84319,-1.92969 5.46977,-3.9167 7.87695,-5.96485 l -0.63672,1.31641 15.83789,7.41601 15.37695,-31.78515 -10.68945,-5.00391 c 1.63949,-4.49898 2.81502,-9.19252 3.58985,-14.09765 2.30898,-14.61746 -21.03575,-20.04788 -48.81446,-20.04297 z m 18.86719,68.45508 2.49023,0.51757 c 0,0 -1.05985,-0.58107 -2.49023,-0.51757 z m -4.51758,17.16015 c 0.40725,0.10892 0.70313,0.10156 0.70313,0.10156 z"
+           transform="matrix(0.5792245,0,0,0.59768144,-17.710107,-20.269401)" />
+        <ellipse
+           style="fill:#00ff80;fill-opacity:1;stroke:#008000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;paint-order:stroke fill markers"
+           id="path928"
+           cx="71.718277"
+           cy="218.57294"
+           rx="47.988506"
+           ry="16.379311"
+           transform="rotate(-8.5619241)"
+           inkscape:label="disco" />
+        <path
+           style="display:none;fill:#000000;stroke:#000000;stroke-width:3.6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter3826)"
+           d="m 95.259857,188.35183 c -0.231221,-0.0147 -0.471133,0.0203 -0.693649,-0.0442 -1.665956,-0.48312 -2.565665,-2.23289 -3.081573,-3.71945 -0.602501,-1.73607 -0.236885,-0.35714 -0.713195,-2.95413 -0.02027,-0.11054 -0.139006,-0.41234 -0.06082,-0.33162 0.596709,0.61613 1.138326,1.28354 1.721801,1.91222 0.413462,0.4455 0.886008,0.83748 1.268542,1.30982 0.07073,0.0874 0.02952,0.43954 0.06082,0.3316 0.01662,-0.0573 -0.352851,-6.74411 0.4279,-6.07697 0.888943,0.75959 1.693224,1.61389 2.506682,2.45381 0.174822,0.18052 0.206082,0.64774 0.453259,0.60241 2.302261,-0.42225 0.588976,-5.91651 2.143891,-7.93417 0.48778,-0.63295 2.785145,4.01059 3.595665,4.65347 0.13921,0.11043 0.0287,-0.35615 0.0746,-0.52783 0.25936,-0.97114 0.51323,-1.94559 0.8399,-2.89621 0.26337,-0.76642 1.24986,1.06685 1.69139,1.74642 0.37868,0.58282 0.5749,1.26564 0.86235,1.89846 0.9643,2.12291 0.28325,-2.41265 2.1555,-0.39534 1.77316,1.91055 2.23593,6.36483 1.58135,8.62202 -0.0972,0.33519 -0.70591,-2.11181 -0.76822,0.48367 -0.0236,0.98106 -0.0839,1.96102 -0.14625,2.94038 -0.0113,0.17733 0.0811,0.44215 -0.0746,0.52783 -0.64009,0.3523 -2.46461,-2.16829 -3.84979,-3.23579 -0.31244,-0.24077 -0.25683,2.94881 -0.31207,2.9708 -0.72576,0.28886 -2.12959,-0.62438 -2.44295,-0.23749 -1.67089,2.06296 0.68345,6.24166 0.7219,8.60827 8.1e-4,0.0598 -0.13638,1.2093 0.0775,1.35688 0.23582,0.16272 0.56887,0.66047 0.31786,0.79862 -3.45478,1.90147 -8.547559,2.01194 -12.391435,1.58715 -0.817686,-0.0904 -2.028452,0.33818 -2.774572,-0.17667 -0.44022,-0.30376 2.061808,-1.09906 2.169259,-1.25478 0.204847,-0.29686 -0.307313,-2.15783 -0.229523,-2.18591 1.903602,-0.68742 5.995019,-3.81891 3.94028,-6.5498 -0.12094,-0.16073 -1.926014,0.59677 -2.260489,0.75737 -2.578956,1.23829 -5.730185,1.39373 -8.561203,1.91296 -2.002646,0.3673 -4.354576,0.63569 -4.341422,0.62487 2.850032,-2.34501 6.909953,-3.92965 10.517586,-4.32841 1.245326,-0.13761 2.862776,-0.0268 3.979393,-0.72985 0.468549,-0.29501 0.169258,-1.08481 0.419953,-1.44811 0.28763,-0.41685 0.878838,-0.38592 1.174411,-1.07232 z"
+           id="path3635"
+           inkscape:label="alieno" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#g2906"
+           id="use2988"
+           width="100%"
+           height="100%"
+           transform="translate(-3.2309973,-16.435943)" />
+        <g
+           id="g1084"
+           inkscape:label="cupola"
+           transform="translate(-2,2)"
+           style="opacity:1">
+          <ellipse
+             style="opacity:0.314879;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.548316;stroke-miterlimit:3;paint-order:fill markers stroke;stop-color:#000000"
+             id="path14039"
+             cx="110.26507"
+             cy="203.63486"
+             rx="25.753519"
+             ry="11.038494"
+             inkscape:label="ombra" />
+          <path
+             id="path1338"
+             style="fill:#00ffff;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;paint-order:stroke fill markers"
+             d="m 81.062256,196.79238 c -1.776963,-8.88812 2.168721,-17.72775 9.986082,-22.37212 7.817359,-4.64436 17.955342,-4.17199 25.658122,1.19553 7.70277,5.36753 11.44202,14.56525 9.4636,23.27837 0.19692,0.27569 -11.54518,5.73039 -20.80217,5.92356 -20.395795,0.42562 -24.305659,-8.02521 -24.305659,-8.02521 z"
+             sodipodi:nodetypes="csscscc" />
+          <path
+             style="fill:none;stroke:#5fd3bc;stroke-width:4.2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 100.40653,176.4312 c 0,0 6.45248,-0.4092 9.58945,1.14735 3.13698,1.55651 6.95952,6.32528 6.95952,6.32528"
+             id="path107216"
+             sodipodi:nodetypes="csc" />
+        </g>
+        <path
+           style="fill:none;fill-opacity:1;stroke:#666666;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 131.62427,204.62293 c 0,0 14.09388,-13.01727 15.71942,-21.9577 1.00542,-5.52984 16.85497,0.46832 16.85497,0.46832"
+           id="path229391"
+           sodipodi:nodetypes="csc"
+           inkscape:label="antenna" />
+        <g
+           id="g2906"
+           inkscape:label="laser"
+           transform="translate(-10.676339,1.5452596)">
+          <ellipse
+             style="fill:#808080;stroke:none;stroke-width:0.413999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+             id="path2549"
+             cx="81.434624"
+             cy="205.45197"
+             rx="1.7559769"
+             ry="3.7929101" />
+          <ellipse
+             style="display:inline;fill:#808080;stroke:none;stroke-width:0.496799;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+             id="path2549-6"
+             cx="85.7192"
+             cy="204.74956"
+             rx="2.1071723"
+             ry="4.5514922" />
+          <ellipse
+             style="display:inline;fill:#808080;stroke:none;stroke-width:0.538199;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+             id="path2549-5"
+             cx="90.426422"
+             cy="204.18765"
+             rx="2.2827699"
+             ry="4.9307833" />
+          <ellipse
+             style="display:inline;fill:#808080;stroke:none;stroke-width:0.620999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+             id="path2549-4"
+             cx="100.89084"
+             cy="202.22096"
+             rx="2.6339655"
+             ry="5.6893654" />
+          <ellipse
+             style="display:inline;fill:#808080;stroke:none;stroke-width:0.703798;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+             id="path2549-1"
+             cx="112.12909"
+             cy="200.53522"
+             rx="2.9851608"
+             ry="6.447947" />
+          <ellipse
+             style="display:inline;fill:#808080;stroke:none;stroke-width:0.745198;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+             id="path2549-44"
+             cx="118.31013"
+             cy="199.55188"
+             rx="3.1607585"
+             ry="6.8272381" />
+          <ellipse
+             style="display:inline;fill:#808080;stroke:none;stroke-width:0.662398;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+             id="path2549-19"
+             cx="106.36948"
+             cy="201.51857"
+             rx="2.8095632"
+             ry="6.068656" />
+          <ellipse
+             style="display:inline;fill:#808080;stroke:none;stroke-width:0.579599;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;paint-order:fill markers stroke;stop-color:#000000"
+             id="path2549-8"
+             cx="95.552666"
+             cy="203.34479"
+             rx="2.4583676"
+             ry="5.3100743" />
+          <path
+             style="fill:none;stroke:#4d4d4d;stroke-width:0.533333;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#DotL)"
+             d="m 123.92925,206.29483 -1.96669,-7.16439 -46.076834,7.30487"
+             id="path2359" />
+        </g>
+        <path
+           style="display:inline;fill:none;fill-opacity:1;stroke:#666666;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 131.35762,197.34437 c 0,0 11.17755,-15.59324 10.96577,-24.67778 -0.131,-5.61897 16.60282,-2.94209 16.60282,-2.94209"
+           id="path229391-0"
+           sodipodi:nodetypes="csc"
+           inkscape:label="antenna" />
+      </g>
+      <g
+         id="g1965"
+         inkscape:label="listapedine"
+         transform="translate(8.892018,14.507079)"
+         sodipodi:insensitive="true">
+        <g
+           id="g4973-3-7"
+           inkscape:label="pedina1"
+           style="display:inline"
+           transform="matrix(1.1338582,0,0,1.1338582,147.2928,195.03025)">
+          <path
+             style="display:inline;fill:#ff00ff;fill-opacity:1;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 2.7432267,11.064347 c 0,0 -0.4164513,2.640186 0.1828813,4.238475 0.9030892,2.408342 6.6269589,5.001722 9.921336,5.291667 5.475824,0.481938 8.242921,-0.901092 9.921336,-3.175 0.997045,-1.350791 0.137162,-6.263701 0.137162,-6.263701 v 0 0"
+             id="path4971-6-5"
+             sodipodi:nodetypes="csssccc"
+             inkscape:label="border" />
+          <path
+             id="path4969-3-3"
+             style="display:inline;fill:#0080ff;fill-opacity:1;stroke:#000000;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;paint-order:stroke fill markers;stop-color:#000000"
+             d="m 22.448737,11.110066 c -0.276912,1.179977 -1.196764,6.461007 -9.669873,5.898748 C 7.4500588,16.655205 3.137111,12.321774 3.1089907,11.110066 3.0286687,7.6489976 7.4383412,5.7404851 12.778864,5.7404851 c 5.340523,0 10.312453,2.6314165 9.669873,5.3695809 z"
+             inkscape:label="circle"
+             sodipodi:nodetypes="sssss" />
+        </g>
+        <use
+           x="0"
+           y="0"
+           xlink:href="#g4973-3-7"
+           id="use4663"
+           width="100%"
+           height="100%"
+           transform="translate(28.577328,7.6003533)" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#use4663"
+           id="use4665"
+           width="100%"
+           height="100%"
+           transform="translate(30.401413,5.1682403)" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#use4665"
+           id="use4667"
+           width="100%"
+           height="100%"
+           transform="translate(30.401413,6.0802826)" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#use4667"
+           id="use4669"
+           width="100%"
+           height="100%"
+           transform="translate(33.441555,5.1682403)" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#use4669"
+           id="use4671"
+           width="100%"
+           height="100%"
+           transform="translate(32.225498,5.4722544)" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#use4671"
+           id="use4673"
+           transform="translate(33.745569,4.560212)"
+           width="100%"
+           height="100%" />
+      </g>
+    </g>
+    <path
+       sodipodi:type="star"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="492.92789"
+       sodipodi:cy="110.37087"
+       sodipodi:r1="1.0989265"
+       sodipodi:r2="0.021978533"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 493.84225,109.7613 -0.8924,0.61046 0.84033,0.68035 -0.85635,-0.66008 -0.38738,1.00945 0.36315,-1.01842 -1.07975,-0.0565 1.08079,0.0307 -0.27994,-1.04436 0.30482,1.03737 z"
+       inkscape:transform-center-x="0.42279334"
+       inkscape:transform-center-y="-0.061067186"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella"
+       transform="matrix(1.1509642,0,0,1.1154214,-5.2710615,-3.5707736)" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-0"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279368"
+       inkscape:transform-center-y="-0.061073481"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,444.02816,188.28858)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-9"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279324"
+       inkscape:transform-center-y="-0.061071026"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,37.739891,541.86815)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-92"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279432"
+       inkscape:transform-center-y="-0.061065379"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,-181.79795,102.61706)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-4"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279269"
+       inkscape:transform-center-y="-0.061069449"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,-9.2046535,239.96348)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-3"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279031"
+       inkscape:transform-center-y="-0.061074996"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,138.1311,506.49711)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-43"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279601"
+       inkscape:transform-center-y="-0.061068091"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,232.14534,386.66046)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-09"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.422801"
+       inkscape:transform-center-y="-0.061069689"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,369.65868,176.04979)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-8"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279992"
+       inkscape:transform-center-y="-0.061070028"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,187.24301,169.25046)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-33"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279494"
+       inkscape:transform-center-y="-0.061073567"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,-176.18517,703.6776)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-47"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279738"
+       inkscape:transform-center-y="-0.061063389"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,83.406395,739.03412)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-15"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279301"
+       inkscape:transform-center-y="-0.061059312"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,-33.058997,462.98142)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="sxtella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-17"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279661"
+       inkscape:transform-center-y="-0.061059312"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,-169.16917,462.98142)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-38"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42278974"
+       inkscape:transform-center-y="-0.061069861"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,-207.05551,324.27513)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g268784"
+       id="use2082"
+       width="100%"
+       height="100%"
+       transform="matrix(0.7,0,0,0.7,17.11141,-42.280432)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g268784"
+       id="use2198"
+       width="100%"
+       height="100%"
+       transform="matrix(0.4,0,0,0.4,414.28292,166.42537)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g268784"
+       id="use2309"
+       width="100%"
+       height="100%"
+       transform="matrix(0.1,0,0,0.1,696.73797,357.59366)" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g268784"
+       id="use2311"
+       width="100%"
+       height="100%"
+       transform="matrix(0.2,0,0,0.2,499.2058,533.59148)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:154.444px;line-height:1.25;font-family:sans-serif;fill:#ff00ff;fill-opacity:1;stroke:#800080;stroke-width:7.72222;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="-24.691406"
+       y="346.1727"
+       id="text85652"
+       transform="matrix(0.97669571,-0.12782745,0.19891224,0.99782721,0,0)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="invader"><tspan
+         sodipodi:role="line"
+         id="tspan85650"
+         x="-24.691406"
+         y="346.1727"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Showcard Gothic';-inkscape-font-specification:'Showcard Gothic';fill:#ff00ff;fill-opacity:1;stroke:#800080;stroke-width:7.72222;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Checkers </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:154.444px;line-height:1.25;font-family:sans-serif;display:inline;fill:#ff00ff;fill-opacity:1;stroke:#800080;stroke-width:7.72222;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="0.59817117"
+       y="718.43066"
+       id="text85652-5"
+       transform="matrix(0.98901677,-0.1578065,0.15901407,0.98573308,0,0)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="chekcers"><tspan
+         sodipodi:role="line"
+         x="0.59817117"
+         y="718.43066"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Showcard Gothic';-inkscape-font-specification:'Showcard Gothic';fill:#ff00ff;stroke:#800080;stroke-width:7.72222;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan106007">Invader </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:154.444px;line-height:1.25;font-family:sans-serif;display:inline;fill:#ff00ff;fill-opacity:1;stroke:#800080;stroke-width:7.72222;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="-937.1673"
+       y="-183.51869"
+       id="text85652-0"
+       transform="matrix(0.97669571,-0.12782745,0.19891224,0.99782721,0,0)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="invader"><tspan
+         sodipodi:role="line"
+         id="tspan85650-1"
+         x="-937.1673"
+         y="-183.51869"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Showcard Gothic';-inkscape-font-specification:'Showcard Gothic';fill:#ff00ff;fill-opacity:1;stroke:#800080;stroke-width:7.72222;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Checkers </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:154.444px;line-height:1.25;font-family:sans-serif;display:inline;fill:#ff00ff;fill-opacity:1;stroke:#800080;stroke-width:7.72222;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="-916.25909"
+       y="153.78792"
+       id="text85652-5-8"
+       transform="matrix(0.98901677,-0.1578065,0.15901407,0.98573308,0,0)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="chekcers"><tspan
+         sodipodi:role="line"
+         x="-916.25909"
+         y="153.78792"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Showcard Gothic';-inkscape-font-specification:'Showcard Gothic';fill:#ff00ff;stroke:#800080;stroke-width:7.72222;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan106007-3">Invader </tspan></text>
+    <g
+       id="g271285"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="158.60339"
+       inkscape:export-ydpi="158.60339"
+       inkscape:label="screen start"
+       style="display:inline" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-476"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.4228058"
+       inkscape:transform-center-y="-0.061066596"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(1.7264463,0,0,1.6731321,-342.25313,114.20638)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-5"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.42279037"
+       inkscape:transform-center-y="-0.06106723"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,463.67293,74.059881)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:80;stroke-opacity:1;paint-order:fill markers stroke"
+       id="path270380-65"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="308.03845"
+       sodipodi:cy="51.204285"
+       sodipodi:r1="2.9304709"
+       sodipodi:r2="0.058609419"
+       sodipodi:arg1="-0.5880026"
+       sodipodi:arg2="0.040315927"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:transform-center-x="0.4227869"
+       inkscape:transform-center-y="-0.061071424"
+       d="m 310.47675,49.578752 -2.37974,1.627895 2.24089,1.814281 -2.2836,-1.760218 -1.03301,2.691855 0.9684,-2.71577 -2.87933,-0.150623 2.8821,0.08178 -0.74651,-2.784945 0.81285,2.766312 z"
+       transform="matrix(0.86322317,0,0,0.83656603,365.4491,275.31997)"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\startScreen2.png"
+       inkscape:export-xdpi="7"
+       inkscape:export-ydpi="7"
+       inkscape:label="stella" />
+  </g>
+</svg>

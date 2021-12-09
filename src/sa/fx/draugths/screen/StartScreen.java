@@ -72,13 +72,13 @@ public class StartScreen extends Parent {
         
         
 
-        c.getGraphicsContext2D().drawImage(images, 0, 31);
+        c.getGraphicsContext2D().drawImage(images, 0, 0);
 
 
             Font f = new Font(null, 20);
             start=new Text("- CLICK TO START -");
             start.setX((widthScreen-180)/2);
-            start.setY(heightScreen/2);
+            start.setY(heightScreen/2+50);
             start.setFont(f);
             start.setFill(Color.ANTIQUEWHITE);
             getChildren().add(start);  

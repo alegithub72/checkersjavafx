@@ -65,6 +65,8 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     private TextField command;
     static final  public BoardHW boardHW=  new BoardHW(100, 100); 
     int level;
+	public static final int MAX_WAVE=12;
+	public static final int MAX_LEVEL=4;
     
     public FXBoard(int l,BCDraugthsApp app)throws Exception {
         this.pedinaList = new LinkedList[2];
@@ -88,13 +90,16 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             
             game = new Game(automa, computerPlayer,Board.CHECKERS_GAME);
             //game.setDamaSystem((DamaInterface) this);
+            //TODO cambiare le  pedine in base alla wave....
+           
             
             ConsoleRendering console = new ConsoleRendering();
             game.addRenderInterface(console);
            // game.playGame();
 
-            game.setHuman(mousePlayer);           
-            if(BCDraugthsApp.loadScenario) load("boardDamaAlienTest.txt");
+            game.setHuman(mousePlayer); 
+            buildWaveLevel();
+            if(BCDraugthsApp.loadScenario) load("boardPedinaBlackTest.txt");
  
             if(game!=null) game.addRenderInterface(this);
             addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
@@ -177,7 +182,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             		if(event.getEventType()==EventEatAnimPiece.KILLPLAY_EVENT) {
 	            		SpritePiece eated=event.getPiece();
 	            		BCDraugthsApp.log.info("HANDLE EventEatAnimPiece.KILLPLAY_EVENT->"+eated);
-	            		eated.setViewOrder(-1000);
+	            		//eated.setViewOrder(-1000);
 	            		eated.buildKilledSequence(event.getMove());
 	            			//eated.toFront();
 	            		eated.playKilled();
@@ -187,6 +192,15 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             	}
 			});
         
+    }
+    
+    private void buildWaveLevel() {
+    	 for (int i = 11; i >(11-(waveFromLevel()-1)); i--) {
+    		 Piece p=  game.getAI().getBoard().getBlackPieces()[i];
+    		if(p!=null) p.setType(Piece.DRAUGTH);
+		}
+    	
+    	
     }
     public FXPMousePlayer getMousePlayer() {
         return mousePlayer;
@@ -399,7 +413,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                 @Override
                 public void handle(MouseEvent event) {
                    if(isLastLevel() || level==0)  {
-                	   app.drawRecordScreen();
+                	   app.drawRecordScreen(backGround.getPoint());
               
                    }
                    else  {
@@ -520,9 +534,10 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     
     public  SpritePiece buildPedina(int color,Piece charPiece,int level)throws Exception{
 
-        if(level==1)  return buildPedinaLevel1( color, charPiece);
-        else if(level==2) return  buildPedinaLevel1( color, charPiece);
-        else if(level==3) return  buildPedinaLevel1( color, charPiece);
+        if(FXBoard.levelWave(level)==1)  return buildPedinaLevel1( color, charPiece);
+        else if(FXBoard.levelWave(level)==2) return  buildPedinaLevel1( color, charPiece);
+        else if(FXBoard.levelWave(level)==3) return  buildPedinaLevel1( color, charPiece);
+        else if(FXBoard.levelWave(level)==4) return  buildPedinaLevel1( color, charPiece);
         else return null;
     }
     
@@ -640,6 +655,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 	     dropShadow.setRadius(20.0);
 	     dropShadow.setOffsetX(0.0);
 	     dropShadow.setOffsetY(0.0);  
+	     
 	     pedina.setEffect(dropShadow);
 	     pedina.setOnMouseClicked(new EventSelectionPlayerHandler(this,pedina));
      }
@@ -668,6 +684,20 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 	}
 
 	public boolean isLastLevel(){
-        return (level>3);
-    }       
+        return (level>(MAX_LEVEL*MAX_WAVE));
+    }
+	public static int levelWave(int level) {
+	      if(level==1 ||(level % MAX_LEVEL==1 && level>MAX_LEVEL))  return 1;
+	      else if(level==2 || level % MAX_LEVEL==2) return  2;
+	      else if(level==3 || level % MAX_LEVEL==3) return 3;
+	      else if(level==4 || level % MAX_LEVEL==0) return 4;
+	      else return -1;
+		
+	  } 
+	private int waveFromLevel() {
+		BCDraugthsApp.log.info("wave--->"+java.lang.Math.round(level/FXBoard.MAX_LEVEL));
+    	return  java.lang.Math.round(level/FXBoard.MAX_LEVEL)+1;
+    	
+		
+	}
 }

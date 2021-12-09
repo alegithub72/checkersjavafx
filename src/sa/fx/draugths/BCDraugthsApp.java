@@ -5,6 +5,7 @@
  */
 package sa.fx.draugths;
 
+
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
@@ -40,7 +42,7 @@ public class BCDraugthsApp extends Application {
     public static boolean debug;
     public static boolean loadScenario;
     public static boolean tracepath;
-	public static java.util.logging.Logger  log=   Logger.getAnonymousLogger();
+    public static java.util.logging.Logger  log=   Logger.getAnonymousLogger();
     //PathTransition pathTransition;
     Group root;
     //RotateTransition rotateTransition;
@@ -49,7 +51,6 @@ public class BCDraugthsApp extends Application {
     ImageView description;
     static double scale = 0.78;
     int level;
-
 
 
 
@@ -119,8 +120,12 @@ public class BCDraugthsApp extends Application {
         drawStartScreen();
         Scene scene = new Scene(root,startScreen.getWidthScreen()
                 ,startScreen.getHeightScreen(), Color.BLACK);
-
+       primaryStage.setTitle("Checkers Invader");
        primaryStage.setScene(scene);
+       primaryStage.getIcons().add(new Image("package/windows/cinvaders.png"));
+       primaryStage.setResizable(false);
+       
+       //primaryStage.initStyle(StageStyle.TRANSPARENT);
        primaryStage.show();
        
 
@@ -168,13 +173,19 @@ public static void main(String[] args) {
 
     }
 
-  public void drawRecordScreen(){
+  public void drawRecordScreen(int points){
       
+	  	//TODO: screen dei complimenti....
         root.getChildren().remove(fxb);
         BCDraugthsApp.log.info("index of fxb ="+root.getChildren().contains(fxb));
         //fxb=new FXBoardClass(0, this);
+
         recordScreen = new RecordScreen();
+        
+        recordScreen.addRecordPlayer("ALE", points);
+        recordScreen.drawTableRecord();
         root.getChildren().add(recordScreen);
+        
         recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
            
             @Override
@@ -222,5 +233,4 @@ public static void main(String[] args) {
 
                 
   }
-  
 }
