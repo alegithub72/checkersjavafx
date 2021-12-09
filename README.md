@@ -10,10 +10,13 @@ To run the game:
 
 2. mvn clean javafx:run
 
+You can download and run inno setup installer :<a href="https://github.com/alegithub72/alegithub72/raw/main/cinvaders-x64bit-4.0.exe" >cinvaders-x64bit-4.0.exe</a> 
+
 Some screenshot:
 <br>
 <div sgtyle="display: flex;flex-direction:column;">
 <img src="https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_1.PNG" width="200" height="200" />
 <img src="https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_4.PNG" width="200" height="200" />
 <img src="https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_2.PNG" width="200" height="200" />
+
 </div>
