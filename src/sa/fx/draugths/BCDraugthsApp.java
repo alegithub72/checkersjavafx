@@ -84,6 +84,7 @@ public class BCDraugthsApp extends Application {
         if(System.getProperty("checkers.debug")!=null)
             debug="true".equals(""+System.getProperty("checkers.debug"));
         else debug=false;
+        log.info("System.getProperty(\"checkers.loadScenario\")="+System.getProperty("checkers.loadScenario"));
         if(System.getProperty("checkers.loadScenario")!=null)
         	loadScenario="true".equals(""+System.getProperty("checkers.loadScenario"));
         else loadScenario=false;
@@ -97,7 +98,7 @@ public class BCDraugthsApp extends Application {
 			log.setLevel(Level.INFO);  
 		else 
 			log.setLevel(Level.OFF);
-
+		log.info("System.getProperty(\"checkers.level\")="+System.getProperty("checkers.level"));
         if(System.getProperty("checkers.level")!=null)
             level=Integer.valueOf(System.getProperty("checkers.level"));
         else level=1;
