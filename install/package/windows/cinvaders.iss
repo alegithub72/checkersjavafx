@@ -23,7 +23,7 @@ DefaultGroupName=sagame
 LicenseFile=
 ;(Windows 2000/XP/Server 2003 are no longer supported.)
 MinVersion=6.0
-OutputBaseFilename=cinvaders-4.0
+OutputBaseFilename=cinvaders-x64bit-4.0
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=lowest
