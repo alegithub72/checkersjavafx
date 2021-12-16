@@ -256,8 +256,10 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     }
     
     public void middleScreen(){
-
-            Image imagesDesc = new Image("desc1.png");
+    		Image imagesDesc = new Image("desc2.png");
+    		if(this.level>4) {
+    			imagesDesc = new Image("desc1.png");
+    		}
 
             c.getGraphicsContext2D().fillRect(0, 0, wBackground, hBackgroundTot);
 

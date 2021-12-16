@@ -28,6 +28,7 @@ public class SimpleFrameAnimation extends Transition{
     public static final String BITE="Dogbite.wav";
     public static final String BIG_BITE="lion_roar_2.mp3";
     public static final String JUNGLE="jungle_drum.wav";
+    public static final String MARCH="marcias.wav";
     public static final String MOVESPACESOLDIER="jerpack.wav";
     public static final String CLOPETE_DOUBLE="moveAlien2.wav";
     public static final String MOVEMONSTER="UFO.wav";

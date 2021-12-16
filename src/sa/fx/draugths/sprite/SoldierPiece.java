@@ -52,7 +52,7 @@ public class SoldierPiece extends SpritePiece {
 
     }
     
-    private SoldierPiece(String img,Piece boardPiece,
+    public SoldierPiece(String img,Piece boardPiece,
             BoardHW boardHW,  FXBoard board) {
         super( "Soldier",boardHW, img,board);
         this.color = boardPiece.getColor();
