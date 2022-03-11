@@ -15,7 +15,7 @@ public class HelmetSoldierPiece extends SoldierPiece {
         super(CHECKER_SOLDIER_IMAGE,boardPiece, boardHW, board);
         this.color = boardPiece.getColor();
         this.piece = boardPiece;
-        this.colorFX="HelmetSolcdier";
+        this.colorFX="HelmetSoldier";
     }
 
     @Override
