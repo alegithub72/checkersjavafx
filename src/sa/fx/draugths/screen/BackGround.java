@@ -124,7 +124,15 @@ public class BackGround extends Parent implements ScreenPauseInterface {
           
           
 
-    }
+    }else if (FXBoard.levelWave(level)==6) {
+      	
+        //images = new Image("mare.png");
+         empty=new Image("mareEmpty.png");
+         loadTiles("mare", full);
+        
+        
+
+  }
         
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -324,9 +332,11 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Poles", centerX,centerY);
 		            }else if (FXBoard.levelWave(level) == 4) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Forest",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) >= 5) {
+		            }else if (FXBoard.levelWave(level) == 5) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Mountains",centerX,centerY);
-		            }    
+		            }else if (FXBoard.levelWave(level) >= 6) {
+		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Sea",centerX,centerY);
+		            }     
 		            //f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"),24);
 		            //c.getGraphicsContext2D().setFont(f);
 		          
