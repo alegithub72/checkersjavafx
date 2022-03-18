@@ -212,10 +212,19 @@
          d="m 50.941766,23.530268 c 3.350872,-0.465786 3.636013,2.632176 3.636013,4.958199 0,0.174679 1.16585,-0.01787 1.23955,-0.165273 0.114438,-0.228877 0,-0.817036 0,-1.074277 0,-2.205744 -0.943507,-4.253515 -3.057556,-4.958199 -0.890667,-0.296889 -2.638992,0.0081 -1.818007,1.23955 z"
          id="path2451-74" />
     </g>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g26670-3"
+       id="use2582"
+       width="100%"
+       height="100%"
+       transform="translate(70.756457,42.878583)"
+       style="display:none" />
     <g
        id="g26670-3"
        inkscape:label="cactus"
-       transform="translate(-55.673005,-34.977383)"
+       transform="matrix(1.3215755,0,0,1.3771975,-146.32178,-77.249885)"
        style="display:inline">
       <path
          style="display:inline;opacity:0.582596;fill:#000000;stroke:#000000;stroke-width:0.522467px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -348,11 +357,12 @@
        x="0"
        y="0"
        xlink:href="#g26670-3"
-       id="use2184"
+       id="use2580"
        width="100%"
        height="100%"
-       transform="translate(42.580425,-9.573784)"
-       inkscape:label="upcactus" />
+       transform="translate(101.64253,15.920186)"
+       inkscape:label="cacatus centro"
+       style="display:none" />
     <use
        x="0"
        y="0"
@@ -360,7 +370,27 @@
        id="use2346"
        width="100%"
        height="100%"
-       transform="translate(46.340996,34.646836)"
-       inkscape:label="downcactus" />
+       transform="translate(71.316169,7.6232819)"
+       inkscape:label="downcactus"
+       style="display:inline" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g26670-3"
+       id="use2624"
+       width="100%"
+       height="100%"
+       transform="translate(106.83638,5.1256515)"
+       style="display:inline" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g26670-3"
+       id="use2184"
+       width="100%"
+       height="100%"
+       transform="translate(99.713734,43.106198)"
+       inkscape:label="upcactus"
+       style="display:inline" />
   </g>
 </svg>

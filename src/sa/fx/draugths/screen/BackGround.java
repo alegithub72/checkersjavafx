@@ -89,37 +89,37 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
     public void drawBackGround(){
             drawScoreBar();
-            Image empty=null;
+            Image[] empty=new Image[10];
             Image[] full=new Image[10];
             BCDraugthsApp.log.info("Level:"+level+" modulo:"+level % FXBoard.MAX_LEVEL);
             
             if(FXBoard.levelWave(level)==1 ){
             	loadTiles("giungla", full);
-                empty=new Image("giunglaEmpty.png");
+            	loadTiles("giunglaEmpty",empty);
                 
             }else if(FXBoard.levelWave(level)==2 ){
         	
-            empty=new Image("desertBoxEmpty.png");
+            loadTiles("desertBoxEmpty",empty);
             loadTiles("desertBox", full);
 
 
 
         }else if(FXBoard.levelWave(level)==3){
         	loadTiles("iceBoxEmpty", full);
-            empty=new Image("iceBox.png");
+        	loadTiles("iceBox",empty);
             
         }else if (FXBoard.levelWave(level)==4) {
         	
             //images = new Image("forestBoardsvg.png");
-             empty=new Image("forestaBoxEmpty.png");
-             loadTiles("forestaBox", full);
+        	loadTiles("forestaBoxEmpty",empty);
+            loadTiles("forestaBox", full);
             
             
 
       }else if (FXBoard.levelWave(level)==5) {
       	
           //images = new Image("forestBoardsvg.png");
-           empty=new Image("montagnaEmpty.png");
+    	   loadTiles("montagnaEmpty",empty);
            loadTiles("montagna", full);
           
           
@@ -127,7 +127,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     }else if (FXBoard.levelWave(level)==6) {
       	
         //images = new Image("mare.png");
-         empty=new Image("mareEmpty.png");
+    	loadTiles("mareEmpty", empty);
          loadTiles("mare", full);
         
         
@@ -139,16 +139,22 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
                 if (i % 2 == 0) {
                     if (j % 2 == 0) {
-                    	c.getGraphicsContext2D().drawImage(empty, i*100, (j*100)+30); 	
+                    	int random=(int)(10*Math.random())/2;
+                    	if(empty[random]!=null)
+                    		c.getGraphicsContext2D().drawImage(empty[random], i*100, (j*100)+30);
+                    	else 
+                    		c.getGraphicsContext2D().drawImage(empty[0], i*100, (j*100)+30);
                     } else if (j % 2 != 0) {
                     	int random=(int)(10*Math.random())/2;
                     	if(full[random]!=null)
-                    	c.getGraphicsContext2D().drawImage(full[random], i*100, (j*100)+30); 	
+                    		c.getGraphicsContext2D().drawImage(full[random], i*100, (j*100)+30); 	
                     	else c.getGraphicsContext2D().drawImage(full[0], i*100, (j*100)+30);
                     }
                 } else if (i % 2 != 0) {
                     if (j % 2 != 0) {
-                    	 c.getGraphicsContext2D().drawImage(empty, i*100, (j*100)+30); 
+                    	int random=(int)(10*Math.random())/2;
+                    	 if(empty[random]!=null)c.getGraphicsContext2D().drawImage(empty[random], i*100, (j*100)+30);
+                    	 else c.getGraphicsContext2D().drawImage(empty[0], i*100, (j*100)+30);
                     } else if (j % 2 == 0) {
                     	int random=(int)(10*Math.random())/2;
                     	if(full[random]!=null)
