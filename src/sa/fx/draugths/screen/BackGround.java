@@ -273,7 +273,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     
     public void middleScreen(){
     		Image imagesDesc = new Image("desc2.png");
-    		if(this.level>4) {
+    		if(this.level>FXBoard.MAX_LEVEL) {
     			imagesDesc = new Image("desc1.png");
     		}
 
