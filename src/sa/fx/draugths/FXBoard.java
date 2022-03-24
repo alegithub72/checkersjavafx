@@ -67,7 +67,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     static final  public BoardHW boardHW=  new BoardHW(100, 100); 
     int level;
 	public static final int MAX_WAVE=12;
-	public static final int MAX_LEVEL=7;
+	public static final int MAX_LEVEL=9;
     
     public FXBoard(int l,BCDraugthsApp app)throws Exception {
         this.pedinaList = new LinkedList[2];
@@ -542,6 +542,8 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         else if(FXBoard.levelWave(level)==5) return  buildPedinaLevel2( color, charPiece);
         else if(FXBoard.levelWave(level)==6) return  buildPedinaLevel2( color, charPiece);
         else if(FXBoard.levelWave(level)==7) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==8) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==9) return  buildPedinaLevel2( color, charPiece);
         else return null;
     }
     
@@ -787,7 +789,9 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 	      else if(level==4 || level % MAX_LEVEL==4) return 4;
 	      else if(level==5 || level % MAX_LEVEL==5) return 5;
 	      else if(level==6 || level % MAX_LEVEL==6) return 6;
-	      else if(level==6 || level % MAX_LEVEL==0) return 7;
+	      else if(level==7 || level % MAX_LEVEL==7) return 7;
+	      else if(level==8 || level % MAX_LEVEL==8) return 8;
+	      else if(level==9 || level % MAX_LEVEL==0) return 9;
 	      else return -1;
 		
 	  } 

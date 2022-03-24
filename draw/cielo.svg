@@ -7,14 +7,13 @@
    width="100"
    height="100"
    viewBox="0 0 100 100"
-   sodipodi:docname="luna.svg"
+   sodipodi:docname="cielo.svg"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\luna1.png"
+   inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\cielo.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
@@ -66,15 +65,15 @@
      inkscape:pagecheckerboard="0"
      showgrid="false"
      inkscape:snap-global="true"
-     inkscape:zoom="3.705"
-     inkscape:cx="25.641026"
-     inkscape:cy="57.085021"
+     inkscape:zoom="7.41"
+     inkscape:cx="49.932524"
+     inkscape:cy="50"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g1118"
+     inkscape:current-layer="layer1"
      showguides="false"
      inkscape:guide-bbox="true"
      inkscape:snap-nodes="false">
@@ -478,178 +477,30 @@
      inkscape:label="Layer 1"
      style="display:inline">
     <rect
-       style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.3;paint-order:stroke markers fill;stop-color:#000000"
-       id="rect7163"
-       width="100"
-       height="100"
+       style="fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.47369;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
+       id="rect2294"
+       height="101"
        x="0"
        y="0"
-       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\lunaEmpty.png"
+       width="101"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\cielo.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <g
-       id="g920"
-       inkscape:label="crepe"
+       id="g4975"
+       inkscape:label="nuvola"
        style="display:inline"
-       transform="translate(-109.04184,69.905533)">
-      <path
-         style="display:none;fill:#999999;stroke:none;stroke-width:1.01576px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 10.115158,46.992099 c -3.016624,7.85529 0.79885,7.10582 1.145112,14.965627 0.599365,13.605004 9.407323,20.844338 19.466907,26.977511 3.994693,2.435502 0.445725,1.437613 5.343857,2.953742 9.135493,2.827729 18.006128,2.953742 27.482693,2.953742 3.883458,0 12.699393,1.453813 16.222423,-1.575328 8.207381,-7.056802 3.991052,-17.598344 7.634081,-26.189847 1.03797,-2.447887 2.554594,-4.656567 3.626189,-7.088981 3.27177,-7.4266 5.156036,-15.490816 5.343857,-23.629936 0.06014,-2.606032 0.260542,-6.801361 -0.381705,-9.451975 C 94.981548,22.709296 90.215813,18.893248 87.028527,16.470099 83.108608,13.489963 78.169091,8.9681801 73.287181,7.8057892 66.550633,6.201806 57.248669,8.5907878 50.957493,9.9718667 42.426815,11.844575 35.258808,-1.1433649 28.436953,3.079802 23.844484,5.9228353 0.68146136,15.176237 2.2902243,30.451145 2.7486288,34.80361 9.7364789,41.438441 10.115158,46.992099 Z"
-         id="path8171"
-         sodipodi:nodetypes="cssssssssssssssc"
-         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\lunaEmpty2.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="fill:none;stroke:#666666;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 21.375428,16.222423 c 2.290224,0 4.659196,-0.595398 6.870673,0 4.805937,1.293906 5.135322,9.4862 7.824933,12.787086 0.938137,1.151349 2.113915,2.090555 3.244485,3.053633 5.329318,4.53979 13.539416,5.623215 20.039463,7.443229 4.546334,1.272973 8.906896,4.223573 12.596234,7.061525 2.115967,1.627667 4.677887,3.622165 3.244485,6.488969"
-         id="path14743"
-         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\lunaEmpty2.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="fill:none;stroke:#666666;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 22.52054,53.438569 c 6.571691,3.479131 4.513477,1.902182 12.023678,11.641974 3.341425,4.333411 2.252712,6.895715 7.634081,8.779194 4.334123,1.516943 9.170494,1.102187 13.550495,2.481076 4.786422,1.506837 8.556446,5.409862 12.596234,8.206638 2.235982,1.547987 5.725561,3.34426 5.725561,6.488969"
-         id="path14745"
-         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\lunaEmpty2.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="fill:none;stroke:#666666;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 20.61202,86.646823 c 5.131539,-4.105232 11.538611,-9.191957 14.695606,-13.550494 33.586887,-46.369957 2.129042,-7.883626 14.886459,-29.96377 0.371155,-0.642384 1.217632,-0.874764 1.90852,-1.145112 2.248121,-0.879699 4.649635,-1.344227 6.870673,-2.290224 5.605878,-2.387689 10.710687,-7.662798 14.504755,-12.405382"
-         id="path14747"
-         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\lunaEmpty2.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="fill:none;stroke:#666666;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="M 48.476416,9.1608976 C 56.664078,12.99342 65.333545,16.38549 71.569512,23.4748 c 24.452876,27.799058 -7.496916,-0.188253 6.870673,15.077311 2.301966,2.445838 3.559154,0.887224 5.153005,2.481076"
-         id="path14749"
-         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\lunaEmpty2.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="fill:none;stroke:#666666;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 10.878566,7.2523772 c -0.08169,3.0340868 3.016111,4.9951628 3.435336,7.8249338 0.506906,3.421612 0.69573,8.243411 -0.190852,11.641974 -0.270524,1.03701 -1.545894,2.542718 -1.90852,3.435336 -1.501852,3.696866 -2.13242,8.408396 -1.526816,12.405382 0.92766,6.122557 9.732161,14.703359 8.779193,20.421168 -0.263092,1.578553 -6.694423,6.503571 -7.824933,7.634081 -2.8083181,2.808318 -4.4681424,6.107954 -6.6798211,9.35175 -0.6117655,0.897256 -1.9085204,1.885404 -1.9085204,2.86278"
-         id="path14753"
-         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\lunaEmpty2.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="fill:none;stroke:#666666;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 95.998572,55.156237 c -4.604382,10.74356 -3.391281,7.543997 -9.160897,27.673545 -0.587923,2.051197 -0.315127,4.332364 -1.145112,6.298117 -1.072331,2.53973 -7.153027,5.007904 -9.35175,6.107265"
-         id="path14755"
-         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\lunaEmpty2.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
-         style="display:inline;fill:none;stroke:#666666;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 70.996956,5.1530049 c 3.11725,0.5725561 6.324774,0.778262 9.35175,1.7176683 4.527267,1.4050139 9.227529,3.4466388 10.496862,8.2066378 2.401161,9.004354 -5.73386,12.737298 6.679821,15.840718"
-         id="path14942"
-         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\luna.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-    </g>
-    <g
-       id="g7105"
-       inkscape:label="cratere"
-       transform="matrix(1.7259665,0,0,1.8081712,-91.174408,-22.413318)"
-       style="display:inline;fill:#999999"
-       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\luna.png"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\cielo.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96">
       <path
-         id="path1461-0"
-         style="display:none;opacity:1;fill:#000000;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
-         d="M 52.097165,28.83131 C 52.367071,44.302525 34.586541,47.657221 22.475034,47.657221 10.363526,47.657222 7.2928467,36.475265 7.2928467,24.512821 7.292847,12.550378 17.654569,-0.73424584 29.222672,2.8529015 42.278849,6.901485 51.888504,16.870687 52.097165,28.83131 Z"
-         sodipodi:nodetypes="sssss" />
+         style="display:inline;fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 22.523745,18.181818 c -3.32598,0.191089 -11.863264,3.869841 -13.0257803,7.191316 -0.2301529,0.65758 -0.3314375,2.744807 -0.1356852,3.527816 0.1868252,0.747301 1.2772075,0.540532 0.4070556,1.628222 -2.7037025,3.379629 -6.3095966,3.491199 -5.834464,8.955224 0.2898519,3.333297 1.4348597,6.214962 3.1207598,9.090909 1.5181398,2.589768 3.1207601,-0.362887 3.1207601,3.527816 0,2.295824 -1.6342615,2.857441 -2.8493896,4.477612 -0.1975607,0.263414 -0.1697898,0.636589 -0.2713705,0.949796 -0.4412381,1.360484 -1.009966,2.683012 -1.3568521,4.070556 -2.2422665,8.969067 3.9523241,20.580602 11.1261872,25.644505 3.600482,2.541517 8.940908,4.274996 13.297151,4.477612 0.594244,0.02764 1.199548,-0.08325 1.763907,-0.27137 0.315442,-0.105148 0.227571,-1.039539 0.407056,-0.949797 1.377797,0.688899 1.714179,2.657339 2.985075,3.527816 6.290187,4.308347 9.216829,3.837488 16.960651,4.206241 1.446376,0.06888 2.923658,0.156312 4.341927,-0.135685 2.073084,-0.426811 5.025297,-1.607148 6.919945,-2.985075 0.80645,-0.586509 1.152138,-1.079944 1.356853,-2.035278 0.07581,-0.353795 -0.361828,-1.085481 0,-1.085481 1.217812,0 2.328534,0.738158 3.527815,0.949796 6.465032,1.140888 16.559913,2.297453 22.523745,-0.814111 1.547835,-0.807566 3.332443,-1.609326 4.206241,-3.12076 2.338504,-4.04498 0.204675,-9.700345 -2.713704,-12.618725 -0.478651,-0.478651 0.08552,-3.269307 0.135685,-3.6635 0.235856,-1.853154 0.586963,-3.697232 0.678426,-5.563094 0.13508,-2.755624 0.308054,-5.535117 0,-8.276798 -0.400077,-3.56069 -3.395137,-6.924457 -5.291723,-9.769335 -0.409394,-0.614092 0.113189,-4.28259 -0.135685,-5.427408 -0.243062,-1.118084 -0.649828,-2.19843 -1.085482,-3.256445 -0.132455,-0.321678 -0.614516,-0.644452 -0.678426,-0.949797 -0.387055,-1.849263 -0.430543,-3.790908 -1.085481,-5.563093 -0.897514,-2.428566 -2.286167,-4.647994 -3.527816,-6.919946 -2.392607,-4.377963 -3.323917,-6.678386 -8.683853,-8.412483 -2.552002,-0.825648 -5.323189,-0.814111 -8.005428,-0.814111 -2.053289,0 -4.092418,0.411428 -6.105834,0.814111 -0.408888,0.08178 -0.576834,1.000593 -0.949797,0.814111 C 57.187186,19.163471 56.906852,17.4943 56.580733,16.960651 55.994862,16.001954 54.595392,13.98718 53.867028,13.297151 48.643352,8.3484043 42.302432,7.94579 35.41384,8.6838535 31.864856,9.0641017 22.640323,14.556531 21.031208,17.774763 c -0.221769,0.443537 1.294308,0.539208 1.492537,0.407055 z"
+         id="path1793-2" />
       <path
-         id="path1601"
-         style="display:inline;opacity:0.452802;fill:#000000;stroke:#000000;stroke-width:0.469;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
-         d="m 45.047288,22.483244 c 0,10.916923 -6.281611,16.904601 -16.890434,19.76684 C 17.178009,45.212154 3.7728632,33.400167 3.7728632,22.483244 3.7728633,11.566319 13.012457,2.7164033 24.410076,2.7164034 c 11.397618,0 20.637212,8.8499156 20.637212,19.7668406 z"
-         sodipodi:nodetypes="sssss" />
-      <path
-         id="path1601-2"
-         style="display:inline;opacity:1;fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.491;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
-         d="m 45.227122,22.382404 c 0,11.171362 -6.278258,17.298593 -16.881416,20.22754 C 17.372722,45.641051 3.9747337,33.553766 3.9747337,22.382404 3.9747338,11.211042 13.209396,2.1548634 24.600928,2.1548635 c 11.391532,0 20.626194,9.0561785 20.626194,20.2275405 z"
-         sodipodi:nodetypes="sssss" />
-      <path
-         id="path1461-2"
-         style="display:inline;fill:#4d4d4d;fill-opacity:1;stroke:none;stroke-width:1.852;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
-         d="m 41.06996,21.233893 c -1e-6,5.086834 -2.99749,12.122599 -5.503057,14.195654 -3.286976,2.719577 -6.739622,5.403698 -12.648089,4.2254 C 12.713268,37.619703 3.2104447,30.966182 3.4876028,20.79629 3.7575082,10.892527 13.716357,2.0860398 22.783861,1.9935305 32.678279,1.8925848 41.069961,11.060225 41.06996,21.233893 Z"
-         sodipodi:nodetypes="ssssss" />
+         id="path1793"
+         style="display:inline;fill:#999999;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 40.46875,8.3964844 C 38.823961,8.3852053 37.136211,8.4990779 35.414062,8.6835938 31.865078,9.063842 22.640365,14.557159 21.03125,17.775391 c -0.166133,0.332266 0.642808,0.468645 1.142578,0.460937 -3.51734,0.383731 -11.547904,3.914212 -12.6757811,7.136719 -0.1894201,0.5412 -0.2820357,2.014853 -0.203125,2.96875 1.9308871,-0.804444 3.7838341,-1.341377 5.0625001,-1.478516 -0.490399,0.0071 -1.281916,-0.125729 -1.119141,-0.445312 1.578498,-3.099124 10.627918,-8.387732 14.109375,-8.753907 6.757523,-0.710747 12.977278,-0.322231 18.101563,4.44336 0.714506,0.664491 2.087385,2.604128 2.662109,3.527344 0.319914,0.513898 0.59454,2.120913 1.064453,2.351562 0.365866,0.179581 0.530533,-0.704453 0.931641,-0.783203 1.975106,-0.387779 3.976013,-0.785156 5.990234,-0.785156 2.631203,0 5.350072,-0.0099 7.853516,0.785156 5.257953,1.669918 6.170495,3.883675 8.517578,8.099609 1.218024,2.187866 2.580501,4.32538 3.460938,6.664063 0.642477,1.706596 0.684763,3.5766 1.064453,5.357422 0.06269,0.294044 0.53608,0.60429 0.666015,0.914062 0.427365,1.018857 0.826015,2.060016 1.064453,3.136719 0.244137,1.102448 -0.268792,4.635197 0.132813,5.226562 1.860499,2.739588 4.798941,5.979297 5.191406,9.408204 0.302193,2.640211 0.13251,5.317065 0,7.970703 -0.08972,1.796806 -0.434647,3.572854 -0.666016,5.357422 -0.0492,0.379605 -0.602356,3.066408 -0.132812,3.527343 2.52571,2.479409 4.447505,7.00923 3.291016,10.716797 1.594138,-0.316997 3.079927,-0.779558 4.367187,-1.451172 1.547835,-0.807566 3.333233,-1.609659 4.207031,-3.121093 2.338504,-4.04498 0.205489,-9.700761 -2.71289,-12.619141 -0.478651,-0.478651 0.0846,-3.269869 0.134765,-3.664063 0.235856,-1.853154 0.586272,-3.696637 0.677735,-5.5625 0.13508,-2.755623 0.308054,-5.535662 0,-8.277343 -0.400077,-3.56069 -3.39443,-6.924654 -5.291016,-9.769531 -0.409394,-0.614092 0.114109,-4.280964 -0.134766,-5.425782 -0.243061,-1.118084 -0.650283,-2.199797 -1.085937,-3.257812 -0.132455,-0.321678 -0.613824,-0.643874 -0.677734,-0.949219 -0.387055,-1.849263 -0.431,-3.790315 -1.085938,-5.5625 -0.897514,-2.428566 -2.287648,-4.64797 -3.529297,-6.919922 -2.392607,-4.377963 -3.323657,-6.678012 -8.683594,-8.412109 -2.552002,-0.825648 -5.321667,-0.814453 -8.003906,-0.814453 -2.053289,0 -4.094006,0.41177 -6.107422,0.814453 -0.408888,0.08178 -0.576255,0.998982 -0.949218,0.8125 C 57.186988,19.16283 56.906197,17.494587 56.580078,16.960938 55.994207,16.002241 54.595552,13.986904 53.867188,13.296875 49.949431,9.585315 45.403118,8.4303216 40.46875,8.3964844 Z M 56.230469,97.890625 c -0.139897,0 -0.144048,0.123852 -0.119141,0.277344 0.156338,-0.02337 0.313706,-0.03644 0.46875,-0.06836 0.125811,-0.0259 0.278303,-0.07805 0.410156,-0.109375 -0.250299,-0.05411 -0.50159,-0.09961 -0.759765,-0.09961 z" />
     </g>
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g920"
-       id="use1018"
-       width="100%"
-       height="100%"
-       transform="matrix(-1,0,0,1,-6.6950659,-72.474973)"
-       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\lunaEmpty2.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g7105"
-       id="use7107"
-       width="100%"
-       height="100%"
-       transform="matrix(1.0530053,-0.77008599,0.55486229,0.84097605,94.046124,0.05046644)"
-       style="display:none"
-       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\luna4.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <g
-       id="g1118"
-       inkscape:label="due createri"
-       style="display:inline"
-       transform="translate(43.184886,-16.194332)">
-      <use
-         x="0"
-         y="0"
-         xlink:href="#g7105"
-         id="use909"
-         width="100%"
-         height="100%"
-         transform="matrix(0.343995,-0.22635358,0.20748462,0.31531938,20.814168,50.04533)"
-         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\luna2.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <use
-         x="0"
-         y="0"
-         xlink:href="#use909"
-         id="use1120"
-         width="100%"
-         height="100%"
-         transform="matrix(0.66724007,-1.1522691,1.2511789,0.35150713,-85.042216,79.130378)"
-         inkscape:transform-center-x="-29.687328"
-         inkscape:transform-center-y="-5.4740973"
-         style="display:none" />
-    </g>
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g7105"
-       id="use21457"
-       width="100%"
-       height="100%"
-       transform="matrix(0.77733156,-0.66771919,0.51784075,0.76983659,75.765255,2.3570985)"
-       style="display:none;fill:#000000;stroke:#000000;stroke-width:2.35186;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\luna4.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
-    <use
-       x="0"
-       y="0"
-       xlink:href="#g7105"
-       id="use911"
-       width="100%"
-       height="100%"
-       transform="matrix(0.40257847,-0.70219141,0.59097102,0.33467142,82.076814,-1.4572829)"
-       style="display:none" />
   </g>
 </svg>
