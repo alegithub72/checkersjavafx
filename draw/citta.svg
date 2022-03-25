@@ -9,7 +9,7 @@
    viewBox="0 0 100 100"
    sodipodi:docname="citta.svg"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta3.png"
+   inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -66,14 +66,14 @@
      showgrid="false"
      inkscape:snap-global="true"
      inkscape:zoom="2.4102245"
-     inkscape:cx="81.320227"
-     inkscape:cy="-44.601655"
+     inkscape:cx="177.99172"
+     inkscape:cy="82.772372"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g1802"
+     inkscape:current-layer="layer1"
      showguides="false"
      inkscape:guide-bbox="true"
      inkscape:snap-nodes="false"
@@ -543,7 +543,10 @@
   <g
      id="layer1"
      inkscape:label="Layer 1"
-     style="display:inline">
+     style="display:inline"
+     inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96">
     <rect
        style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.999809;stroke-miterlimit:4;stroke-dasharray:7.99846, 7.99846;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
        id="rect18499"
@@ -551,43 +554,6 @@
        height="100.2"
        x="0"
        y="0" />
-    <rect
-       style="display:none;fill:none;stroke:#f2f2f2;stroke-width:0.990099;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
-       id="rect1037"
-       width="99.009895"
-       height="99.009903"
-       x="100.47305"
-       y="0.5377903"
-       inkscape:label="destra" />
-    <rect
-       style="display:none;fill:none;stroke:#f2f2f2;stroke-width:0.990099;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
-       id="rect1037-0"
-       width="99.009895"
-       height="99.009903"
-       x="-99.484947"
-       y="0.46701106"
-       inkscape:label="sinisrta" />
-    <rect
-       style="display:none;fill:none;stroke:#f2f2f2;stroke-width:0.990099;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
-       id="rect1037-0-9"
-       width="99.009895"
-       height="99.009903"
-       x="0.57778889"
-       y="-99.504951"
-       inkscape:label="su" />
-    <rect
-       style="display:none;fill:none;stroke:#f2f2f2;stroke-width:0.990099;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
-       id="rect1037-0-9-6"
-       width="99.009895"
-       height="99.009903"
-       x="0.57778889"
-       y="100.49505"
-       inkscape:label="giu" />
-    <path
-       style="display:none;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 94.972504,78.344346 29.81232,77.837263 0.90858434,32.19978 76.463969,31.946238 105.11417,78.237 Z"
-       id="path6436"
-       sodipodi:nodetypes="cccccc" />
     <path
        style="fill:#4d4d4d;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 100.22233,31.74577 V 44.623317 L 92.009,31.592 Z"
@@ -605,14 +571,14 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <path
-       style="fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:8, 4;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 100.32077,0.017113 0.34932807,0.270655"
+       style="fill:none;stroke:#ffffff;stroke-width:0.75851;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:6.06807, 3.03404;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 57.187146,1.9162512 -0.05031184,2.1710325"
        id="path16204"
        sodipodi:nodetypes="cc" />
     <path
-       style="display:inline;fill:none;stroke:#ffffff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:8, 4;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 100.30772,99.852998 0.33626807,100.10654"
-       id="path16204-8"
+       style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.75851;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:6.06807, 3.03404;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 99.996039,2.2922512 86.530433,2.5470325"
+       id="path16204-9"
        sodipodi:nodetypes="cc" />
     <g
        sodipodi:type="inkscape:box3d"
@@ -621,10 +587,17 @@
        inkscape:perspectiveID="#perspective1088"
        inkscape:corner0="0.35060502 : 0.044553213 : 0 : 1"
        inkscape:corner7="-0.1617647 : -0.0043203178 : 1.2907464 : 1"
-       inkscape:label="palazzo" />
+       inkscape:label="palazzo"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\cittaEmpty.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:0.707107px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 69.288151,31.532336 H 80.490427"
+       id="path1082" />
     <g
        id="g30517"
-       style="fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+       style="display:none;fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
        transform="matrix(0.60373186,0,0,1,16.43502,-0.82979823)"
        inkscape:label="g30517">
       <path
@@ -646,7 +619,7 @@
     <g
        id="g1802"
        inkscape:label="vetrata"
-       style="display:inline;fill:#008080;stroke-width:0.862761"
+       style="display:none;fill:#008080;stroke-width:0.862761"
        transform="matrix(1.0639365,0,0,0.63955485,0.61200325,8.0609627)">
       <rect
          style="fill:#00ffff;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
@@ -827,5 +800,440 @@
          height="100%"
          style="display:none;fill:#008080" />
     </g>
+    <g
+       id="g30517-1"
+       style="display:inline;fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+       transform="matrix(1.0420284,0,0,1,-3.2412448,-0.85691137)"
+       inkscape:label="g30517">
+      <path
+         d="M 12.158042,4.3493376 23.686676,21.871335 H 81.261103 L 64.921899,4.3493376 Z"
+         style="fill:#cccccc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         id="path36177-9"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         d="M 27.122797,20.626638 V 69.55693 l 52.076634,-0.414899 2.061672,-48.930292 z"
+         style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         id="path36179-6"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         d="M 12.158042,4.3493376 27.122797,20.626638 V 69.55693 L 12.158042,53.27963 Z"
+         style="fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+         id="path36181-1"
+         sodipodi:nodetypes="ccccc" />
+    </g>
+    <g
+       id="g1802-8"
+       inkscape:label="vetrata"
+       style="display:inline;fill:#008080;stroke-width:0.862761"
+       transform="matrix(1.2358377,0,0,0.63955485,7.4660912,8.0338492)">
+      <rect
+         style="fill:#00ffff;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
+         id="rect1440-0"
+         width="9.4466934"
+         height="12.145749"
+         x="36.326584"
+         y="23.641026"
+         inkscape:tile-cx="43.049931"
+         inkscape:tile-cy="31.7139"
+         inkscape:tile-w="9.4466934"
+         inkscape:tile-h="12.145749"
+         inkscape:tile-x0="38.326584"
+         inkscape:tile-y0="25.641026"
+         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta4.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         id="use1530-4"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(0,14.145749)"
+         id="use1532-3"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(0,28.291498)"
+         id="use1534-2"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(0,42.437247)"
+         id="use1536-6"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(11.446693)"
+         id="use1538-9"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(11.446693,14.145749)"
+         id="use1540-6"
+         width="100%"
+         height="100%"
+         style="fill:#008080"
+         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta2.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(11.446693,28.291498)"
+         id="use1542-1"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(11.446693,42.437247)"
+         id="use1544-4"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(24.893387)"
+         id="use1546-3"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(24.893387,14.145749)"
+         id="use1548-5"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(24.893387,28.291498)"
+         id="use1550-7"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(24.893387,42.437247)"
+         id="use1552-9"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(36.34008)"
+         id="use1554-0"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(36.34008,14.145749)"
+         id="use1556-2"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(36.34008,28.291498)"
+         id="use1558-5"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0"
+         xlink:href="#rect1440-0"
+         transform="translate(36.34008,42.437247)"
+         id="use1560-7"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+    </g>
+    <g
+       id="g1802-8-8"
+       inkscape:label="vetrata"
+       style="display:inline;fill:#008080;stroke-width:0.862761"
+       transform="matrix(1.1228689,0,0,0.63955485,-14.169715,8.5008682)">
+      <rect
+         style="fill:#00ffff;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
+         id="rect1440-0-7"
+         width="9.4466934"
+         height="12.145749"
+         x="36.326584"
+         y="23.641026"
+         inkscape:tile-cx="43.049931"
+         inkscape:tile-cy="31.7139"
+         inkscape:tile-w="9.4466934"
+         inkscape:tile-h="12.145749"
+         inkscape:tile-x0="38.326584"
+         inkscape:tile-y0="25.641026"
+         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta4.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         id="use1530-4-7"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(0,14.145749)"
+         id="use1532-3-1"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(0,28.291498)"
+         id="use1534-2-4"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(0,42.437247)"
+         id="use1536-6-4"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(11.446693)"
+         id="use1538-9-8"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(11.446693,14.145749)"
+         id="use1540-6-0"
+         width="100%"
+         height="100%"
+         style="fill:#008080"
+         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta2.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(11.446693,28.291498)"
+         id="use1542-1-4"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(11.446693,42.437247)"
+         id="use1544-4-9"
+         width="100%"
+         height="100%"
+         style="fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(24.893387)"
+         id="use1546-3-1"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(24.893387,14.145749)"
+         id="use1548-5-5"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(24.893387,28.291498)"
+         id="use1550-7-0"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(24.893387,42.437247)"
+         id="use1552-9-3"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(36.34008)"
+         id="use1554-0-7"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(36.34008,14.145749)"
+         id="use1556-2-2"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(36.34008,28.291498)"
+         id="use1558-5-3"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+      <use
+         x="0"
+         y="0"
+         inkscape:tiled-clone-of="#rect1440-0-7"
+         xlink:href="#rect1440-0-7"
+         transform="translate(36.34008,42.437247)"
+         id="use1560-7-9"
+         width="100%"
+         height="100%"
+         style="display:none;fill:#008080" />
+    </g>
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 6.6383847,76.963789 -0.433,65.391298"
+       id="path1088"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 9.5106048,76.963789 H 18.638385"
+       id="path1084"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 100.50984,66.73972 81.943644,33.696198"
+       id="path2575"
+       sodipodi:nodetypes="cc" />
   </g>
+  <use
+     x="0"
+     y="0"
+     xlink:href="#layer1"
+     id="use937"
+     transform="translate(100.22,0.09988539)"
+     width="100%"
+     height="100%" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#use937"
+     id="use1043"
+     transform="translate(-99.990685,100.40558)"
+     width="100%"
+     height="100%" />
+  <use
+     x="0"
+     y="0"
+     xlink:href="#layer1"
+     id="use1045"
+     transform="translate(100.291,100.63489)"
+     width="100%"
+     height="100%" />
+  <ellipse
+     style="fill:#00ffff;stroke:#999999;stroke-width:0.813608;paint-order:stroke markers fill;stop-color:#000000"
+     id="path961"
+     cx="250.8065"
+     cy="80.594154"
+     rx="14.822113"
+     ry="4.9682612" />
 </svg>
