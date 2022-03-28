@@ -100,7 +100,8 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
             game.setHuman(mousePlayer); 
             buildWaveLevel();
-            if(BCDraugthsApp.loadScenario) load("boardEndLevel.txt");
+            if(BCDraugthsApp.loadScenario)load("boardPedinaBlackTest.txt"); 
+            	//load("boardEndLevel.txt");
  
             if(game!=null) game.addRenderInterface(this);
             addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
@@ -429,7 +430,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                     event.consume();
                 }
             }); 
-                       
+            System.gc();
     }
     
     public synchronized void removeSpritePiece(SpritePiece p) {

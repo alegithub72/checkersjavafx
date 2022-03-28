@@ -15,6 +15,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.effect.DropShadow;
@@ -22,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import sa.fx.draugths.utility.RecordPlayer;
 
 /**
@@ -56,24 +59,55 @@ public class RecordScreen  extends Parent{
            
         
     }
-    public void addRecordPlayer(String name,Integer points) {
-
-        RecordPlayer newOne=new RecordPlayer(name+players.get(9).getI() , points,"records"+players.get(9).getI(),players.get(9).getI());
-        players.add(newOne);
-        Collections.sort(players, new RecordPlayer());
-        prop.replace("record"+players.get(9).getI()+".name", players.get(9).getMame(),name);
-        prop.remove("record"+players.get(9).getI()+".points");
-        prop.put("record"+players.get(9).getI()+".points",""+ points);
-        try {
-            FileOutputStream out=new FileOutputStream("records.properties");
-			prop.store(out, "Nuovo Tabella Record");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+    public boolean addRecordPlayer(String name,Integer points) {
+        //players.remove(9);
+    	RecordPlayer alreadyPresent=null;
+        for (int i = 0; i < players.size(); i++) {
+        	if(players.get(i).getPropName().indexOf("X")>0)  alreadyPresent=players.get(i);
 		}
-    	
+        if(alreadyPresent!=null) {
+        	alreadyPresent.setMame(name);
+        }else {
+            alreadyPresent=new RecordPlayer(name , points,"recordsX",10);
+        	players.add(alreadyPresent);
+        	
+        }
+        Collections.sort(players, new RecordPlayer());
+        //players.remove(players.size()-1);
+        boolean recordMade=false;
+        for (int i = 0; i < players.size() ;i++) {
+        	if(players.get(i).getPropName().indexOf("X")>0) {
+        		
+        		if(i<10)recordMade=true;
+        }	
+        	if(i==10)alreadyPresent.setI(players.get(i).getI()); 
+
+        }
+
+        if(players.size()>=11) players.remove(10);
+        
+
+
+        return recordMade;
     }
-    List<RecordPlayer> ordredrecordsPlayers() {
+    
+public void saveRecordPlayers() {
+    try {
+    	for (Iterator iterator = players.iterator(); iterator.hasNext();) {
+			RecordPlayer recordPlayer = (RecordPlayer) iterator.next();
+			if(recordPlayer.getPropName().indexOf("X")>0)
+				recordPlayer.setPropName("records");
+	        prop.replace("record"+recordPlayer.getI()+".name", recordPlayer.getMame());
+	        prop.replace("record"+recordPlayer.getI()+".points",""+ recordPlayer.getPoints());
+		}
+        FileOutputStream out=new FileOutputStream("records.properties");
+		prop.store(out, "Nuovo Tabella Record");
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+public   List<RecordPlayer> ordredrecordsPlayers() {
     	List<RecordPlayer> list=new ArrayList<>();
     	for (int i = 1; i < 11; i++) {
         	String name=prop.getProperty("record"+i+".name");
@@ -93,6 +127,7 @@ public class RecordScreen  extends Parent{
 	}
 
 	public  void drawTableRecord(){
+		getChildren().clear();
         Image images = new Image("background.png");
         Canvas c=new Canvas(images.getWidth(),images.getHeight());
         //c.getGraphicsContext2D().drawImage(images, 0, 0);
@@ -125,6 +160,22 @@ public class RecordScreen  extends Parent{
 					pointZero=pointZero+pl1.getPoints();
 				}
                 Text player=new Text(pl1.getMame().substring(0,3)+" : "+pointZero);
+                if(pl1.getPropName().indexOf("X")>0) {
+                    Animation t=new Transition() {
+                        {
+                            setCycleCount(Animation.INDEFINITE);
+                            setCycleDuration(Duration.millis(500));
+                            
+                        }
+                        
+                        @Override
+                        protected void interpolate(double frac) {
+                            //System.out.println("color="+Color.WHITE.interpolate(Color.BLACK, frac));
+                        	player.setFill(Color.WHITE.interpolate(Color.BLACK, frac));
+                        }
+                    };
+                    t.play();
+                }
                  f = new Font(30);
                 player.setFont(f);
                 player.setX((BackGround.wBackground/18)+200);

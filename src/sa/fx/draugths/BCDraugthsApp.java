@@ -16,6 +16,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
@@ -182,31 +184,74 @@ public static void main(String[] args) {
         //fxb=new FXBoardClass(0, this);
 
         recordScreen = new RecordScreen();
-        
-        recordScreen.addRecordPlayer("ALE", points);
-        recordScreen.drawTableRecord();
-        root.getChildren().add(recordScreen);
-        
-        recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
-           
-            @Override
-            public void handle(MouseEvent event) {
-                    try {
-						music.play();
-						root.getChildren().remove(recordScreen);
-						level=1;
-						drawStartScreen();
-						event.consume();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+        char[] recordName="AAA".toCharArray();
+        if(!recordScreen.addRecordPlayer(new String(recordName), points)) {
+	        recordScreen.drawTableRecord();
+	        root.getChildren().add(recordScreen);
+        	
+          recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	           @Override
+	           public void handle(MouseEvent event) {
+	           	if(event.getButton()==MouseButton.SECONDARY) resetGame();
+	           	}
+          	});     
+        	
+        }else {
+		        recordScreen.drawTableRecord();
+		        root.getChildren().add(recordScreen);
+		        recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		        	int only3=0;
+		        	char name='A';
+					@Override
+					public void handle(MouseEvent event) {
+		            	if(event.getButton()==MouseButton.SECONDARY) {
+		            	if(only3<=2) {
+		            		 recordName[only3]=name;
+							 only3++;
+							 name='A';
+							 recordScreen.addRecordPlayer(new String(recordName), points);
+							 recordScreen.drawTableRecord();
+		            	}else {
+		                    	resetGame();
+		  						recordScreen.saveRecordPlayers();
+		  						event.consume();
+		  						if(debug) log.info("----FINE------>"+name+"-->"+only3+"----->"+new String(recordName));
+		        			}
+						
+		            	if(debug) log.info("---------->"+name+"-->"+only3+"----->"+new String(recordName));
+
+		            	}else {
+		            		
+		            		if(only3<=2) {
+		            			name++;
+		            			recordName[only3]=name;
+		            			
+		            		}
+		            		if(debug) log.info("---------->"+name+"-->"+only3+"----->"+new String(recordName));
+		            		recordScreen.addRecordPlayer(new String(recordName), points);
+		                    recordScreen.drawTableRecord();
+		            	}
 					}
-            }
-        });     
+		        	
+		        	
+				});
+        }
      
      
  }
-  
+  private void  resetGame() {
+		
+	    try {
+			music.play();
+			root.getChildren().remove(recordScreen);
+			level=1;
+			drawStartScreen();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	  
+  }
   public void drawStartScreen()throws Exception{
         
       
