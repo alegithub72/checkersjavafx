@@ -224,6 +224,7 @@ public static void main(String[] args) {
 		            		
 		            		if(only3<=2) {
 		            			name++;
+		            			if(name>'Z') name='A';
 		            			recordName[only3]=name;
 		            			
 		            		}
