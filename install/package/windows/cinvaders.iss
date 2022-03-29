@@ -3,15 +3,16 @@
 [Setup]
 AppId={{sa.fx.draugths}}
 AppName=cinvaders
-AppVersion=4.0
-AppVerName=cinvaders 4.0
+AppVersion=4.1
+AppVerName=cinvaders 4.1
 AppPublisher=sagame
 AppComments=cinvaders
 AppCopyright=Copyright (C) 2021
 ;AppPublisherURL=http://java.com/
 ;AppSupportURL=http://java.com/
 ;AppUpdatesURL=http://java.com/
-DefaultDirName={localappdata}\cinvaders
+UsePreviousAppDir=yes
+DefaultDirName={autopf}\cinvaders
 DisableStartupPrompt=Yes
 DisableDirPage=Yes
 DisableProgramGroupPage=Yes
@@ -23,8 +24,11 @@ DefaultGroupName=sagame
 LicenseFile=
 ;(Windows 2000/XP/Server 2003 are no longer supported.)
 MinVersion=6.0
-OutputBaseFilename=cinvaders-x64bit-4.0
-Compression=lzma
+OutputBaseFilename=cinvaders-x64bit-4.1
+DiskSpanning=yes
+SlicesPerDisk=1
+DiskSliceSize=24000000
+Compression=lzma2/ultra64
 SolidCompression=yes
 PrivilegesRequired=lowest
 SetupIconFile=cinvaders\cinvaders.ico

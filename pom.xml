@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>checkersfx</groupId>
 	<artifactId>chekcersfx</artifactId>
-	<version>4.0</version>
+	<version>4.1</version>
 	<packaging>jar</packaging>
 	<name>Chekcers Invader</name> 
 	<!-- https://search.maven.org
@@ -102,7 +102,7 @@ https://mvnrepository.com -->
         		<mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
         		<nativeReleaseVersion>${project.version}</nativeReleaseVersion>
         		<vendor>sagame</vendor>
-        		<SetupIconFile>test</SetupIconFile>
+        		<SetupIconFile>install\package\windows\wizard-setup.ico</SetupIconFile>
         		<appName>cinvaders</appName>
         		<deployDir>install</deployDir>
         		<skipNativeVersionNumberSanitizing>true</skipNativeVersionNumberSanitizing>
