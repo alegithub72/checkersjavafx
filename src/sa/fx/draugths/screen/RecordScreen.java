@@ -5,10 +5,14 @@
  */
 package sa.fx.draugths.screen;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -35,24 +39,14 @@ public class RecordScreen  extends Parent{
 	Properties prop;
 	List<RecordPlayer> players;
     public RecordScreen(){
-        this.prop=new Properties();
-        FileInputStream in=null;
-		try {
-			in = new FileInputStream("records.properties");
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        try {
-
-
-            if(in==null)
-			prop.load(ClassLoader.getSystemResourceAsStream("records.properties"));
-            else prop.load(in);
+    	prop= new Properties();
+    	try {
+			prop.load(loadCodedFile("file1"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
         players=ordredrecordsPlayers();
 
            
@@ -90,7 +84,51 @@ public class RecordScreen  extends Parent{
 
         return recordMade;
     }
-    
+    public ByteArrayInputStream loadCodedFile(String name) throws IOException {
+
+    	ByteArrayOutputStream arrayOutputStream=null;
+    	arrayOutputStream=new ByteArrayOutputStream(); 	
+    	InputStream inputStream=loadFromFileSystem(name);
+    	if(inputStream==null) inputStream=loadFromResource(name);
+    	while(inputStream.available()!=0) {
+    		byte b=(byte) inputStream.read();
+    		arrayOutputStream.write(~b);
+    		
+    	}
+    	inputStream.close();
+    	arrayOutputStream.flush();
+    	arrayOutputStream.close();
+
+    	ByteArrayInputStream arrayInputStream=new ByteArrayInputStream(arrayOutputStream.toByteArray());
+    	return arrayInputStream;
+
+    }
+    private InputStream  loadFromResource(String name) {
+    	return ClassLoader.getSystemResourceAsStream(name);
+    }
+    private FileInputStream loadFromFileSystem(String name) {
+        FileInputStream in=null;
+		try {
+			in = new FileInputStream(name);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	return in;
+    }
+    public void storeCodedFile(ByteArrayOutputStream outputStream,String name) throws IOException {
+
+    	FileOutputStream fileOutputStream=new FileOutputStream(new File(name));
+    	ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(outputStream.toByteArray());
+    	while(byteArrayInputStream.available()!=0) {
+    		byte b=(byte) byteArrayInputStream.read();
+        	fileOutputStream.write(~b);
+    	}
+    	byteArrayInputStream.close();
+    	fileOutputStream.flush();
+    	fileOutputStream.close();
+    	
+    }
 public void saveRecordPlayers() {
     try {
     	for (Iterator iterator = players.iterator(); iterator.hasNext();) {
@@ -99,9 +137,12 @@ public void saveRecordPlayers() {
 				recordPlayer.setPropName("records");
 	        prop.replace("record"+recordPlayer.getI()+".name", recordPlayer.getMame());
 	        prop.replace("record"+recordPlayer.getI()+".points",""+ recordPlayer.getPoints());
+
 		}
-        FileOutputStream out=new FileOutputStream("records.properties");
-		prop.store(out, "Nuovo Tabella Record");
+    	ByteArrayOutputStream arrayOutputStream=new ByteArrayOutputStream();
+    	prop.store(arrayOutputStream,"Nuovo Tabella Record" );
+    	storeCodedFile(arrayOutputStream,"file1");
+
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
