@@ -99,8 +99,7 @@ public class RecordScreen  extends Parent{
     	arrayOutputStream.flush();
     	arrayOutputStream.close();
 
-    	ByteArrayInputStream arrayInputStream=new ByteArrayInputStream(arrayOutputStream.toByteArray());
-    	return arrayInputStream;
+    	return new ByteArrayInputStream(arrayOutputStream.toByteArray());
 
     }
     private InputStream  loadFromResource(String name) {
@@ -111,22 +110,25 @@ public class RecordScreen  extends Parent{
 		try {
 			in = new FileInputStream(name);
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
     	return in;
     }
-    public void storeCodedFile(ByteArrayOutputStream outputStream,String name) throws IOException {
+    public void storeCodedFile(ByteArrayOutputStream outputStream,String name) throws IOException ,NullPointerException {
 
-    	FileOutputStream fileOutputStream=new FileOutputStream(new File(name));
+    	File file=new File(name);
+    	FileOutputStream fileOutputStream = new FileOutputStream(file);
     	ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(outputStream.toByteArray());
     	while(byteArrayInputStream.available()!=0) {
-    		byte b=(byte) byteArrayInputStream.read();
-        	fileOutputStream.write(~b);
-    	}
-    	byteArrayInputStream.close();
-    	fileOutputStream.flush();
-    	fileOutputStream.close();
+	    		byte b=(byte) byteArrayInputStream.read();
+	        	fileOutputStream.write(~b);
+	    	}
+	   	 	fileOutputStream.flush();
+	   	 	byteArrayInputStream.close();
+	   	 	fileOutputStream.close();
+
+
     	
     }
 public void saveRecordPlayers() {
@@ -134,7 +136,7 @@ public void saveRecordPlayers() {
     	for (Iterator iterator = players.iterator(); iterator.hasNext();) {
 			RecordPlayer recordPlayer = (RecordPlayer) iterator.next();
 			if(recordPlayer.getPropName().indexOf("X")>0)
-				recordPlayer.setPropName("records");
+				recordPlayer.setPropName("record");
 	        prop.replace("record"+recordPlayer.getI()+".name", recordPlayer.getMame());
 	        prop.replace("record"+recordPlayer.getI()+".points",""+ recordPlayer.getPoints());
 
@@ -144,7 +146,6 @@ public void saveRecordPlayers() {
     	storeCodedFile(arrayOutputStream,"file1");
 
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 }

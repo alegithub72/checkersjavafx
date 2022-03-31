@@ -5,6 +5,7 @@
  */
 package sa.fx.draugths;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -100,8 +101,14 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
             game.setHuman(mousePlayer); 
             buildWaveLevel();
-            if(BCDraugthsApp.loadScenario)load("boardPedinaBlackTest.txt"); 
-            	//load("boardEndLevel.txt");
+            if(BCDraugthsApp.loadScenario) {
+            	String scen="boardPedinaBlackTest.txt";
+            	if(System.getProperty("checkers.fileScenario")!=null) 
+            		scen=System.getProperty("checkers.fileScenario");
+        		File scenFile=new File(scen);
+        		if(scenFile.exists()) load(scen);
+            }
+
  
             if(game!=null) game.addRenderInterface(this);
             addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
