@@ -543,15 +543,15 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     
     public  SpritePiece buildPedina(int color,Piece charPiece,int level)throws Exception{
 
-        if(FXBoard.levelWave(level)==1)  return buildPedinaLevel1( color, charPiece);
-        else if(FXBoard.levelWave(level)==2) return  buildPedinaLevel2( color, charPiece);
-        else if(FXBoard.levelWave(level)==3) return  buildPedinaLevel2( color, charPiece);
-        else if(FXBoard.levelWave(level)==4) return  buildPedinaLevel2( color, charPiece);
-        else if(FXBoard.levelWave(level)==5) return  buildPedinaLevel2( color, charPiece);
-        else if(FXBoard.levelWave(level)==6) return  buildPedinaLevel2( color, charPiece);
-        else if(FXBoard.levelWave(level)==7) return  buildPedinaLevel2( color, charPiece);
-        else if(FXBoard.levelWave(level)==8) return  buildPedinaLevel2( color, charPiece);
-        else if(FXBoard.levelWave(level)==9) return  buildPedinaLevel2( color, charPiece);
+        if(FXBoard.levelWave(level)==BackGround.LVL_JUNGLE)  return buildPedinaLevel1( color, charPiece);
+        else if(FXBoard.levelWave(level)==BackGround.LVL_CITY) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==BackGround.LVL_DESERT) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==BackGround.LVL_FOREST) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==BackGround.LVL_MOON) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==BackGround.LVL_MOUNTAIN) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==BackGround.LVL_POLE) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==BackGround.LVL_SEA) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==BackGround.LVL_SKY) return  buildPedinaLevel2( color, charPiece);
         else return null;
     }
     
@@ -791,15 +791,15 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         return (level>(MAX_LEVEL*MAX_WAVE));
     }
 	public static int levelWave(int level) {
-	      if(level==1 || (level % MAX_LEVEL==1) || (level>MAX_LEVEL) )  return 1;
-	      else if(level==2 || level % MAX_LEVEL==2) return  2;
-	      else if(level==3 || level % MAX_LEVEL==3) return 3;
-	      else if(level==4 || level % MAX_LEVEL==4) return 4;
-	      else if(level==5 || level % MAX_LEVEL==5) return 5;
-	      else if(level==6 || level % MAX_LEVEL==6) return 6;
-	      else if(level==7 || level % MAX_LEVEL==7) return 7;
-	      else if(level==8 || level % MAX_LEVEL==8) return 8;
-	      else if(level==9 || level % MAX_LEVEL==0) return 9;
+	      if(level==BackGround.LVL_JUNGLE || level % MAX_LEVEL==BackGround.LVL_JUNGLE)  return BackGround.LVL_JUNGLE;
+	      else if(level==BackGround.LVL_DESERT || level % MAX_LEVEL==BackGround.LVL_DESERT) return  BackGround.LVL_DESERT;
+	      else if(level==BackGround.LVL_FOREST || level % MAX_LEVEL==BackGround.LVL_FOREST) return BackGround.LVL_FOREST;
+	      else if(level==BackGround.LVL_CITY || level % MAX_LEVEL==BackGround.LVL_CITY) return BackGround.LVL_CITY;
+	      else if(level==BackGround.LVL_SKY || level % MAX_LEVEL==BackGround.LVL_SKY) return BackGround.LVL_SKY;
+	      else if(level==BackGround.LVL_MOUNTAIN || level % MAX_LEVEL==BackGround.LVL_MOUNTAIN) return BackGround.LVL_MOUNTAIN;
+	      else if(level==BackGround.LVL_POLE || level % MAX_LEVEL==BackGround.LVL_POLE) return BackGround.LVL_POLE;
+	      else if(level==BackGround.LVL_SEA || level % MAX_LEVEL==BackGround.LVL_SEA) return BackGround.LVL_SEA;
+	      else if(level==BackGround.LVL_MOON || level % MAX_LEVEL==0) return BackGround.LVL_MOON;
 	      else return -1;
 		
 	  } 

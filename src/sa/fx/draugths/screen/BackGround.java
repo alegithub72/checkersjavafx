@@ -44,6 +44,17 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     public static double hBackgroud=800;
     public static double hBackgroundTot;
     public static  double hPointTable=30;
+    public static int LVL_JUNGLE=1,
+    		LVL_DESERT=2,
+    		LVL_MOUNTAIN=3,
+    		LVL_FOREST=4,
+    		LVL_SEA=5,
+    		LVL_POLE=6,
+    		LVL_CITY=7,
+    		LVL_SKY=8,    		
+    		LVL_MOON=9;
+
+
     Canvas c;
     Text scoreLabel;
     Text score;
@@ -93,22 +104,22 @@ public class BackGround extends Parent implements ScreenPauseInterface {
             Image[] full=new Image[10];
             BCDraugthsApp.log.info("Level:"+level+" modulo:"+level % FXBoard.MAX_LEVEL);
             
-            if(FXBoard.levelWave(level)==1 ){
+            if(FXBoard.levelWave(level)==LVL_JUNGLE ){
             	loadTiles("giungla", full);
             	loadTiles("giunglaEmpty",empty);
                 
-            }else if(FXBoard.levelWave(level)==2 ){
+            }else if(FXBoard.levelWave(level)==LVL_DESERT ){
         	
             loadTiles("desertBoxEmpty",empty);
             loadTiles("desertBox", full);
 
 
 
-        }else if(FXBoard.levelWave(level)==3){
+        }else if(FXBoard.levelWave(level)==LVL_POLE){
         	loadTiles("iceBoxEmpty", full);
         	loadTiles("iceBox",empty);
             
-        }else if (FXBoard.levelWave(level)==4) {
+        }else if (FXBoard.levelWave(level)==LVL_FOREST) {
         	
             //images = new Image("forestBoardsvg.png");
         	loadTiles("forestaBoxEmpty",empty);
@@ -116,7 +127,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
             
             
 
-      }else if (FXBoard.levelWave(level)==5) {
+      }else if (FXBoard.levelWave(level)==LVL_MOUNTAIN) {
       	
           //images = new Image("forestBoardsvg.png");
     	   loadTiles("montagnaEmpty",empty);
@@ -124,7 +135,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
           
           
 
-    }else if (FXBoard.levelWave(level)==6) {
+    }else if (FXBoard.levelWave(level)==LVL_SEA) {
       	
         //images = new Image("mare.png");
     	loadTiles("mareEmpty", empty);
@@ -132,19 +143,19 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         
         
 
-  }else if (FXBoard.levelWave(level)==7) {
+  }else if (FXBoard.levelWave(level)==LVL_MOON) {
     	
       //images = new Image("mare.png");
   	loadTiles("lunaEmpty", empty);
        loadTiles("luna", full);
       
-  }else if (FXBoard.levelWave(level)==8) {
+  }else if (FXBoard.levelWave(level)==LVL_SKY) {
     	
       //images = new Image("mare.png");
   	loadTiles("cieloEmpty", empty);
        loadTiles("cielo", full);
       
-  }else if (FXBoard.levelWave(level)==9) {
+  }else if (FXBoard.levelWave(level)==LVL_CITY) {
     	
       //images = new Image("mare.png");
   	loadTiles("cittaEmpty", empty);
@@ -348,23 +359,23 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 		            c.getGraphicsContext2D().setFont( f);
 		            double centerX=(wBackground/4)-(wBackground/24);
 		            double centerY=(hBackgroundTot/2)+(hBackgroundTot/12);
-		            if (FXBoard.levelWave(level) == 1) {
+		            if (FXBoard.levelWave(level) == BackGround.LVL_JUNGLE) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Jungle", centerX,centerY);
-		            } else if (FXBoard.levelWave(level) == 2) {
+		            } else if (FXBoard.levelWave(level) == BackGround.LVL_DESERT) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Desert", centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == 3) {
+		            }else if (FXBoard.levelWave(level) == BackGround.LVL_POLE) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Poles", centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == 4) {
+		            }else if (FXBoard.levelWave(level) == BackGround.LVL_FOREST) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Forest",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == 5) {
+		            }else if (FXBoard.levelWave(level) == BackGround.LVL_MOUNTAIN) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Mountains",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == 6) {
+		            }else if (FXBoard.levelWave(level) == BackGround.LVL_SEA) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Sea",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == 7) {
+		            }else if (FXBoard.levelWave(level) == BackGround.LVL_MOON) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Moon",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == 8) {
+		            }else if (FXBoard.levelWave(level) == BackGround.LVL_SKY) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Sky",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == 9) {
+		            }else if (FXBoard.levelWave(level) == BackGround.LVL_CITY) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the City",centerX,centerY);
 		            }           
 		            //f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"),24);

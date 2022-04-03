@@ -29,8 +29,8 @@
      showgrid="false"
      units="px"
      inkscape:zoom="2.6198306"
-     inkscape:cx="32.444846"
-     inkscape:cy="19.65776"
+     inkscape:cx="27.482693"
+     inkscape:cy="-22.711392"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-9"
@@ -256,6 +256,19 @@
          inkscape:collect="always"
          stdDeviation="0.13973721"
          id="feGaussianBlur20419" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter18830-1"
+       x="-0.44682927"
+       y="-0.31039333"
+       width="1.8938646"
+       height="1.6204151">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.39035302"
+         id="feGaussianBlur18832-4" />
     </filter>
   </defs>
   <g
@@ -1671,7 +1684,7 @@
     <g
        id="layer2-9"
        inkscape:label="pedinaSky"
-       style="display:inline"
+       style="display:none"
        transform="translate(0.28969394,0.50166089)">
       <g
          id="g19641"
@@ -1767,7 +1780,8 @@
       <g
          id="g31715-5"
          inkscape:label="casco"
-         transform="matrix(0.59961486,-0.95079458,0.88631363,0.63091906,-3.1196285,19.661521)">
+         transform="matrix(0.59961486,-0.95079458,0.88631363,0.63091906,-3.1196285,19.661521)"
+         style="display:none">
         <path
            style="fill:#000080;stroke:#000000;stroke-width:0.242688px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
            d="M 14.616048,11.910698 C 12.416474,8.463625 12.648793,9.5068993 13.003082,7.7824779 13.54211,5.1588769 10.93497,5.0875318 10.921669,4.3069051 c -0.608826,-1.6070165 2.545168,-3.64231398 3.92751,-2.9055026 0.641831,1.9039616 1.739838,4.2058058 1.82108,6.1383122 0.0059,0.1415075 0.607457,1.0796664 0.423613,1.2040416 -0.08119,0.054926 -0.311843,-0.062409 -0.410761,-0.05336 -0.30228,0.027653 -1.681258,0.9708492 -1.813398,1.2268123 -0.295871,0.5731204 0.842287,2.0368624 -0.253665,1.9934894 z"
@@ -1868,7 +1882,7 @@
          id="g19645"
          inkscape:label="fiamma2"
          transform="matrix(0.89788729,0,0,0.8581584,2.1816297,3.2564799)"
-         style="filter:url(#filter18830)">
+         style="display:inline;filter:url(#filter18830)">
         <path
            style="display:inline;fill:#ffff00;stroke:#d40000;stroke-width:0.303114px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
            d="m 21.417728,24.697418 c 0.111312,0.09246 1.033538,0.786836 1.207822,0.769247 0.641293,-0.06472 -0.143175,-3.18376 -0.401132,-3.398019 -0.10162,-0.08442 -0.234703,-0.03509 -0.365206,-0.09051 -0.197699,-0.08397 -1.187323,0.06835 -1.23635,0.250051 -0.304711,0.628937 -0.354556,1.440599 0.794866,2.469231 z"
@@ -1880,10 +1894,25 @@
            id="path18384" />
       </g>
       <g
+         id="g19645-9"
+         inkscape:label="fiamma2"
+         transform="matrix(-0.33655913,-0.65447709,0.66991939,-0.03622872,13.079735,38.155177)"
+         style="display:inline;filter:url(#filter18830-1)">
+        <path
+           style="display:inline;fill:#ffff00;stroke:#d40000;stroke-width:0.303114px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 21.417728,24.697418 c 0.111312,0.09246 1.033538,0.786836 1.207822,0.769247 0.641293,-0.06472 -0.143175,-3.18376 -0.401132,-3.398019 -0.10162,-0.08442 -0.234703,-0.03509 -0.365206,-0.09051 -0.197699,-0.08397 -1.187323,0.06835 -1.23635,0.250051 -0.304711,0.628937 -0.354556,1.440599 0.794866,2.469231 z"
+           id="path18115-8"
+           sodipodi:nodetypes="cscccc" />
+        <path
+           style="display:inline;fill:none;stroke:#ff0000;stroke-width:0.449792;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 21.517911,23.052963 c 0.183409,-0.05086 0.622501,0.756028 0.622501,1.024114"
+           id="path18384-3" />
+      </g>
+      <g
          id="g1668"
          inkscape:label="jetpack"
          transform="rotate(-15.742294,22.991355,-65.826102)"
-         style="fill:url(#linearGradient1333);fill-opacity:1">
+         style="display:inline;fill:url(#linearGradient1333);fill-opacity:1">
         <rect
            style="fill:url(#linearGradient1333);fill-opacity:1;stroke-width:0.178696;paint-order:stroke markers fill;stop-color:#000000"
            id="rect1375"
@@ -2027,7 +2056,8 @@
          id="use1729"
          width="100%"
          height="100%"
-         transform="translate(-21.561907,2.3733245)" />
+         transform="translate(-21.561907,2.3733245)"
+         style="display:inline" />
     </g>
     <g
        id="layer2-9-5"
@@ -2949,9 +2979,17 @@
     <g
        id="layer1"
        inkscape:label="pedinaDown"
-       style="display:none">
+       style="display:inline">
+      <use
+         x="0"
+         y="0"
+         xlink:href="#use3709"
+         id="use3712"
+         width="100%"
+         height="100%"
+         transform="translate(0.80794029,-10.907194)" />
       <ellipse
-         style="display:inline;fill:#ffff00;fill-opacity:1;stroke:#ffff00;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill;stop-color:#000000"
+         style="display:none;fill:#ffff00;fill-opacity:1;stroke:#ffff00;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill;stop-color:#000000"
          id="path8177-9"
          cx="7.7125502"
          cy="3.5706253"
@@ -2978,7 +3016,7 @@
       <g
          id="g9515"
          inkscape:label="ballonone"
-         style="display:inline">
+         style="display:none">
         <ellipse
            style="display:inline;fill:#ffff00;fill-opacity:1;stroke:#ffff00;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill;stop-color:#000000"
            id="path8177-6"
@@ -2999,7 +3037,7 @@
       <g
          id="g9525"
          inkscape:label="ballon5"
-         style="display:inline">
+         style="display:none">
         <ellipse
            style="opacity:1;fill:#ffff00;fill-opacity:1;stroke:#ffff00;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill;stop-color:#000000"
            id="path8177"
@@ -3020,7 +3058,7 @@
       <g
          id="g9520"
          inkscape:label="ballon2"
-         style="display:inline">
+         style="display:none">
         <ellipse
            style="display:inline;fill:#ffff00;fill-opacity:1;stroke:#ffff00;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:bevel;paint-order:stroke markers fill;stop-color:#000000"
            id="path8177-6-5"
@@ -3037,6 +3075,14 @@
            d="m 21.805029,6.505302 c 0.20494,0.521097 -0.56162,0.892657 0.107119,0.892657 0.185136,0 0.550215,0.0499 0.749831,0 0.208005,-0.052 -0.256692,-0.628234 -0.357062,-0.678419 -0.190352,-0.09518 -0.574672,0.0849 -0.499888,-0.214238 z"
            id="path9183-3-8" />
       </g>
+      <use
+         x="0"
+         y="0"
+         xlink:href="#g1668"
+         id="use3709"
+         width="100%"
+         height="100%"
+         transform="rotate(16.561453,14.422859,-82.967912)" />
     </g>
     <g
        id="g4116"
