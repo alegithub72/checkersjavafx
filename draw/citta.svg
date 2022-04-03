@@ -104,15 +104,15 @@
      inkscape:pagecheckerboard="0"
      showgrid="false"
      inkscape:snap-global="true"
-     inkscape:zoom="2.6198306"
-     inkscape:cx="125.19893"
-     inkscape:cy="47.522156"
+     inkscape:zoom="1.8525"
+     inkscape:cx="-76.113361"
+     inkscape:cy="47.233469"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g4423"
      showguides="false"
      inkscape:guide-bbox="true"
      inkscape:snap-nodes="false"
@@ -606,7 +606,7 @@
        d="M 95.76076,77.837263 20.712446,77.583722 0.269,44.623317 0.262,31.692697 h 66.595012 z"
        id="path6779"
        sodipodi:nodetypes="cccccc"
-       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta3.png"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta2.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <path
@@ -836,14 +836,14 @@
     <g
        id="g4423"
        inkscape:label="palazzi sugiu"
-       style="display:none">
+       style="display:inline">
       <g
          id="g30517-2"
          style="display:inline;fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
          transform="matrix(0.60373186,0,0,1,33.659741,-2.4893946)"
          inkscape:label="g30517">
         <path
-           d="M 12.158042,4.3493376 23.686676,21.871335 H 81.261103 L 64.921899,4.3493376 Z"
+           d="M 12.158042,4.3493376 23.686676,21.871335 81.419163,20.249093 64.921899,4.3493376 Z"
            style="fill:#cccccc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
            id="path36177-3"
            sodipodi:nodetypes="ccccc" />
@@ -861,10 +861,13 @@
       <g
          id="g1802-6"
          inkscape:label="vetrata"
-         style="display:inline;fill:#008080;stroke-width:0.862761"
-         transform="matrix(1.0639365,0,0,0.63955485,17.836731,6.4013666)">
+         style="display:inline;fill:#006680;stroke-width:0.862761"
+         transform="matrix(1.0639365,0,0,0.63955485,17.836731,6.4013666)"
+         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta2.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
         <rect
-           style="fill:#0000ff;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
+           style="fill:#006680;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
            id="rect1440-3"
            width="9.4466934"
            height="12.145749"
@@ -887,7 +890,7 @@
            id="use1530-3"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#006680" />
         <use
            x="0"
            y="0"
@@ -897,7 +900,7 @@
            id="use1532-5"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#006680" />
         <use
            x="0"
            y="0"
@@ -907,7 +910,7 @@
            id="use1534-5"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#006680" />
         <use
            x="0"
            y="0"
@@ -917,7 +920,7 @@
            id="use1536-8"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#006680" />
         <use
            x="0"
            y="0"
@@ -927,7 +930,7 @@
            id="use1538-5"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#006680" />
         <use
            x="0"
            y="0"
@@ -937,7 +940,7 @@
            id="use1540-2"
            width="100%"
            height="100%"
-           style="fill:#008080"
+           style="fill:#006680"
            inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta2.png"
            inkscape:export-xdpi="96"
            inkscape:export-ydpi="96" />
@@ -950,7 +953,7 @@
            id="use1542-4"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#006680" />
         <use
            x="0"
            y="0"
@@ -960,7 +963,7 @@
            id="use1544-5"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#006680" />
         <use
            x="0"
            y="0"
@@ -970,7 +973,7 @@
            id="use1546-7"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#006680" />
         <use
            x="0"
            y="0"
@@ -980,7 +983,7 @@
            id="use1548-51"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#006680" />
         <use
            x="0"
            y="0"
@@ -990,7 +993,7 @@
            id="use1550-5"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#006680" />
         <use
            x="0"
            y="0"
@@ -1000,7 +1003,7 @@
            id="use1552-7"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#006680" />
         <use
            x="0"
            y="0"
@@ -1010,7 +1013,7 @@
            id="use1554-5"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#006680" />
         <use
            x="0"
            y="0"
@@ -1020,7 +1023,7 @@
            id="use1556-1"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#006680" />
         <use
            x="0"
            y="0"
@@ -1030,7 +1033,7 @@
            id="use1558-7"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#006680" />
         <use
            x="0"
            y="0"
@@ -1040,25 +1043,25 @@
            id="use1560-2"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#006680" />
       </g>
       <g
          id="g30517-2-1"
          style="display:inline;fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
-         transform="matrix(0.60373186,0,0,0.6245982,2.0875805,23.18039)"
+         transform="matrix(0.60373186,0,0,0.6245982,-0.58434798,19.554201)"
          inkscape:label="g30517">
         <path
-           d="M 12.158042,4.3493376 23.686676,21.871335 H 81.261103 L 64.921899,4.3493376 Z"
+           d="M 18.975737,8.4545409 23.686676,21.871335 80.255214,20.25086 70.286642,8.2384776 Z"
            style="fill:#cccccc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
            id="path36177-3-6"
            sodipodi:nodetypes="ccccc" />
         <path
-           d="M 27.122797,20.626638 V 69.55693 l 52.076634,-0.414899 2.061672,-48.930292 z"
+           d="M 27.122797,20.626638 V 69.55693 l 52.076634,-0.414899 0.944017,-48.82226 z"
            style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
            id="path36179-8-5"
            sodipodi:nodetypes="ccccc" />
         <path
-           d="M 12.158042,4.3493376 27.122797,20.626638 V 69.55693 L 12.158042,53.27963 Z"
+           d="M 18.863971,8.2384776 27.122797,20.626638 V 69.55693 L 17.522785,49.39049 Z"
            style="fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
            id="path36181-6-3"
            sodipodi:nodetypes="ccccc" />
@@ -1067,7 +1070,7 @@
          id="g1802-6-2"
          inkscape:label="vetrata"
          style="display:inline;fill:#008080;stroke-width:0.862761"
-         transform="matrix(1.0639365,0,0,0.56362994,191.63963,26.512108)">
+         transform="matrix(1.0639365,0,0,0.56362994,188.9677,22.885919)">
         <rect
            style="fill:#008080;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
            id="rect1440-3-3"
@@ -1227,11 +1230,15 @@
            height="100%"
            style="display:none;fill:#008080" />
       </g>
+      <path
+         style="fill:#aa0000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 23.886639,75.978409 c 1.079622,0 2.159244,0 3.238866,0 2.794875,0 -0.250902,-3.103914 3.37382,-3.103914 1.731235,0 3.300484,0.201257 4.993252,0.539811 0.435138,0.08703 2.159132,-0.135291 2.294197,0.269905 0.04888,0.146626 -0.170535,2.558173 -0.134953,2.564103 1.137458,0.189576 7.065237,-0.357165 7.422403,0 0.178569,0.178569 -0.249597,1.32201 -0.269906,1.484481 -0.03906,0.312458 0.281646,0.803846 0,0.944669 -2.091093,1.045547 -5.285301,-1.484481 -6.34278,-1.484481 -0.04095,0 0.05447,0.890196 0,0.94467 -0.151741,0.151741 -1.03375,0 -1.214575,0 -2.052189,0 -4.27798,-0.269906 -6.477733,-0.269906 -0.349869,0 -0.579177,-1.989428 -1.079622,-1.889338 -1.232527,0.246505 -0.674667,1.484383 -1.349528,2.159244 -0.192666,0.192667 -4.716349,-0.667767 -4.723346,-0.674764 -0.08997,-0.08997 0.213004,-0.156103 0.269905,-0.269906 0.181058,-0.362116 0,-0.809716 0,-1.214574 z"
+         id="path2674" />
     </g>
     <g
        id="g4379"
        inkscape:label="palazzo grosso"
-       style="display:inline">
+       style="display:none">
       <g
          id="g30517-1"
          style="display:inline;fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
@@ -1253,7 +1260,7 @@
            id="path36179-6"
            sodipodi:nodetypes="ccccc" />
         <path
-           d="M 12.158042,4.3493376 27.122797,20.626638 V 69.55693 L 12.158042,53.27963 Z"
+           d="M 12.158042,4.3493376 27.122797,20.626638 V 69.55693 L 11.769513,46.127133 Z"
            style="fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
            id="path36181-1"
            sodipodi:nodetypes="ccccc" />
@@ -1266,10 +1273,13 @@
       <g
          id="g1802-8"
          inkscape:label="vetrata"
-         style="display:inline;fill:#008080;stroke-width:0.862761"
-         transform="matrix(1.2358377,0,0,0.63955485,7.4660912,8.0338492)">
+         style="display:inline;fill:#00aad4;stroke-width:0.862761"
+         transform="matrix(1.2358377,0,0,0.63955485,7.4660912,8.0338492)"
+         inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta4.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96">
         <rect
-           style="fill:#008080;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
+           style="fill:#00aad4;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
            id="rect1440-0"
            width="9.4466934"
            height="12.145749"
@@ -1292,7 +1302,7 @@
            id="use1530-4"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1302,7 +1312,7 @@
            id="use1532-3"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1312,7 +1322,7 @@
            id="use1534-2"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1322,7 +1332,7 @@
            id="use1536-6"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1332,7 +1342,7 @@
            id="use1538-9"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1342,7 +1352,7 @@
            id="use1540-6"
            width="100%"
            height="100%"
-           style="fill:#008080"
+           style="fill:#00aad4"
            inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta2.png"
            inkscape:export-xdpi="96"
            inkscape:export-ydpi="96" />
@@ -1355,7 +1365,7 @@
            id="use1542-1"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1365,7 +1375,7 @@
            id="use1544-4"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1375,7 +1385,7 @@
            id="use1546-3"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1385,7 +1395,7 @@
            id="use1548-5"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1395,7 +1405,7 @@
            id="use1550-7"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1405,7 +1415,7 @@
            id="use1552-9"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1415,7 +1425,7 @@
            id="use1554-0"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1425,7 +1435,7 @@
            id="use1556-2"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1435,7 +1445,7 @@
            id="use1558-5"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1445,15 +1455,15 @@
            id="use1560-7"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
       </g>
       <g
          id="g1802-8-8"
          inkscape:label="vetrata"
-         style="display:inline;fill:#008080;stroke-width:0.862761"
+         style="display:inline;fill:#00aad4;stroke-width:0.862761"
          transform="matrix(1.1228689,0,0,0.63955485,-14.169715,8.5008682)">
         <rect
-           style="fill:#008080;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
+           style="fill:#00aad4;stroke-dasharray:8, 8;paint-order:stroke markers fill;stop-color:#000000"
            id="rect1440-0-7"
            width="9.4466934"
            height="12.145749"
@@ -1476,7 +1486,7 @@
            id="use1530-4-7"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1486,7 +1496,7 @@
            id="use1532-3-1"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1496,7 +1506,7 @@
            id="use1534-2-4"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1506,7 +1516,7 @@
            id="use1536-6-4"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1516,7 +1526,7 @@
            id="use1538-9-8"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1526,7 +1536,7 @@
            id="use1540-6-0"
            width="100%"
            height="100%"
-           style="fill:#008080"
+           style="fill:#00aad4"
            inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\citta2.png"
            inkscape:export-xdpi="96"
            inkscape:export-ydpi="96" />
@@ -1539,7 +1549,7 @@
            id="use1542-1-4"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1549,7 +1559,7 @@
            id="use1544-4-9"
            width="100%"
            height="100%"
-           style="fill:#008080" />
+           style="fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1559,7 +1569,7 @@
            id="use1546-3-1"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1569,7 +1579,7 @@
            id="use1548-5-5"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1579,7 +1589,7 @@
            id="use1550-7-0"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1589,7 +1599,7 @@
            id="use1552-9-3"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1599,7 +1609,7 @@
            id="use1554-0-7"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1609,7 +1619,7 @@
            id="use1556-2-2"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1619,7 +1629,7 @@
            id="use1558-5-3"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
         <use
            x="0"
            y="0"
@@ -1629,7 +1639,7 @@
            id="use1560-7-9"
            width="100%"
            height="100%"
-           style="display:none;fill:#008080" />
+           style="display:none;fill:#00aad4" />
       </g>
     </g>
     <path
@@ -1706,7 +1716,8 @@
   <g
      id="g2648"
      inkscape:label="divieto"
-     transform="translate(-292.43264,-21.655693)">
+     transform="translate(-292.43264,-21.655693)"
+     style="display:none">
     <rect
        style="fill:url(#linearGradient2484);fill-opacity:1;stroke:none;stroke-width:1.65434;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke markers fill;stop-color:#000000"
        id="rect1152-8"
