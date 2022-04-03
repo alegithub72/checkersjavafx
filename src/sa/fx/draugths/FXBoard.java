@@ -791,7 +791,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         return (level>(MAX_LEVEL*MAX_WAVE));
     }
 	public static int levelWave(int level) {
-	      if(level==1 ||(level % MAX_LEVEL==1 && level>MAX_LEVEL))  return 1;
+	      if(level==1 || (level % MAX_LEVEL==1) || (level>MAX_LEVEL) )  return 1;
 	      else if(level==2 || level % MAX_LEVEL==2) return  2;
 	      else if(level==3 || level % MAX_LEVEL==3) return 3;
 	      else if(level==4 || level % MAX_LEVEL==4) return 4;
