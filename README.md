@@ -25,6 +25,11 @@ Some screenshot:
 
 Credit :<br>
 This game uses these sounds from freesound:<br>
+<ol>
+<li>
 "270545_jingle-win-01.wav" by [LittleRobotSoundFactory](https://freesound.org/people/LittleRobotSoundFactory) ([https://freesound.org/people/LittleRobotSoundFactory/sounds/270545/](https://freesound.org/people/LittleRobotSoundFactory/sounds/270545/) )This work is licensed under the [ Attribution 3.0 License.](http://creativecommons.org/licenses/by/3.0/)
-
+</li>
+<li>
 "416507__pipjmalt__crowd-chanting-hey.wav" by [pipjmalt](https://freesound.org/people/pipjmalt/) ([https://freesound.org/people/pipjmalt/sounds/416507/](https://freesound.org/people/pipjmalt/sounds/416507/) )This work is licensed under the [ Attribution 3.0 License.](http://creativecommons.org/licenses/by/3.0/)
+</li>
+</ol>
