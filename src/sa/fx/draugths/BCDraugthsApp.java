@@ -23,7 +23,9 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.fx.draugths.animation.AnimationPedinaMove;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
+import sa.fx.draugths.screen.EndScreen;
+import sa.fx.draugths.screen.EndScreenII;
+import sa.fx.draugths.screen.PresentationScreen;
 import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.screen.StartScreen;
 import sa.gameboard.core.Game;
@@ -36,7 +38,7 @@ import sa.gameboard.core.Game;
 public class BCDraugthsApp extends Application {
 
     private Game game;
-    StartScreen startScreen;
+    PresentationScreen startScreen;
     RecordScreen recordScreen;
     AudioClip music;
     private AnimationPedinaMove anim;
@@ -53,6 +55,9 @@ public class BCDraugthsApp extends Application {
     ImageView description;
     static double scale = 0.78;
     int level;
+	public static final String MUSIC_SIGLA="muppet.mp3";
+	public static final String MUSIC_CELEBRATION="270545_jingle-win-01.wav";
+	public static final String EFFECT_HEY="416507_hey.wav";
 
 
 
@@ -177,14 +182,15 @@ public static void main(String[] args) {
     }
 
   public void drawRecordScreen(int points){
-      
-	  	//TODO: screen dei complimenti....
+
+	  
         root.getChildren().remove(fxb);
         BCDraugthsApp.log.info("index of fxb ="+root.getChildren().contains(fxb));
         //fxb=new FXBoardClass(0, this);
 
         recordScreen = new RecordScreen();
         char[] recordName="AAA".toCharArray();
+
         if(!recordScreen.addRecordPlayer(new String(recordName), points)) {
 	        recordScreen.drawTableRecord();
 	        root.getChildren().add(recordScreen);
@@ -192,11 +198,12 @@ public static void main(String[] args) {
           recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	           @Override
 	           public void handle(MouseEvent event) {
-	           	if(event.getButton()==MouseButton.SECONDARY) resetGame();
+	           	if(event.getButton()==MouseButton.PRIMARY) resetGame();
 	           	}
           	});     
         	
         }else {
+
 		        recordScreen.drawTableRecord();
 		        root.getChildren().add(recordScreen);
 		        recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -243,7 +250,7 @@ public static void main(String[] args) {
   private void  resetGame() {
 		
 	    try {
-			music.play();
+			//music.play();
 			root.getChildren().remove(recordScreen);
 			level=1;
 			drawStartScreen();
@@ -256,28 +263,59 @@ public static void main(String[] args) {
   public void drawStartScreen()throws Exception{
         
       
-        music = buildMedia(ShotDistanceFrameAnimation.MUSIC);
+        music = buildMedia(MUSIC_SIGLA);
         music.setCycleCount(AudioClip.INDEFINITE);
         music.play(); 
         root.getChildren().remove(fxb);
         fxb=new FXBoard(level,this);
-        startScreen=new StartScreen(0,fxb);
+        startScreen=new StartScreen();
         root.getChildren().add(startScreen);
         startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
             
             @Override
             public void handle(MouseEvent event) {
-                    //level++;
                     music.stop();
-                    //fxb.setLevel(1);
-                    //System.out.println("level="+level);
                     fxb.startLevel(level);
                     root.getChildren().remove(startScreen);
                     root.getChildren().add(fxb);                
                 event.consume();
             }
         });      
+  }
+public void drawEndScreen()throws Exception{
+            
+            
+            music = buildMedia(MUSIC_CELEBRATION);
+            music.setCycleCount(1);
+            music.play(); 
+            
+            root.getChildren().remove(fxb);      
+            startScreen=new EndScreen();
+            EndScreenII ii=new EndScreenII();
+            root.getChildren().add(ii);
+            root.getChildren().add(startScreen);
 
+            root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                boolean flip=true;
+                @Override
+                public void handle(MouseEvent event) {
+                		if(event.getButton()==MouseButton.PRIMARY) {
+                			flip=!flip;
+                			startScreen.setVisibleBack(flip);
+                            AudioClip   hey = buildMedia(EFFECT_HEY);
+                            hey.setCycleCount(1);
+                            hey.play(); 
+                			
+                		}else {
+                            root.getChildren().remove(startScreen);
+                            root.getChildren().remove(ii);
+                            root.setOnMouseClicked(null);
+                            drawRecordScreen(level); 	
+                		}
+              
+                    event.consume();
+                }
+            });
                 
   }
 }

@@ -38,7 +38,6 @@ public class SimpleFrameAnimation extends Transition{
     public static final String CLOPETE="move_alien.wav";
     public static final String EXPLOSION="Fireball.wav";
     public static final String BIGEXPLOSION="Explosion3.wav";
-    public static final String MUSIC="muppet.mp3";
     public static final String ACHW="Achievement.wav";
     public static final String ACHB="pluck.wav";
     String sound;
