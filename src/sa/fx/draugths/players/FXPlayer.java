@@ -21,18 +21,18 @@ import sa.gameboard.core.Piece;
  */
 public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent>  {
 
-	FXBoard board;
+	FXBoard fxboard;
     Group table;
     public FXPlayer(Group table,FXBoard board) {
         super(Piece.WHITE);
-        this.board=board;
+        this.fxboard=board;
         this.table=table;
     }
 
 
 	@Override
     public String getCommand() {
-        String r= board.getCommand().getText(); //To change body of generated methods, choose Tools | Templates.
+        String r= fxboard.getCommand().getText(); //To change body of generated methods, choose Tools | Templates.
         return r;
     }
 
@@ -47,11 +47,11 @@ public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent> 
     @Override
     public void handle(ActionEvent event) {
         
-        board.playComputerPlayer();
+        fxboard.playComputerPlayer();
         
-        board.getCommand().setText("");
-        if (board.winCondition() == Piece.WHITE) table.getChildren().add(new Text("IL BIANCO HA VINTOOOOOOO"));
-        else if (board.winCondition() == Piece.BLACK) table.getChildren().add(new Text("IL NERO HA VINTOOOOOOO"));
+        fxboard.getCommand().setText("");
+        if (fxboard.winCondition() == Piece.WHITE) table.getChildren().add(new Text("IL BIANCO HA VINTOOOOOOO"));
+        else if (fxboard.winCondition() == Piece.BLACK) table.getChildren().add(new Text("IL NERO HA VINTOOOOOOO"));
 
         event.consume();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

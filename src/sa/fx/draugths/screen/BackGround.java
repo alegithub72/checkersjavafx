@@ -98,108 +98,101 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
     }
 
-    public void drawBackGround(){
-            drawScoreBar();
-            Image[] empty=new Image[10];
-            Image[] full=new Image[10];
-            BCDraugthsApp.log.info("Level:"+level+" modulo:"+level % FXBoard.MAX_LEVEL);
-            
-            if(FXBoard.levelWave(level)==LVL_JUNGLE ){
-            	loadTiles("giungla", full);
-            	loadTiles("giunglaEmpty",empty);
-                
-            }else if(FXBoard.levelWave(level)==LVL_DESERT ){
-        	
-            loadTiles("desertBoxEmpty",empty);
-            loadTiles("desertBox", full);
+	public void drawBackGround() {
+		drawScoreBar();
+		Image[] empty = new Image[10];
+		Image[] full = new Image[10];
+		BCDraugthsApp.log.info("Level:" + level + " modulo:" + level % FXBoard.MAX_LEVEL);
 
+	if (FXBoard.levelWave(level) == LVL_JUNGLE) {
+			loadTiles("giungla", full);
+			loadTiles("giunglaEmpty", empty);
 
+		} else if (FXBoard.levelWave(level) == LVL_DESERT) {
 
-        }else if(FXBoard.levelWave(level)==LVL_POLE){
-        	loadTiles("iceBoxEmpty", full);
-        	loadTiles("iceBox",empty);
-            
-        }else if (FXBoard.levelWave(level)==LVL_FOREST) {
-        	
-            //images = new Image("forestBoardsvg.png");
-        	loadTiles("forestaBoxEmpty",empty);
-            loadTiles("forestaBox", full);
-            
-            
+			loadTiles("desertBoxEmpty", empty);
+			loadTiles("desertBox", full);
 
-      }else if (FXBoard.levelWave(level)==LVL_MOUNTAIN) {
-      	
-          //images = new Image("forestBoardsvg.png");
-    	   loadTiles("montagnaEmpty",empty);
-           loadTiles("montagna", full);
-          
-          
+		} else if (FXBoard.levelWave(level) == LVL_POLE) {
+			loadTiles("iceBoxEmpty", full);
+			loadTiles("iceBox", empty);
 
-    }else if (FXBoard.levelWave(level)==LVL_SEA) {
-      	
-        //images = new Image("mare.png");
-    	loadTiles("mareEmpty", empty);
-         loadTiles("mare", full);
-        
-        
+		} else if (FXBoard.levelWave(level) == LVL_FOREST) {
 
-  }else if (FXBoard.levelWave(level)==LVL_MOON) {
-    	
-      //images = new Image("mare.png");
-  	loadTiles("lunaEmpty", empty);
-       loadTiles("luna", full);
-      
-  }else if (FXBoard.levelWave(level)==LVL_SKY) {
-    	
-      //images = new Image("mare.png");
-  	loadTiles("cieloEmpty", empty);
-       loadTiles("cielo", full);
-      
-  }else if (FXBoard.levelWave(level)==LVL_CITY) {
-    	
-      //images = new Image("mare.png");
-  	loadTiles("cittaEmpty", empty);
-       loadTiles("citta", full);
-      
-  }
-        
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+			// images = new Image("forestBoardsvg.png");
+			loadTiles("forestaBoxEmpty", empty);
+			loadTiles("forestaBox", full);
 
-                if (i % 2 == 0) {
-                    if (j % 2 == 0) {
-                    	int random=(int)(10*Math.random())/2;
-                    	if(empty[random]!=null)
-                    		c.getGraphicsContext2D().drawImage(empty[random], i*100, (j*100)+30);
-                    	else 
-                    		c.getGraphicsContext2D().drawImage(empty[0], i*100, (j*100)+30);
-                    } else if (j % 2 != 0) {
-                    	int random=(int)(10*Math.random())/2;
-                    	if(full[random]!=null)
-                    		c.getGraphicsContext2D().drawImage(full[random], i*100, (j*100)+30); 	
-                    	else c.getGraphicsContext2D().drawImage(full[0], i*100, (j*100)+30);
-                    }
-                } else if (i % 2 != 0) {
-                    if (j % 2 != 0) {
-                    	int random=(int)(10*Math.random())/2;
-                    	 if(empty[random]!=null)c.getGraphicsContext2D().drawImage(empty[random], i*100, (j*100)+30);
-                    	 else c.getGraphicsContext2D().drawImage(empty[0], i*100, (j*100)+30);
-                    } else if (j % 2 == 0) {
-                    	int random=(int)(10*Math.random())/2;
-                    	if(full[random]!=null)
-                    	c.getGraphicsContext2D().drawImage(full[random], i*100, (j*100)+30); 	
-                    	else c.getGraphicsContext2D().drawImage(full[0], i*100, (j*100)+30);
-                    }
-                }
+		} else if (FXBoard.levelWave(level) == LVL_MOUNTAIN) {
 
-            }
+			// images = new Image("forestBoardsvg.png");
+			loadTiles("montagnaEmpty", empty);
+			loadTiles("montagna", full);
 
-        }
-        
+		} else if (FXBoard.levelWave(level) == LVL_SEA) {
 
+			// images = new Image("mare.png");
+			loadTiles("mareEmpty", empty);
+			loadTiles("mare", full);
 
-    
-    }
+		} else if (FXBoard.levelWave(level) == LVL_MOON) {
+
+			// images = new Image("mare.png");
+			loadTiles("lunaEmpty", empty);
+			loadTiles("luna", full);
+
+		} else if (FXBoard.levelWave(level) == LVL_SKY) {
+
+			// images = new Image("mare.png");
+			loadTiles("cieloEmpty", empty);
+			loadTiles("cielo", full);
+
+		} else if (FXBoard.levelWave(level) == LVL_CITY) {
+
+			// images = new Image("mare.png");
+			loadTiles("cittaEmpty", empty);
+			loadTiles("citta", full);
+
+		}
+
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+
+				if (i % 2 == 0) {
+					if (j % 2 == 0) {
+						int random = (int) (10 * Math.random()) / 2;
+						if (empty[random] != null)
+							c.getGraphicsContext2D().drawImage(empty[random], i * 100, (j * 100) + 30);
+						else
+							c.getGraphicsContext2D().drawImage(empty[0], i * 100, (j * 100) + 30);
+					} else if (j % 2 != 0) {
+						int random = (int) (10 * Math.random()) / 2;
+						if (full[random] != null)
+							c.getGraphicsContext2D().drawImage(full[random], i * 100, (j * 100) + 30);
+						else
+							c.getGraphicsContext2D().drawImage(full[0], i * 100, (j * 100) + 30);
+					}
+				} else if (i % 2 != 0) {
+					if (j % 2 != 0) {
+						int random = (int) (10 * Math.random()) / 2;
+						if (empty[random] != null)
+							c.getGraphicsContext2D().drawImage(empty[random], i * 100, (j * 100) + 30);
+						else
+							c.getGraphicsContext2D().drawImage(empty[0], i * 100, (j * 100) + 30);
+					} else if (j % 2 == 0) {
+						int random = (int) (10 * Math.random()) / 2;
+						if (full[random] != null)
+							c.getGraphicsContext2D().drawImage(full[random], i * 100, (j * 100) + 30);
+						else
+							c.getGraphicsContext2D().drawImage(full[0], i * 100, (j * 100) + 30);
+					}
+				}
+
+			}
+
+		}
+
+	}
      private void loadTiles(String name,Image[] full) {
         for (int i = 0; i < full.length; i++) {
      	  InputStream in= ClassLoader.getSystemResourceAsStream(name+i+".png");

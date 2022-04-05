@@ -432,7 +432,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 						}
 
                 	   }else
-                	   app.drawRecordScreen(backGround.getPoint());
+                		   app.drawRecordScreen(backGround.getPoint());
               
                    }
                    else  {

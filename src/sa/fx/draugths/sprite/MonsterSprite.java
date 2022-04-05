@@ -38,7 +38,7 @@ public class MonsterSprite extends AlienPiece {
     
     @Override
     public void buildKilledSequence(Move m) {
-
+    	
 
     }
     @Override

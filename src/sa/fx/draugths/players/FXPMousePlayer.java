@@ -31,7 +31,7 @@ import sa.gameboard.core.Piece;
 public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEvent> {
 
 
-	FXBoard board;
+	FXBoard fxboard;
     ImageView punteImage[];
     List movesMouse;
 
@@ -61,7 +61,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
         if (movesMouse != null) {
             for (int i = 0; i < movesMouse.size(); i++) {
                 //TODO: internare la funzione remove 
-                this.board.remove(movesMouse.get(i));
+                this.fxboard.remove(movesMouse.get(i));
                // movesMouse.remove(i);
             }
             movesMouse=new ArrayList();
@@ -71,7 +71,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
     public FXPMousePlayer(FXBoard board) {
         super(Piece.WHITE);
-        this.board = board;
+        this.fxboard = board;
  
 
     }
@@ -81,18 +81,20 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
         return possibleMove.get(n);
     }
 
-    @Override
-    public String getCommand() {
-        
-        String r =null;
-         if(moveChoose==-1)
-         r="p" + board.getSelect().getBoardPieceLink().getI() + board.getSelect().getBoardPieceLink().getJ();
-         else r=""+moveChoose;
-        return r;
-    }
+	@Override
+	public String getCommand() {
+
+		String r = null;
+		if (moveChoose == -1) {
+			r = "p" + fxboard.getSelect().getBoardPieceLink().getI() + fxboard.getSelect().getBoardPieceLink().getJ();
+		} else {
+			r = "" + moveChoose;
+		}
+		return r;
+	}
 
     public boolean makeMove(Move m) {
-        return this.board.getGame().getBoard().makeMove(m);
+        return this.fxboard.getGame().getBoard().makeMove(m);
     }
 
 
@@ -103,8 +105,8 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 	public void handle(MouseEvent event) {
 
 		if (event.getEventType() == MouseEvent.MOUSE_CLICKED && event.isPrimaryButtonDown()) {
-			if (!board.isAnimationOn()) {
-				if (board.getSelect() != null) {
+			if (!fxboard.isAnimationOn()) {
+				if (fxboard.getSelect() != null) {
 					choosePiece();
 				}
 
@@ -122,7 +124,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     
         for (int i = 0; i < possibleMove.size(); i++) {
             Move m = possibleMove.get(i);
-        	SpritePiece sp= board.getSpritePiece(m.getP().getI(), m.getP().getJ(),m.getP().getColor(),false);
+        	SpritePiece sp= fxboard.getSpritePiece(m.getP().getI(), m.getP().getJ(),m.getP().getColor(),false);
             if (m != Move.NULLMOVE) {
                 QuadCurveTo quadTo = new QuadCurveTo();
                 quadTo.setAbsolute(true);
@@ -180,16 +182,16 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
         		imagePunt.setEffect(dropShadow);
         		//imagePunt.setEffect(new GaussianBlur());
                 punteImage[i] = imagePunt;
-                punteImage[i].setOnMouseClicked(new EventConfirmCommandHandler(this, i,board));
+                punteImage[i].setOnMouseClicked(new EventConfirmCommandHandler(this, i,fxboard));
                 double xp =sp.convertBoardJtoPositionX(m.getJ1()  , FXBoard.boardHW.getW());
                         //(m.getI1() * board.wBoardSquare) + 32;
                 double yp =sp.convertBoardItoPositionY(m.getI1() , FXBoard.boardHW.getH());
                        // (m.getJ1() * board.hBoardSquare) + 32;
                 punteImage[i].setX(xp);
                 punteImage[i].setY(yp);
-                this.board.add(punteImage[i]);
+                this.fxboard.add(punteImage[i]);
                 movesMouse.add(punteImage[i]);
-                this.board.add(path);
+                this.fxboard.add(path);
                 movesMouse.add(path);
                 str=str+" "+i + ")" + m;
 

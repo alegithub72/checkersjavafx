@@ -44,7 +44,7 @@ public class MoonSoldier extends SoldierPiece {
             if (piece.getType() == Piece.DRAUGTH
                 && draugthTransform == false) {
             draugthTransform = true;
-            frameImages = new Image("white_dama_moonsoldier.png");
+            frameImages = new Image(DRAUGTH_IMAGE);
             setImage(frameImages);
             buildFrameImages();
             AudioClip ach = buildMedia(ShotDistanceFrameAnimation.ACHB);

@@ -1180,15 +1180,15 @@
      inkscape:pageopacity="0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="0.63128448"
-     inkscape:cx="175.83198"
-     inkscape:cy="350.87192"
+     inkscape:zoom="0.63128449"
+     inkscape:cx="112.4691"
+     inkscape:cy="327.11084"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g4668-9"
+     inkscape:current-layer="g25111"
      width="700px"
      inkscape:snap-global="false"
      showguides="false" />
@@ -1472,7 +1472,7 @@
       <g
          id="g3245-9-3"
          inkscape:label="bracciosxII"
-         style="display:inline"
+         style="display:none"
          transform="matrix(0.94646476,1.0686746,-1.4003705,0.84841933,24.741624,-16.272999)">
         <path
            style="fill:#ff5555;stroke:#ff5555;stroke-width:0.279632px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -5127,28 +5127,40 @@
        style="display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 89.538628,361.44483 -0.280027,8.12078"
        id="path9773-5-0-6" />
-    <path
-       id="path1626"
-       style="fill:#ffffff;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
-       d="M 253.98259,143.99972 A 165.10061,80.80568 0 0 0 88.880983,224.80505 165.10061,80.80568 0 0 0 196.81589,300.46023 C 192.93072,315.803 80.239191,344.78866 80.239191,346.3696 c 0,12.56525 115.214039,-22.63344 168.636079,-40.92297 a 165.10061,80.80568 0 0 0 5.10732,0.16375 165.10061,80.80568 0 0 0 165.10162,-80.80533 165.10061,80.80568 0 0 0 -165.10162,-80.80533 z" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;line-height:1.25;font-family:Ravie;-inkscape-font-specification:Ravie"
-       x="123.55761"
-       y="206.72139"
-       id="text3957"><tspan
-         sodipodi:role="line"
-         id="tspan3955"
-         x="123.55761"
-         y="206.72139">YOU WIN THE WAR </tspan><tspan
-         sodipodi:role="line"
-         x="123.55761"
-         y="233.38802"
-         id="tspan15083">AGAINST ALIEN</tspan><tspan
-         sodipodi:role="line"
-         x="123.55761"
-         y="260.05463"
-         id="tspan3959">NATION</tspan></text>
+    <g
+       id="g25111"
+       inkscape:label="speech"
+       style="display:inline"
+       inkscape:export-filename="C:\Users\taal\eclipse-workspace\checkersjavafx\src\resources\endScreenII.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <path
+         id="path1626"
+         style="display:inline;fill:#ffffff;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
+         d="M 253.98259,143.99972 A 165.10061,80.80568 0 0 0 88.880983,224.80505 165.10061,80.80568 0 0 0 196.81589,300.46023 C 192.93072,315.803 80.239191,344.78866 80.239191,346.3696 c 0,12.56525 115.214039,-22.63344 168.636079,-40.92297 a 165.10061,80.80568 0 0 0 5.10732,0.16375 165.10061,80.80568 0 0 0 165.10162,-80.80533 165.10061,80.80568 0 0 0 -165.10162,-80.80533 z" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:Ravie;-inkscape-font-specification:Ravie"
+         x="111.23642"
+         y="200.00075"
+         id="text3957"><tspan
+           sodipodi:role="line"
+           id="tspan3955"
+           x="111.23642"
+           y="200.00075">Checkers you win </tspan><tspan
+           sodipodi:role="line"
+           x="111.23642"
+           y="226.66737"
+           id="tspan15083">the war against </tspan><tspan
+           sodipodi:role="line"
+           x="111.23642"
+           y="253.334"
+           id="tspan32364">alien nation</tspan><tspan
+           sodipodi:role="line"
+           x="111.23642"
+           y="280.00061"
+           id="tspan32370" /></text>
+    </g>
     <g
        id="g22583"
        transform="matrix(3.7795275,0,0,3.7795275,-411.14014,361.36414)">
@@ -6175,6 +6187,14 @@
        inkscape:tile-h="84.380364"
        inkscape:tile-x0="-155.06933"
        inkscape:tile-y0="25.249372">
+      <use
+         x="0"
+         y="0"
+         xlink:href="#g3245-9-3-9"
+         id="use25104"
+         width="100%"
+         height="100%"
+         transform="translate(-5.0558717,-4.1037018)" />
       <g
          id="g4973-3-7-2-72-70-9"
          inkscape:label="pedina1"
@@ -6269,7 +6289,7 @@
       <g
          id="g3245-9-3-9"
          inkscape:label="bracciosxII"
-         style="display:inline"
+         style="display:none"
          transform="matrix(1.2660364,1.1124201,-1.9094267,0.86695197,32.058001,-7.0672231)">
         <path
            style="fill:#ff5555;stroke:#ff5555;stroke-width:0.279632px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
