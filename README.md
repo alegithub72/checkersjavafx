@@ -20,6 +20,8 @@ Some screenshot:
 <img src="https://github.com/alegithub72/checkersjavafx/blob/master/screesho_check_2.PNG" width="200" height="200" />
 
 </div>
+<br><br><br><br>
+
 
 Credit :<br>
 This game uses these sounds from freesound:<br>
