@@ -14,14 +14,14 @@ AppCopyright=Copyright (C) 2021
 UsePreviousAppDir=yes
 DefaultDirName={autopf}\cinvaders
 DisableStartupPrompt=Yes
-DisableDirPage=Yes
+DisableDirPage=yes
 DisableProgramGroupPage=Yes
 DisableReadyPage=Yes
 DisableFinishedPage=Yes
-DisableWelcomePage=Yes
+DisableWelcomePage=no 
 DefaultGroupName=sagame
 ;Optional License
-LicenseFile=
+;LicenseFile=LICENSE
 ;(Windows 2000/XP/Server 2003 are no longer supported.)
 MinVersion=6.0
 OutputBaseFilename=cinvaders-x64bit-4.1
@@ -31,11 +31,14 @@ DiskSliceSize=24000000
 Compression=lzma2/ultra64
 SolidCompression=yes
 PrivilegesRequired=lowest
-SetupIconFile=cinvaders\cinvaders.ico
+SetupIconFile=cinvaders\cinvaders.ico 
+;SetupIconFile=wizard-setup.ico
 UninstallDisplayIcon={app}\cinvaders.ico
 UninstallDisplayName=cinvaders
-WizardImageStretch=No
-WizardSmallImageFile=cinvaders-setup-icon.bmp   
+WizardImageStretch=Yes
+WizardSmallImageFile=cinvaders-setup-icon.bmp
+WizardStyle=modern
+;WizardImageFile=startScreen2.bmp
 ArchitecturesInstallIn64BitMode=x64
 
 
