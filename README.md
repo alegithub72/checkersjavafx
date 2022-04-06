@@ -10,7 +10,7 @@ To run the game:
 
 2. mvn javafx:run
 
-If you  are interested in the result install the full game via inno setup , download all files in this directory [cinvaders-x64bit-4.1-dir](https://github.com/alegithub72/alegithub72/tree/main/cinvaders-x64bit-4.1-dir) and launch  _cinvaders-x64bit-4.1.exe_
+If you  are interested in the result install the full game via inno setup , ddownload all files in "[cinvaders-x64bit-dir](https://github.com/alegithub72/alegithub72/tree/main/cinvaders-x64bit-dir)" folder and launch  _cinvaders-x64bit-4.2.exe_ .
 
 Some screenshot:
 <br>
