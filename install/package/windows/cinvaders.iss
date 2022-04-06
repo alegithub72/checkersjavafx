@@ -3,8 +3,8 @@
 [Setup]
 AppId={{sa.fx.draugths}}
 AppName=cinvaders
-AppVersion=4.1
-AppVerName=cinvaders 4.1
+AppVersion=4.2
+AppVerName=cinvaders 4.2
 AppPublisher=sagame
 AppComments=cinvaders
 AppCopyright=Copyright (C) 2017
@@ -24,7 +24,7 @@ DefaultGroupName=sagame
 ;LicenseFile=LICENSE
 ;(Windows 2000/XP/Server 2003 are no longer supported.)
 MinVersion=6.0
-OutputBaseFilename=cinvaders-x64bit-4.1
+OutputBaseFilename=cinvaders-x64bit-4.2
 DiskSpanning=yes
 SlicesPerDisk=1
 DiskSliceSize=24000000
