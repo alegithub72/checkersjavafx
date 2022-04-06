@@ -42,7 +42,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
     public static double wBackground=800;
     public static double hBackgroud=800;
-    public static double hBackgroundTot;
+    public double hBackgroundTot;
     public static  double hPointTable=30;
     public static int LVL_JUNGLE=1,
     		LVL_DESERT=2,
@@ -300,9 +300,9 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     }
     
     public void middleScreen(){
-    		Image imagesDesc = new Image("desc2.png");
+    		Image imagesDesc = new Image("desc1.png");
     		if(this.level>FXBoard.MAX_LEVEL) {
-    			imagesDesc = new Image("desc1.png");
+    			imagesDesc = new Image("desc2.png");
     		}
 
             c.getGraphicsContext2D().fillRect(0, 0, wBackground, hBackgroundTot);

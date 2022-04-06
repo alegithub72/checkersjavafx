@@ -31,7 +31,7 @@ public class EndScreenII extends PresentationScreen {
 
 		// TODO:do somenthing more fun
 
-		c.getGraphicsContext2D().drawImage(images, 0, 0);
+		c.getGraphicsContext2D().drawImage(images, 0, 0,widthScreen,heightScreen);
 
 	}
 

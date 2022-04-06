@@ -16,7 +16,7 @@ public abstract class PresentationScreen extends Parent {
 
 	protected PresentationScreen(String image) {
 		super();
-		c = new Canvas(800, 830);
+		c = new Canvas(800, 840);
 		getChildren().add(c);
 		widthScreen = 800;
 		heightScreen = 840;
@@ -26,7 +26,7 @@ public abstract class PresentationScreen extends Parent {
 	}
 	protected PresentationScreen(int level,String image) {
 		super();
-		c = new Canvas(800, 830);
+		c = new Canvas(800, 840);
 		getChildren().add(c);
 		widthScreen = 800;
 		heightScreen = 840;

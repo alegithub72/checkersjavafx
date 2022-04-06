@@ -31,7 +31,7 @@ public class EndScreen extends PresentationScreen {
 
 		// TODO:do somenthing more fun
 
-		c.getGraphicsContext2D().drawImage(images, 0, 0);
+		c.getGraphicsContext2D().drawImage(images, 0, 0,widthScreen,heightScreen);
 
 		Font f = Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 36);
 		start = new Text("- RIGHT CLICK FOR ANOTHER CAMPAIGN -");

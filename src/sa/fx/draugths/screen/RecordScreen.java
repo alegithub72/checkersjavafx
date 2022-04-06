@@ -170,9 +170,9 @@ public   List<RecordPlayer> ordredrecordsPlayers() {
 
 	public  void drawTableRecord(){
 		getChildren().clear();
-        Image images = new Image("background.png");
-        Canvas c=new Canvas(images.getWidth(),images.getHeight());
-        //c.getGraphicsContext2D().drawImage(images, 0, 0);
+        //Image images = new Image("background.png");
+        Canvas c=new Canvas(800,840);
+       // c.getGraphicsContext2D().drawImage(images, 0, 0,800,840);
         getChildren().add(c);
         Text record=new Text("RECORD PLAYER TABLE");
         Font f = new Font(50);
