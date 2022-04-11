@@ -7,6 +7,8 @@ package sa.fx.draugths;
 
 
 import java.net.URL;
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +18,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
@@ -40,7 +41,7 @@ public class BCDraugthsApp extends Application {
     private Game game;
     PresentationScreen startScreen;
     RecordScreen recordScreen;
-    AudioClip music;
+    static Map<String,AudioClip> effettiMap=new Hashtable();
     private AnimationPedinaMove anim;
     FXBoard fxb;
     public static boolean debug;
@@ -55,7 +56,7 @@ public class BCDraugthsApp extends Application {
     ImageView description;
     static double scale = 0.78;
     int level;
-	public static final String MUSIC_SIGLA="muppet.mp3";
+	public static final String MUSIC_SIGLA="270545_jingle-win-01.wav";
 	public static final String MUSIC_CELEBRATION="270545_jingle-win-01.wav";
 	public static final String EFFECT_HEY="416507_hey.wav";
 
@@ -174,13 +175,41 @@ public static void main(String[] args) {
 
     }
 
-    AudioClip buildMedia(String sound) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL url = classLoader.getResource(sound);
-        return new AudioClip(url.toString());
+  public  static   void  playMedia(String sound,int count) {
+
+        	Thread thread=new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+			        try {
+			        	stopMedia(sound);
+			        	effettiMap.remove(sound);
+						 URL url = this.getClass().getClassLoader().getResource(sound);
+						 if(url!=null) {
+							 AudioClip clip= new AudioClip(url.toString());
+							 clip.setCycleCount(count);
+							 clip.play();
+							effettiMap.put(sound, clip);
+						}
+
+					} catch (Exception   e) {
+						e.printStackTrace();
+					}
+				}
+			});
+        	thread.start();
 
     }
+public   static  void stopMedia(String sound) {
+        try {
+			AudioClip clip= effettiMap.get(sound);
+			if(clip!=null)clip.stop();
+		} catch (Exception e) {
 
+			e.printStackTrace();
+		}
+
+    }
   public void drawRecordScreen(int points){
 
 	  
@@ -263,9 +292,8 @@ public static void main(String[] args) {
   public void drawStartScreen()throws Exception{
         
       
-        music = buildMedia(MUSIC_SIGLA);
-        music.setCycleCount(AudioClip.INDEFINITE);
-        music.play(); 
+
+        playMedia(MUSIC_SIGLA,AudioClip.INDEFINITE);
         root.getChildren().remove(fxb);
         fxb=new FXBoard(level,this);
         startScreen=new StartScreen();
@@ -274,7 +302,7 @@ public static void main(String[] args) {
             
             @Override
             public void handle(MouseEvent event) {
-                    music.stop();
+                    stopMedia(MUSIC_SIGLA);
                     fxb.startLevel(level);
                     root.getChildren().remove(startScreen);
                     root.getChildren().add(fxb);                
@@ -285,9 +313,8 @@ public static void main(String[] args) {
 public void drawEndScreen()throws Exception{
             
             
-            music = buildMedia(MUSIC_CELEBRATION);
-            music.setCycleCount(1);
-            music.play(); 
+            playMedia(MUSIC_CELEBRATION,1);
+
             
             root.getChildren().remove(fxb);      
             startScreen=new EndScreen();
@@ -302,9 +329,8 @@ public void drawEndScreen()throws Exception{
                 		if(event.getButton()==MouseButton.PRIMARY) {
                 			flip=!flip;
                 			startScreen.setVisibleBack(flip);
-                            AudioClip   hey = buildMedia(EFFECT_HEY);
-                            hey.setCycleCount(1);
-                            hey.play(); 
+                            playMedia(EFFECT_HEY,1);
+
                 			
                 		}else {
                             root.getChildren().remove(startScreen);

@@ -17,6 +17,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sa.fx.draugths.BCDraugthsApp;
 
  
 /**
@@ -47,13 +48,10 @@ public class CanvasTest extends Application {
             //java.io.DataInputStream r=new DataInputStream(in);
          // URL url=  URL   .getSystemResource(MoveAnimePedinaTimer.BITE);
         //URL url=new URL(MoveAnimePedinaTimer.BITE);
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL url=classLoader.getResource("Applebite.wav");
-        
+       // ClassLoader classLoader = getClass().getClassLoader();
+        //URL url=classLoader.getResource(
+        BCDraugthsApp.playMedia("Applebite.wav",1);
 
-        AudioClip audio=new AudioClip(url.toString());
-
-      audio.play();
         GraphicsContext gc = canvas.getGraphicsContext2D();
         GraphicsContext gc2 = canvas2.getGraphicsContext2D();
                 

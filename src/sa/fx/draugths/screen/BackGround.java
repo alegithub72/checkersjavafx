@@ -252,23 +252,8 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     public void updatePoint(int value) {
         this.point = this.point + value;
         score.setText("" + this.point);
-        
-        ClassLoader classLoader = getClass().getClassLoader();
-       URL url=null;
-       
-      //URL url2=classLoader.getResource("pointUp.mp3"); 
-      
 
-      //if(value>15) url=classLoader.getResource("simpletone.mp3"); 
-      //else url=classLoader.getResource("pointUp.mp3"); 
-      url=classLoader.getResource(ShotDistanceFrameAnimation.ACHW); 
-      
-      AudioClip a=  new AudioClip(url.toString());
-      a.setVolume(1);
-      a.setPriority(-1);
-      a.setPan(-1);
-      a.play();
-      
+      BCDraugthsApp.playMedia(ShotDistanceFrameAnimation.ACHW, 1);
       Animation t=new Transition() {
                 {
                     setCycleCount(1);

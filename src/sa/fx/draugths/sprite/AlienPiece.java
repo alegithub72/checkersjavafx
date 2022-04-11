@@ -93,10 +93,10 @@ public class AlienPiece extends SpritePiece {
         if (piece.getType() == Piece.DRAUGTH &&
                 draugthTransform==false) {
             draugthTransform=true;
-            sp=new AlienPiece(DRAUGTH_ALIEN_IMAGE,this.piece, FXBoard.boardHW, this.getFxBoard());       
-            AudioClip ach = buildMedia(ShotDistanceFrameAnimation.ACHB);
-            ach.setCycleCount(1);
-            ach.play();
+            sp=new AlienPiece(DRAUGTH_ALIEN_IMAGE,this.piece, FXBoard.boardHW, this.getFxBoard()); 
+            
+            BCDraugthsApp.playMedia(ShotDistanceFrameAnimation.ACHB,1);
+
             sp.setDraugthTransform(true);
         }
         setFrame(0);

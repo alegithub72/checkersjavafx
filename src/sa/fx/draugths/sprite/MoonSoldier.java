@@ -7,6 +7,7 @@ package sa.fx.draugths.sprite;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.utility.BoardHW;
@@ -47,9 +48,8 @@ public class MoonSoldier extends SoldierPiece {
             frameImages = new Image(DRAUGTH_IMAGE);
             setImage(frameImages);
             buildFrameImages();
-            AudioClip ach = buildMedia(ShotDistanceFrameAnimation.ACHB);
-            ach.setCycleCount(1);
-            ach.play();
+            BCDraugthsApp.playMedia(ShotDistanceFrameAnimation.ACHB,1);
+
         }
         setFrame(0); //To change body of generated methods, choose Tools | Templates.
         return null;

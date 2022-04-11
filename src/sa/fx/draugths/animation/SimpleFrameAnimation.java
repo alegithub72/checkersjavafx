@@ -48,7 +48,7 @@ public class SimpleFrameAnimation extends Transition{
     int frameCount=0;
    
     long interval=0;  
-    AudioClip mediaPlayer;
+
    
    
     boolean ciclyc;
@@ -61,10 +61,7 @@ public class SimpleFrameAnimation extends Transition{
         this.sprite = sprite;
         this.move=move;
         this.sound=sound;
-        if(sound!=null){
-        mediaPlayer=buildMedia(sound);
-            
-        }
+
         this.ciclyc=cyclic;
         before=System.currentTimeMillis();
         this.interval=interval;
@@ -75,11 +72,7 @@ public class SimpleFrameAnimation extends Transition{
         this.sprite = sprite;
         this.move=null;
         this.sound=sound;
-        if(sound!=null){
-        mediaPlayer=buildMedia(sound);
-
-            
-        }
+ 
         this.ciclyc=cyclic;
         before=System.currentTimeMillis();
         this.interval=interval;
@@ -105,31 +98,26 @@ public class SimpleFrameAnimation extends Transition{
     
     void playEffect(){
         
-       if(mediaPlayer!=null)  {
+
        if(startMusic) {
            if(this.sound==FIRE|| 
                    this.sound==SPEEDY_BITE ||this.sound==CLOPETE ||this.sound==CLOPETE_DOUBLE||this.sound==MOVESPACESOLDIER ) {
 
                
-               mediaPlayer.setCycleCount(AudioClip.INDEFINITE);
+        	   BCDraugthsApp.playMedia(sound,AudioClip.INDEFINITE);
            }
            
 
-               mediaPlayer.play();
+               BCDraugthsApp.playMedia(sound,1);
                startMusic=false;
            }
            
-       }        
+              
         
     }
     
     
-    AudioClip buildMedia(String sound){
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL url=classLoader.getResource(sound); 
-        return new AudioClip(url.toString());
-                
-    }
+
 	@Override
 	protected void interpolate(double frac) {
 		framing(frac);
@@ -167,7 +155,7 @@ public class SimpleFrameAnimation extends Transition{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				  mediaPlayer.stop();
+					BCDraugthsApp.stopMedia(sound);
 				  event.consume();
 				
 			}

@@ -6,6 +6,7 @@
 package sa.fx.draugths.sprite;
 
 
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -213,12 +214,7 @@ public abstract class SpritePiece extends Sprite{
     
       
     
-    AudioClip buildMedia(String sound){
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL url=classLoader.getResource(sound); 
-        return new AudioClip(url.toString());
-                
-    }       
+ 
     
     
     

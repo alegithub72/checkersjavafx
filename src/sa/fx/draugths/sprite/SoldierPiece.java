@@ -501,9 +501,8 @@ public class SoldierPiece extends SpritePiece {
                 draugthTransform==false) {
             draugthTransform=true;
             sp=new SoldierPiece(DRAUGTH_SOLDIER_IMAGE, this.piece, FXBoard.boardHW, this.getFxBoard());       
-            AudioClip ach = buildMedia(ShotDistanceFrameAnimation.ACHB);
-            ach.setCycleCount(1);
-            ach.play();
+            BCDraugthsApp.playMedia(ShotDistanceFrameAnimation.ACHB,1);
+
             sp.setDraugthTransform(true);
             //buildFrameImages();
 

@@ -5,18 +5,17 @@
 	<artifactId>chekcersfx</artifactId>
 	<version>4.2</version>
 	<packaging>jar</packaging>
-	<name>Chekcers Invader</name> 
+	<name>ChekcersInvader</name> 
 	<!-- https://search.maven.org
 https://repository.apache.org 
 https://mvnrepository.com -->
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 
+	<javafx.version>17</javafx.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <!--   <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>-->
- 
+        <maven.compiler.release>17</maven.compiler.release>
 	</properties>
 <distributionManagement>
    <repository>
@@ -36,37 +35,37 @@ https://mvnrepository.com -->
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-base</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-graphics</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-web</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-swing</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-media</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<!--dependency>
     <groupId>eu.agrosense.client</groupId>
@@ -88,7 +87,7 @@ https://mvnrepository.com -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.3</version>
+                <version>0.0.8</version>
                 <configuration>
                     <mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
                 </configuration>
@@ -109,6 +108,22 @@ https://mvnrepository.com -->
         		<verbose>true</verbose>
     		</configuration>
 		</plugin>
+            <plugin>
+                <groupId>com.gluonhq</groupId>
+                <artifactId>gluonfx-maven-plugin</artifactId>
+                <version>1.0.13</version>
+                <configuration>
+                     <target>host</target>
+                     <mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
+					 <resourcesList>.*\\.mp3$,.*\\.wav$,.*\\.properties$,.*\\.TTF$,.*\\.rec$</resourcesList>
+					         <reflectionList>
+            <list>com.sun.scenario.effect.impl.prism.PrMergePeer</list>
+			<list>javafx.scene.media.AudioClip</list>
+			<list>com.sun.media.jfxmediaimpl.NativeMediaManager</list>
+
+        </reflectionList>
+                </configuration>
+            </plugin>		
 <!-- Calling mvn jfx:jar creates your javafx-application-jar inside target/jfx/app/yourapp-jfx.jar,
  or even creates native launcher (like EXE-file) when calling mvn jfx:native. -->			
 		</plugins>
