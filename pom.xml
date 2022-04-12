@@ -10,12 +10,13 @@
 https://repository.apache.org 
 https://mvnrepository.com -->
 	<properties>
-
-	<javafx.version>17</javafx.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <!--   <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>-->
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>11</maven.compiler.release>
+        <javafx.version>11.0.2</javafx.version>
+        <javafx.plugin.version>0.0.8</javafx.plugin.version>
+        <gluonfx.plugin.version>1.0.13</gluonfx.plugin.version>
+        <charm.version>6.1.0</charm.version>
+        <attach.version>4.0.14</attach.version>
+		        <main.class>sa.fx.draugths.BCDraugthsApp</main.class>
 	</properties>
 <distributionManagement>
    <repository>
@@ -67,6 +68,41 @@ https://mvnrepository.com -->
 			<artifactId>javafx-media</artifactId>
 			<version>${javafx.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>com.gluonhq</groupId>
+            <artifactId>charm-glisten</artifactId>
+            <version>${charm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>display</artifactId>
+            <version>${attach.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>lifecycle</artifactId>
+            <version>${attach.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>statusbar</artifactId>
+            <version>${attach.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>storage</artifactId>
+            <version>${attach.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>util</artifactId>
+            <version>${attach.version}</version>
+        </dependency>	
+        <!--dependency>
+            <groupId>com.gluonhq.media</groupId>
+            <artifactId>media</artifactId>
+            <version>${attach.version}</version>
+        </dependency-->		
 		<!--dependency>
     <groupId>eu.agrosense.client</groupId>
     <artifactId>util-javafx</artifactId>
@@ -89,7 +125,7 @@ https://mvnrepository.com -->
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
+                    <mainClass></mainClass>
                 </configuration>
             </plugin> 
 			<plugin>
@@ -98,7 +134,7 @@ https://mvnrepository.com -->
     			<version>8.8.3</version>
     			
     			<configuration>
-        		<mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
+        		<mainClass>${main.class}</mainClass>
         		<nativeReleaseVersion>${project.version}</nativeReleaseVersion>
         		<vendor>sagame</vendor>
         		<SetupIconFile>install\package\windows\wizard-setup.ico</SetupIconFile>
@@ -111,12 +147,20 @@ https://mvnrepository.com -->
             <plugin>
                 <groupId>com.gluonhq</groupId>
                 <artifactId>gluonfx-maven-plugin</artifactId>
-                <version>1.0.13</version>
+                <version>${gluonfx.plugin.version}</version>
                 <configuration>
-                     <target>host</target>
-                     <mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
+                     <target>${gluonfx.target}</target>
+                     <mainClass>${main.class}</mainClass>
+                    <attachList>
+                        <list>display</list>
+                        <list>lifecycle</list>
+                        <list>statusbar</list>
+                        <list>storage</list>
+						<!--list>media<list-->
+                    </attachList>					 
 					 <resourcesList>.*\\.mp3$,.*\\.wav$,.*\\.properties$,.*\\.TTF$,.*\\.rec$</resourcesList>
 					         <reflectionList>
+							 
             <list>com.sun.scenario.effect.impl.prism.PrMergePeer</list>
 			<list>javafx.scene.media.AudioClip</list>
 			<list>com.sun.media.jfxmediaimpl.NativeMediaManager</list>
@@ -145,4 +189,26 @@ https://mvnrepository.com -->
 			</testResource>
 		</testResources>
 	</build>
+
+    <profiles>
+        <profile>
+            <id>android</id>
+            <properties>
+                <gluonfx.target>android</gluonfx.target>
+            </properties>
+        </profile>
+        <profile>
+            <id>ios</id>
+            <properties>
+                <gluonfx.target>ios</gluonfx.target>
+            </properties>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>gluon-releases</id>
+            <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>	
 </project>
