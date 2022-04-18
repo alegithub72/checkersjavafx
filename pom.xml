@@ -11,12 +11,13 @@ https://repository.apache.org
 https://mvnrepository.com -->
 	<properties>
         <maven.compiler.release>11</maven.compiler.release>
-        <javafx.version>11.0.2</javafx.version>
+        <javafx.version>17.0.1</javafx.version>
         <javafx.plugin.version>0.0.8</javafx.plugin.version>
         <gluonfx.plugin.version>1.0.8</gluonfx.plugin.version>
         <charm.version>6.1.0</charm.version>
-        <attach.version>4.0.12</attach.version>
-		        <main.class>sa.fx.draugths.BCDraugthsApp</main.class>
+        <attach.version>4.0.14</attach.version>
+        <main.class>sa.fx.draugths.BCDraugthsApp</main.class>
+
 	</properties>
 <distributionManagement>
    <repository>
@@ -139,7 +140,7 @@ https://mvnrepository.com -->
     			<version>8.8.3</version>
     			
     			<configuration>
-        		<mainClass>${main.class}</mainClass>
+        		
         		<nativeReleaseVersion>${project.version}</nativeReleaseVersion>
         		<vendor>sagame</vendor>
         		<SetupIconFile>install\package\windows\wizard-setup.ico</SetupIconFile>
@@ -147,6 +148,7 @@ https://mvnrepository.com -->
         		<deployDir>install</deployDir>
         		<skipNativeVersionNumberSanitizing>true</skipNativeVersionNumberSanitizing>
         		<verbose>true</verbose>
+        		<mainClass>${main.class}</mainClass>
     		</configuration>
 		</plugin>
             <plugin>
@@ -155,22 +157,23 @@ https://mvnrepository.com -->
                 <version>${gluonfx.plugin.version}</version>
                 <configuration>
                      <target>${gluonfx.target}</target>
+                     <nativeImageArgs>
+                     	<nativeImageArg>--allow-incomplete-classpath</nativeImageArg>
+                     </nativeImageArgs>
                      <mainClass>${main.class}</mainClass>
+<enableSWRendering>true</enableSWRendering>
                     <attachList>
                         <list>display</list>
                         <list>lifecycle</list>
                         <list>statusbar</list>
                         <list>storage</list>
-						<!--list>media<list-->
                     </attachList>					 
-					 <resourcesList>.*\\.mp3$,.*\\.wav$,.*\\.properties$,.*\\.TTF$,.*\\.rec$</resourcesList>
-					         <reflectionList>
-							 
-            <list>com.sun.scenario.effect.impl.prism.PrMergePeer</list>
-			<list>javafx.scene.media.AudioClip</list>
-			<list>com.sun.media.jfxmediaimpl.NativeMediaManager</list>
-
+		<resourcesList>.*\\.mp3$,.*\\.wav$,.*\\.properties$,.*\\.TTF$,.*\\.rec$</resourcesList>
+         <reflectionList>                                                    
+        <list>javafx.scene.media.AudioClip</list>
         </reflectionList>
+
+	
                 </configuration>
             </plugin>		
 <!-- Calling mvn jfx:jar creates your javafx-application-jar inside target/jfx/app/yourapp-jfx.jar,
