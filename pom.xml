@@ -13,9 +13,9 @@ https://mvnrepository.com -->
         <maven.compiler.release>11</maven.compiler.release>
         <javafx.version>11.0.2</javafx.version>
         <javafx.plugin.version>0.0.8</javafx.plugin.version>
-        <gluonfx.plugin.version>1.0.13</gluonfx.plugin.version>
+        <gluonfx.plugin.version>1.0.8</gluonfx.plugin.version>
         <charm.version>6.1.0</charm.version>
-        <attach.version>4.0.14</attach.version>
+        <attach.version>4.0.12</attach.version>
 		        <main.class>sa.fx.draugths.BCDraugthsApp</main.class>
 	</properties>
 <distributionManagement>
@@ -98,6 +98,11 @@ https://mvnrepository.com -->
             <artifactId>util</artifactId>
             <version>${attach.version}</version>
         </dependency>	
+        <dependency>
+            <groupId>com.gluonhq.attach</groupId>
+            <artifactId>audio</artifactId>
+            <version>${attach.version}</version>
+        </dependency>	        
         <!--dependency>
             <groupId>com.gluonhq.media</groupId>
             <artifactId>media</artifactId>
@@ -125,7 +130,7 @@ https://mvnrepository.com -->
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass></mainClass>
+                    <mainClass>${main.class}</mainClass>
                 </configuration>
             </plugin> 
 			<plugin>
