@@ -59,7 +59,7 @@ public class BCDraugthsApp extends MobileApplication {
 	ImageView description;
 	static double scale = 0.78;
 	int level;
-	public static final String MUSIC_SIGLA = "270545_jingle-win-01.wav";
+	public static final String MUSIC_SIGLA = "muppet.wav";
 	public static final String MUSIC_CELEBRATION = "270545_jingle-win-01.wav";
 	public static final String EFFECT_HEY = "416507_hey.wav";
 
