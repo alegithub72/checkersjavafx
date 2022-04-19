@@ -170,7 +170,7 @@ public class BCDraugthsApp extends MobileApplication {
 //       primaryStage.show();
 
 	}
-	public startGame(){
+	public void startGame(){
 		
 		    //    ((Stage) scene..setRoot(root))).
 		
