@@ -14,15 +14,27 @@ import java.util.logging.Logger;
 
 import com.gluonhq.attach.audio.Audio;
 import com.gluonhq.attach.audio.AudioService;
+import com.gluonhq.attach.display.DisplayService;
+import com.gluonhq.attach.util.Platform;
+import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.application.MobileApplication;
+import com.gluonhq.charm.glisten.control.Icon;
+import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import com.gluonhq.charm.glisten.visual.Swatch;
 
+import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Dimension2D;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -80,7 +92,7 @@ public class BCDraugthsApp extends MobileApplication {
     @Override
     public void init() {
         addViewFactory(HOME_VIEW, BasicView::new);
-
+      
     }
 
 	public void initDama() {
@@ -129,6 +141,15 @@ public class BCDraugthsApp extends MobileApplication {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+//		 if (Platform.isDesktop()) {
+//			 System.out.println("desktoop------------------------------>");
+//	            Dimension2D dimension2D = DisplayService.create()
+//	                    .map(DisplayService::getDefaultDimensions)
+//	                    .orElse(new Dimension2D(640, 480));
+//	            scene.getWindow().setWidth(dimension2D.getWidth());
+//	            scene.getWindow().setHeight(dimension2D.getHeight());
+//	        }
 		// Scene scene = new Scene(root,startScreen.getWidthScreen()
 		// ,startScreen.getHeightScreen()-12, Color.BLACK);
 //       primaryStage.setTitle("Checkers Invader");
@@ -144,7 +165,14 @@ public class BCDraugthsApp extends MobileApplication {
 //      box.getChildren().add(root);
 		// canvas.autosize();
 //       scene.setRoot(box);
-		scene.setRoot(root);
+		
+        Button button = new Button("Start the Game!");
+        button.setGraphic(new Icon(MaterialDesignIcon.LANGUAGE));
+        button.setOnAction(e -> {
+        	startGame();
+        	
+        });
+		this.getView().setCenter(button);
 		scene.setFill(Color.BLACK);
 		System.out.println("1)" + scene.getHeight() + "," + scene.getWidth());
 		double scaleX = scene.getWidth() / 800;
@@ -171,9 +199,16 @@ public class BCDraugthsApp extends MobileApplication {
 
 	}
 	public void startGame(){
+		//this.getView().getChildren().removeAll();
+		Background focusBackground = new Background( new BackgroundFill( Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY ));
+		this.getView().setBackground(focusBackground);
+		this.getAppBar().setVisible(false);
+		this.getView().setCenter(root);
 		
+		//if(primaryStage!=null)this.primaryStage.getScene().setRoot(root);
 		    //    ((Stage) scene..setRoot(root))).
 		
+	//this.getView().setBackground(new Background(new BackgroundFill(C)));
 	}
 	public void levelUp(int level, int point) throws Exception {
 		root.getChildren().remove(fxb);
@@ -406,4 +441,6 @@ public class BCDraugthsApp extends MobileApplication {
 		});
 
 	}
+
+
 }
