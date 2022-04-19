@@ -77,11 +77,11 @@ public class BCDraugthsApp extends MobileApplication {
 
 	}
 
-//    @Override
-//    public void init() {
-//        addViewFactory(HOME_VIEW, BasicView::new);
-//        this.
-//    }
+    @Override
+    public void init() {
+        addViewFactory(HOME_VIEW, BasicView::new);
+
+    }
 
 	public void initDama() {
 
@@ -170,7 +170,11 @@ public class BCDraugthsApp extends MobileApplication {
 //       primaryStage.show();
 
 	}
-
+	public startGame(){
+		
+		    //    ((Stage) scene..setRoot(root))).
+		
+	}
 	public void levelUp(int level, int point) throws Exception {
 		root.getChildren().remove(fxb);
 
@@ -209,33 +213,43 @@ public class BCDraugthsApp extends MobileApplication {
 		URL url = BCDraugthsApp.class.getClassLoader().getResource(sound);
 		System.out.println("--->" + url);
 
-		AudioService.create().ifPresentOrElse(service -> {
-			System.out.println("--->present");
-			service.loadMusic(url).ifPresent(audio -> {
-				BCDraugthsApp.audioApp = audio;
-				audio.play();
-			});
-
-		}, new Runnable() {
-
+		Thread th=new Thread(new Runnable() {
+			
 			@Override
 			public void run() {
-				try {
-					stopMedia(sound);
-					effettiMap.remove(sound);
-					URL url = this.getClass().getClassLoader().getResource(sound);
-					if (url != null) {
-						AudioClip clip = new AudioClip(url.toString());
-						clip.setCycleCount(count);
-						clip.play();
-						effettiMap.put(sound, clip);
-					}
+				AudioService.create().ifPresentOrElse(service -> {
+					System.out.println("--->present service");
+					service.loadMusic(url).ifPresent(audio -> {
+						BCDraugthsApp.audioApp = audio;
+						System.out.println("--->present audio");
+						audio.play();
+					});
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				}, new Runnable() {
+
+					@Override
+					public void run() {
+						try {
+							stopMedia(sound);
+							effettiMap.remove(sound);
+							URL url = this.getClass().getClassLoader().getResource(sound);
+							if (url != null) {
+								AudioClip clip = new AudioClip(url.toString());
+								clip.setCycleCount(count);
+								clip.play();
+								effettiMap.put(sound, clip);
+							}
+
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				
 			}
 		});
+		th.start();
+
 
 	}
 
