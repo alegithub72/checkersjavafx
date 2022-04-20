@@ -128,12 +128,12 @@ public class SimpleFrameAnimation extends Transition{
 	protected void framing(double frac) {
         long intervalTemp=System.currentTimeMillis()-before;
 
-
+        playEffect();
         if(intervalTemp>this.interval) {
         	
             before=System.currentTimeMillis();
             sprite.setFrame(frames[i].getFrameNumber());
-            playEffect();
+
             sprite.toFront();
             frameCount++;
             BCDraugthsApp.log.info("sprite:"+sprite+",frames:"+frames[i]+" interval:"+intervalTemp);

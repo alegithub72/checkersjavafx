@@ -334,6 +334,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
 		            c.getGraphicsContext2D().fillRect(0, 0, wBackground, hBackgroundTot);
 		            Font f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 36);
+		            if(f==null) f=Font.font(36);
 		            c.getGraphicsContext2D().setFont( f);
 		            double centerX=(wBackground/4)-(wBackground/24);
 		            double centerY=(hBackgroundTot/2)+(hBackgroundTot/12);

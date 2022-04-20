@@ -54,9 +54,10 @@ public class BCDraugthsApp extends MobileApplication {
 
 	private Game game;
 	PresentationScreen startScreen;
-	static Audio audioApp;
+
 	RecordScreen recordScreen;
 	static Map<String, AudioClip> effettiMap = new Hashtable();
+	static Map<String, Audio> effettiAndMap = new Hashtable();
 	private AnimationPedinaMove anim;
 	FXBoard fxb;
 	public static boolean debug;
@@ -253,10 +254,10 @@ public class BCDraugthsApp extends MobileApplication {
 			@Override
 			public void run() {
 				AudioService.create().ifPresentOrElse(service -> {
-					System.out.println("--->present service");
+					BCDraugthsApp.log.info("--->present service");
 					service.loadMusic(url).ifPresent(audio -> {
-						BCDraugthsApp.audioApp = audio;
-						System.out.println("--->present audio");
+						effettiAndMap.put(sound,audio);
+						BCDraugthsApp.log.info("--->present audio");
 						audio.play();
 					});
 
@@ -291,8 +292,9 @@ public class BCDraugthsApp extends MobileApplication {
 	public static void stopMedia(String sound) {
 
 		try {
-			if (audioApp != null) {
-				audioApp.stop();
+			Audio audio = effettiAndMap.get(sound);
+			if (audio != null) {
+				audio.stop();
 			}
 			AudioClip clip = effettiMap.get(sound);
 			if (clip != null)
