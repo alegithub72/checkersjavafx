@@ -265,8 +265,8 @@ public class BackGround extends Parent implements ScreenPauseInterface {
                 protected void interpolate(double frac) {
                     //System.out.println("color="+Color.WHITE.interpolate(Color.BLACK, frac));
                        score.setFill(Color.WHITE.interpolate(Color.rgb(0, 204, 102), frac));
-                       score.setScaleX(2-frac);
-                       score.setScaleY(2-frac);
+                       score.setScaleX(frac);
+                       score.setScaleY(frac);
                        
                 }
             };
@@ -294,7 +294,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
             
             Font f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 48);
-          
+            if(f==null) f=Font.font(36);
             //interessante effeto mattonella....
             Light.Distant light = new Light.Distant();
             light.setAzimuth(-135.0);
