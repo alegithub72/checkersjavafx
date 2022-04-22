@@ -294,7 +294,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
             
             Font f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 48);
-            if(f==null) f=Font.font(36);
+            if(f==null) f=Font.font(48);
             //interessante effeto mattonella....
             Light.Distant light = new Light.Distant();
             light.setAzimuth(-135.0);
