@@ -4,9 +4,9 @@
 AppId={{sa.fx.draugths}}
 AppName=cinvaders
 AppVersion=4.2
-AppVerName=cinvaders 4.2
+AppVerName=cinvaders
 AppPublisher=sagame
-AppComments=cinvaders
+AppComments=Checkers Invaders
 AppCopyright=Copyright (C) 2017
 ;AppPublisherURL=http://java.com/
 ;AppSupportURL=http://java.com/
@@ -24,8 +24,8 @@ DefaultGroupName=sagame
 ;LicenseFile=LICENSE
 ;(Windows 2000/XP/Server 2003 are no longer supported.)
 MinVersion=6.0
-OutputBaseFilename=cinvaders-x64bit-4.2
-DiskSpanning=yes
+OutputBaseFilename=cinvaders-setup-x64bit-4.2
+DiskSpanning=no
 SlicesPerDisk=1
 DiskSliceSize=24000000
 Compression=lzma2/ultra64
@@ -38,7 +38,7 @@ UninstallDisplayName=cinvaders
 WizardImageStretch=Yes
 WizardSmallImageFile=cinvaders-setup-icon.bmp
 WizardStyle=modern
-;WizardImageFile=startScreen2.bmp
+;WizardImageFile=startScreen3.bmp
 ArchitecturesInstallIn64BitMode=x64
 
 
