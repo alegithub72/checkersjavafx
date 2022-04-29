@@ -163,12 +163,7 @@ public class BCDraugthsApp extends Application {
         //Swatch.LIGHT_GREEN.assignTo(scene);
 		initDama();
 		root = new Group();
-		try {
-			drawStartScreen();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		drawStartScreen();
 		scene.setFill(Color.BLACK);
 		System.out.println("1)" + scene.getHeight() + "," + scene.getWidth());
 		double scaleX = scene.getWidth() / 800;
@@ -366,24 +361,30 @@ public class BCDraugthsApp extends Application {
 
 	}
 
-	public void drawStartScreen() throws Exception {
-
-		playMedia(MUSIC_SIGLA, AudioClip.INDEFINITE);
-		root.getChildren().remove(fxb);
-		fxb = new FXBoard(level, this);
-		startScreen = new StartScreen();
-		root.getChildren().add(startScreen);
-		startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				stopMedia(MUSIC_SIGLA);
-				fxb.startLevel(level);
-				root.getChildren().remove(startScreen);
-				root.getChildren().add(fxb);
-				event.consume();
-			}
-		});
+	public void drawStartScreen()  {
+		try {
+			playMedia(MUSIC_SIGLA, AudioClip.INDEFINITE);
+			root.getChildren().remove(fxb);
+	
+				fxb = new FXBoard(level, this);
+	
+			startScreen = new StartScreen();
+			root.getChildren().add(startScreen);
+			startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	
+				@Override
+				public void handle(MouseEvent event) {
+					stopMedia(MUSIC_SIGLA);
+					fxb.startLevel(level);
+					root.getChildren().remove(startScreen);
+					root.getChildren().add(fxb);
+					event.consume();
+				}
+			});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 
 	public void drawEndScreen() throws Exception {
