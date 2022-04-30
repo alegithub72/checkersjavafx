@@ -29,6 +29,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -107,7 +108,10 @@ public class BCDraugthsApp extends Application {
                 }
             };
             Button button = new Button("Start the Game!");
-            button.setGraphic(new Icon(MaterialDesignIcon.LANGUAGE));
+            ImageView icon=new ImageView("cinvaders.png");
+            icon.setFitHeight(16);
+            icon.setFitWidth(16);
+            button.setGraphic(icon);
             button.setOnAction(e -> {
         		Background focusBackground = new Background( new BackgroundFill( Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY ));
         		view.setBackground(focusBackground);
@@ -115,7 +119,7 @@ public class BCDraugthsApp extends Application {
         		view.getAppManager().getAppBar().setVisible(false);
         		view.setVisible(true);
             });
-            view.setCenter(button);
+            controls.getChildren().add(button);
             return view;
         });
     }
@@ -168,15 +172,26 @@ public class BCDraugthsApp extends Application {
 		System.out.println("1)" + scene.getHeight() + "," + scene.getWidth());
 		double scaleX = scene.getWidth() / 800;
 		double scaleY = scene.getHeight() / 850;
-		root.setScaleX(scaleX);
-		root.setScaleY(scaleY);
+		if(scaleX<1) {
+			root.setScaleX(scaleX);
+			double transalteX = ((1d - scaleX) * 800) / 2;
+			root.setTranslateX(-transalteX);
+			System.out.println("1translate)" + transalteX );
+		}
+		
+		if(scaleY<1) {
+			root.setScaleY(scaleY);
+			double transalteY = ((1d - scaleY) * 800) / 2;
+			root.setTranslateY(-transalteY);
+			System.out.println("1translate)"+ transalteY);
+		}
 		System.out.println("1scale)" + scaleX + "," + scaleY);
-		double transalteX = ((1d - scaleX) * 800) / 2;
-		double transalteY = ((1d - scaleY) * 800) / 2;
+
+
 		System.out.println("2)" + scene.getHeight() + "," + scene.getWidth());
-		root.setTranslateX(-transalteX);
-		root.setTranslateY(-transalteY);
-		System.out.println("1translate)" + transalteX + "," + transalteY);
+
+
+	
 
 
 	}
@@ -218,18 +233,23 @@ public class BCDraugthsApp extends Application {
 
 		URL url = BCDraugthsApp.class.getClassLoader().getResource(sound);
 		System.out.println("--->" + url);
-
+	
 		Thread th=new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
 				AudioService.create().ifPresentOrElse(service -> {
 					BCDraugthsApp.log.info("--->present service");
+					if(effettiAndMap.get(url)==null)
 					service.loadMusic(url).ifPresent(audio -> {
 						effettiAndMap.put(sound,audio);
 						BCDraugthsApp.log.info("--->present audio");
 						audio.play();
 					});
+					else {
+						Audio audioTmp= effettiAndMap.get(url);
+						audioTmp.play();
+					}
 
 				}, new Runnable() {
 
@@ -237,13 +257,17 @@ public class BCDraugthsApp extends Application {
 					public void run() {
 						try {
 							stopMedia(sound);
-							effettiMap.remove(sound);
+							if(effettiMap.get(sound)==null) {
 							URL url = this.getClass().getClassLoader().getResource(sound);
 							if (url != null) {
 								AudioClip clip = new AudioClip(url.toString());
 								clip.setCycleCount(count);
 								clip.play();
 								effettiMap.put(sound, clip);
+							}
+							}else {
+								AudioClip clipTmp=effettiMap.get(sound);
+								clipTmp.play();
 							}
 
 						} catch (Exception e) {
