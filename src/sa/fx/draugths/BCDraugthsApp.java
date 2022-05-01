@@ -121,8 +121,7 @@ public class BCDraugthsApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //TODO: gestire gli screen di inizio gioco non  con il background del gioco,
-        // possibile di rinominare ed usare Background class per questo ruolo di screen before play
+
         initDama();
         root=new Group();
         drawStartScreen();

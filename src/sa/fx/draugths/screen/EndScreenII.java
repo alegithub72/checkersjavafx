@@ -29,7 +29,7 @@ public class EndScreenII extends PresentationScreen {
 		Image images = null;
 		images = new Image(image);
 
-		// TODO:do somenthing more fun
+		// TODO:Eliminare questa classe
 
 		c.getGraphicsContext2D().drawImage(images, 0, 0,widthScreen,heightScreen);
 
