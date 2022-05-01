@@ -173,7 +173,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 ImageView imagePunt = new ImageView(new Image("puntatore.png"));
                 imagePunt.setScaleX(0.64);
                 imagePunt.setScaleY(0.64);
-                imagePunt.setOpacity(0.4);
+                imagePunt.setOpacity(0.6);
         		DropShadow dropShadow = new DropShadow();
         		dropShadow.setRadius(20.0);
         		dropShadow.setOffsetX(0.0);

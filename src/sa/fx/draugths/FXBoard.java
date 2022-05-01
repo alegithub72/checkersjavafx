@@ -422,7 +422,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                 @Override
                 public void handle(MouseEvent event) {
                    if(isLastLevel() || level==0)  {
-                	   //TODO: here celebration screen...
+
                 	   if(isLastLevel()) {
                 		   try {
 							app.drawEndScreen();
@@ -443,7 +443,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 						e.printStackTrace();
 					}
                    }
-                   //TODO mettere una classe che per record of fame
+
                     event.consume();
                 }
             }); 
