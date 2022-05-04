@@ -24,11 +24,11 @@ import javafx.animation.Transition;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.utility.RecordPlayer;
 
 /**
@@ -43,8 +43,7 @@ public class RecordScreen  extends Parent{
     	try {
 			prop.load(loadCodedFile("file1"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			BCDraugthsApp.log.info(e.getStackTrace().toString());
 		}
 
         players=ordredrecordsPlayers();
@@ -115,21 +114,29 @@ public class RecordScreen  extends Parent{
 		}
     	return in;
     }
-    public void storeCodedFile(ByteArrayOutputStream outputStream,String name) throws IOException ,NullPointerException {
+    public void storeCodedFile(ByteArrayOutputStream outputStream,String name) throws IOException  {
+		FileOutputStream fileOutputStream = null;
+		ByteArrayInputStream byteArrayInputStream = null;
+		try {
+			File file = new File(name);
+			fileOutputStream = new FileOutputStream(file);
+			byteArrayInputStream = new ByteArrayInputStream(outputStream.toByteArray());
+			while (byteArrayInputStream.available() != 0) {
+				byte b = (byte) byteArrayInputStream.read();
+				fileOutputStream.write(~b);
+			}
+			fileOutputStream.flush();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			byteArrayInputStream.close();
+			fileOutputStream.close();
+		}
 
-    	File file=new File(name);
-    	FileOutputStream fileOutputStream = new FileOutputStream(file);
-    	ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(outputStream.toByteArray());
-    	while(byteArrayInputStream.available()!=0) {
-	    		byte b=(byte) byteArrayInputStream.read();
-	        	fileOutputStream.write(~b);
-	    	}
-	   	 	fileOutputStream.flush();
-	   	 	byteArrayInputStream.close();
-	   	 	fileOutputStream.close();
-
-
-    	
     }
 public void saveRecordPlayers() {
     try {
@@ -146,7 +153,7 @@ public void saveRecordPlayers() {
     	storeCodedFile(arrayOutputStream,"file1");
 
 	} catch (IOException e) {
-		e.printStackTrace();
+		BCDraugthsApp.log.info(e.getStackTrace().toString());
 	}
 }
 public   List<RecordPlayer> ordredrecordsPlayers() {

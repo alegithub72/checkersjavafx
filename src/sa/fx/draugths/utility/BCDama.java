@@ -171,7 +171,7 @@ public class BCDama extends Application {
      */
     public static void main(String[] args) {
         BCDama bc=new BCDama();
-        bc.launch(args);
+      //  bc.launch(args);
         //launch(args);
         
     }

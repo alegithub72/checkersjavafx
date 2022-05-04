@@ -6,7 +6,6 @@
 package sa.fx.draugths;
 
 
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,10 +15,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.fx.draugths.animation.AnimationPedinaMove;
@@ -28,6 +25,7 @@ import sa.fx.draugths.screen.EndScreenII;
 import sa.fx.draugths.screen.PresentationScreen;
 import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.screen.StartScreen;
+import sa.fx.draugths.utility.SoundPlay;
 import sa.gameboard.core.Game;
 
 
@@ -40,7 +38,7 @@ public class BCDraugthsApp extends Application {
     private Game game;
     PresentationScreen startScreen;
     RecordScreen recordScreen;
-    AudioClip music;
+    public static SoundPlay soundPlay;
     private AnimationPedinaMove anim;
     FXBoard fxb;
     public static boolean debug;
@@ -63,19 +61,7 @@ public class BCDraugthsApp extends Application {
 
 
 
-    void waitAnimation() {
-        try {
-            if (anim != null) {
-                anim.wait();
-            }
-        } catch (InterruptedException ex) {
-            //   Logger.getLogger(FXAIPlayer1.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
-        }
-        ///if(anim!=null)
-        // while(anim.getStatus()==Animation.Status.RUNNING)System.out.println("runnigggg");
 
-    }
 
 
 
@@ -124,6 +110,7 @@ public class BCDraugthsApp extends Application {
 
         initDama();
         root=new Group();
+
         drawStartScreen();
         Scene scene = new Scene(root,startScreen.getWidthScreen()
                 ,startScreen.getHeightScreen()-12, Color.BLACK);
@@ -173,12 +160,7 @@ public static void main(String[] args) {
 
     }
 
-    AudioClip buildMedia(String sound) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL url = classLoader.getResource(sound);
-        return new AudioClip(url.toString());
 
-    }
 
   public void drawRecordScreen(int points){
 
@@ -249,22 +231,18 @@ public static void main(String[] args) {
   private void  resetGame() {
 		
 	    try {
-			//music.play();
 			root.getChildren().remove(recordScreen);
 			level=1;
 			drawStartScreen();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 log.info(e.toString());
 		}
 	  
   }
   public void drawStartScreen()throws Exception{
         
-      
-        music = buildMedia(MUSIC_SIGLA);
-        music.setCycleCount(AudioClip.INDEFINITE);
-        music.play(); 
+      	soundPlay=new SoundPlay();
+	  	soundPlay.playSoundLoop(MUSIC_SIGLA);
         root.getChildren().remove(fxb);
         fxb=new FXBoard(level,this);
         startScreen=new StartScreen();
@@ -273,7 +251,7 @@ public static void main(String[] args) {
             
             @Override
             public void handle(MouseEvent event) {
-                    music.stop();
+                    soundPlay.stopSound(MUSIC_SIGLA);
                     fxb.startLevel(level);
                     root.getChildren().remove(startScreen);
                     root.getChildren().add(fxb);                
@@ -284,9 +262,8 @@ public static void main(String[] args) {
 public void drawEndScreen()throws Exception{
             
             
-            music = buildMedia(MUSIC_CELEBRATION);
-            music.setCycleCount(1);
-            music.play(); 
+            soundPlay.playSound(MUSIC_CELEBRATION,1);
+
             
             root.getChildren().remove(fxb);      
             startScreen=new EndScreen();
@@ -301,9 +278,7 @@ public void drawEndScreen()throws Exception{
                 		if(event.getButton()==MouseButton.PRIMARY) {
                 			flip=!flip;
                 			startScreen.setVisibleBack(flip);
-                            AudioClip   hey = buildMedia(EFFECT_HEY);
-                            hey.setCycleCount(1);
-                            hey.play(); 
+                            soundPlay.playSound(EFFECT_HEY,1);
                 			
                 		}else {
                             root.getChildren().remove(startScreen);

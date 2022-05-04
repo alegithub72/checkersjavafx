@@ -3,7 +3,6 @@ package sa.fx.draugths.screen;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 
 public abstract class PresentationScreen extends Parent {
