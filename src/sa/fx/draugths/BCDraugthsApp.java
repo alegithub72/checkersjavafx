@@ -125,8 +125,8 @@ public class BCDraugthsApp extends Application {
         initDama();
         root=new Group();
         drawStartScreen();
-        Scene scene = new Scene(root,startScreen.getWidthScreen()
-                ,startScreen.getHeightScreen()-12, Color.BLACK);
+        Scene scene = new Scene(root,startScreen.getWidthScreen()-12
+                ,startScreen.getHeightScreen()-18, Color.BLACK);
        primaryStage.setTitle("Checkers Invader");
        primaryStage.setScene(scene);
        primaryStage.getIcons().add(new Image("cinvaders.png"));

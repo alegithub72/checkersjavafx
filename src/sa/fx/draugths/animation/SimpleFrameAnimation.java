@@ -40,6 +40,7 @@ public class SimpleFrameAnimation extends Transition{
     public static final String BIGEXPLOSION="Explosion3.wav";
     public static final String ACHW="Achievement.wav";
     public static final String ACHB="pluck.wav";
+    public static final String JETPACK="jerpack.wav";
     String sound;
     Sprite sprite;
     Move move;

@@ -39,6 +39,7 @@ import sa.fx.draugths.sprite.AlienPiece;
 import sa.fx.draugths.sprite.HelmetSoldierPiece;
 import sa.fx.draugths.sprite.MonsterSprite;
 import sa.fx.draugths.sprite.MoonSoldier;
+import sa.fx.draugths.sprite.SkySoldierPiece;
 import sa.fx.draugths.sprite.SoldierPiece;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
@@ -561,7 +562,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         else if(FXBoard.levelWave(level)==BackGround.LVL_MOUNTAIN) return  buildPedinaLevel2( color, charPiece);
         else if(FXBoard.levelWave(level)==BackGround.LVL_POLE) return  buildPedinaLevel2( color, charPiece);
         else if(FXBoard.levelWave(level)==BackGround.LVL_SEA) return  buildPedinaLevel2( color, charPiece);
-        else if(FXBoard.levelWave(level)==BackGround.LVL_SKY) return  buildPedinaLevel2( color, charPiece);
+        else if(FXBoard.levelWave(level)==BackGround.LVL_SKY) return  buildPedinaLevelSky( color, charPiece);
         else return null;
     }
     
@@ -737,7 +738,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 		dropShadow.setOffsetY(0.0);
 		dropShadow.setColor(Color.BLACK);
 		if (pedina != null) {
-			pedina.setEffect(dropShadow);
+			//pedina.setEffect(dropShadow);
 			//pedina.setEffect(reflection);
 			pedina.setOnMouseClicked(new EventSelectionPlayerHandler(this, pedina));
 		}
@@ -745,7 +746,95 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 		return pedina;
 
 	}
-	
+	public SpritePiece buildPedinaLevelSky(int playerColor, Piece charPiece) throws Exception {
+		if (playerColor != charPiece.getColor())
+			throw new Exception("Disegual color");
+		SpritePiece pedina = null;
+
+		if (Piece.BLACK == playerColor) {
+
+			pedina = new AlienPiece(charPiece, boardHW, this);
+			if (charPiece.getType() == Piece.CHECKER) {
+				//MOVE SEQUENCE 0-3
+				FrameInfo[] move = { new FrameInfo(0, 1), new FrameInfo(1, 1) , new FrameInfo(2, 1) , new FrameInfo(3, 1) };
+				pedina.addMoveSequenceFrame(move);		
+				//MOVE EAT SEQUENCE 4-6
+				FrameInfo[] moveeat = { new FrameInfo(4, 1), new FrameInfo(5, 1),
+						new FrameInfo(6, 1)};
+				pedina.addEatMoveSequenceFrame(moveeat); 	
+				//KILLED SEQUENCE 7-13
+				FrameInfo[] killed = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
+						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };				
+
+				pedina.addKillSequenceFrame(killed);		
+				
+			} else if (charPiece.getType() == Piece.DRAUGTH) {
+				pedina = new AlienPiece(charPiece, boardHW, this);
+				pedina = pedina.loadDraugthFrame();
+				//MOVE SEQUENCE 1-3
+				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
+				pedina.addMoveSequenceFrame(move);	
+				//MOVE EAT SEQUENCE 1-4
+				FrameInfo[] moveat = { new FrameInfo(1, 1),
+						new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1)};
+				pedina.addEatMoveSequenceFrame(moveat);		
+				//KILLED SEQUENCE 7-12
+				FrameInfo[] killed = { new FrameInfo(0, 1),new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
+						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1)};
+				pedina.addKillSequenceFrame(killed); 				
+
+			}
+
+		} else if (Piece.WHITE == playerColor) {
+			pedina = new SkySoldierPiece(charPiece, boardHW, this);
+			if (charPiece.getType() == Checker.CHECKER) {
+				//MOVE SEQUENCE 1-3
+				FrameInfo[] move = {new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1) };
+				pedina.addMoveSequenceFrame(move);
+				//MOVE EAT SEQUENCE 2-5
+				FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1)  };
+				pedina.addEatMoveSequenceFrame(moveat);				
+				//KILLED SEQUENCE 10-17
+				FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
+						new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
+						new FrameInfo(17, 1) };
+				pedina.addKillSequenceFrame(killed);				
+
+			} else if (charPiece.getType() == Piece.DRAUGTH) {
+				pedina = new SkySoldierPiece(charPiece, boardHW, this);
+				pedina = pedina.loadDraugthFrame();
+				//MOVE SEQUENCE 1-5
+				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1) ,
+						new FrameInfo(3, 1), new FrameInfo(4, 1), new FrameInfo(5, 1)};
+				pedina.addMoveSequenceFrame(move);
+				//MOVE EAT SEQUENCE 1-5
+				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
+						new FrameInfo(4, 1),new FrameInfo(5, 1)  };				
+				pedina.addEatMoveSequenceFrame(moveat);
+				//KILLED SEQUENCE 7-10
+				FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),new FrameInfo(10, 1),
+						 };
+				pedina.addKillSequenceFrame(killed);				
+
+			}
+
+		}
+		Reflection reflection = new Reflection();
+		reflection.setFraction(0.1);
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setRadius(20.0);
+		dropShadow.setOffsetX(0.0);
+		dropShadow.setOffsetY(0.0);
+		dropShadow.setColor(Color.BLACK);
+		if (pedina != null) {
+			//pedina.setEffect(dropShadow);
+			//pedina.setEffect(reflection);
+			pedina.setOnMouseClicked(new EventSelectionPlayerHandler(this, pedina));
+		}
+
+		return pedina;
+
+	}
     public  SpritePiece  buildPedinaLevelX( int color,
             Piece pedinassociated) {
     if(color!=pedinassociated.getColor()) throw new RuntimeException("Disegual color");

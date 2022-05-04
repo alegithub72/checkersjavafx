@@ -34,7 +34,7 @@ public class AlienPiece extends SpritePiece {
 
     BCDraugthsApp bcdg;
     private static final  String DRAUGTH_ALIEN_IMAGE="alien_checker_dama.png";
-    private static final  String CHEKCER_ALIEN_IMAGE="alien_checker.png";
+    private static final  String CHEKCER_ALIEN_IMAGE="alien_checker_fly.png";
     
    public AlienPiece( Piece boardPiece, BoardHW boardHW, FXBoard board) {
         super("Alien",boardHW, CHEKCER_ALIEN_IMAGE,board);

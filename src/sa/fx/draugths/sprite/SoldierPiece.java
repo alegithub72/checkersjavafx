@@ -44,6 +44,7 @@ public class SoldierPiece extends SpritePiece {
     private static final String DRAUGTH_SOLDIER_IMAGE="soldier_checker_dama.png";
     private static final String DAMA_TAKEOFF="DAMA_TAKEOFF";
     
+    
     public SoldierPiece( Piece boardPiece,
             BoardHW boardHW,  FXBoard board) {
         super( "Soldier",boardHW, CHECKER_SOLDIER_IMAGE,board);
@@ -51,10 +52,10 @@ public class SoldierPiece extends SpritePiece {
         this.piece = boardPiece;
 
     }
-    
-    public SoldierPiece(String img,Piece boardPiece,
+
+    public SoldierPiece(String img,String colofrFX,Piece boardPiece,
             BoardHW boardHW,  FXBoard board) {
-        super( "Soldier",boardHW, img,board);
+        super( colofrFX,boardHW, img,board);
         this.color = boardPiece.getColor();
         this.piece = boardPiece;
 
@@ -500,7 +501,7 @@ public class SoldierPiece extends SpritePiece {
         if (piece.getType() == Piece.DRAUGTH &&
                 draugthTransform==false) {
             draugthTransform=true;
-            sp=new SoldierPiece(DRAUGTH_SOLDIER_IMAGE, this.piece, FXBoard.boardHW, this.getFxBoard());       
+            sp=new SoldierPiece(DRAUGTH_SOLDIER_IMAGE, "Soldier",this.piece, FXBoard.boardHW, this.getFxBoard());       
             AudioClip ach = buildMedia(ShotDistanceFrameAnimation.ACHB);
             ach.setCycleCount(1);
             ach.play();

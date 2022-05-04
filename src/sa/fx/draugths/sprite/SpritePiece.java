@@ -264,7 +264,7 @@ public abstract class SpritePiece extends Sprite{
     public abstract void buildDamaMovePath(Move m);
     public abstract void buildPedinaMoveEatPath(Move m);
     public abstract void buildDamaMoveEatPath(Move m);
-    public abstract SpritePiece loadDraugthFrame() ;
+    public abstract   SpritePiece loadDraugthFrame() ;
 
 	@Override
 	public String toString() {
