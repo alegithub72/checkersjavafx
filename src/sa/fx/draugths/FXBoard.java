@@ -165,7 +165,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 				@Override
 				public void handle(EventEndTurn event) {
 						if(event.getEventType()==EventEndTurn.END_TURN) {
-						BCDraugthsApp.log.info("HANDLE EventEndTurn.END_TURN-->"+event.getEventType().getName()+","+event.getP().getColorFX());
+						BCDraugthsApp.log.info("HANDLE EventEndTurn.END_TURN-->"+event.getEventType().getName()+","+event.getSrpitePiece().getColorFX());
 						turnEnd();
 						event.consume();
 					}
@@ -761,8 +761,8 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 						new FrameInfo(8, 1)};
 				pedina.addEatMoveSequenceFrame(moveeat); 	
 				//KILLED SEQUENCE 7-13
-				FrameInfo[] killed = { new FrameInfo(12, 1), new FrameInfo(13, 1), new FrameInfo(14, 1),
-						new FrameInfo(15, 1), new FrameInfo(16, 1), new FrameInfo(17, 1), new FrameInfo(18, 1) };		
+				FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
+						new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1), new FrameInfo(17, 1) };		
 
 				pedina.addKillSequenceFrame(killed);		
 				

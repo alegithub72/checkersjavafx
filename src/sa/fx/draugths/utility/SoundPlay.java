@@ -25,6 +25,7 @@ public class SoundPlay {
     public static final String ACHB="pluck.wav";
     public static final String WING="159355-wing-effect.wav";
     public static final String JETPACK="jerpack.wav";
+    public static final String LASER="191594_laser.wav";
 	
 	
 	HashMap<String, AudioClip> sounds=new HashMap<>();

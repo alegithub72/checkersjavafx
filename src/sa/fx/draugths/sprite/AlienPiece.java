@@ -31,18 +31,18 @@ import sa.gameboard.core.Piece;
 public class AlienPiece extends SpritePiece {
 
 
-    BCDraugthsApp bcdg;
+
     private static final  String DRAUGTH_ALIEN_IMAGE="alien_checker_dama.png";
     private static final  String CHEKCER_ALIEN_IMAGE="alien_checker.png";
     
-   public AlienPiece( Piece boardPiece, BoardHW boardHW, FXBoard board) {
-        super("Alien",boardHW, CHEKCER_ALIEN_IMAGE,board);
-        this.piece = boardPiece;
+   public AlienPiece( Piece piece, BoardHW boardHW, FXBoard board) {
+        super("Alien",boardHW, piece,CHEKCER_ALIEN_IMAGE,board);
+ 
 
     }
-   protected AlienPiece( Piece boardPiece,String img,String colorFX, BoardHW boardHW, FXBoard board) {
-       super(colorFX,boardHW, img,board);
-       this.piece = boardPiece;
+   protected AlienPiece( Piece piece,String img,String colorFX, BoardHW boardHW, FXBoard board) {
+       super(colorFX,boardHW, piece,img,board);
+
 
    }
 

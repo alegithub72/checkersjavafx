@@ -6,20 +6,10 @@
 package sa.fx.draugths.sprite;
 
 import javafx.animation.ParallelTransition;
-import javafx.animation.PathTransition;
-import javafx.animation.SequentialTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.QuadCurveTo;
-import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
-import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.fx.draugths.utility.SoundPlay;
 import sa.gameboard.core.Piece;
@@ -31,12 +21,12 @@ import sa.gameboard.core.Piece;
 public class SkyAlienPiece extends AlienPiece {
 
 
-    BCDraugthsApp bcdg;
+
     private static final  String DRAUGTH_ALIEN_IMAGE_SKY="alien_checker_dama.png";
     private static final  String CHEKCER_ALIEN_IMAGE_SKY="alien_checker_fly.png";
     
-   public SkyAlienPiece( Piece boardPiece, BoardHW boardHW, FXBoard board) {
-        super(boardPiece, CHEKCER_ALIEN_IMAGE_SKY,"SkyAlien",boardHW,board);
+   public SkyAlienPiece( Piece piece, BoardHW boardHW, FXBoard board) {
+        super(piece, CHEKCER_ALIEN_IMAGE_SKY,"SkyAlien",boardHW,board);
  
 
     }

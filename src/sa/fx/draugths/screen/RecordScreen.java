@@ -114,7 +114,7 @@ public class RecordScreen  extends Parent{
 		}
     	return in;
     }
-    public void storeCodedFile(ByteArrayOutputStream outputStream,String name) throws IOException  {
+    public void storeCodedFile(ByteArrayOutputStream outputStream,String name) throws Exception  {
 		FileOutputStream fileOutputStream = null;
 		ByteArrayInputStream byteArrayInputStream = null;
 		try {
@@ -126,12 +126,8 @@ public class RecordScreen  extends Parent{
 				fileOutputStream.write(~b);
 			}
 			fileOutputStream.flush();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			BCDraugthsApp.log.info(e.getStackTrace().toString());
 		} finally {
 			byteArrayInputStream.close();
 			fileOutputStream.close();
@@ -152,7 +148,7 @@ public void saveRecordPlayers() {
     	prop.store(arrayOutputStream,"Nuovo Tabella Record" );
     	storeCodedFile(arrayOutputStream,"file1");
 
-	} catch (IOException e) {
+	} catch (Exception e) {
 		BCDraugthsApp.log.info(e.getStackTrace().toString());
 	}
 }

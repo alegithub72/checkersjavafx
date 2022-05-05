@@ -13,15 +13,15 @@ public class EventEndTurn extends Event{
 	private static final long serialVersionUID = -2332571104664340411L;
     public static final EventType<EventEndTurn> END_TURN=new EventType<>(Event.ANY,"END_TURN");
 
-    SpritePiece p;
+    SpritePiece spritePiece;
 
-	public SpritePiece getP() {
-		return p;
+	public SpritePiece getSrpitePiece() {
+		return spritePiece;
 	}
 
 	public EventEndTurn(SpritePiece  source, EventTarget target, EventType<EventEndTurn> eventType) {
         super(source, target, eventType);
-        this.p=source;
+        this.spritePiece=source;
 	}
     
 

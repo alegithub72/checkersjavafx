@@ -1,6 +1,6 @@
 package sa.fx.draugths.sprite;
 
-import javafx.scene.media.AudioClip;
+import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
@@ -16,19 +16,17 @@ public class SkySoldierPiece extends SoldierPiece {
 
 
     
-    public SkySoldierPiece(Piece boardPiece,
+    public SkySoldierPiece(Piece piece,
             BoardHW boardHW,  FXBoard board) {
-        super(CHECKER_SKYSOLDIER_IMAGE,"SkySoldier",boardPiece, boardHW, board);
-        this.color = boardPiece.getColor();
-        this.piece = boardPiece;
+        super(CHECKER_SKYSOLDIER_IMAGE,"SkySoldier",piece, boardHW, board);
+
 
 
     }
-     SkySoldierPiece(Piece boardPiece,String img,
+     SkySoldierPiece(Piece piece,String img,
             BoardHW boardHW,  FXBoard board) {
-        super(img,"SkySoldier",boardPiece, boardHW, board);
-        this.color = boardPiece.getColor();
-        this.piece = boardPiece;
+        super(img,"SkySoldier",piece, boardHW, board);
+
 
 
     }
@@ -47,6 +45,25 @@ public class SkySoldierPiece extends SoldierPiece {
         }
 
     }
+    
+	@Override
+	public void buildMoveEatSequence(Move m, boolean ciclyc) {
+	
+		SimpleFrameAnimation transition=null;
+	    if (!draugthTransform) {
+	    	
+	    	transition= new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 20, SoundPlay.LASER);
+	    	transition.setDuration(pltransition.getTotalDuration());
+
+
+	    } else {
+
+	    	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this ,ciclyc, 20, SoundPlay.ELICOPTER);
+	    	transition.setDuration(pltransition.getTotalDuration());
+	    	}
+	    pltransition.getChildren().add( transition);
+
+	}    
     @Override
     public SpritePiece loadDraugthFrame() {
     	SpritePiece sp=null;

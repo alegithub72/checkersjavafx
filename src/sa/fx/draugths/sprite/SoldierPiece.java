@@ -39,25 +39,23 @@ import sa.gameboard.core.Piece;
  */
 public class SoldierPiece extends SpritePiece {
 
-    int color;
+
     private static final String CHECKER_SOLDIER_IMAGE="soldier_checker.png";
     private static final String DRAUGTH_SOLDIER_IMAGE="soldier_checker_dama.png";
     private static final String DAMA_TAKEOFF="DAMA_TAKEOFF";
     
     
-    public SoldierPiece( Piece boardPiece,
+    public SoldierPiece( Piece piece,
             BoardHW boardHW,  FXBoard board) {
-        super( "Soldier",boardHW, CHECKER_SOLDIER_IMAGE,board);
-        this.color = boardPiece.getColor();
-        this.piece = boardPiece;
+        super( "Soldier",boardHW,piece, CHECKER_SOLDIER_IMAGE,board);
+
 
     }
 
-    public SoldierPiece(String img,String colofrFX,Piece boardPiece,
+    public SoldierPiece(String img,String colofrFX,Piece piece,
             BoardHW boardHW,  FXBoard board) {
-        super( colofrFX,boardHW, img,board);
-        this.color = boardPiece.getColor();
-        this.piece = boardPiece;
+        super( colofrFX,boardHW,piece, img,board);
+
 
     }
 

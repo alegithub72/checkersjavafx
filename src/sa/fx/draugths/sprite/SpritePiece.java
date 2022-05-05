@@ -53,8 +53,9 @@ public abstract class SpritePiece extends Sprite{
     
     
 
-	protected SpritePiece(String colorFX,BoardHW boardHW, String img,FXBoard b) {
+	protected SpritePiece(String colorFX,BoardHW boardHW,Piece piece, String img,FXBoard b) {
         super(img,colorFX);
+        this.piece=piece;
         this.colorFX=colorFX;
         this.wSquare=boardHW.getH();
         this.hSquare=boardHW.getW();

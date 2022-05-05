@@ -10,11 +10,10 @@ public class HelmetSoldierPiece extends SoldierPiece {
 	
 
 	private static final String CHECKER_SOLDIER_IMAGE = "soldier_checker_helmet.png";
-    public HelmetSoldierPiece(Piece boardPiece,
+    public HelmetSoldierPiece(Piece piece,
             BoardHW boardHW,  FXBoard board) {
-        super(CHECKER_SOLDIER_IMAGE,"HelmetSoldier",boardPiece, boardHW, board);
-        this.color = boardPiece.getColor();
-        this.piece = boardPiece;
+        super(CHECKER_SOLDIER_IMAGE,"HelmetSoldier",piece, boardHW, board);
+
     
     }
 
