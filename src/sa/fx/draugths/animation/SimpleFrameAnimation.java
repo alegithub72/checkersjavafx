@@ -5,8 +5,6 @@
  */
 package sa.fx.draugths.animation;
 
-import java.net.URL;
-
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,6 +13,7 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.sprite.Sprite;
+import sa.fx.draugths.utility.SoundPlay;
 
 
 /**
@@ -23,24 +22,6 @@ import sa.fx.draugths.sprite.Sprite;
  */
 public class SimpleFrameAnimation extends Transition{
 	FrameInfo[]  frames;
-    public static final String FIRE="fire5.wav";
-    public static final String SPEEDY_BITE="speedy_bite.wav";
-    public static final String BITE="Dogbite.wav";
-    public static final String BIG_BITE="lion_roar_2.mp3";
-    public static final String JUNGLE="jungle_drum.wav";
-    public static final String MARCH="marcias.wav";
-    public static final String MOVESPACESOLDIER="jerpack.wav";
-    public static final String CLOPETE_DOUBLE="moveAlien2.wav";
-    public static final String MOVEMONSTER="UFO.wav";
-    public static final String EXPLOSIONMONSTER="Fireball.wav";
-    public static final String MISSILE="top.wav";
-    public static final String ELICOPTER="elicopter.wav";
-    public static final String CLOPETE="move_alien.wav";
-    public static final String EXPLOSION="Fireball.wav";
-    public static final String BIGEXPLOSION="Explosion3.wav";
-    public static final String ACHW="Achievement.wav";
-    public static final String ACHB="pluck.wav";
-    public static final String JETPACK="jerpack.wav";
     String sound;
     Sprite sprite;
     Move move;
@@ -49,7 +30,7 @@ public class SimpleFrameAnimation extends Transition{
     int frameCount=0;
    
     long interval=0;  
-    AudioClip mediaPlayer;
+
    
    
     boolean ciclyc;
@@ -62,10 +43,6 @@ public class SimpleFrameAnimation extends Transition{
         this.sprite = sprite;
         this.move=move;
         this.sound=sound;
-        if(sound!=null){
-        mediaPlayer=buildMedia(sound);
-            
-        }
         this.ciclyc=cyclic;
         before=System.currentTimeMillis();
         this.interval=interval;
@@ -76,11 +53,6 @@ public class SimpleFrameAnimation extends Transition{
         this.sprite = sprite;
         this.move=null;
         this.sound=sound;
-        if(sound!=null){
-        mediaPlayer=buildMedia(sound);
-
-            
-        }
         this.ciclyc=cyclic;
         before=System.currentTimeMillis();
         this.interval=interval;
@@ -105,48 +77,41 @@ public class SimpleFrameAnimation extends Transition{
 
     
     void playEffect(){
-        
-       if(mediaPlayer!=null)  {
+
+    	
        if(startMusic) {
-           if(this.sound==FIRE|| 
-                   this.sound==SPEEDY_BITE ||this.sound==CLOPETE ||this.sound==CLOPETE_DOUBLE||this.sound==MOVESPACESOLDIER ) {
-
-               
-               mediaPlayer.setCycleCount(AudioClip.INDEFINITE);
-           }
-           
-
-               mediaPlayer.play();
+    	   int times=1;
+           if(
+        	this.sound==SoundPlay.FIRE|| 
+        	this.sound==SoundPlay.SPEEDY_BITE ||
+        	this.sound==SoundPlay.CLOPETE ||
+        	this.sound==SoundPlay.WING ||
+        	this.sound==SoundPlay.CLOPETE_DOUBLE||
+        	this.sound==SoundPlay.MOVESPACESOLDIER ) 
+              times =AudioClip.INDEFINITE;
+           	   BCDraugthsApp.soundPlay.playSound(sound,times);
                startMusic=false;
            }
            
-       }        
+       
         
     }
     
     
-    AudioClip buildMedia(String sound){
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL url=classLoader.getResource(sound); 
-        return new AudioClip(url.toString());
-                
-    }
+
 	@Override
 	protected void interpolate(double frac) {
 		framing(frac);
-
-
-		
 	}
 	protected void framing(double frac) {
         long intervalTemp=System.currentTimeMillis()-before;
 
-
+        playEffect();
         if(intervalTemp>this.interval) {
         	
             before=System.currentTimeMillis();
             sprite.setFrame(frames[i].getFrameNumber());
-            playEffect();
+
             sprite.toFront();
             frameCount++;
             BCDraugthsApp.log.info("sprite:"+sprite+",frames:"+frames[i]+" interval:"+intervalTemp);
@@ -168,7 +133,7 @@ public class SimpleFrameAnimation extends Transition{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				  mediaPlayer.stop();
+				 BCDraugthsApp.soundPlay.stopSound(sound);
 				  event.consume();
 				
 			}

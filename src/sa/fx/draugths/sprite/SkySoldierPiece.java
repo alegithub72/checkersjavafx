@@ -1,10 +1,12 @@
 package sa.fx.draugths.sprite;
 
 import javafx.scene.media.AudioClip;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SoundPlay;
 import sa.gameboard.core.Piece;
 
 public class SkySoldierPiece extends SoldierPiece {
@@ -34,11 +36,11 @@ public class SkySoldierPiece extends SoldierPiece {
     public void buildMoveSequence( boolean ciclyc) {
 
         if (!draugthTransform) {
-        	SimpleFrameAnimation transition=  new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, ShotDistanceFrameAnimation.JETPACK);
+        	SimpleFrameAnimation transition=  new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundPlay.JETPACK);
         	transition.setDuration(pltransition.getTotalDuration());
          	pltransition.getChildren().add( transition);
         } else {
-        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, ShotDistanceFrameAnimation.ELICOPTER);
+        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundPlay.ELICOPTER);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add( transition);
 
@@ -52,9 +54,7 @@ public class SkySoldierPiece extends SoldierPiece {
                 draugthTransform==false) {
             draugthTransform=true;
             sp=new SkySoldierPiece( this.piece,DRAUGTH_SKYSOLDIER_IMAGE, FXBoard.boardHW, this.getFxBoard());       
-            AudioClip ach = buildMedia(ShotDistanceFrameAnimation.ACHB);
-            ach.setCycleCount(1);
-            ach.play();
+            BCDraugthsApp.soundPlay.playSound(SoundPlay.ACHB, 1);
             sp.setDraugthTransform(true);
             //buildFrameImages();
 

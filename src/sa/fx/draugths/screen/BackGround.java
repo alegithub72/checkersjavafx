@@ -8,7 +8,6 @@ package sa.fx.draugths.screen;
 
 
 import java.io.InputStream;
-import java.net.URL;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
@@ -22,7 +21,6 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -31,7 +29,7 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.ScreenPause;
 import sa.fx.draugths.animation.ScreenPauseInterface;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
+import sa.fx.draugths.utility.SoundPlay;
 
 
 /**
@@ -252,22 +250,8 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     public void updatePoint(int value) {
         this.point = this.point + value;
         score.setText("" + this.point);
-        
-        ClassLoader classLoader = getClass().getClassLoader();
-       URL url=null;
-       
-      //URL url2=classLoader.getResource("pointUp.mp3"); 
-      
+        BCDraugthsApp.soundPlay.playSound(SoundPlay.ACHW, 1);
 
-      //if(value>15) url=classLoader.getResource("simpletone.mp3"); 
-      //else url=classLoader.getResource("pointUp.mp3"); 
-      url=classLoader.getResource(ShotDistanceFrameAnimation.ACHW); 
-      
-      AudioClip a=  new AudioClip(url.toString());
-      a.setVolume(1);
-      a.setPriority(-1);
-      a.setPan(-1);
-      a.play();
       
       Animation t=new Transition() {
                 {

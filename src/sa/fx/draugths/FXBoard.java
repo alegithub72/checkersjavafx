@@ -39,12 +39,12 @@ import sa.fx.draugths.sprite.AlienPiece;
 import sa.fx.draugths.sprite.HelmetSoldierPiece;
 import sa.fx.draugths.sprite.MonsterSprite;
 import sa.fx.draugths.sprite.MoonSoldier;
+import sa.fx.draugths.sprite.SkyAlienPiece;
 import sa.fx.draugths.sprite.SkySoldierPiece;
 import sa.fx.draugths.sprite.SoldierPiece;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.gameboard.core.Board;
-import sa.gameboard.core.Checker;
 import sa.gameboard.core.Game;
 import sa.gameboard.core.Piece;
 import sa.gameboard.core.interfaces.GraficBoardInterface;
@@ -264,8 +264,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
         try {
 			game.getBoard().loadBoard(file);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			BCDraugthsApp.log.info(e.getStackTrace().toString());
 		}
     	
     }
@@ -428,8 +427,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                 		   try {
 							app.drawEndScreen();
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							BCDraugthsApp.log.info(e.getStackTrace().toString());
 						}
 
                 	   }else
@@ -440,8 +438,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                 	   try {
 						app.levelUp(level,backGround.getPoint());
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						BCDraugthsApp.log.info(e.getStackTrace().toString());
 					}
                    }
 
@@ -607,7 +604,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
 		} else if (Piece.WHITE == playerColor) {
 			pedina = new SoldierPiece(charPiece, boardHW, this);
-			if (charPiece.getType() == Checker.CHECKER) {
+			if (charPiece.getType() == Piece.CHECKER) {
 				//MOVE SEQUENCE 1-3
 				FrameInfo[] move = { new FrameInfo(7, 1), new FrameInfo(8, 1) };
 				pedina.addMoveSequenceFrame(move);
@@ -657,6 +654,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
 	}
     
+
 	public SpritePiece buildPedinaLevel2(int playerColor, Piece charPiece) throws Exception {
 		if (playerColor != charPiece.getColor())
 			throw new Exception("Disegual color");
@@ -675,7 +673,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 				pedina.addEatMoveSequenceFrame(moveeat); 	
 				//KILLED SEQUENCE 7-13
 				FrameInfo[] killed = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
-						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };				
+						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };			
 
 				pedina.addKillSequenceFrame(killed);		
 				
@@ -698,7 +696,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
 		} else if (Piece.WHITE == playerColor) {
 			pedina = new HelmetSoldierPiece(charPiece, boardHW, this);
-			if (charPiece.getType() == Checker.CHECKER) {
+			if (charPiece.getType() == Piece.CHECKER) {
 				//MOVE SEQUENCE 1-3
 				FrameInfo[] move = {new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1) };
 				pedina.addMoveSequenceFrame(move);
@@ -753,23 +751,23 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
 		if (Piece.BLACK == playerColor) {
 
-			pedina = new AlienPiece(charPiece, boardHW, this);
+			pedina = new SkyAlienPiece(charPiece, boardHW, this);
 			if (charPiece.getType() == Piece.CHECKER) {
 				//MOVE SEQUENCE 0-3
-				FrameInfo[] move = { new FrameInfo(0, 1), new FrameInfo(1, 1) , new FrameInfo(2, 1) , new FrameInfo(3, 1) };
+				FrameInfo[] move = {  new FrameInfo(2, 2) , new FrameInfo(3, 2) ,new FrameInfo(4, 2)};
 				pedina.addMoveSequenceFrame(move);		
 				//MOVE EAT SEQUENCE 4-6
-				FrameInfo[] moveeat = { new FrameInfo(4, 1), new FrameInfo(5, 1),
-						new FrameInfo(6, 1)};
+				FrameInfo[] moveeat = {new FrameInfo(5,1),new FrameInfo(6,1),new FrameInfo(7,1),
+						new FrameInfo(8, 1)};
 				pedina.addEatMoveSequenceFrame(moveeat); 	
 				//KILLED SEQUENCE 7-13
-				FrameInfo[] killed = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
-						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };				
+				FrameInfo[] killed = { new FrameInfo(12, 1), new FrameInfo(13, 1), new FrameInfo(14, 1),
+						new FrameInfo(15, 1), new FrameInfo(16, 1), new FrameInfo(17, 1), new FrameInfo(18, 1) };		
 
 				pedina.addKillSequenceFrame(killed);		
 				
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new AlienPiece(charPiece, boardHW, this);
+				pedina = new SkyAlienPiece(charPiece, boardHW, this);
 				pedina = pedina.loadDraugthFrame();
 				//MOVE SEQUENCE 1-3
 				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
@@ -787,7 +785,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
 		} else if (Piece.WHITE == playerColor) {
 			pedina = new SkySoldierPiece(charPiece, boardHW, this);
-			if (charPiece.getType() == Checker.CHECKER) {
+			if (charPiece.getType() == Piece.CHECKER) {
 				//MOVE SEQUENCE 1-3
 				FrameInfo[] move = {new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1) };
 				pedina.addMoveSequenceFrame(move);
@@ -882,7 +880,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     
      @Override
 	public void renderCommad() {
-		// TODO Auto-generated method stub
+    	 BCDraugthsApp.log.info("not implemented");
 		
 	}
 
