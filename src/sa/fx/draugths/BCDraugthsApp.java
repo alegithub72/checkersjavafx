@@ -7,17 +7,31 @@ package sa.fx.draugths;
 
 
 
+import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.gluonhq.attach.util.Platform;
+import com.gluonhq.charm.glisten.application.AppManager;
+import com.gluonhq.charm.glisten.control.AppBar;
+import com.gluonhq.charm.glisten.mvc.View;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.fx.draugths.animation.AnimationPedinaMove;
@@ -28,13 +42,14 @@ import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.screen.StartScreen;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
+import sa.fx.draugths.utility.SoundPlayMobile;
 import sa.gameboard.core.Game;
 /**
  *
  * @author Alessio Sardaro
  */
 public class BCDraugthsApp extends Application {
-	
+	private final AppManager appManager = AppManager.initialize(this::postInit);
 	private Game game;
 	PresentationScreen startScreen;
 
@@ -74,8 +89,70 @@ public class BCDraugthsApp extends Application {
 	}
 
 
+    @Override
+    public void init() {
+        appManager.addViewFactory(HOME_VIEW, () -> {
+            VBox controls = new VBox(15.0);
+            controls.setAlignment(Pos.CENTER);
+  
+
+            View view = new View(controls) {
+                @Override
+                protected void updateAppBar(AppBar appBar) {
+                	appBar.setStyle("text-align: center");
+                	appBar.applyCss();
+                    appBar.setTitleText("Gluon Mobile FX Game:Checkers Invader ");
+                }
+            };
+            Button button = new Button("Start the Game!");
+            ImageView icon=new ImageView("cinvaders.png");
+            icon.setFitHeight(16);
+            icon.setFitWidth(16);
+            button.setGraphic(icon);
+            button.setOnAction(e -> {
+        		Background focusBackground = new Background( new BackgroundFill( Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY ));
+        		view.setBackground(focusBackground);
+        		view.setCenter(root);
+        		view.getAppManager().getAppBar().setVisible(false);
+        		view.setVisible(true);
+            });
+            controls.getChildren().add(button);
+            return view;
+        });
+    }
+    
+    private void postInit(Scene scene){
+        //Swatch.LIGHT_GREEN.assignTo(scene);
+		initDama();
+		root = new Group();
+		drawStartScreen();
+		scene.setFill(Color.BLACK);
+		System.out.println("1)" + scene.getHeight() + "," + scene.getWidth());
+		double scaleX = scene.getWidth() / 800;
+		double scaleY = scene.getHeight() / 850;
+		if(scaleX<1) {
+			root.setScaleX(scaleX);
+			double transalteX = ((1d - scaleX) * 800) / 2;
+			root.setTranslateX(-transalteX);
+			System.out.println("1translate)" + transalteX );
+		}
+		
+		if(scaleY<1) {
+			root.setScaleY(scaleY);
+			double transalteY = ((1d - scaleY) * 800) / 2;
+			root.setTranslateY(-transalteY);
+			System.out.println("1translate)"+ transalteY);
+		}
+		System.out.println("1scale)" + scaleX + "," + scaleY);
 
 
+		System.out.println("2)" + scene.getHeight() + "," + scene.getWidth());
+
+
+	
+
+
+	}
 	public void initDama() {
 
 		if (System.getProperty("checkers.debug") != null)
@@ -110,25 +187,30 @@ public class BCDraugthsApp extends Application {
 	}
 	
 	
+	
+	
+	
     @Override
-    public void start(Stage primaryStage) throws Exception{
-
-        initDama();
-        root=new Group();
-
-        drawStartScreen();
-        Scene scene = new Scene(root,startScreen.getWidthScreen()-12
-                ,startScreen.getHeightScreen()-18, Color.BLACK);
-       primaryStage.setTitle("Checkers Invader");
-       primaryStage.setScene(scene);
-       primaryStage.getIcons().add(new Image("cinvaders.png"));
-       primaryStage.setResizable(false);
-       
-       //primaryStage.initStyle(StageStyle.TRANSPARENT);
-       primaryStage.show();
-       
-
+    public void start(Stage stage) {
+        appManager.start(stage);
     }
+	
+	/*
+	 * @Override public void start(Stage primaryStage) throws Exception{
+	 * 
+	 * initDama(); root=new Group();
+	 * 
+	 * drawStartScreen(); Scene scene = new
+	 * Scene(root,startScreen.getWidthScreen()-12 ,startScreen.getHeightScreen()-18,
+	 * Color.BLACK); primaryStage.setTitle("Checkers Invader");
+	 * primaryStage.setScene(scene); primaryStage.getIcons().add(new
+	 * Image("cinvaders.png")); primaryStage.setResizable(false);
+	 * 
+	 * //primaryStage.initStyle(StageStyle.TRANSPARENT); primaryStage.show();
+	 * 
+	 * 
+	 * }
+	 */
 	
 
 
@@ -281,8 +363,10 @@ public class BCDraugthsApp extends Application {
 		}		
 	}
 	public static SoundInterface getSoundInterfaceInstance() {
-		
-		 return SoundPlay.getSoundInterfaceInstance();
+		if(Platform.isDesktop())
+			return SoundPlay.getSoundInterfaceInstance();
+		else
+		 return SoundPlayMobile.getSoundInterfaceInstance();
 		
 	}
 	public void drawEndScreen() throws Exception {

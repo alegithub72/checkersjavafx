@@ -28,7 +28,7 @@ import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
 import sa.fx.draugths.utility.SoundPlayMobile;
 /**
- *
+ * Da fare il refactor di FXBaord in modo da essere indipendente
  * @author Alessio Sardaro
  */
 public class BCDraugthsAppMobile extends BCDraugthsApp {

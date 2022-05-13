@@ -196,33 +196,9 @@
 			<id>android</id>
 			<properties>
 				<gluonfx.target>android</gluonfx.target>
-				<main.class>sa.fx.draugths.BCDraugthsAppMobile</main.class>
 			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>build-helper-maven-plugin</artifactId>
-						<version>3.3.0</version>
-						<executions>
-							<execution>
-								<id>add-source</id>
-								<phase>generate-sources</phase>
-								<goals>
-									<goal>add-source</goal>
-								</goals>
-								<configuration>
-									<sources>
-										<source>src2</source>
-									</sources>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
 		</profile>
-		<profile>
+<!-- 		<profile>
 			<id>windows</id>
 			<properties>
 				<gluonfx.target>host</gluonfx.target>
@@ -251,7 +227,7 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>
+		</profile> -->
 		<profile>
 			<id>ios</id>
 			<properties>
