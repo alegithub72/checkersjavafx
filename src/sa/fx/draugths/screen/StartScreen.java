@@ -7,7 +7,6 @@ package sa.fx.draugths.screen;
 
 import javafx.animation.Animation;
 import javafx.animation.Transition;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

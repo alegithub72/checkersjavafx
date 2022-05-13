@@ -8,7 +8,6 @@ package sa.fx.draugths.screen;
 
 
 import java.io.InputStream;
-import java.net.URL;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
@@ -22,7 +21,6 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;

@@ -5,38 +5,22 @@
  */
 package sa.fx.draugths;
 
-import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
+
 
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.Map;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.gluonhq.attach.audio.Audio;
-import com.gluonhq.attach.audio.AudioService;
-import com.gluonhq.charm.glisten.application.AppManager;
-import com.gluonhq.charm.glisten.control.AppBar;
-import com.gluonhq.charm.glisten.control.Icon;
-import com.gluonhq.charm.glisten.mvc.View;
-import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -52,13 +36,13 @@ import sa.gameboard.core.Game;
  * @author Alessio Sardaro
  */
 public class BCDraugthsApp extends Application {
-	private final AppManager appManager = AppManager.initialize(this::postInit);
+	
 	private Game game;
 	PresentationScreen startScreen;
 
 	RecordScreen recordScreen;
 	static Map<String, AudioClip> effettiMap = new Hashtable();
-	static Map<String, Audio> effettiAndMap = new Hashtable();
+
 	private AnimationPedinaMove anim;
 	FXBoard fxb;
 	public static boolean debug;
@@ -92,37 +76,7 @@ public class BCDraugthsApp extends Application {
 	}
 
 
-    @Override
-    public void init() {
-        appManager.addViewFactory(HOME_VIEW, () -> {
-            VBox controls = new VBox(15.0);
-            controls.setAlignment(Pos.CENTER);
 
-
-            View view = new View(controls) {
-                @Override
-                protected void updateAppBar(AppBar appBar) {
-                	appBar.setStyle("text-align: center");
-                	appBar.applyCss();
-                    appBar.setTitleText("Gluon Mobile FX Game:Checkers Invader ");
-                }
-            };
-            Button button = new Button("Start the Game!");
-            ImageView icon=new ImageView("cinvaders.png");
-            icon.setFitHeight(16);
-            icon.setFitWidth(16);
-            button.setGraphic(icon);
-            button.setOnAction(e -> {
-        		Background focusBackground = new Background( new BackgroundFill( Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY ));
-        		view.setBackground(focusBackground);
-        		view.setCenter(root);
-        		view.getAppManager().getAppBar().setVisible(false);
-        		view.setVisible(true);
-            });
-            controls.getChildren().add(button);
-            return view;
-        });
-    }
 
 	public void initDama() {
 
@@ -156,45 +110,33 @@ public class BCDraugthsApp extends Application {
 		log.info("level system=" + debug);
 
 	}
+	
+	
     @Override
-    public void start(Stage stage) {
-        appManager.start(stage);
+    public void start(Stage primaryStage) throws Exception{
+
+        initDama();
+        root=new Group();
+
+        drawStartScreen();
+        Scene scene = new Scene(root,startScreen.getWidthScreen()-12
+                ,startScreen.getHeightScreen()-18, Color.BLACK);
+       primaryStage.setTitle("Checkers Invader");
+       primaryStage.setScene(scene);
+       primaryStage.getIcons().add(new Image("cinvaders.png"));
+       primaryStage.setResizable(false);
+       
+       //primaryStage.initStyle(StageStyle.TRANSPARENT);
+       primaryStage.show();
+       
+
     }
-
-    
-    
-    private void postInit(Scene scene){
-        //Swatch.LIGHT_GREEN.assignTo(scene);
-		initDama();
-		root = new Group();
-		drawStartScreen();
-		scene.setFill(Color.BLACK);
-		System.out.println("1)" + scene.getHeight() + "," + scene.getWidth());
-		double scaleX = scene.getWidth() / 800;
-		double scaleY = scene.getHeight() / 850;
-		if(scaleX<1) {
-			root.setScaleX(scaleX);
-			double transalteX = ((1d - scaleX) * 800) / 2;
-			root.setTranslateX(-transalteX);
-			System.out.println("1translate)" + transalteX );
-		}
-		
-		if(scaleY<1) {
-			root.setScaleY(scaleY);
-			double transalteY = ((1d - scaleY) * 800) / 2;
-			root.setTranslateY(-transalteY);
-			System.out.println("1translate)"+ transalteY);
-		}
-		System.out.println("1scale)" + scaleX + "," + scaleY);
-
-
-		System.out.println("2)" + scene.getHeight() + "," + scene.getWidth());
-
-
 	
 
 
-	}
+    
+    
+
 
 	public void levelUp(int level, int point) throws Exception {
 		root.getChildren().remove(fxb);
@@ -229,67 +171,31 @@ public class BCDraugthsApp extends Application {
 
 	public static void playMedia(String sound, int count) {
 
-		Optional<AudioService> opt = AudioService.create();
-
 		URL url = BCDraugthsApp.class.getClassLoader().getResource(sound);
-		System.out.println("--->" + url);
-	
-		Thread th=new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				AudioService.create().ifPresentOrElse(service -> {
-					BCDraugthsApp.log.info("--->present service");
-					if(effettiAndMap.get(url)==null)
-					service.loadMusic(url).ifPresent(audio -> {
-						effettiAndMap.put(sound,audio);
-						BCDraugthsApp.log.info("--->present audio");
-						audio.play();
-					});
-					else {
-						Audio audioTmp= effettiAndMap.get(url);
-						audioTmp.play();
-					}
-
-				}, new Runnable() {
-
-					@Override
-					public void run() {
-						try {
-							stopMedia(sound);
-							if(effettiMap.get(sound)==null) {
-							URL url = this.getClass().getClassLoader().getResource(sound);
-							if (url != null) {
-								AudioClip clip = new AudioClip(url.toString());
-								clip.setCycleCount(count);
-								clip.play();
-								effettiMap.put(sound, clip);
-							}
-							}else {
-								AudioClip clipTmp=effettiMap.get(sound);
-								clipTmp.play();
-							}
-
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-				
+		try {
+			stopMedia(sound);
+			if (effettiMap.get(sound) == null) {
+				if (url != null) {
+					AudioClip clip = new AudioClip(url.toString());
+					clip.setCycleCount(count);
+					clip.play();
+					effettiMap.put(sound, clip);
+				}
+			} else {
+				AudioClip clipTmp = effettiMap.get(sound);
+				clipTmp.play();
 			}
-		});
-		th.start();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	public static void stopMedia(String sound) {
 
 		try {
-			Audio audio = effettiAndMap.get(sound);
-			if (audio != null) {
-				audio.stop();
-			}
+
 			AudioClip clip = effettiMap.get(sound);
 			if (clip != null)
 				clip.stop();

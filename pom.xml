@@ -17,7 +17,7 @@ https://mvnrepository.com -->
 		<gluonfx.plugin.version>1.0.13</gluonfx.plugin.version>
 		<charm.version>6.1.0</charm.version>
 		<attach.version>4.0.14</attach.version>
-		<main.class>sa.fx.draugths.BCDraugthsApp</main.class>
+		<main.class>sa.fx.draugths.BCDraugthsAppMobile</main.class>
 	
 	</properties>
 	<distributionManagement>

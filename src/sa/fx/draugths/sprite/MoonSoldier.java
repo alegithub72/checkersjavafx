@@ -6,7 +6,6 @@
 package sa.fx.draugths.sprite;
 
 import javafx.scene.image.Image;
-import javafx.scene.media.AudioClip;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.ShotDistanceFrameAnimation;

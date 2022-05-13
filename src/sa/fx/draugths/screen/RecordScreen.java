@@ -24,7 +24,6 @@ import javafx.animation.Transition;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;

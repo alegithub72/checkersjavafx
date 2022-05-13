@@ -5,8 +5,6 @@
  */
 package sa.fx.draugths.animation;
 
-import java.net.URL;
-
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

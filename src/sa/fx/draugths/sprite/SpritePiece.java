@@ -6,8 +6,6 @@
 package sa.fx.draugths.sprite;
 
 
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.HashMap;
 
 import javafx.animation.Animation;
@@ -15,7 +13,6 @@ import javafx.animation.ParallelTransition;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
