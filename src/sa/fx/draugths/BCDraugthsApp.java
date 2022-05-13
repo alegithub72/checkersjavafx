@@ -339,7 +339,7 @@ public class BCDraugthsApp extends Application {
 
 	public void drawStartScreen()  {
 		try {
-			getSoundInterfaceInstance().playSoundLoop(SoundPlay.MUSIC_SIGLA);
+
 			root.getChildren().remove(fxb);
 	
 				fxb = new FXBoard(level, this);
@@ -357,6 +357,7 @@ public class BCDraugthsApp extends Application {
 					event.consume();
 				}
 			});
+			getSoundInterfaceInstance().playSoundLoop(SoundPlay.MUSIC_SIGLA);			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

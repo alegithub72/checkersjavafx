@@ -30,7 +30,8 @@ public class SoundPlayMobile implements SoundInterface {
 		return soundInterface;
 	}
 	
-	private Audio getSoundHashMap(int code) {
+	@Override
+	public void  playSoundLoop(int code) {
 
 		Audio audioClip = sounds[code];
 		if (audioClip == null) {
@@ -42,46 +43,47 @@ public class SoundPlayMobile implements SoundInterface {
 					service.loadMusic(url).ifPresent(audio -> {
 						BCDraugthsApp.log.info("--->present audio");
 						sounds[code]=audio;
+						audio.setLooping(true);
+						audio.play();
 					});
 				});
 		}
 		
-		return sounds[code];
+
 
 	}
 	@Override
-	public void  playSoundLoop(int code){
-		try {
-			Audio audioClip=getSoundHashMap(code);
-			audioClip.setLooping(true);
-			audioClip.play();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+	public void  playSound(int code,int times) {
+
+		Audio audioClip = sounds[code];
+		if (audioClip == null) {
+			ClassLoader classLoader = getClass().getClassLoader();
+			URL url = classLoader.getResource(soundsName[code]);
+			AudioService.create().ifPresent(service -> {
+				BCDraugthsApp.log.info("--->present service");
+
+					service.loadMusic(url).ifPresent(audio -> {
+						BCDraugthsApp.log.info("--->present audio");
+						sounds[code]=audio;
+						audio.setLooping(false);
+						audio.play();
+					});
+				});
+		}
+		
+
+
 	}
 	@Override
 	public void  stopSound(int code){
 		try {
-			Audio audio=getSoundHashMap(code);
+			Audio audio=sounds[code];
 			audio.stop();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
 	}
-	@Override
-	public void  playSound(int code, int times){
-		try {
-			Audio audio=getSoundHashMap(code);
-			audio.setLooping(false);
-			audio.play();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-	}	
+
 	
 }
