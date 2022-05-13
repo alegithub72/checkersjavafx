@@ -17,7 +17,7 @@ https://mvnrepository.com -->
 		<gluonfx.plugin.version>1.0.13</gluonfx.plugin.version>
 		<charm.version>6.1.0</charm.version>
 		<attach.version>4.0.14</attach.version>
-		<main.class>sa.fx.draugths.BCDraugthsAppMobile</main.class>
+		<main.class>sa.fx.draugths.BCDraugthsApp</main.class>
 	
 	</properties>
 	<distributionManagement>
@@ -200,13 +200,66 @@ https://mvnrepository.com -->
 		</testResources>
 	</build>
 	<profiles>
-		<profile>
-			<id>android</id>
-			<properties>
-				<gluonfx.target>android</gluonfx.target>
-
-			</properties>
-		</profile>
+	<profile>
+		<id>android</id>
+		<properties>
+			<gluonfx.target>android</gluonfx.target>
+			<main.class>sa.fx.draugths.BCDraugthsAppMobile</main.class>
+		</properties>
+		<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src2</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		</build>							
+	</profile>	
+	<profile>
+		<id>windows</id>
+		<properties>
+			<gluonfx.target>host</gluonfx.target>
+			<main.class>sa.fx.draugths.BCDraugthsAppMobile</main.class>
+		</properties>
+		<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src2</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		</build>			
+	</profile>
 		<profile>
 			<id>ios</id>
 			<properties>
