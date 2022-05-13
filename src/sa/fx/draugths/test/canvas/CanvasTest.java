@@ -14,7 +14,8 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import sa.fx.draugths.utility.SoundPlay;
+import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.utility.SoundInterface;
 
  
 /**
@@ -47,7 +48,7 @@ public class CanvasTest extends Application {
         //URL url=new URL(MoveAnimePedinaTimer.BITE);
        // ClassLoader classLoader = getClass().getClassLoader();
         //URL url=classLoader.getResource(
-        SoundPlay.getSoundInterfaceInstance().playSound(SoundPlay.BIG_BITE,1);
+        BCDraugthsApp.getSoundInterfaceInstance().playSound(SoundInterface.BIG_BITE,1);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         GraphicsContext gc2 = canvas2.getGraphicsContext2D();

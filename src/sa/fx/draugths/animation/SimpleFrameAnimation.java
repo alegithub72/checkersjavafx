@@ -21,23 +21,7 @@ import sa.fx.draugths.utility.SoundPlay;
  */
 public class SimpleFrameAnimation extends Transition{
 	FrameInfo[]  frames;
-    public static final String FIRE="fire5.wav";
-    public static final String SPEEDY_BITE="speedy_bite.wav";
-    public static final String BITE="Dogbite.wav";
-    public static final String BIG_BITE="lion_roar_2.mp3";
-    public static final String JUNGLE="jungle_drum.wav";
-    public static final String MARCH="marcias.wav";
-    public static final String MOVESPACESOLDIER="jerpack.wav";
-    public static final String CLOPETE_DOUBLE="moveAlien2.wav";
-    public static final String MOVEMONSTER="UFO.wav";
-    public static final String EXPLOSIONMONSTER="Fireball.wav";
-    public static final String MISSILE="top.wav";
-    public static final String ELICOPTER="elicopter.wav";
-    public static final String CLOPETE="move_alien.wav";
-    public static final String EXPLOSION="Fireball.wav";
-    public static final String BIGEXPLOSION="Explosion3.wav";
-    public static final String ACHW="Achievement.wav";
-    public static final String ACHB="pluck.wav";
+
     int sound;
     Sprite sprite;
     Move move;
@@ -102,11 +86,11 @@ public class SimpleFrameAnimation extends Transition{
                    this.sound==SoundPlay.SPEEDY_BITE ||this.sound==SoundPlay.CLOPETE ||this.sound==SoundPlay.CLOPETE_DOUBLE||this.sound==SoundPlay.MOVESPACESOLDIER ) {
 
                
-        	   SoundPlay.getSoundInterfaceInstance().playSoundLoop(sound);
+        	   BCDraugthsApp.getSoundInterfaceInstance().playSoundLoop(sound);
            }
            
 
-           SoundPlay.getSoundInterfaceInstance().playSound(sound,1);
+           BCDraugthsApp.getSoundInterfaceInstance().playSound(sound,1);
                startMusic=false;
            }
            

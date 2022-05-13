@@ -24,7 +24,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
+import sa.fx.draugths.utility.SoundPlayMobile;
 /**
  *
  * @author Alessio Sardaro
@@ -40,7 +42,7 @@ public class BCDraugthsAppMobile extends BCDraugthsApp {
         appManager.addViewFactory(HOME_VIEW, () -> {
             VBox controls = new VBox(15.0);
             controls.setAlignment(Pos.CENTER);
-            soundplay=SoundPlay.getSoundInterfaceInstance();
+  
 
             View view = new View(controls) {
                 @Override
@@ -67,7 +69,11 @@ public class BCDraugthsAppMobile extends BCDraugthsApp {
         });
     }
 
-
+	public static SoundInterface getSoundInterfaceInstance() {
+		
+		 return SoundPlayMobile.getSoundInterfaceInstance();
+		
+	}
 
 
   

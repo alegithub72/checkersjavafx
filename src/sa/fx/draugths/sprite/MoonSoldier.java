@@ -6,9 +6,10 @@
 package sa.fx.draugths.sprite;
 
 import javafx.scene.image.Image;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.utility.BoardHW;
-import sa.fx.draugths.utility.SoundPlay;
+import sa.fx.draugths.utility.SoundInterface;
 import sa.gameboard.core.Piece;
 
 /**
@@ -46,7 +47,7 @@ public class MoonSoldier extends SoldierPiece {
             frameImages = new Image(DRAUGTH_IMAGE);
             setImage(frameImages);
             buildFrameImages();
-            SoundPlay.getSoundInterfaceInstance().playSound(SoundPlay.ACHB,1);
+            BCDraugthsApp.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
 
         }
         setFrame(0); //To change body of generated methods, choose Tools | Templates.

@@ -257,7 +257,7 @@ public class BCDraugthsApp extends Application {
 
 	public void drawStartScreen()  {
 		try {
-			SoundPlay.getSoundInterfaceInstance().playSoundLoop(SoundPlay.MUSIC_SIGLA);
+			getSoundInterfaceInstance().playSoundLoop(SoundPlay.MUSIC_SIGLA);
 			root.getChildren().remove(fxb);
 	
 				fxb = new FXBoard(level, this);
@@ -268,7 +268,7 @@ public class BCDraugthsApp extends Application {
 	
 				@Override
 				public void handle(MouseEvent event) {
-					SoundPlay.getSoundInterfaceInstance().stopSound(SoundPlay.MUSIC_SIGLA);
+					SoundPlay.getSoundInterfaceInstance().stopSound(SoundInterface.MUSIC_SIGLA);
 					fxb.startLevel(level);
 					root.getChildren().remove(startScreen);
 					root.getChildren().add(fxb);
@@ -280,10 +280,14 @@ public class BCDraugthsApp extends Application {
 			e.printStackTrace();
 		}		
 	}
-
+	public static SoundInterface getSoundInterfaceInstance() {
+		
+		 return SoundPlay.getSoundInterfaceInstance();
+		
+	}
 	public void drawEndScreen() throws Exception {
 
-		 SoundPlay.getSoundInterfaceInstance().playSound(SoundPlay.MUSIC_CELEBRATION, 1);
+		getSoundInterfaceInstance().playSound(SoundInterface.MUSIC_CELEBRATION, 1);
 
 		root.getChildren().remove(fxb);
 		startScreen = new EndScreen();
@@ -299,7 +303,7 @@ public class BCDraugthsApp extends Application {
 				if (event.getButton() == MouseButton.PRIMARY) {
 					flip = !flip;
 					startScreen.setVisibleBack(flip);
-					 SoundPlay.getSoundInterfaceInstance().playSound(SoundPlay.EFFECT_HEY, 1);
+					 getSoundInterfaceInstance().playSound(SoundInterface.EFFECT_HEY, 1);
 
 				} else {
 					root.getChildren().remove(startScreen);

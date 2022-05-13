@@ -29,7 +29,7 @@ import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.utility.BoardHW;
-import sa.fx.draugths.utility.SoundPlay;
+import sa.fx.draugths.utility.SoundInterface;
 import sa.gameboard.core.Piece;
 
 
@@ -70,7 +70,7 @@ public class SoldierPiece extends SpritePiece {
            
         	if(!draugthTransform) { 
 
-        		 transition= new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundPlay.BITE);
+        		 transition= new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundInterface.BITE);
         		 transition.setDuration(Duration.seconds(0.5));
         		 
 
@@ -80,11 +80,11 @@ public class SoldierPiece extends SpritePiece {
         } else if (m.getP().getType()  ==Piece.DRAUGTH)  {
         
           if(draugthTransform) {
-        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false,40, SoundPlay.BITE);
+        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false,40, SoundInterface.BITE);
         	   transition.setDuration(Duration.seconds(0.5));
           }
           else {
-        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundPlay.BITE); 
+        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundInterface.BITE); 
         	   transition.setDuration(Duration.seconds(0.5));
           }
               
@@ -112,11 +112,11 @@ public class SoldierPiece extends SpritePiece {
     public void buildMoveSequence( boolean ciclyc) {
 
         if (!draugthTransform) {
-        	SimpleFrameAnimation transition=  new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 100, SoundPlay.JUNGLE);
+        	SimpleFrameAnimation transition=  new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 100, SoundInterface.JUNGLE);
         	transition.setDuration(pltransition.getTotalDuration());
          	pltransition.getChildren().add( transition);
         } else {
-        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundPlay.ELICOPTER);
+        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundInterface.ELICOPTER);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add( transition);
 
@@ -130,13 +130,13 @@ public class SoldierPiece extends SpritePiece {
 		SimpleFrameAnimation transition=null;
 	    if (!draugthTransform) {
 	    	
-	    	transition= new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 20, SoundPlay.FIRE);
+	    	transition= new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 20, SoundInterface.FIRE);
 	    	transition.setDuration(pltransition.getTotalDuration());
 
 
 	    } else {
 
-	    	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this ,ciclyc, 20, SoundPlay.ELICOPTER);
+	    	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this ,ciclyc, 20, SoundInterface.ELICOPTER);
 	    	transition.setDuration(pltransition.getTotalDuration());
 	    	}
 	    pltransition.getChildren().add( transition);
@@ -467,7 +467,7 @@ public class SoldierPiece extends SpritePiece {
 				 new FrameInfo[] {new FrameInfo(0,1),
 						 new FrameInfo(1,1),new FrameInfo(2,1),new FrameInfo(3,1),
 						 new FrameInfo(4,1),new FrameInfo(5,1),new FrameInfo(6,1),new FrameInfo(7,1),new FrameInfo(5,1),new FrameInfo(6,1),new FrameInfo(7,1)} 
-				 ,m,this,extraSprite[0],true,100,SoundPlay.MISSILE);
+				 ,m,this,extraSprite[0],true,100,SoundInterface.MISSILE);
 		 missileAnim.setDuration(ptMissile.getTotalDuration());
 	    
 		 ptMissile.getChildren().add(missileAnim);       
@@ -501,7 +501,7 @@ public class SoldierPiece extends SpritePiece {
                 draugthTransform==false) {
             draugthTransform=true;
             sp=new SoldierPiece(DRAUGTH_SOLDIER_IMAGE, this.piece, FXBoard.boardHW, this.getFxBoard());       
-            SoundPlay.getSoundInterfaceInstance().playSound(SoundPlay.ACHB,1);
+            BCDraugthsApp.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
 
             sp.setDraugthTransform(true);
             //buildFrameImages();
