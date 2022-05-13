@@ -21,7 +21,7 @@ public class ShotDistanceFrameAnimation extends SimpleFrameAnimation{
       boolean  once;
       SpritePiece piece;
 
-    public ShotDistanceFrameAnimation(FrameInfo[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,String sound) {
+    public ShotDistanceFrameAnimation(FrameInfo[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,int sound) {
     	super(frames, piece,move, cyclic, interval, sound);
     	this.piece=piece;
         once=false;

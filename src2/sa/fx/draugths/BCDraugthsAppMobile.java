@@ -8,13 +8,6 @@ package sa.fx.draugths;
 
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 
-import java.net.URL;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.Optional;
-
-import com.gluonhq.attach.audio.Audio;
-import com.gluonhq.attach.audio.AudioService;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
@@ -29,9 +22,9 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sa.fx.draugths.utility.SoundPlay;
 /**
  *
  * @author Alessio Sardaro
@@ -39,7 +32,7 @@ import javafx.stage.Stage;
 public class BCDraugthsAppMobile extends BCDraugthsApp {
 	private final AppManager appManager = AppManager.initialize(this::postInit);
 
-	static Map<String, Audio> effettiAndMap = new Hashtable();
+
 
 
     @Override
@@ -47,7 +40,7 @@ public class BCDraugthsAppMobile extends BCDraugthsApp {
         appManager.addViewFactory(HOME_VIEW, () -> {
             VBox controls = new VBox(15.0);
             controls.setAlignment(Pos.CENTER);
-
+            soundplay=SoundPlay.getSoundInterfaceInstance();
 
             View view = new View(controls) {
                 @Override
@@ -75,78 +68,8 @@ public class BCDraugthsAppMobile extends BCDraugthsApp {
     }
 
 
-	public static void playMedia(String sound, int count) {
-
-		Optional<AudioService> opt = AudioService.create();
-
-		URL url = BCDraugthsApp.class.getClassLoader().getResource(sound);
-		System.out.println("--->" + url);
-	
-		Thread th=new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				AudioService.create().ifPresentOrElse(service -> {
-					BCDraugthsApp.log.info("--->present service");
-					if(effettiAndMap.get(url)==null)
-					service.loadMusic(url).ifPresent(audio -> {
-						effettiAndMap.put(sound,audio);
-						BCDraugthsApp.log.info("--->present audio");
-						audio.play();
-					});
-					else {
-						Audio audioTmp= effettiAndMap.get(url);
-						audioTmp.play();
-					}
-
-				}, new Runnable() {
-
-					@Override
-					public void run() {
-						try {
-							stopMedia(sound);
-							if(effettiMap.get(sound)==null) {
-							URL url = this.getClass().getClassLoader().getResource(sound);
-							if (url != null) {
-								AudioClip clip = new AudioClip(url.toString());
-								clip.setCycleCount(count);
-								clip.play();
-								effettiMap.put(sound, clip);
-							}
-							}else {
-								AudioClip clipTmp=effettiMap.get(sound);
-								clipTmp.play();
-							}
-
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-				
-			}
-		});
-		th.start();
 
 
-	}
-
-	public static void stopMedia(String sound) {
-
-		try {
-			Audio audio = effettiAndMap.get(sound);
-			if (audio != null) {
-				audio.stop();
-			}
-			AudioClip clip = effettiMap.get(sound);
-			if (clip != null)
-				clip.stop();
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-	}
   
     private void postInit(Scene scene){
         //Swatch.LIGHT_GREEN.assignTo(scene);

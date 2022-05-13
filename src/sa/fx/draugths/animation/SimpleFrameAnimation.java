@@ -8,11 +8,11 @@ package sa.fx.draugths.animation;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.sprite.Sprite;
+import sa.fx.draugths.utility.SoundPlay;
 
 
 /**
@@ -38,7 +38,7 @@ public class SimpleFrameAnimation extends Transition{
     public static final String BIGEXPLOSION="Explosion3.wav";
     public static final String ACHW="Achievement.wav";
     public static final String ACHB="pluck.wav";
-    String sound;
+    int sound;
     Sprite sprite;
     Move move;
 
@@ -54,7 +54,7 @@ public class SimpleFrameAnimation extends Transition{
     boolean startMusic=true;
 
     
-    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,Move move,boolean cyclic,long interval,String sound) {
+    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,Move move,boolean cyclic,long interval,int sound) {
     	this.frames=frames;
         this.sprite = sprite;
         this.move=move;
@@ -65,7 +65,7 @@ public class SimpleFrameAnimation extends Transition{
         this.interval=interval;
         addEndHandler();
     }
-    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,boolean cyclic,long interval,String sound) {
+    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,boolean cyclic,long interval,int sound) {
     	this.frames=frames;
         this.sprite = sprite;
         this.move=null;
@@ -98,15 +98,15 @@ public class SimpleFrameAnimation extends Transition{
         
 
        if(startMusic) {
-           if(this.sound==FIRE|| 
-                   this.sound==SPEEDY_BITE ||this.sound==CLOPETE ||this.sound==CLOPETE_DOUBLE||this.sound==MOVESPACESOLDIER ) {
+           if(this.sound==SoundPlay.FIRE|| 
+                   this.sound==SoundPlay.SPEEDY_BITE ||this.sound==SoundPlay.CLOPETE ||this.sound==SoundPlay.CLOPETE_DOUBLE||this.sound==SoundPlay.MOVESPACESOLDIER ) {
 
                
-        	   BCDraugthsApp.playMedia(sound,AudioClip.INDEFINITE);
+        	   SoundPlay.getSoundInterfaceInstance().playSoundLoop(sound);
            }
            
 
-               BCDraugthsApp.playMedia(sound,1);
+           SoundPlay.getSoundInterfaceInstance().playSound(sound,1);
                startMusic=false;
            }
            
@@ -153,7 +153,7 @@ public class SimpleFrameAnimation extends Transition{
 			
 			@Override
 			public void handle(ActionEvent event) {
-					BCDraugthsApp.stopMedia(sound);
+				 SoundPlay.getSoundInterfaceInstance().stopSound(sound);
 				  event.consume();
 				
 			}

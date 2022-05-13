@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>checkersfx</groupId>
 	<artifactId>chekcersfx</artifactId>
 	<version>4.2</version>
 	<packaging>jar</packaging>
 	<name>ChekcersInvader</name>
-	<!-- https://search.maven.org
-https://repository.apache.org 
-https://mvnrepository.com -->
+	<!-- https://search.maven.org https://repository.apache.org https://mvnrepository.com -->
 	<properties>
-	        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.release>11</maven.compiler.release>
 		<javafx.version>17.0.1</javafx.version>
 		<javafx.plugin.version>0.0.8</javafx.plugin.version>
@@ -18,7 +18,7 @@ https://mvnrepository.com -->
 		<charm.version>6.1.0</charm.version>
 		<attach.version>4.0.14</attach.version>
 		<main.class>sa.fx.draugths.BCDraugthsApp</main.class>
-	
+
 	</properties>
 	<distributionManagement>
 		<repository>
@@ -33,7 +33,7 @@ https://mvnrepository.com -->
 			<artifactId>checkersengine</artifactId>
 			<version>3.2</version>
 			<scope>compile</scope>
-			<!--systemPath>${project.basedir}/lib/CheckersEngine.jar</systemPath-->
+			<!--systemPath>${project.basedir}/lib/CheckersEngine.jar</systemPath -->
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
@@ -104,17 +104,11 @@ https://mvnrepository.com -->
 			<groupId>com.gluonhq.attach</groupId>
 			<artifactId>audio</artifactId>
 			<version>${attach.version}</version>
-		</dependency>		
-		<!--dependency>
-            <groupId>com.gluonhq.media</groupId>
-            <artifactId>media</artifactId>
-            <version>${attach.version}</version>
-        </dependency-->
-		<!--dependency>
-    <groupId>eu.agrosense.client</groupId>
-    <artifactId>util-javafx</artifactId>
-    <version>14.06-beta</version>
-</dependency-->
+		</dependency>
+		<!--dependency> <groupId>com.gluonhq.media</groupId> <artifactId>media</artifactId> 
+			<version>${attach.version}</version> </dependency -->
+		<!--dependency> <groupId>eu.agrosense.client</groupId> <artifactId>util-javafx</artifactId> 
+			<version>14.06-beta</version> </dependency -->
 	</dependencies>
 	<build>
 		<plugins>
@@ -122,9 +116,7 @@ https://mvnrepository.com -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
-				<!--  configuration>
-                    <release>11</release>
-                </configuration-->
+				<!-- configuration> <release>11</release> </configuration -->
 			</plugin>
 			<plugin>
 				<groupId>org.openjfx</groupId>
@@ -158,8 +150,8 @@ https://mvnrepository.com -->
 					<mainClass>${main.class}</mainClass>
 					<enableSWRendering>true</enableSWRendering>
 					<nativeImageArgs>
-			                     	<nativeImageArg>--allow-incomplete-classpath</nativeImageArg>
-                     			</nativeImageArgs>
+						<nativeImageArg>--allow-incomplete-classpath</nativeImageArg>
+					</nativeImageArgs>
 					<attachList>
 						<list>display</list>
 						<list>lifecycle</list>
@@ -167,7 +159,7 @@ https://mvnrepository.com -->
 						<list>storage</list>
 						<list>audio</list>
 						<list>util</list>
-						<!--list>media<list-->
+						<!--list>media<list -->
 					</attachList>
 					<resourcesList>.*\\.mp3$,.*\\.wav$,.*\\.properties$,.*\\.TTF$,.*\\.rec$</resourcesList>
 					<reflectionList>
@@ -175,11 +167,11 @@ https://mvnrepository.com -->
 						<list>javafx.scene.media.AudioClip</list>
 						<list>com.sun.media.jfxmediaimpl.NativeMediaManager</list>
 					</reflectionList>
-					 <javafxStaticSdkVersion>17</javafxStaticSdkVersion>
+					<javafxStaticSdkVersion>17</javafxStaticSdkVersion>
 				</configuration>
 			</plugin>
-			<!-- Calling mvn jfx:jar creates your javafx-application-jar inside target/jfx/app/yourapp-jfx.jar,
- or even creates native launcher (like EXE-file) when calling mvn jfx:native. -->
+			<!-- Calling mvn jfx:jar creates your javafx-application-jar inside target/jfx/app/yourapp-jfx.jar, 
+				or even creates native launcher (like EXE-file) when calling mvn jfx:native. -->
 		</plugins>
 		<directory>target</directory>
 		<outputDirectory>target/classes</outputDirectory>
@@ -200,66 +192,66 @@ https://mvnrepository.com -->
 		</testResources>
 	</build>
 	<profiles>
-	<profile>
-		<id>android</id>
-		<properties>
-			<gluonfx.target>android</gluonfx.target>
-			<main.class>sa.fx.draugths.BCDraugthsAppMobile</main.class>
-		</properties>
-		<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.3.0</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src2</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-		</build>							
-	</profile>	
-	<profile>
-		<id>windows</id>
-		<properties>
-			<gluonfx.target>host</gluonfx.target>
-			<main.class>sa.fx.draugths.BCDraugthsAppMobile</main.class>
-		</properties>
-		<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.3.0</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src2</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-		</build>			
-	</profile>
+		<profile>
+			<id>android</id>
+			<properties>
+				<gluonfx.target>android</gluonfx.target>
+				<main.class>sa.fx.draugths.BCDraugthsAppMobile</main.class>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<version>3.3.0</version>
+						<executions>
+							<execution>
+								<id>add-source</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>add-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>src2</source>
+									</sources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>windows</id>
+			<properties>
+				<gluonfx.target>host</gluonfx.target>
+				<main.class>sa.fx.draugths.BCDraugthsAppMobile</main.class>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<version>3.3.0</version>
+						<executions>
+							<execution>
+								<id>add-source</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>add-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>src2</source>
+									</sources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 		<profile>
 			<id>ios</id>
 			<properties>

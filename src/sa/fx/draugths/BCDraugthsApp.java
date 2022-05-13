@@ -7,9 +7,6 @@ package sa.fx.draugths;
 
 
 
-import java.net.URL;
-import java.util.Hashtable;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.fx.draugths.animation.AnimationPedinaMove;
@@ -30,6 +26,8 @@ import sa.fx.draugths.screen.EndScreenII;
 import sa.fx.draugths.screen.PresentationScreen;
 import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.screen.StartScreen;
+import sa.fx.draugths.utility.SoundInterface;
+import sa.fx.draugths.utility.SoundPlay;
 import sa.gameboard.core.Game;
 /**
  *
@@ -41,8 +39,8 @@ public class BCDraugthsApp extends Application {
 	PresentationScreen startScreen;
 
 	RecordScreen recordScreen;
-	static Map<String, AudioClip> effettiMap = new Hashtable();
 
+	static public SoundInterface soundplay=null;
 	private AnimationPedinaMove anim;
 	FXBoard fxb;
 	public static boolean debug;
@@ -169,42 +167,8 @@ public class BCDraugthsApp extends Application {
 
 	}
 
-	public static void playMedia(String sound, int count) {
 
-		URL url = BCDraugthsApp.class.getClassLoader().getResource(sound);
-		try {
-			stopMedia(sound);
-			if (effettiMap.get(sound) == null) {
-				if (url != null) {
-					AudioClip clip = new AudioClip(url.toString());
-					clip.setCycleCount(count);
-					clip.play();
-					effettiMap.put(sound, clip);
-				}
-			} else {
-				AudioClip clipTmp = effettiMap.get(sound);
-				clipTmp.play();
-			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public static void stopMedia(String sound) {
-
-		try {
-
-			AudioClip clip = effettiMap.get(sound);
-			if (clip != null)
-				clip.stop();
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-	}
 
 	public void drawRecordScreen(int points) {
 
@@ -293,7 +257,7 @@ public class BCDraugthsApp extends Application {
 
 	public void drawStartScreen()  {
 		try {
-			playMedia(MUSIC_SIGLA, AudioClip.INDEFINITE);
+			SoundPlay.getSoundInterfaceInstance().playSoundLoop(SoundPlay.MUSIC_SIGLA);
 			root.getChildren().remove(fxb);
 	
 				fxb = new FXBoard(level, this);
@@ -304,7 +268,7 @@ public class BCDraugthsApp extends Application {
 	
 				@Override
 				public void handle(MouseEvent event) {
-					stopMedia(MUSIC_SIGLA);
+					SoundPlay.getSoundInterfaceInstance().stopSound(SoundPlay.MUSIC_SIGLA);
 					fxb.startLevel(level);
 					root.getChildren().remove(startScreen);
 					root.getChildren().add(fxb);
@@ -319,7 +283,7 @@ public class BCDraugthsApp extends Application {
 
 	public void drawEndScreen() throws Exception {
 
-		playMedia(MUSIC_CELEBRATION, 1);
+		 SoundPlay.getSoundInterfaceInstance().playSound(SoundPlay.MUSIC_CELEBRATION, 1);
 
 		root.getChildren().remove(fxb);
 		startScreen = new EndScreen();
@@ -335,7 +299,7 @@ public class BCDraugthsApp extends Application {
 				if (event.getButton() == MouseButton.PRIMARY) {
 					flip = !flip;
 					startScreen.setVisibleBack(flip);
-					playMedia(EFFECT_HEY, 1);
+					 SoundPlay.getSoundInterfaceInstance().playSound(SoundPlay.EFFECT_HEY, 1);
 
 				} else {
 					root.getChildren().remove(startScreen);

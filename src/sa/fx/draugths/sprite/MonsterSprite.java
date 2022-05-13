@@ -15,10 +15,9 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SoundPlay;
 import sa.gameboard.core.Piece;
 
 /**
@@ -49,7 +48,7 @@ public class MonsterSprite extends AlienPiece {
             frameImages = new Image("black_dama2.png");
             setImage(frameImages);
             buildFrameImages();
-            BCDraugthsApp.playMedia(ShotDistanceFrameAnimation.ACHB,1);
+            SoundPlay.getSoundInterfaceInstance().playSound(SoundPlay.ACHB,1);
 
         }
         setFrame(0); //To change body of generated methods, choose Tools | Templates.
