@@ -28,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -357,7 +358,18 @@ public class BCDraugthsApp extends Application {
 					event.consume();
 				}
 			});
-			getSoundInterfaceInstance().playSoundLoop(SoundPlay.MUSIC_SIGLA);			
+			startScreen.setOnTouchPressed(new EventHandler<TouchEvent>() {
+				
+				@Override
+				public void handle(TouchEvent event) {
+					SoundPlay.getSoundInterfaceInstance().stopSound(SoundInterface.MUSIC_SIGLA);
+					fxb.startLevel(level);
+					root.getChildren().remove(startScreen);
+					root.getChildren().add(fxb);
+					event.consume();
+				}
+			});			
+			getSoundInterfaceInstance().playSoundLoop(SoundInterface.MUSIC_SIGLA);			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
