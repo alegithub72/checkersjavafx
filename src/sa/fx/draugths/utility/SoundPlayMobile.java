@@ -9,81 +9,75 @@ import sa.fx.draugths.BCDraugthsApp;
 
 public class SoundPlayMobile implements SoundInterface {
 
+	Audio[] soundsMobile = new Audio[30];
 
-	
-	Audio[] sounds=new Audio[30];	
-	
+	private static SoundInterface soundInterface = null;
 
-
-
-	
-	private static SoundInterface soundInterface=null;
-	
-	
 	private SoundPlayMobile() {
 		super();
 
 	}
+
 	public static SoundInterface getSoundInterfaceInstance() {
-		if(soundInterface==null)
-			soundInterface=new SoundPlayMobile();
+		if (soundInterface == null)
+			soundInterface = new SoundPlayMobile();
 		return soundInterface;
 	}
-	
+
 	@Override
-	public void  playSoundLoop(int code) {
+	public void playSoundLoop(int code) {
 
-		Audio audioClip = sounds[code];
-		if (audioClip == null) {
-			ClassLoader classLoader = getClass().getClassLoader();
-			URL url = classLoader.getResource(soundsName[code]);
-			AudioService.create().ifPresent(service -> {
-				BCDraugthsApp.log.info("--->present service");
+		Thread th = new Thread(new Runnable() {
 
+			@Override
+			public void run() {
+				ClassLoader classLoader = getClass().getClassLoader();
+				URL url = classLoader.getResource(soundsName[code]);
+				AudioService.create().ifPresent(service -> {
 					service.loadMusic(url).ifPresent(audio -> {
-						BCDraugthsApp.log.info("--->present audio");
-						sounds[code]=audio;
+						soundsMobile[code] = audio;
 						audio.setLooping(true);
 						audio.play();
 					});
 				});
-		}
-		
 
+			}
+		});
+		th.start();
 
 	}
+
 	@Override
-	public void  playSound(int code,int times) {
+	public void playSound(int code, int times) {
+		Thread th = new Thread(new Runnable() {
 
-		Audio audioClip = sounds[code];
-		if (audioClip == null) {
-			ClassLoader classLoader = getClass().getClassLoader();
-			URL url = classLoader.getResource(soundsName[code]);
-			AudioService.create().ifPresent(service -> {
-				BCDraugthsApp.log.info("--->present service");
-
+			@Override
+			public void run() {
+				ClassLoader classLoader = getClass().getClassLoader();
+				URL url = classLoader.getResource(soundsName[code]);
+				AudioService.create().ifPresent(service -> {
 					service.loadMusic(url).ifPresent(audio -> {
-						BCDraugthsApp.log.info("--->present audio");
-						sounds[code]=audio;
+						soundsMobile[code] = audio;
 						audio.setLooping(false);
 						audio.play();
 					});
 				});
-		}
-		
 
+			}
+		});
+		th.start();
 
 	}
+
 	@Override
-	public void  stopSound(int code){
+	public void stopSound(int code) {
 		try {
-			Audio audio=sounds[code];
+			Audio audio = soundsMobile[code];
 			audio.stop();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		
+		}
+
 	}
 
-	
 }

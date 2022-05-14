@@ -11,7 +11,7 @@ public class SoundPlay implements SoundInterface {
 
 	
 
-
+	AudioClip[] sounds=new AudioClip[30];	
 
 	
 	private static SoundInterface soundInterface=null;

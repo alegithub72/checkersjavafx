@@ -32,8 +32,8 @@ public interface SoundInterface {
 			,"UFO.wav","Fireball.wav","top.wav","elicopter.wav"
 			,"move_alien.wav","Fireball.wav","Explosion3.wav"
 			,"Achievement.wav","pluck.wav","159355-wing-effect.wav","jerpack.wav"
-			,"191594_laser.wav","muppet.mp3","270545_jingle-win-01.wav","416507_hey.wav"};
-	AudioClip[] sounds=new AudioClip[30];	
+			,"191594_laser.wav","muppet.mp3p3","270545_jingle-win-01.wav","416507_hey.wav"};
+
 	void playSoundLoop(int code);
 
 	void stopSound(int code);
