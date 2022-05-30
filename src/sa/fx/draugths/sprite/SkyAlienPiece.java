@@ -11,7 +11,7 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.utility.BoardHW;
-import sa.fx.draugths.utility.SoundPlay;
+import sa.fx.draugths.utility.SoundInterface;
 import sa.gameboard.core.Piece;
 
 /**
@@ -41,17 +41,17 @@ public class SkyAlienPiece extends AlienPiece {
     @Override
     public void buildKilledSequence(Move m) {
     	pltransition=new ParallelTransition(this);
-        buildDefaultKillAnimation(killSequenceFrame,m,  false, 50, SoundPlay.EXPLOSION);
+        buildDefaultKillAnimation(killSequenceFrame,m,  false, 50, SoundInterface.EXPLOSION);
     }
 
     public void buildMoveSequence(boolean ciclyc) {
     	SimpleFrameAnimation transition=null;
         if (!draugthTransform) {
-        	transition=new  SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 50, SoundPlay.WING);
+        	transition=new  SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 50, SoundInterface.WING);
         	pltransition.getChildren().add(transition);
         	transition.setDuration(pltransition.getTotalDuration());
         } else {
-        	transition=new SimpleFrameAnimation(moveSequenceFrame,this ,ciclyc, 50, SoundPlay.WING);
+        	transition=new SimpleFrameAnimation(moveSequenceFrame,this ,ciclyc, 50, SoundInterface.WING);
         	pltransition.getChildren().add( transition);
         	transition.setDuration(pltransition.getTotalDuration());
         }
@@ -63,12 +63,12 @@ public class SkyAlienPiece extends AlienPiece {
     	//SpritePiece eated=getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(),m.getEat().getColor(), false);
     	SimpleFrameAnimation transition=null;
         if(draugthTransform==false) {
-        	transition= new SimpleFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 50, SoundPlay.WING);
+        	transition= new SimpleFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 50, SoundInterface.WING);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add(transition);
         }
         else {
-        	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this,m, ciclyc, 50, SoundPlay.WING);
+        	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this,m, ciclyc, 50, SoundInterface.WING);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add(transition );
         }
@@ -83,7 +83,7 @@ public class SkyAlienPiece extends AlienPiece {
                 draugthTransform==false) {
             draugthTransform=true;
             sp=new SkyAlienPiece(DRAUGTH_ALIEN_IMAGE_SKY,this.piece, FXBoard.boardHW, this.getFxBoard());    
-            BCDraugthsApp.soundPlay.playSound(SoundPlay.ACHB, 1);
+            BCDraugthsApp.soundPlay.playSound(SoundInterface.ACHB, 1);
             sp.setDraugthTransform(true);
         }
         setFrame(0);

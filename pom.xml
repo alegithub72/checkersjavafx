@@ -1,116 +1,195 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>checkersfx</groupId>
 	<artifactId>chekcersfx</artifactId>
 	<version>4.2</version>
 	<packaging>jar</packaging>
-	<name>Chekcers Invader</name> 
-	<!-- https://search.maven.org
-https://repository.apache.org 
-https://mvnrepository.com -->
+	<name>ChekcersInvader</name>
+	<!-- https://search.maven.org https://repository.apache.org https://mvnrepository.com -->
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>11</maven.compiler.release>
+		<javafx.version>19-ea+4</javafx.version>
+		<javafx.plugin.version>0.0.8</javafx.plugin.version>
+		<gluonfx.plugin.version>1.0.13</gluonfx.plugin.version>
+		<charm.version>6.1.0</charm.version>
+		<attach.version>4.0.14</attach.version>
+		<main.class>sa.fx.draugths.BCDraugthsApp</main.class>
 
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <!--   <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>-->
- 
 	</properties>
-<distributionManagement>
-   <repository>
-     <id>github</id>
-     <name>GitHub alegithub72 Apache Maven Packages</name>
-     <url>https://maven.pkg.github.com/alegithub72/checkersjavafx</url>
-   </repository>
-</distributionManagement>		
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub alegithub72 Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/alegithub72/checkersjavafx</url>
+		</repository>
+	</distributionManagement>
 	<dependencies>
-		 <dependency>
+		<dependency>
 			<groupId>checkersengine</groupId>
 			<artifactId>checkersengine</artifactId>
 			<version>3.2</version>
 			<scope>compile</scope>
-			<!--systemPath>${project.basedir}/lib/CheckersEngine.jar</systemPath-->
+			<!--systemPath>${project.basedir}/lib/CheckersEngine.jar</systemPath -->
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-base</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-graphics</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-web</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-swing</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-media</artifactId>
-			<version>17-ea+11</version>
+			<version>${javafx.version}</version>
 		</dependency>
-		<!--dependency>
-    <groupId>eu.agrosense.client</groupId>
-    <artifactId>util-javafx</artifactId>
-    <version>14.06-beta</version>
-</dependency-->
-
+		<dependency>
+			<groupId>com.gluonhq</groupId>
+			<artifactId>charm-glisten</artifactId>
+			<version>${charm.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gluonhq.attach</groupId>
+			<artifactId>display</artifactId>
+			<version>${attach.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gluonhq.attach</groupId>
+			<artifactId>lifecycle</artifactId>
+			<version>${attach.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gluonhq.attach</groupId>
+			<artifactId>statusbar</artifactId>
+			<version>${attach.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gluonhq.attach</groupId>
+			<artifactId>storage</artifactId>
+			<version>${attach.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gluonhq.attach</groupId>
+			<artifactId>util</artifactId>
+			<version>${attach.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gluonhq.attach</groupId>
+			<artifactId>audio</artifactId>
+			<version>${attach.version}</version>
+		</dependency>
+		<!--dependency> <groupId>com.gluonhq.media</groupId> <artifactId>media</artifactId> 
+			<version>${attach.version}</version> </dependency -->
+		<!--dependency> <groupId>eu.agrosense.client</groupId> <artifactId>util-javafx</artifactId> 
+			<version>14.06-beta</version> </dependency -->
 	</dependencies>
 	<build>
 		<plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <!--  configuration>
-                    <release>11</release>
-                </configuration-->
-            </plugin>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.3</version>
-                <configuration>
-                    <mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
-                </configuration>
-            </plugin> 
 			<plugin>
-    			<groupId>com.zenjava</groupId>
-    			<artifactId>javafx-maven-plugin</artifactId>
-    			<version>8.8.3</version>
-    			
-    			<configuration>
-        		<mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
-        		<nativeReleaseVersion>${project.version}</nativeReleaseVersion>
-        		<vendor>sagame</vendor>
-        		<SetupIconFile>install\package\windows\wizard-setup.ico</SetupIconFile>
-        		<appName>cinvaders</appName>
-        		<deployDir>install</deployDir>
-        		<skipNativeVersionNumberSanitizing>true</skipNativeVersionNumberSanitizing>
-        		<verbose>true</verbose>
-    		</configuration>
-		</plugin>
-<!-- Calling mvn jfx:jar creates your javafx-application-jar inside target/jfx/app/yourapp-jfx.jar,
- or even creates native launcher (like EXE-file) when calling mvn jfx:native. -->			
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<!-- configuration> <release>11</release> </configuration -->
+			</plugin>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.8</version>
+				<configuration>
+					<mainClass>${main.class}</mainClass>
+					<commandLineArgs>-Dcheckers.level=2 -Dcheckers.debug</commandLineArgs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.zenjava</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>8.8.3</version>
+				<configuration>
+					<mainClass>${main.class}</mainClass>
+					<nativeReleaseVersion>${project.version}</nativeReleaseVersion>
+					<vendor>sagame</vendor>
+					<SetupIconFile>install\package\windows\wizard-setup.ico</SetupIconFile>
+					<appName>cinvaders</appName>
+					<deployDir>install</deployDir>
+					<skipNativeVersionNumberSanitizing>true</skipNativeVersionNumberSanitizing>
+					<verbose>true</verbose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.gluonhq</groupId>
+				<artifactId>gluonfx-maven-plugin</artifactId>
+				<version>${gluonfx.plugin.version}</version>
+				<configuration>
+					<target>${gluonfx.target}</target>
+					<mainClass>${main.class}</mainClass>
+					<enableSWRendering>true</enableSWRendering>
+					<nativeImageArgs>
+						<nativeImageArg>--allow-incomplete-classpath</nativeImageArg>
+					</nativeImageArgs>
+					<attachList>
+						<list>display</list>
+						<list>lifecycle</list>
+						<list>statusbar</list>
+						<list>storage</list>
+						<list>audio</list>
+						<list>util</list>
+						<!--list>media<list -->
+					</attachList>
+					<resourcesList>.*\\.mp3$,.*\\.wav$,.*\\.properties$,.*\\.TTF$,.*\\.rec$</resourcesList>
+					<reflectionList>
+						<list>com.sun.scenario.effect.impl.prism.PrMergePeer</list>
+						<list>javafx.scene.media.AudioClip</list>
+						<list>com.sun.media.jfxmediaimpl.NativeMediaManager</list>
+					</reflectionList>
+					<!-- 					<javafxStaticSdkVersion>19-ea+4</javafxStaticSdkVersion> -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src2</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Calling mvn jfx:jar creates your javafx-application-jar inside target/jfx/app/yourapp-jfx.jar, 
+				or even creates native launcher (like EXE-file) when calling mvn jfx:native. -->
 		</plugins>
 		<directory>target</directory>
 		<outputDirectory>target/classes</outputDirectory>
@@ -129,5 +208,21 @@ https://mvnrepository.com -->
 				<directory>test/resources</directory>
 			</testResource>
 		</testResources>
+
 	</build>
+	<profiles>
+		<profile>
+			<id>android</id>
+			<properties>
+				<gluonfx.target>android</gluonfx.target>
+				<main.class>sa.fx.draugths.BCDraugthsAndroidApp</main.class>
+			</properties>
+		</profile>
+	</profiles>
+	<repositories>
+		<repository>
+			<id>gluon-releases</id>
+			<url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+		</repository>
+	</repositories>
 </project>

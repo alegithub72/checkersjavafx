@@ -25,8 +25,8 @@ public class ShotCollisionFrameAnimation extends SimpleFrameAnimation {
 	// private PathTransition pathTransition;
 
 	public ShotCollisionFrameAnimation(FrameInfo[] frames, Move move, SpritePiece sprite, Sprite shot,
-			boolean cyclic, long interval, String sound) {
-		super(frames, shot,move, cyclic, interval, sound);
+			boolean cyclic, long interval, int soundCode) {
+		super(frames, shot,move, cyclic, interval, soundCode);
 	     this.piece=sprite;
 		this.shot = shot;
 		once=false;

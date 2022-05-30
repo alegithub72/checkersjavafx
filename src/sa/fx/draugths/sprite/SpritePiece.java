@@ -66,8 +66,8 @@ public abstract class SpritePiece extends Sprite{
 
 
     }
-    void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, String sound) {
-    	SimpleFrameAnimation transition=  new SimpleFrameAnimation(frames, this,m,  ciclyc, interval, sound);
+    void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, int soundCode) {
+    	SimpleFrameAnimation transition=  new SimpleFrameAnimation(frames, this,m,  ciclyc, interval, soundCode);
     	transition.setDuration(Duration.seconds(0.5));
     	pltransition.getChildren().add(transition );
     	SpritePiece eated=this;

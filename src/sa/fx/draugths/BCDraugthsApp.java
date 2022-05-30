@@ -25,6 +25,7 @@ import sa.fx.draugths.screen.EndScreenII;
 import sa.fx.draugths.screen.PresentationScreen;
 import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.screen.StartScreen;
+import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
 import sa.gameboard.core.Game;
 
@@ -38,7 +39,7 @@ public class BCDraugthsApp extends Application {
     private Game game;
     PresentationScreen startScreen;
     RecordScreen recordScreen;
-    public static SoundPlay soundPlay;
+    public static SoundInterface soundPlay;
     private AnimationPedinaMove anim;
     FXBoard fxb;
     public static boolean debug;
@@ -53,9 +54,7 @@ public class BCDraugthsApp extends Application {
     ImageView description;
     static double scale = 0.78;
     int level;
-	public static final String MUSIC_SIGLA="muppet.mp3";
-	public static final String MUSIC_CELEBRATION="270545_jingle-win-01.wav";
-	public static final String EFFECT_HEY="416507_hey.wav";
+
 
 
 
@@ -98,7 +97,7 @@ public class BCDraugthsApp extends Application {
         
         log.info("level system="+level);
         log.info("level system="+debug);
-
+      	soundPlay=SoundPlay.getSoundInterfaceInstance();
 
         
 
@@ -241,8 +240,8 @@ public static void main(String[] args) {
   }
   public void drawStartScreen()throws Exception{
         
-      	soundPlay=new SoundPlay();
-	  	soundPlay.playSoundLoop(MUSIC_SIGLA);
+
+	  	soundPlay.playSoundLoop(SoundInterface.MUSIC_SIGLA);
         root.getChildren().remove(fxb);
         fxb=new FXBoard(level,this);
         startScreen=new StartScreen();
@@ -251,7 +250,7 @@ public static void main(String[] args) {
             
             @Override
             public void handle(MouseEvent event) {
-                    soundPlay.stopSound(MUSIC_SIGLA);
+                    soundPlay.stopSound(SoundInterface.MUSIC_SIGLA);
                     fxb.startLevel(level);
                     root.getChildren().remove(startScreen);
                     root.getChildren().add(fxb);                
@@ -259,10 +258,13 @@ public static void main(String[] args) {
             }
         });      
   }
+  
+  
+  
 public void drawEndScreen()throws Exception{
             
             
-            soundPlay.playSound(MUSIC_CELEBRATION,1);
+            soundPlay.playSound(SoundInterface.MUSIC_CELEBRATION,1);
 
             
             root.getChildren().remove(fxb);      
@@ -278,7 +280,7 @@ public void drawEndScreen()throws Exception{
                 		if(event.getButton()==MouseButton.PRIMARY) {
                 			flip=!flip;
                 			startScreen.setVisibleBack(flip);
-                            soundPlay.playSound(EFFECT_HEY,1);
+                            soundPlay.playSound(SoundInterface.EFFECT_HEY,1);
                 			
                 		}else {
                             root.getChildren().remove(startScreen);

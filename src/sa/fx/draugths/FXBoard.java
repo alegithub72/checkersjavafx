@@ -427,7 +427,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                 		   try {
 							app.drawEndScreen();
 						} catch (Exception e) {
-							BCDraugthsApp.log.info(e.getStackTrace().toString());
+							BCDraugthsApp.log.info(e.getMessage());
 						}
 
                 	   }else
@@ -438,7 +438,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
                 	   try {
 						app.levelUp(level,backGround.getPoint());
 					} catch (Exception e) {
-						BCDraugthsApp.log.info(e.getStackTrace().toString());
+						BCDraugthsApp.log.info(e.getMessage());
 					}
                    }
 

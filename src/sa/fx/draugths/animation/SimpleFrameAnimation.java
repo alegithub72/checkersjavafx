@@ -13,7 +13,7 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.sprite.Sprite;
-import sa.fx.draugths.utility.SoundPlay;
+import sa.fx.draugths.utility.SoundInterface;
 
 
 /**
@@ -22,7 +22,7 @@ import sa.fx.draugths.utility.SoundPlay;
  */
 public class SimpleFrameAnimation extends Transition{
 	FrameInfo[]  frames;
-    String sound;
+    int soundCode;
     Sprite sprite;
     Move move;
 
@@ -38,21 +38,21 @@ public class SimpleFrameAnimation extends Transition{
     boolean startMusic=true;
 
     
-    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,Move move,boolean cyclic,long interval,String sound) {
+    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,Move move,boolean cyclic,long interval,int soundCode) {
     	this.frames=frames;
         this.sprite = sprite;
         this.move=move;
-        this.sound=sound;
+        this.soundCode=soundCode;
         this.ciclyc=cyclic;
         before=System.currentTimeMillis();
         this.interval=interval;
         addEndHandler();
     }
-    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,boolean cyclic,long interval,String sound) {
+    public SimpleFrameAnimation(FrameInfo[] frames,Sprite sprite,boolean cyclic,long interval,int soundCode) {
     	this.frames=frames;
         this.sprite = sprite;
         this.move=null;
-        this.sound=sound;
+        this.soundCode=soundCode;
         this.ciclyc=cyclic;
         before=System.currentTimeMillis();
         this.interval=interval;
@@ -82,14 +82,15 @@ public class SimpleFrameAnimation extends Transition{
        if(startMusic) {
     	   int times=1;
            if(
-        	this.sound==SoundPlay.FIRE|| 
-        	this.sound==SoundPlay.SPEEDY_BITE ||
-        	this.sound==SoundPlay.CLOPETE ||
-        	this.sound==SoundPlay.WING ||
-        	this.sound==SoundPlay.CLOPETE_DOUBLE||
-        	this.sound==SoundPlay.MOVESPACESOLDIER ) 
+        	this.soundCode==SoundInterface.FIRE|| 
+        	this.soundCode==SoundInterface.SPEEDY_BITE ||
+        	this.soundCode==SoundInterface.CLOPETE ||
+        	this.soundCode==SoundInterface.WING ||
+        	this.soundCode==SoundInterface.CLOPETE_DOUBLE||
+        	this.soundCode==SoundInterface.MOVESPACESOLDIER ||
+        	this.soundCode==SoundInterface.JETPACK) 
               times =AudioClip.INDEFINITE;
-           	   BCDraugthsApp.soundPlay.playSound(sound,times);
+           	   BCDraugthsApp.soundPlay.playSound(soundCode,times);
                startMusic=false;
            }
            
@@ -133,7 +134,7 @@ public class SimpleFrameAnimation extends Transition{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				 BCDraugthsApp.soundPlay.stopSound(sound);
+				 BCDraugthsApp.soundPlay.stopSound(soundCode);
 				  event.consume();
 				
 			}

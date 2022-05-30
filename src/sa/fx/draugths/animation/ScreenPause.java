@@ -30,7 +30,7 @@ public class ScreenPause extends Transition{
                 try {
 					i.goAhead();
 				} catch (Exception e) {
-					BCDraugthsApp.log.info(e.getStackTrace().toString());
+					BCDraugthsApp.log.info(e.getMessage());
 				}
             }
             

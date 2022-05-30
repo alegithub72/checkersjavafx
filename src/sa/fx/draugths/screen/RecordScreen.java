@@ -43,7 +43,7 @@ public class RecordScreen  extends Parent{
     	try {
 			prop.load(loadCodedFile("file1"));
 		} catch (IOException e) {
-			BCDraugthsApp.log.info(e.getStackTrace().toString());
+			BCDraugthsApp.log.info(e.getMessage());
 		}
 
         players=ordredrecordsPlayers();
@@ -126,15 +126,17 @@ public class RecordScreen  extends Parent{
 				fileOutputStream.write(~b);
 			}
 			fileOutputStream.flush();
-		} catch (IOException e) {
-			BCDraugthsApp.log.info(e.getStackTrace().toString());
+		} catch (Exception e) {
+			BCDraugthsApp.log.info(e.getMessage());
 		} finally {
-			byteArrayInputStream.close();
-			fileOutputStream.close();
+			if(fileOutputStream!=null)fileOutputStream.close();
+			if(byteArrayInputStream!=null)byteArrayInputStream.close();
+
 		}
 
     }
-public void saveRecordPlayers() {
+public void saveRecordPlayers(){
+	ByteArrayOutputStream arrayOutputStream=null;
     try {
     	for (Iterator iterator = players.iterator(); iterator.hasNext();) {
 			RecordPlayer recordPlayer = (RecordPlayer) iterator.next();
@@ -144,12 +146,19 @@ public void saveRecordPlayers() {
 	        prop.replace("record"+recordPlayer.getI()+".points",""+ recordPlayer.getPoints());
 
 		}
-    	ByteArrayOutputStream arrayOutputStream=new ByteArrayOutputStream();
+    	arrayOutputStream=new ByteArrayOutputStream();
     	prop.store(arrayOutputStream,"Nuovo Tabella Record" );
     	storeCodedFile(arrayOutputStream,"file1");
 
 	} catch (Exception e) {
-		BCDraugthsApp.log.info(e.getStackTrace().toString());
+		BCDraugthsApp.log.info(e.getMessage());
+	}finally {
+		try {
+			if(arrayOutputStream!=null) arrayOutputStream.close();
+		} catch (IOException e) {
+			BCDraugthsApp.log.info(e.getMessage());
+			
+		}
 	}
 }
 public   List<RecordPlayer> ordredrecordsPlayers() {

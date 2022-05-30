@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>checkersfx</groupId>
+	<artifactId>chekcersfx</artifactId>
+	<version>4.2</version>
+	<packaging>jar</packaging>
+	<name>Chekcers Invader</name>
+	<!-- https://search.maven.org https://repository.apache.org https://mvnrepository.com -->
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<openjdk.version>17-ea+11</openjdk.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- <maven.compiler.source>16</maven.compiler.source> <maven.compiler.target>16</maven.compiler.target> -->
+
+	</properties>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub alegithub72 Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/alegithub72/checkersjavafx</url>
+		</repository>
+	</distributionManagement>
+	<dependencies>
+		<dependency>
+			<groupId>checkersengine</groupId>
+			<artifactId>checkersengine</artifactId>
+			<version>3.2</version>
+			<scope>compile</scope>
+			<!--systemPath>${project.basedir}/lib/CheckersEngine.jar</systemPath -->
+		</dependency>
+
+		<!--dependency> <groupId>eu.agrosense.client</groupId> <artifactId>util-javafx</artifactId> 
+			<version>14.06-beta</version> </dependency -->
+
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>openjdk</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-base</artifactId>
+					<version>${openjdk.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-graphics</artifactId>
+					<version>${openjdk.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-fxml</artifactId>
+					<version>${openjdk.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-web</artifactId>
+					<version>${openjdk.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-controls</artifactId>
+					<version>${openjdk.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-swing</artifactId>
+					<version>${openjdk.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-media</artifactId>
+					<version>${openjdk.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<!-- configuration> <release>11</release> </configuration -->
+			</plugin>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.3</version>
+				<configuration>
+					<mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.zenjava</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>8.8.3</version>
+
+				<configuration>
+					<mainClass>sa.fx.draugths.BCDraugthsApp</mainClass>
+					<nativeReleaseVersion>${project.version}</nativeReleaseVersion>
+					<vendor>sagame</vendor>
+					<SetupIconFile>install\package\windows\wizard-setup.ico</SetupIconFile>
+					<appName>cinvaders</appName>
+					<deployDir>install</deployDir>
+					<skipNativeVersionNumberSanitizing>true</skipNativeVersionNumberSanitizing>
+					<verbose>true</verbose>
+				</configuration>
+			</plugin>
+			<!-- Calling mvn jfx:jar creates your javafx-application-jar inside target/jfx/app/yourapp-jfx.jar, 
+				or even creates native launcher (like EXE-file) when calling mvn jfx:native. -->
+		</plugins>
+		<directory>target</directory>
+		<outputDirectory>target/classes</outputDirectory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+		<sourceDirectory>src</sourceDirectory>
+		<scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>
+		<testSourceDirectory>test/</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>test/resources</directory>
+			</testResource>
+		</testResources>
+	</build>
+</project>

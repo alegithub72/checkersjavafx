@@ -29,7 +29,7 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.ScreenPause;
 import sa.fx.draugths.animation.ScreenPauseInterface;
-import sa.fx.draugths.utility.SoundPlay;
+import sa.fx.draugths.utility.SoundInterface;
 
 
 /**
@@ -250,7 +250,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     public void updatePoint(int value) {
         this.point = this.point + value;
         score.setText("" + this.point);
-        BCDraugthsApp.soundPlay.playSound(SoundPlay.ACHW, 1);
+        BCDraugthsApp.soundPlay.playSound(SoundInterface.ACHW, 1);
 
       
       Animation t=new Transition() {
