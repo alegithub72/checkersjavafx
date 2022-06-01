@@ -98,7 +98,7 @@ public class SoldierPiece extends SpritePiece {
 				  if(m.getType()==Move.EAT) { 
 					  
 					  BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
-					  fireEvent(new EventRemoveEatPiece(eated, fxBoard,EventRemoveEatPiece.REMOVE_PIECE_EVENT));
+					  fireEvent(new EventRemoveEatPiece(eated, eated.getParent(),EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
 
 				  }
@@ -501,7 +501,7 @@ public class SoldierPiece extends SpritePiece {
                 draugthTransform==false) {
             draugthTransform=true;
             sp=new SoldierPiece(DRAUGTH_SOLDIER_IMAGE, this.piece, FXBoard.boardHW, this.getFxBoard());       
-            BCDraugthsApp.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
+            FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
 
             sp.setDraugthTransform(true);
             //buildFrameImages();

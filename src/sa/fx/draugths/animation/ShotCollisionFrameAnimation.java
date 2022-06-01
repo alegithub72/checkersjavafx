@@ -46,7 +46,7 @@ public class ShotCollisionFrameAnimation extends SimpleFrameAnimation {
 				Bounds targetSceneBound = target.localToScene(target.getBoundsInLocal());
 				if (pSceneBound.intersects(targetSceneBound)) {
 					BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
-					sprite.fireEvent(new EventEatAnimPiece(target,target.getFxBoard() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
+					sprite.fireEvent(new EventEatAnimPiece(target,target.getParent() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
 					once = true;
 					shot.setVisible(false);
 

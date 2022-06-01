@@ -7,141 +7,97 @@ package sa.fx.draugths;
 
 
 
-import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
+
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.gluonhq.attach.util.Platform;
-import com.gluonhq.charm.glisten.application.AppManager;
-import com.gluonhq.charm.glisten.control.AppBar;
-import com.gluonhq.charm.glisten.mvc.View;
-
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sa.fx.draugths.animation.AnimationPedinaMove;
-import sa.fx.draugths.screen.EndScreen;
-import sa.fx.draugths.screen.EndScreenII;
-import sa.fx.draugths.screen.PresentationScreen;
-import sa.fx.draugths.screen.RecordScreen;
-import sa.fx.draugths.screen.StartScreen;
 import sa.fx.draugths.utility.SoundInterface;
-import sa.fx.draugths.utility.SoundPlay;
-import sa.fx.draugths.utility.SoundPlayMobile;
 import sa.gameboard.core.Game;
 /**
  *
  * @author Alessio Sardaro
  */
 public class BCDraugthsApp extends Application {
-	private final AppManager appManager = AppManager.initialize(this::postInit);
-	private Game game;
-	PresentationScreen startScreen;
 
-	RecordScreen recordScreen;
+	private Game game;
+
 
 	static public SoundInterface soundplay=null;
-	private AnimationPedinaMove anim;
+
 	FXBoard fxb;
 	public static boolean debug;
 	public static boolean loadScenario;
 	public static boolean tracepath;
 	public static java.util.logging.Logger log = Logger.getAnonymousLogger();
-	// PathTransition pathTransition;
-	Group root;
-	// RotateTransition rotateTransition;
+
 	public String confirmCommand;
 	Stage primaryStage;
-	ImageView description;
+
 	static double scale = 0.78;
 	int level;
-	public static final String MUSIC_SIGLA = "muppet.wav";
-	public static final String MUSIC_CELEBRATION = "270545_jingle-win-01.wav";
-	public static final String EFFECT_HEY = "416507_hey.wav";
 
-	void waitAnimation() {
-		try {
-			if (anim != null) {
-				anim.wait();
-			}
-		} catch (InterruptedException ex) {
-			// Logger.getLogger(FXAIPlayer1.class.getName()).log(Level.SEVERE, null, ex);
-			ex.printStackTrace();
-		}
-		/// if(anim!=null)
-		// while(anim.getStatus()==Animation.Status.RUNNING)System.out.println("runnigggg");
 
-	}
 
 
     @Override
     public void init() {
-        appManager.addViewFactory(HOME_VIEW, () -> {
+
             VBox controls = new VBox(15.0);
             controls.setAlignment(Pos.CENTER);
   
 
-            View view = new View(controls) {
-                @Override
-                protected void updateAppBar(AppBar appBar) {
-                	appBar.setStyle("text-align: center");
-                	appBar.applyCss();
-                    appBar.setTitleText("Gluon Mobile FX Game:Checkers Invader ");
-                }
-            };
+            BorderPane view = new BorderPane(controls);
             Button button = new Button("Start the Game!");
             ImageView icon=new ImageView("cinvaders.png");
             icon.setFitHeight(16);
             icon.setFitWidth(16);
             button.setGraphic(icon);
             button.setOnAction(e -> {
+            	fxb.setView(view);
         		Background focusBackground = new Background( new BackgroundFill( Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY ));
         		view.setBackground(focusBackground);
-        		view.setCenter(root);
-        		view.getAppManager().getAppBar().setVisible(false);
+        		view.setCenter(fxb.getRoot());
+
         		view.setVisible(true);
             });
             controls.getChildren().add(button);
-            return view;
-        });
+
+
     }
     
     private void postInit(Scene scene){
         //Swatch.LIGHT_GREEN.assignTo(scene);
-		initDama();
-		root = new Group();
-		drawStartScreen();
+
 		scene.setFill(Color.BLACK);
 		System.out.println("1)" + scene.getHeight() + "," + scene.getWidth());
 		double scaleX = scene.getWidth() / 800;
 		double scaleY = scene.getHeight() / 850;
 		if(scaleX<1) {
-			root.setScaleX(scaleX);
+			fxb.getRoot().setScaleX(scaleX);
 			double transalteX = ((1d - scaleX) * 800) / 2;
-			root.setTranslateX(-transalteX);
+			fxb.getRoot().setTranslateX(-transalteX);
 			System.out.println("1translate)" + transalteX );
 		}
 		
 		if(scaleY<1) {
-			root.setScaleY(scaleY);
+			fxb.getRoot().setScaleY(scaleY);
 			double transalteY = ((1d - scaleY) * 800) / 2;
-			root.setTranslateY(-transalteY);
+			fxb.getRoot().setTranslateY(-transalteY);
 			System.out.println("1translate)"+ transalteY);
 		}
 		System.out.println("1scale)" + scaleX + "," + scaleY);
@@ -192,8 +148,22 @@ public class BCDraugthsApp extends Application {
 	
 	
     @Override
-    public void start(Stage stage) {
-        appManager.start(stage);
+    public void start(Stage primaryStage) {
+		initDama();
+
+		fxb = new FXBoard(level);
+		
+		fxb.drawStartScreen();
+        Scene scene = new Scene(fxb.getRoot(),fxb.getStartScreen().getWidthScreen()-12
+                ,fxb.getStartScreen().getHeightScreen()-18, Color.BLACK);
+       postInit(scene);
+       primaryStage.setTitle("Checkers Invader");
+       primaryStage.setScene(scene);
+       primaryStage.getIcons().add(new Image("cinvaders.png"));
+       primaryStage.setResizable(false);
+       
+       //primaryStage.initStyle(StageStyle.TRANSPARENT);
+       primaryStage.show();
     }
 	
 	/*
@@ -219,17 +189,7 @@ public class BCDraugthsApp extends Application {
     
 
 
-	public void levelUp(int level, int point) throws Exception {
-		root.getChildren().remove(fxb);
 
-		log.info("system level=" + level);
-		fxb = new FXBoard(level, this);
-		fxb.startLevel(point);
-
-		root.getChildren().remove(startScreen);
-		root.getChildren().add(fxb);
-
-	}
 
 	public void playMousePlayer() {
 		game.makeHumanMove();
@@ -253,167 +213,11 @@ public class BCDraugthsApp extends Application {
 
 
 
-	public void drawRecordScreen(int points) {
 
-		root.getChildren().remove(fxb);
-		BCDraugthsApp.log.info("index of fxb =" + root.getChildren().contains(fxb));
-		// fxb=new FXBoardClass(0, this);
 
-		recordScreen = new RecordScreen();
-		char[] recordName = "AAA".toCharArray();
 
-		if (!recordScreen.addRecordPlayer(new String(recordName), points)) {
-			recordScreen.drawTableRecord();
-			root.getChildren().add(recordScreen);
 
-			recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
 
-					if (event.getButton() == MouseButton.PRIMARY)
-						resetGame();
-				}
-			});
-
-		} else {
-
-			recordScreen.drawTableRecord();
-			root.getChildren().add(recordScreen);
-			recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				int only3 = 0;
-				char name = 'A';
-
-				@Override
-				public void handle(MouseEvent event) {
-					if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() > 1) {
-						if (only3 <= 2) {
-							recordName[only3] = name;
-							only3++;
-							name = 'A';
-							recordScreen.addRecordPlayer(new String(recordName), points);
-							recordScreen.drawTableRecord();
-						} else {
-							resetGame();
-							recordScreen.saveRecordPlayers();
-							event.consume();
-							if (debug)
-								log.info("----FINE------>" + name + "-->" + only3 + "----->" + new String(recordName));
-						}
-
-						if (debug)
-							log.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
-
-					} else {
-
-						if (only3 <= 2) {
-							name++;
-							if (name > 'Z')
-								name = 'A';
-							recordName[only3] = name;
-
-						}
-						if (debug)
-							log.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
-						recordScreen.addRecordPlayer(new String(recordName), points);
-						recordScreen.drawTableRecord();
-					}
-				}
-
-			});
-		}
-
-	}
-
-	private void resetGame() {
-
-		try {
-			// music.play();
-			root.getChildren().remove(recordScreen);
-			level = 1;
-			drawStartScreen();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public void drawStartScreen()  {
-		try {
-
-			root.getChildren().remove(fxb);
-	
-				fxb = new FXBoard(level, this);
-	
-			startScreen = new StartScreen();
-			root.getChildren().add(startScreen);
-			startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
-	
-				@Override
-				public void handle(MouseEvent event) {
-					SoundPlay.getSoundInterfaceInstance().stopSound(SoundInterface.MUSIC_SIGLA);
-					fxb.startLevel(level);
-					root.getChildren().remove(startScreen);
-					root.getChildren().add(fxb);
-					event.consume();
-				}
-			});
-			startScreen.setOnTouchPressed(new EventHandler<TouchEvent>() {
-				
-				@Override
-				public void handle(TouchEvent event) {
-					SoundPlay.getSoundInterfaceInstance().stopSound(SoundInterface.MUSIC_SIGLA);
-					fxb.startLevel(level);
-					root.getChildren().remove(startScreen);
-					root.getChildren().add(fxb);
-					event.consume();
-				}
-			});			
-			getSoundInterfaceInstance().playSoundLoop(SoundInterface.MUSIC_SIGLA);			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}
-	public static SoundInterface getSoundInterfaceInstance() {
-		if(Platform.isDesktop())
-			return SoundPlay.getSoundInterfaceInstance();
-		else
-		 return SoundPlayMobile.getSoundInterfaceInstance();
-		
-	}
-	public void drawEndScreen() throws Exception {
-
-		getSoundInterfaceInstance().playSound(SoundInterface.MUSIC_CELEBRATION, 1);
-
-		root.getChildren().remove(fxb);
-		startScreen = new EndScreen();
-		EndScreenII ii = new EndScreenII();
-		root.getChildren().add(ii);
-		root.getChildren().add(startScreen);
-
-		root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			boolean flip = true;
-
-			@Override
-			public void handle(MouseEvent event) {
-				if (event.getButton() == MouseButton.PRIMARY) {
-					flip = !flip;
-					startScreen.setVisibleBack(flip);
-					 getSoundInterfaceInstance().playSound(SoundInterface.EFFECT_HEY, 1);
-
-				} else {
-					root.getChildren().remove(startScreen);
-					root.getChildren().remove(ii);
-					root.setOnMouseClicked(null);
-					drawRecordScreen(level);
-				}
-
-				event.consume();
-			}
-		});
-
-	}
 
 
 

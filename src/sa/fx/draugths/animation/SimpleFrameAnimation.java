@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
+import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.sprite.Sprite;
 import sa.fx.draugths.utility.SoundPlay;
 
@@ -86,11 +87,11 @@ public class SimpleFrameAnimation extends Transition{
                    this.sound==SoundPlay.SPEEDY_BITE ||this.sound==SoundPlay.CLOPETE ||this.sound==SoundPlay.CLOPETE_DOUBLE||this.sound==SoundPlay.MOVESPACESOLDIER ) {
 
                
-        	   BCDraugthsApp.getSoundInterfaceInstance().playSoundLoop(sound);
+        	   FXBoard.getSoundInterfaceInstance().playSoundLoop(sound);
            }
            
 
-           BCDraugthsApp.getSoundInterfaceInstance().playSound(sound,1);
+           FXBoard.getSoundInterfaceInstance().playSound(sound,1);
                startMusic=false;
            }
            

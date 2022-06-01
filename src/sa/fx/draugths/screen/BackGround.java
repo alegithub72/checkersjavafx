@@ -251,7 +251,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         this.point = this.point + value;
         score.setText("" + this.point);
 
-        BCDraugthsApp.getSoundInterfaceInstance().playSound(SoundInterface.ACHW, 1);
+        FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHW, 1);
       Animation t=new Transition() {
                 {
                     setCycleCount(1);

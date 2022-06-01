@@ -94,7 +94,7 @@ public class AlienPiece extends SpritePiece {
             draugthTransform=true;
             sp=new AlienPiece(DRAUGTH_ALIEN_IMAGE,this.piece, FXBoard.boardHW, this.getFxBoard()); 
             
-            BCDraugthsApp.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
+            FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
 
             sp.setDraugthTransform(true);
         }
@@ -206,7 +206,7 @@ public class AlienPiece extends SpritePiece {
 			@Override
 			public void handle(ActionEvent event) {
 				BCDraugthsApp.log.info("FIRE EventEatAnimPiece.KILLPLAY_EVENT at end on animation...:"+this);
-				fireEvent(new EventEatAnimPiece(eated,fxBoard,m,EventEatAnimPiece.KILLPLAY_EVENT));
+				fireEvent(new EventEatAnimPiece(eated,eated.getParent(),m,EventEatAnimPiece.KILLPLAY_EVENT));
             	
 				
 			}
@@ -294,7 +294,7 @@ public class AlienPiece extends SpritePiece {
 			@Override
 			public void handle(ActionEvent event) {
 				BCDraugthsApp.log.info("FIRE EventEatAnimPiece.KILLPLAY_EVENT At end of animation...");
-            	fireEvent(new EventEatAnimPiece(eated,fxBoard ,m, EventEatAnimPiece.KILLPLAY_EVENT));
+            	fireEvent(new EventEatAnimPiece(eated,eated.getParent() ,m, EventEatAnimPiece.KILLPLAY_EVENT));
 				
 			}
 		});

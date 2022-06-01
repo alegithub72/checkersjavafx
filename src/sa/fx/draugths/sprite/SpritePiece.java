@@ -78,7 +78,7 @@ public abstract class SpritePiece extends Sprite{
 				  if(m.getType()==Move.EAT) { 
 					  
 					  BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
-					  fireEvent(new EventRemoveEatPiece(eated, fxBoard,EventRemoveEatPiece.REMOVE_PIECE_EVENT));
+					  fireEvent(new EventRemoveEatPiece(eated, eated.getParent(),EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
 
 				  }
@@ -198,7 +198,7 @@ public abstract class SpritePiece extends Sprite{
     }
     public void stopPlayAnimation() {
 
-        BCDraugthsApp.log.info("PL)Stop transition:"+ pltransition.getStatus()+" pltransition=:"+pltransition);
+    	BCDraugthsApp.log.info("PL)Stop transition:"+ pltransition.getStatus()+" pltransition=:"+pltransition);
         pltransition.stop();
         setFrame(0);
 
