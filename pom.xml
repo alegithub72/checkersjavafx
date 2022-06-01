@@ -16,6 +16,7 @@
 		<charm.version>6.1.0</charm.version>
 		<attach.version>4.0.14</attach.version>
 		<main.class>sa.fx.draugths.BCDraugthsApp</main.class>
+
 	</properties>
 	<distributionManagement>
 		<repository>
@@ -102,6 +103,10 @@
 			<artifactId>audio</artifactId>
 			<version>${attach.version}</version>
 		</dependency>
+		<!--dependency> <groupId>com.gluonhq.media</groupId> <artifactId>media</artifactId> 
+			<version>${attach.version}</version> </dependency -->
+		<!--dependency> <groupId>eu.agrosense.client</groupId> <artifactId>util-javafx</artifactId> 
+			<version>14.06-beta</version> </dependency -->
 	</dependencies>
 	<build>
 		<plugins>
@@ -110,6 +115,15 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
 				<!-- configuration> <release>11</release> </configuration -->
+			</plugin>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.8</version>
+				<configuration>
+					<mainClass>${main.class}</mainClass>
+					<commandLineArgs>-Dcheckers.level=2 -Dcheckers.debug</commandLineArgs>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.zenjava</groupId>
@@ -124,15 +138,6 @@
 					<deployDir>install</deployDir>
 					<skipNativeVersionNumberSanitizing>true</skipNativeVersionNumberSanitizing>
 					<verbose>true</verbose>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.openjfx</groupId>
-				<artifactId>javafx-maven-plugin</artifactId>
-				<version>0.0.8</version>
-				<configuration>
-					<mainClass>${main.class}</mainClass>
-					<commandLineArgs>-Dcheckers.level=2 -Dcheckers.debug</commandLineArgs>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -164,6 +169,25 @@
 					<!-- 					<javafxStaticSdkVersion>19-ea+4</javafxStaticSdkVersion> -->
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src2</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- Calling mvn jfx:jar creates your javafx-application-jar inside target/jfx/app/yourapp-jfx.jar, 
 				or even creates native launcher (like EXE-file) when calling mvn jfx:native. -->
 		</plugins>
@@ -184,37 +208,15 @@
 				<directory>test/resources</directory>
 			</testResource>
 		</testResources>
+
 	</build>
 	<profiles>
 		<profile>
-			<id>gluon</id>
+			<id>android</id>
 			<properties>
 				<gluonfx.target>android</gluonfx.target>
 				<main.class>sa.fx.draugths.BCDraugthsAndroidApp</main.class>
 			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>build-helper-maven-plugin</artifactId>
-						<version>3.3.0</version>
-						<executions>
-							<execution>
-								<id>add-source</id>
-								<phase>generate-sources</phase>
-								<goals>
-									<goal>add-source</goal>
-								</goals>
-								<configuration>
-									<sources>
-										<source>src2</source>
-									</sources>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
 		</profile>
 	</profiles>
 	<repositories>
