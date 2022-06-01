@@ -501,7 +501,7 @@ public class SoldierPiece extends SpritePiece {
             draugthTransform=true;
 
             sp=new SoldierPiece(DRAUGTH_SOLDIER_IMAGE,"Soldier" ,this.piece, FXBoard.boardHW, this.getFxBoard());       
-            FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
+            FXBoard.SoundSystem.playSound(SoundInterface.ACHB,1);
 
 
             sp.setDraugthTransform(true);

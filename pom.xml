@@ -218,6 +218,13 @@
 				<main.class>sa.fx.draugths.BCDraugthsAndroidApp</main.class>
 			</properties>
 		</profile>
+		<profile>
+			<id>host</id>
+			<properties>
+				<gluonfx.target>host</gluonfx.target>
+				<main.class>sa.fx.draugths.BCDraugthsAndroidApp</main.class>
+			</properties>
+		</profile>		
 	</profiles>
 	<repositories>
 		<repository>

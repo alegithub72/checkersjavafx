@@ -47,7 +47,7 @@ public class MoonSoldier extends SoldierPiece {
             setImage(frameImages);
             buildFrameImages();
 
-            FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
+            FXBoard.SoundSystem.playSound(SoundInterface.ACHB,1);
 
 
         }

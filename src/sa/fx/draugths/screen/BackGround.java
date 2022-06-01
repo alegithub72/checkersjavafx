@@ -252,7 +252,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         score.setText("" + this.point);
 
 
-        FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHW, 1);
+        FXBoard.SoundSystem.playSound(SoundInterface.ACHW, 1);
 
       Animation t=new Transition() {
                 {

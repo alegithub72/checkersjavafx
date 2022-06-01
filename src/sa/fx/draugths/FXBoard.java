@@ -74,7 +74,7 @@ public class FXBoard  implements GraficBoardInterface  {
 	private List<SpritePiece> pedinaList[];
 	private Group root;
 	private Group  zGroup;
-	
+	public static SoundInterface SoundSystem;
 	private PresentationScreen startScreen;
 	private RecordScreen recordScreen;
     private BackGround backGround;
@@ -94,7 +94,8 @@ public class FXBoard  implements GraficBoardInterface  {
 
 	
 
-	
+
+
 	public PresentationScreen getStartScreen() {
 		return startScreen;
 	}
@@ -622,7 +623,7 @@ public class FXBoard  implements GraficBoardInterface  {
 					event.consume();
 				}
 			});			
-			getSoundInterfaceInstance().playSoundLoop(SoundInterface.MUSIC_SIGLA);			
+			SoundSystem.playSoundLoop(SoundInterface.MUSIC_SIGLA);			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -630,12 +631,7 @@ public class FXBoard  implements GraficBoardInterface  {
 	}    
 	
 
-	public static SoundInterface getSoundInterfaceInstance() {
 
-			return SoundPlay.getSoundInterfaceInstance();
-
-
-	}	
 	private void resetGame() {
 
 		try {
@@ -653,7 +649,7 @@ public class FXBoard  implements GraficBoardInterface  {
 	
 	public void drawEndScreen() throws Exception {
 		root.getChildren().removeAll();
-		getSoundInterfaceInstance().playSound(SoundInterface.MUSIC_CELEBRATION, 1);
+		SoundSystem.playSound(SoundInterface.MUSIC_CELEBRATION, 1);
 
 		
 		startScreen = new EndScreen();
@@ -669,7 +665,7 @@ public class FXBoard  implements GraficBoardInterface  {
 				if (event.getButton() == MouseButton.PRIMARY) {
 					flip = !flip;
 					startScreen.setVisibleBack(flip);
-					 getSoundInterfaceInstance().playSound(SoundInterface.EFFECT_HEY, 1);
+					 SoundSystem.playSound(SoundInterface.EFFECT_HEY, 1);
 
 				} else {
 					root.getChildren().remove(startScreen);

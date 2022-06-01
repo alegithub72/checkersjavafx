@@ -15,7 +15,6 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.utility.BoardHW;
 import sa.fx.draugths.utility.SoundInterface;
@@ -50,7 +49,7 @@ public class MonsterSprite extends AlienPiece {
             setImage(frameImages);
             buildFrameImages();
 
-            FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
+            FXBoard.SoundSystem.playSound(SoundInterface.ACHB,1);
 
 
         }

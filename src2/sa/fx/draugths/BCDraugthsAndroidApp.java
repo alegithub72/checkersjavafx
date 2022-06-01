@@ -31,6 +31,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.fx.draugths.animation.AnimationPedinaMove;
 import sa.fx.draugths.utility.SoundInterface;
+import sa.fx.draugths.utility.SoundPlay;
+import sa.fx.draugths.utility.SoundPlayMobile;
 import sa.gameboard.core.Game;
 /**
  *
@@ -56,7 +58,12 @@ public class BCDraugthsAndroidApp extends Application {
 	static double scale = 0.78;
 	int level;
 
+	private static SoundInterface getSoundInterfaceInstance() {
 
+		return SoundPlayMobile.getSoundInterfaceInstance();
+
+
+	}	
 
 
     @Override
@@ -86,6 +93,7 @@ public class BCDraugthsAndroidApp extends Application {
         		Background focusBackground = new Background( new BackgroundFill( Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY ));
         		view.setBackground(focusBackground);
         		view.setCenter(fxb.getRoot());
+
         		view.getAppManager().getAppBar().setVisible(false);
         		view.setVisible(true);
             	//sceneX.setRoot(fxb.getRoot());
@@ -98,7 +106,7 @@ public class BCDraugthsAndroidApp extends Application {
     private void postInit(Scene scene){
         //Swatch.LIGHT_GREEN.assignTo(scene);
 		initDama();
-
+		FXBoard.SoundSystem=getSoundInterfaceInstance();
 		fxb = new FXBoard(level);
 		
 		fxb.drawStartScreen();

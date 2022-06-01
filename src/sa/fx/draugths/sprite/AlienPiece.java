@@ -97,7 +97,7 @@ public class AlienPiece extends SpritePiece {
 
             sp=new AlienPiece(this.piece,DRAUGTH_ALIEN_IMAGE,"SkyALien", FXBoard.boardHW, this.getFxBoard()); 
             
-            FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
+            FXBoard.SoundSystem.playSound(SoundInterface.ACHB,1);
 
 
             sp.setDraugthTransform(true);
