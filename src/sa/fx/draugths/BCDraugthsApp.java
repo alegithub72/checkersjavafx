@@ -6,17 +6,19 @@
 package sa.fx.draugths;
 
 
+
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.fx.draugths.animation.AnimationPedinaMove;
@@ -28,13 +30,12 @@ import sa.fx.draugths.screen.StartScreen;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
 import sa.gameboard.core.Game;
-
-
 /**
  *
- * @author  Alessio Sardaro
+ * @author Alessio Sardaro
  */
 public class BCDraugthsApp extends Application {
+
 
     private Game game;
     PresentationScreen startScreen;
@@ -61,16 +62,6 @@ public class BCDraugthsApp extends Application {
 
 
 
-
-
-
-
-
-
-
-
-
-    
     public void initDama() {
 
         if(System.getProperty("checkers.debug")!=null)
@@ -99,20 +90,23 @@ public class BCDraugthsApp extends Application {
         log.info("level system="+debug);
       	soundPlay=SoundPlay.getSoundInterfaceInstance();
 
-        
-
-
     }
-
+	
+	
+	
+	
+	
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
+		initDama();
 
-        initDama();
-        root=new Group();
+		fxb = new FXBoard(level);
+		
+		fxb.drawStartScreen();
+        Scene scene = new Scene(fxb.getRoot(),fxb.getStartScreen().getWidthScreen()-12
+                ,fxb.getStartScreen().getHeightScreen()-18, Color.BLACK);
 
-        drawStartScreen();
-        Scene scene = new Scene(root,startScreen.getWidthScreen()-12
-                ,startScreen.getHeightScreen()-18, Color.BLACK);
+
        primaryStage.setTitle("Checkers Invader");
        primaryStage.setScene(scene);
        primaryStage.getIcons().add(new Image("cinvaders.png"));
@@ -120,44 +114,64 @@ public class BCDraugthsApp extends Application {
        
        //primaryStage.initStyle(StageStyle.TRANSPARENT);
        primaryStage.show();
-       
-
     }
-   public void levelUp(int level,int point)throws Exception{
-            root.getChildren().remove(fxb);
-
-            log.info("system level="+level);
-            fxb=new FXBoard(level,this);
-            fxb.startLevel(point);
-
-            root.getChildren().remove(startScreen);
-            root.getChildren().add(fxb);         
-
-   }
-
-
-
-
-    public void playMousePlayer() {
-        game.makeHumanMove();
-    }
-
-
-public static void main(String[] args) {
-    launch(args);
-}
+	
+	/*
+	 * @Override public void start(Stage primaryStage) throws Exception{
+	 * 
+	 * initDama(); root=new Group();
+	 * 
+	 * drawStartScreen(); Scene scene = new
+	 * Scene(root,startScreen.getWidthScreen()-12 ,startScreen.getHeightScreen()-18,
+	 * Color.BLACK); primaryStage.setTitle("Checkers Invader");
+	 * primaryStage.setScene(scene); primaryStage.getIcons().add(new
+	 * Image("cinvaders.png")); primaryStage.setResizable(false);
+	 * 
+	 * //primaryStage.initStyle(StageStyle.TRANSPARENT); primaryStage.show();
+	 * 
+	 * 
+	 * }
+	 */
+	
 
 
-    public void restartGame() {
-        try {
-            stop();
-            start(primaryStage);
-          
-        } catch (Exception ex) {
-            log.info(ex.getMessage());
-        }
+    
+    
 
-    }
+
+
+
+	public void playMousePlayer() {
+		game.makeHumanMove();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	public void restartGame() {
+		try {
+			stop();
+			start(primaryStage);
+
+		} catch (Exception ex) {
+			log.info(ex.getMessage());
+		}
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -243,7 +257,7 @@ public static void main(String[] args) {
 
 	  	soundPlay.playSoundLoop(SoundInterface.MUSIC_SIGLA);
         root.getChildren().remove(fxb);
-        fxb=new FXBoard(level,this);
+        fxb=new FXBoard(level);
         startScreen=new StartScreen();
         root.getChildren().add(startScreen);
         startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -253,7 +267,7 @@ public static void main(String[] args) {
                     soundPlay.stopSound(SoundInterface.MUSIC_SIGLA);
                     fxb.startLevel(level);
                     root.getChildren().remove(startScreen);
-                    root.getChildren().add(fxb);                
+               
                 event.consume();
             }
         });      
@@ -294,4 +308,5 @@ public void drawEndScreen()throws Exception{
             });
                 
   }
+
 }

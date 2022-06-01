@@ -21,8 +21,10 @@ public class ShotDistanceFrameAnimation extends SimpleFrameAnimation{
       boolean  once;
       SpritePiece piece;
 
+
     public ShotDistanceFrameAnimation(FrameInfo[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,int soundCode) {
     	super(frames, piece,move, cyclic, interval, soundCode);
+
     	this.piece=piece;
         once=false;
     }    
@@ -43,7 +45,7 @@ public class ShotDistanceFrameAnimation extends SimpleFrameAnimation{
         	once=true;
         	SpritePiece eated= piece.getFxBoard().getSpritePiece(move.getEat().getI(), move.getEat().getJ(), move.getEat().getColor(), true);
     		BCDraugthsApp.log.info("FIRE EventEatAnimPiece.KILLPLAY_EVENT:"+eated);
-    		piece.getFxBoard().fireEvent(new EventEatAnimPiece(eated,piece.getFxBoard() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
+    		piece.getParent().fireEvent(new EventEatAnimPiece(eated,piece.getParent() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
            
            }    	
     	

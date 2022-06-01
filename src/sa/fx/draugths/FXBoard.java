@@ -13,13 +13,15 @@ import java.util.List;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TouchEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import sa.boardgame.console.imp.AutomaPlayer;
 import sa.boardgame.console.imp.ConsoleRendering;
@@ -35,6 +37,11 @@ import sa.fx.draugths.board.event.EventSelectionPlayerHandler;
 import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
 import sa.fx.draugths.screen.BackGround;
+import sa.fx.draugths.screen.EndScreen;
+import sa.fx.draugths.screen.EndScreenII;
+import sa.fx.draugths.screen.PresentationScreen;
+import sa.fx.draugths.screen.RecordScreen;
+import sa.fx.draugths.screen.StartScreen;
 import sa.fx.draugths.sprite.AlienPiece;
 import sa.fx.draugths.sprite.HelmetSoldierPiece;
 import sa.fx.draugths.sprite.MonsterSprite;
@@ -44,6 +51,8 @@ import sa.fx.draugths.sprite.SkySoldierPiece;
 import sa.fx.draugths.sprite.SoldierPiece;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SoundInterface;
+import sa.fx.draugths.utility.SoundPlay;
 import sa.gameboard.core.Board;
 import sa.gameboard.core.Game;
 import sa.gameboard.core.Piece;
@@ -53,37 +62,81 @@ import sa.gameboard.core.interfaces.GraficBoardInterface;
  *
  * @author Alessio Sardaro
  */
-public class FXBoard extends Parent implements GraficBoardInterface  {
+public class FXBoard  implements GraficBoardInterface  {
 
-    private final List<SpritePiece> pedinaList[];
-    private boolean animationOn = false;
-    private Game game;
-    private SpritePiece select;
-    private Group  zGroup;
-    private FXAIPlayer1 computerPlayer;
-    private FXPMousePlayer mousePlayer;
-    private BCDraugthsApp app;
-    private boolean turn;
-    BackGround backGround;
-    private TextField command;
-    static final  public BoardHW boardHW=  new BoardHW(100, 100); 
-    int level;
+
 	public static final int MAX_WAVE=12;
 	public static final int MAX_LEVEL=9;
+	static final  public BoardHW boardHW=  new BoardHW(100, 100);
+	private Game game;
+    private TextField command;
+	private BorderPane view;
+	private List<SpritePiece> pedinaList[];
+	private Group root;
+	private Group  zGroup;
+	
+	private PresentationScreen startScreen;
+	private RecordScreen recordScreen;
+    private BackGround backGround;
+	
+    private boolean animationOn = false;
+    private SpritePiece select;
     
-    public FXBoard(int l,BCDraugthsApp app)throws Exception {
+    private int level;    
+    private FXAIPlayer1 computerPlayer;
+    private FXPMousePlayer mousePlayer;
+    private boolean turn;
+
+     
+
+
+
+
+	
+
+	
+	public PresentationScreen getStartScreen() {
+		return startScreen;
+	}
+
+	public BorderPane getView() {
+		return view;
+	}
+
+	public void setView(BorderPane view) {
+		this.view = view;
+	}
+
+	public Group getRoot() {
+		return root;
+	}
+
+	public void setRoot(Group root) {
+		this.root = root;
+	}
+	
+	
+
+	public FXBoard(int level) {
+		initLevel(level);
+	}
+    public void initLevel(int level) {
+        try {
+
+        root=new Group();
+        zGroup = new Group();
+        this.animationOn=false;
         this.pedinaList = new LinkedList[2];
         turn=false;
-        this.app=app;
+        this.level=level;
         this.pedinaList[0] = new LinkedList<>();
         this.pedinaList[1] = new LinkedList<>();
-        zGroup = new Group();
 
         String[] part1=new String[]{"p55","0","p35","0","p46","1"
         ,"p24","1","p44","1","p66","0","p15","1","p26","0","p15","0",
         "p77","0","p33","1","p55","0","p04","0","p22","0","p11","0"};
         //    String[] part2=new String[]{""};
-        this.level=l;
+
         BCDraugthsApp.log.info(" level="+level);
             //HBox infoPanel=new HBox();
             computerPlayer = new FXAIPlayer1();
@@ -91,7 +144,9 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             AutomaPlayer automa=new AutomaPlayer(mousePlayer.getColor(), "Automa");
             automa.setCommand(part1);
             
-            game = new Game(automa, computerPlayer,Board.CHECKERS_GAME);
+
+				game = new Game(automa, computerPlayer,Board.CHECKERS_GAME);
+
             //game.setDamaSystem((DamaInterface) this);
             //TODO cambiare le  pedine in base alla wave....
            
@@ -112,7 +167,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
  
             if(game!=null) game.addRenderInterface(this);
-            addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
+            root.addEventHandler( EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
 
     			@Override
     			public void handle(EventPointUpdate event) {
@@ -125,7 +180,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     			}
             	
             });
-            addEventHandler(EventDraugthTransform.DRAUGTH_EVENT, new EventHandler<EventDraugthTransform>() {
+            root.addEventHandler(EventDraugthTransform.DRAUGTH_EVENT, new EventHandler<EventDraugthTransform>() {
 
 				@Override
 				public void handle(EventDraugthTransform event) {
@@ -145,7 +200,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 			});
 
 			
-			addEventHandler(EventRemoveEatPiece.REMOVE_PIECE_EVENT, new EventHandler<EventRemoveEatPiece>() {
+			root.addEventHandler(EventRemoveEatPiece.REMOVE_PIECE_EVENT, new EventHandler<EventRemoveEatPiece>() {
 
 				@Override
 				public void handle(EventRemoveEatPiece event) { //
@@ -160,7 +215,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 				
 			});
 			 
-            addEventHandler(EventEndTurn.END_TURN, new EventHandler<EventEndTurn>() {
+            root.addEventHandler(EventEndTurn.END_TURN, new EventHandler<EventEndTurn>() {
 
 				@Override
 				public void handle(EventEndTurn event) {
@@ -184,7 +239,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 //					event.consume();
 //				}
 //			});
-            addEventHandler(EventEatAnimPiece.KILLPLAY_EVENT,new EventHandler<EventEatAnimPiece>() {
+            root.addEventHandler(EventEatAnimPiece.KILLPLAY_EVENT,new EventHandler<EventEatAnimPiece>() {
 
             	
             	@Override
@@ -201,9 +256,96 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             		}
             	}
 			});
-        
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     }
     
+	public void levelUp(int level, int point) throws Exception {
+		//root.getChildren().remove(this);
+
+		BCDraugthsApp.log.info("system level=" + level);
+		initLevel(level);
+		startLevel(point);
+		view.setCenter(root);
+
+		
+		root.getChildren().remove(startScreen);
+		//root.getChildren().add(fxb);
+
+	}    
+	public void drawRecordScreen(int points) {
+
+
+		// fxb=new FXBoardClass(0, this);
+		root.getChildren().clear();
+		
+		
+		recordScreen = new RecordScreen();
+		char[] recordName = "AAA".toCharArray();
+
+		if (!recordScreen.addRecordPlayer(new String(recordName), points)) {
+			recordScreen.drawTableRecord();
+			root.getChildren().add(recordScreen);
+
+			recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+
+					if (event.getButton() == MouseButton.PRIMARY)
+						resetGame();
+				}
+			});
+
+		} else {
+
+			recordScreen.drawTableRecord();
+			root.getChildren().add(recordScreen);
+			recordScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				int only3 = 0;
+				char name = 'A';
+
+				@Override
+				public void handle(MouseEvent event) {
+					if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() > 1) {
+						if (only3 <= 2) {
+							recordName[only3] = name;
+							only3++;
+							name = 'A';
+							recordScreen.addRecordPlayer(new String(recordName), points);
+							recordScreen.drawTableRecord();
+						} else {
+							resetGame();
+							recordScreen.saveRecordPlayers();
+							event.consume();
+							if (BCDraugthsApp.debug)
+								BCDraugthsApp.log.info("----FINE------>" + name + "-->" + only3 + "----->" + new String(recordName));
+						}
+
+						if (BCDraugthsApp.debug)
+							BCDraugthsApp.log.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
+
+					} else {
+
+						if (only3 <= 2) {
+							name++;
+							if (name > 'Z')
+								name = 'A';
+							recordName[only3] = name;
+
+						}
+						if (BCDraugthsApp.debug)
+							BCDraugthsApp.log.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
+						recordScreen.addRecordPlayer(new String(recordName), points);
+						recordScreen.drawTableRecord();
+					}
+				}
+
+			});
+		}
+
+	}
     private void buildWaveLevel() {
     	 for (int i = 11; i >(11-(waveFromLevel()-1)); i--) {
     		 Piece p=  game.getAI().getBoard().getBlackPieces()[i];
@@ -401,7 +543,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             imageView.setScaleX(1);
             imageView.setScaleY(1);
              level++;
-            getChildren().add(imageView);
+            root.getChildren().add(imageView);
             
         } else if (win == Piece.BLACK) {
             
@@ -414,7 +556,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             imageView.setScaleX(1);
             imageView.setScaleY(1);
             level = 0;
-            getChildren().add(imageView);
+            root.getChildren().add(imageView);
             
         }
             if(winText!=null) imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -425,18 +567,18 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
 
                 	   if(isLastLevel()) {
                 		   try {
-							app.drawEndScreen();
+							drawEndScreen();
 						} catch (Exception e) {
 							BCDraugthsApp.log.info(e.getMessage());
 						}
 
                 	   }else
-                		   app.drawRecordScreen(backGround.getPoint());
+                		   drawRecordScreen(backGround.getPoint());
               
                    }
                    else  {
                 	   try {
-						app.levelUp(level,backGround.getPoint());
+						levelUp(level,backGround.getPoint());
 					} catch (Exception e) {
 						BCDraugthsApp.log.info(e.getMessage());
 					}
@@ -448,6 +590,100 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
             System.gc();
     }
     
+	public void drawStartScreen()  {
+		try {
+
+	
+	
+			startScreen = new StartScreen();
+			root.getChildren().add(startScreen);
+			FXBoard fxb=this;
+			startScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+				@Override
+				public void handle(MouseEvent event) {
+					if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() > 1) {
+						SoundPlay.getSoundInterfaceInstance().stopSound(SoundInterface.MUSIC_SIGLA);
+						startLevel(level);
+						root.getChildren().remove(startScreen);
+						//root.getChildren().add(fxb);
+						event.consume();
+					}
+				}
+			});
+			startScreen.setOnTouchPressed(new EventHandler<TouchEvent>() {
+				
+				@Override
+				public void handle(TouchEvent event) {
+					SoundPlay.getSoundInterfaceInstance().stopSound(SoundInterface.MUSIC_SIGLA);
+					fxb.startLevel(level);
+					root.getChildren().remove(startScreen);
+					//root.getChildren().add(fxb);
+					event.consume();
+				}
+			});			
+			getSoundInterfaceInstance().playSoundLoop(SoundInterface.MUSIC_SIGLA);			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}    
+	
+
+	public static SoundInterface getSoundInterfaceInstance() {
+
+			return SoundPlay.getSoundInterfaceInstance();
+
+
+	}	
+	private void resetGame() {
+
+		try {
+			// music.play();
+			root.getChildren().clear();
+			initLevel(1);
+			view.setCenter(root);
+			drawStartScreen();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void drawEndScreen() throws Exception {
+		root.getChildren().removeAll();
+		getSoundInterfaceInstance().playSound(SoundInterface.MUSIC_CELEBRATION, 1);
+
+		
+		startScreen = new EndScreen();
+		EndScreenII ii = new EndScreenII();
+		root.getChildren().add(ii);
+		root.getChildren().add(startScreen);
+
+		root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			boolean flip = true;
+
+			@Override
+			public void handle(MouseEvent event) {
+				if (event.getButton() == MouseButton.PRIMARY) {
+					flip = !flip;
+					startScreen.setVisibleBack(flip);
+					 getSoundInterfaceInstance().playSound(SoundInterface.EFFECT_HEY, 1);
+
+				} else {
+					root.getChildren().remove(startScreen);
+					root.getChildren().remove(ii);
+					root.setOnMouseClicked(null);
+					drawRecordScreen(level);
+				}
+
+				event.consume();
+			}
+		});
+
+	}
+	
     public synchronized void removeSpritePiece(SpritePiece p) {
 
         remove(p);
@@ -462,7 +698,7 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     
     @Override
     public void drawBoard()throws Exception{
-        
+
         drawPiecePlayer(computerPlayer);
         drawPiecePlayer(mousePlayer);
 
@@ -470,9 +706,10 @@ public class FXBoard extends Parent implements GraficBoardInterface  {
     }
     public void  startLevel(int point){
         backGround = new BackGround(level,this,point);
-        getChildren().add(backGround);
+        root.getChildren().add(backGround);
         backGround.middleScreen();
-        getChildren().add(zGroup);
+        root.getChildren().add(zGroup);
+        
     
     }
     public void remove(Object  o){

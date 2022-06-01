@@ -51,7 +51,9 @@ public class AlienPiece extends SpritePiece {
     @Override
     public void buildKilledSequence(Move m) {
     	pltransition=new ParallelTransition(this);
-        buildDefaultKillAnimation(killSequenceFrame,m,  false, 50, SoundInterface.EXPLOSION);
+
+        buildDefaultKillAnimation(killSequenceFrame,m,  false, 25, SoundInterface.EXPLOSION);
+
     }
 
     public void buildMoveSequence(boolean ciclyc) {
@@ -92,8 +94,12 @@ public class AlienPiece extends SpritePiece {
         if (piece.getType() == Piece.DRAUGTH &&
                 draugthTransform==false) {
             draugthTransform=true;
-            sp=new AlienPiece(this.piece,DRAUGTH_ALIEN_IMAGE,"SkyALien" ,FXBoard.boardHW, this.getFxBoard());    
-            BCDraugthsApp.soundPlay.playSound(SoundInterface.ACHB, 1);
+
+            sp=new AlienPiece(this.piece,DRAUGTH_ALIEN_IMAGE,"SkyALien", FXBoard.boardHW, this.getFxBoard()); 
+            
+            FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
+
+
             sp.setDraugthTransform(true);
         }
         setFrame(0);
@@ -204,7 +210,7 @@ public class AlienPiece extends SpritePiece {
 			@Override
 			public void handle(ActionEvent event) {
 				BCDraugthsApp.log.info("FIRE EventEatAnimPiece.KILLPLAY_EVENT at end on animation...:"+this);
-				fireEvent(new EventEatAnimPiece(eated,fxBoard,m,EventEatAnimPiece.KILLPLAY_EVENT));
+				fireEvent(new EventEatAnimPiece(eated,eated.getParent(),m,EventEatAnimPiece.KILLPLAY_EVENT));
             	
 				
 			}
@@ -292,7 +298,7 @@ public class AlienPiece extends SpritePiece {
 			@Override
 			public void handle(ActionEvent event) {
 				BCDraugthsApp.log.info("FIRE EventEatAnimPiece.KILLPLAY_EVENT At end of animation...");
-            	fireEvent(new EventEatAnimPiece(eated,fxBoard ,m, EventEatAnimPiece.KILLPLAY_EVENT));
+            	fireEvent(new EventEatAnimPiece(eated,eated.getParent() ,m, EventEatAnimPiece.KILLPLAY_EVENT));
 				
 			}
 		});

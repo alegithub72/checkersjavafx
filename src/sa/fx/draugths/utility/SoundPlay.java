@@ -7,6 +7,11 @@ import javafx.scene.media.AudioClip;
 public class SoundPlay implements SoundInterface {
 
 
+	
+
+	
+
+	AudioClip[] sounds=new AudioClip[30];	
 
 
 	
@@ -29,6 +34,9 @@ public class SoundPlay implements SoundInterface {
 		if(audioClip==null) {
 			ClassLoader classLoader = getClass().getClassLoader();
         	URL url = classLoader.getResource(soundsName[code]);
+
+        	System.out.println("code="+code+","+soundsName[code]);
+
         	audioClip=new AudioClip(url.toString());
 		}
 		return audioClip;

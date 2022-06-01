@@ -37,11 +37,12 @@ import sa.fx.draugths.utility.RecordPlayer;
  */
 public class RecordScreen  extends Parent{
 	Properties prop;
+	static String  FILE1_REC="file1.rec";
 	List<RecordPlayer> players;
     public RecordScreen(){
     	prop= new Properties();
     	try {
-			prop.load(loadCodedFile("file1"));
+			prop.load(loadCodedFile(FILE1_REC));
 		} catch (IOException e) {
 			BCDraugthsApp.log.info(e.getMessage());
 		}
@@ -148,7 +149,7 @@ public void saveRecordPlayers(){
 		}
     	arrayOutputStream=new ByteArrayOutputStream();
     	prop.store(arrayOutputStream,"Nuovo Tabella Record" );
-    	storeCodedFile(arrayOutputStream,"file1");
+    	storeCodedFile(arrayOutputStream,FILE1_REC);
 
 	} catch (Exception e) {
 		BCDraugthsApp.log.info(e.getMessage());

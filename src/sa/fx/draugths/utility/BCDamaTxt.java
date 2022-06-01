@@ -52,7 +52,7 @@ public class BCDamaTxt extends Application{
         Canvas c=new Canvas(w, h);
         Checker ck=new Checker(0,0,Side.NORTH_BOARD);
          Checker ck2=new Checker(1, 0, Side.SOUTH_BOARD);
-         FXBoard fbx=new FXBoard(1, null);
+         FXBoard fbx=new FXBoard(1);
          
         SpritePiece p=fbx.buildPedina( 0, ck, 1);
         SpritePiece p1=fbx.buildPedina( 0,ck2, 1);

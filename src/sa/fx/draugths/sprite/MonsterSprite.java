@@ -49,7 +49,10 @@ public class MonsterSprite extends AlienPiece {
             frameImages = new Image("black_dama2.png");
             setImage(frameImages);
             buildFrameImages();
-            BCDraugthsApp.soundPlay.playSound(SoundInterface.ACHB, 1);
+
+            FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHB,1);
+
+
         }
         setFrame(0); //To change body of generated methods, choose Tools | Templates.
         return this;

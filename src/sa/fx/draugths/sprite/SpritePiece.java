@@ -66,8 +66,10 @@ public abstract class SpritePiece extends Sprite{
 
 
     }
-    void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, int soundCode) {
-    	SimpleFrameAnimation transition=  new SimpleFrameAnimation(frames, this,m,  ciclyc, interval, soundCode);
+
+    void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, int sound) {
+    	SimpleFrameAnimation transition=  new SimpleFrameAnimation(frames, this,m,  ciclyc, interval, sound);
+
     	transition.setDuration(Duration.seconds(0.5));
     	pltransition.getChildren().add(transition );
     	SpritePiece eated=this;
@@ -79,7 +81,7 @@ public abstract class SpritePiece extends Sprite{
 				  if(m.getType()==Move.EAT) { 
 					  
 					  BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
-					  fireEvent(new EventRemoveEatPiece(eated, fxBoard,EventRemoveEatPiece.REMOVE_PIECE_EVENT));
+					  fireEvent(new EventRemoveEatPiece(eated, eated.getParent(),EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
 
 				  }
@@ -199,7 +201,7 @@ public abstract class SpritePiece extends Sprite{
     }
     public void stopPlayAnimation() {
 
-        BCDraugthsApp.log.info("PL)Stop transition:"+ pltransition.getStatus()+" pltransition=:"+pltransition);
+    	BCDraugthsApp.log.info("PL)Stop transition:"+ pltransition.getStatus()+" pltransition=:"+pltransition);
         pltransition.stop();
         setFrame(0);
 
@@ -211,8 +213,7 @@ public abstract class SpritePiece extends Sprite{
 
     
       
-    
-     
+
     
     
     

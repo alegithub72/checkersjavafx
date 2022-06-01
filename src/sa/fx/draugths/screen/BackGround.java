@@ -250,9 +250,10 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     public void updatePoint(int value) {
         this.point = this.point + value;
         score.setText("" + this.point);
-        BCDraugthsApp.soundPlay.playSound(SoundInterface.ACHW, 1);
 
-      
+
+        FXBoard.getSoundInterfaceInstance().playSound(SoundInterface.ACHW, 1);
+
       Animation t=new Transition() {
                 {
                     setCycleCount(1);
@@ -264,8 +265,8 @@ public class BackGround extends Parent implements ScreenPauseInterface {
                 protected void interpolate(double frac) {
                     //System.out.println("color="+Color.WHITE.interpolate(Color.BLACK, frac));
                        score.setFill(Color.WHITE.interpolate(Color.rgb(0, 204, 102), frac));
-                       score.setScaleX(2-frac);
-                       score.setScaleY(2-frac);
+                       score.setScaleX(frac);
+                       score.setScaleY(frac);
                        
                 }
             };
@@ -293,7 +294,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
             
             Font f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 48);
-          
+            if(f==null) f=Font.font(48);
             //interessante effeto mattonella....
             Light.Distant light = new Light.Distant();
             light.setAzimuth(-135.0);
@@ -333,6 +334,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
 		            c.getGraphicsContext2D().fillRect(0, 0, wBackground, hBackgroundTot);
 		            Font f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 36);
+		            if(f==null) f=Font.font(36);
 		            c.getGraphicsContext2D().setFont( f);
 		            double centerX=(wBackground/4)-(wBackground/24);
 		            double centerY=(hBackgroundTot/2)+(hBackgroundTot/12);

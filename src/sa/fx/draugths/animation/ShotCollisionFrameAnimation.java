@@ -25,8 +25,10 @@ public class ShotCollisionFrameAnimation extends SimpleFrameAnimation {
 	// private PathTransition pathTransition;
 
 	public ShotCollisionFrameAnimation(FrameInfo[] frames, Move move, SpritePiece sprite, Sprite shot,
+
 			boolean cyclic, long interval, int soundCode) {
 		super(frames, shot,move, cyclic, interval, soundCode);
+
 	     this.piece=sprite;
 		this.shot = shot;
 		once=false;
@@ -46,7 +48,7 @@ public class ShotCollisionFrameAnimation extends SimpleFrameAnimation {
 				Bounds targetSceneBound = target.localToScene(target.getBoundsInLocal());
 				if (pSceneBound.intersects(targetSceneBound)) {
 					BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
-					sprite.fireEvent(new EventEatAnimPiece(target,target.getFxBoard() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
+					piece.fireEvent(new EventEatAnimPiece(target,target.getParent() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
 					once = true;
 					shot.setVisible(false);
 
