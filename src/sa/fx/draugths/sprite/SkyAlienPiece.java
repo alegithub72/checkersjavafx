@@ -83,7 +83,7 @@ public class SkyAlienPiece extends AlienPiece {
                 draugthTransform==false) {
             draugthTransform=true;
             sp=new SkyAlienPiece(DRAUGTH_ALIEN_IMAGE_SKY,this.piece, FXBoard.boardHW, this.getFxBoard());    
-            BCDraugthsApp.soundPlay.playSound(SoundInterface.ACHB, 1);
+            FXBoard.SoundSystem.playSound(SoundInterface.ACHB, 1);
             sp.setDraugthTransform(true);
         }
         setFrame(0);

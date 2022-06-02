@@ -1,6 +1,8 @@
 package sa.fx.draugths.utility;
 
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javafx.scene.media.AudioClip;
 
@@ -10,7 +12,7 @@ public class SoundPlay implements SoundInterface {
 	
 
 	
-
+	ExecutorService executors = Executors.newCachedThreadPool();
 	AudioClip[] sounds=new AudioClip[30];	
 
 
@@ -44,23 +46,47 @@ public class SoundPlay implements SoundInterface {
 	}
 	@Override
 	public void  playSoundLoop(int code){
-		AudioClip audioClip=getSoundHashMap(code);
-        audioClip.setCycleCount(AudioClip.INDEFINITE);
-        audioClip.play(); 
-        sounds[code]= audioClip;
+		executors.execute(new Runnable() {
+			
+			@Override
+			public void run() {
+				AudioClip audioClip=getSoundHashMap(code);
+		        audioClip.setCycleCount(AudioClip.INDEFINITE);
+		        audioClip.play(); 
+		        sounds[code]= audioClip;
+				
+			}
+		});
+
 		
 	}
 	@Override
 	public void  stopSound(int code){
-		AudioClip audioClip=getSoundHashMap(code);
-        audioClip.stop(); 
+		executors.execute(new Runnable() {
+			
+			@Override
+			public void run() {
+				AudioClip audioClip=getSoundHashMap(code);
+		        audioClip.stop(); 
+				
+			}
+		});
+
 		
 	}
 	@Override
 	public void  playSound(int code, int times){
-		AudioClip audioClip=getSoundHashMap(code);
-        audioClip.setCycleCount(times);
-        audioClip.play(); 
+		executors.execute(new Runnable() {
+			
+			@Override
+			public void run() {
+				AudioClip audioClip=getSoundHashMap(code);
+		        audioClip.setCycleCount(times);
+		        audioClip.play(); 
+				
+			}
+		});
+
 		
 	}	
 	

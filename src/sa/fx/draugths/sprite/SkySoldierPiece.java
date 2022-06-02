@@ -78,7 +78,7 @@ public class SkySoldierPiece extends SoldierPiece {
                 draugthTransform==false) {
             draugthTransform=true;
             sp=new SkySoldierPiece( this.piece,DRAUGTH_SKYSOLDIER_IMAGE, FXBoard.boardHW, this.getFxBoard());       
-            BCDraugthsApp.soundPlay.playSound(SoundInterface.ACHB, 1);
+            FXBoard.SoundSystem.playSound(SoundInterface.ACHB, 1);
             sp.setDraugthTransform(true);
             //buildFrameImages();
 

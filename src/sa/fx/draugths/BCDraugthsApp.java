@@ -12,7 +12,6 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -39,7 +38,7 @@ public class BCDraugthsApp extends Application {
 	private Game game;
 	PresentationScreen startScreen;
 	RecordScreen recordScreen;
-	public static SoundInterface soundPlay;
+
 	private AnimationPedinaMove anim;
 	FXBoard fxb;
 	public static boolean debug;
@@ -85,7 +84,7 @@ public class BCDraugthsApp extends Application {
 
 		log.info("level system=" + level);
 		log.info("level system=" + debug);
-		soundPlay = SoundPlay.getSoundInterfaceInstance();
+
 
 	}
 
@@ -228,8 +227,8 @@ public class BCDraugthsApp extends Application {
 
 	public void drawStartScreen() throws Exception {
 
-		soundPlay.playSoundLoop(SoundInterface.MUSIC_SIGLA);
-		root.getChildren().remove(fxb);
+		FXBoard.SoundSystem.playSoundLoop(SoundInterface.MUSIC_SIGLA);
+		//root.getChildren().remove(fxb);
 		fxb = new FXBoard(level);
 		startScreen = new StartScreen();
 		root.getChildren().add(startScreen);
@@ -237,7 +236,7 @@ public class BCDraugthsApp extends Application {
 
 			@Override
 			public void handle(MouseEvent event) {
-				soundPlay.stopSound(SoundInterface.MUSIC_SIGLA);
+				FXBoard.SoundSystem.stopSound(SoundInterface.MUSIC_SIGLA);
 				fxb.startLevel(level);
 				root.getChildren().remove(startScreen);
 
@@ -248,7 +247,7 @@ public class BCDraugthsApp extends Application {
 
 	public void drawEndScreen() throws Exception {
 
-		soundPlay.playSound(SoundInterface.MUSIC_CELEBRATION, 1);
+		FXBoard.SoundSystem.playSound(SoundInterface.MUSIC_CELEBRATION, 1);
 
 		startScreen = new EndScreen();
 		EndScreenII ii = new EndScreenII();
@@ -263,7 +262,7 @@ public class BCDraugthsApp extends Application {
 				if (event.getButton() == MouseButton.PRIMARY) {
 					flip = !flip;
 					startScreen.setVisibleBack(flip);
-					soundPlay.playSound(SoundInterface.EFFECT_HEY, 1);
+					FXBoard.SoundSystem.playSound(SoundInterface.EFFECT_HEY, 1);
 
 				} else {
 					root.getChildren().remove(startScreen);

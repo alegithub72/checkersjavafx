@@ -127,7 +127,7 @@ public class SimpleFrameAnimation extends Transition {
 			@Override
 			public void handle(ActionEvent event) {
 
-				SoundPlay.getSoundInterfaceInstance().stopSound(sound);
+				FXBoard.SoundSystem.stopSound(sound);
 
 				event.consume();
 

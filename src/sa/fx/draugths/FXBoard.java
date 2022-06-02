@@ -598,9 +598,12 @@ public class FXBoard implements GraficBoardInterface {
 				@Override
 				public void handle(MouseEvent event) {
 					if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() > 1) {
-						SoundPlay.getSoundInterfaceInstance().stopSound(SoundInterface.MUSIC_SIGLA);
+						SoundSystem.playSound(SoundInterface.EFFECT_COIN,1);
+						SoundSystem.stopSound(SoundInterface.MUSIC_SIGLA);
+
 						startLevel(level);
 						root.getChildren().remove(startScreen);
+
 						// root.getChildren().add(fxb);
 						event.consume();
 					}
@@ -610,7 +613,7 @@ public class FXBoard implements GraficBoardInterface {
 
 				@Override
 				public void handle(TouchEvent event) {
-					SoundPlay.getSoundInterfaceInstance().stopSound(SoundInterface.MUSIC_SIGLA);
+					SoundSystem.stopSound(SoundInterface.MUSIC_SIGLA);
 					startLevel(level);
 					root.getChildren().remove(startScreen);
 					// root.getChildren().add(fxb);
