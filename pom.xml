@@ -147,6 +147,10 @@
 				<configuration>
 					<target>${gluonfx.target}</target>
 					<mainClass>${main.class}</mainClass>
+					<releaseConfiguration>
+					<versionName>${project.version}</versionName>
+					<versionCode>1</versionCode>
+					</releaseConfiguration>
 					<enableSWRendering>true</enableSWRendering>
 					<nativeImageArgs>
 						<nativeImageArg>--allow-incomplete-classpath</nativeImageArg>

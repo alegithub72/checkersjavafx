@@ -1,11 +1,11 @@
 package sa.fx.draugths.utility;
 
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.gluonhq.attach.audio.Audio;
 import com.gluonhq.attach.audio.AudioService;
-
-
 
 public class SoundPlayMobile implements SoundInterface {
 
@@ -18,6 +18,8 @@ public class SoundPlayMobile implements SoundInterface {
 
 	}
 
+	ExecutorService executors = Executors.newCachedThreadPool();
+
 	public static SoundInterface getSoundInterfaceInstance() {
 		if (soundInterface == null)
 			soundInterface = new SoundPlayMobile();
@@ -26,8 +28,7 @@ public class SoundPlayMobile implements SoundInterface {
 
 	@Override
 	public void playSoundLoop(int code) {
-
-		Thread th = new Thread(new Runnable() {
+		executors.execute(new Runnable() {
 
 			@Override
 			public void run() {
@@ -43,13 +44,12 @@ public class SoundPlayMobile implements SoundInterface {
 
 			}
 		});
-		th.start();
 
 	}
 
 	@Override
 	public void playSound(int code, int times) {
-		Thread th = new Thread(new Runnable() {
+		executors.execute(new Runnable() {
 
 			@Override
 			public void run() {
@@ -65,19 +65,22 @@ public class SoundPlayMobile implements SoundInterface {
 
 			}
 		});
-		th.start();
 
 	}
 
 	@Override
 	public void stopSound(int code) {
-		try {
-			Audio audio = soundsMobile[code];
-			audio.stop();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		executors.execute(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Audio audio = soundsMobile[code];
+					audio.stop();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }

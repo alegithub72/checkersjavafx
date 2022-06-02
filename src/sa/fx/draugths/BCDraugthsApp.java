@@ -12,10 +12,12 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.fx.draugths.animation.AnimationPedinaMove;
@@ -100,10 +102,14 @@ public class BCDraugthsApp extends Application {
 		fxb = new FXBoard(level);
 
 		fxb.drawStartScreen();
-		Scene scene = new Scene(fxb.getRoot(), fxb.getStartScreen().getWidthScreen() - 12,
+//		SubScene subScene=new SubScene(fxb.getRoot(), 400, 400);
+//		Group superRoot=new Group();
+//		superRoot.getChildren().add(subScene);
+		BorderPane borderPane=new BorderPane(fxb.getRoot());
+		Scene scene = new Scene(borderPane, fxb.getStartScreen().getWidthScreen() - 12,
 				fxb.getStartScreen().getHeightScreen() - 18, Color.BLACK);
 
-
+		fxb.setView(borderPane);
 		primaryStage.setTitle("Checkers Invader");
 		primaryStage.setScene(scene);
 		primaryStage.getIcons().add(new Image("cinvaders.png"));
@@ -130,24 +136,13 @@ public class BCDraugthsApp extends Application {
 	 * }
 	 */
 
-	public void playMousePlayer() {
-		game.makeHumanMove();
-	}
+
 
 	public static void main(String[] args) {
 		launch(args);
 	}
 
-	public void restartGame() {
-		try {
-			stop();
-			start(primaryStage);
 
-		} catch (Exception ex) {
-			log.info(ex.getMessage());
-		}
-
-	}
 
 	public void drawRecordScreen(int points) {
 
@@ -255,7 +250,6 @@ public class BCDraugthsApp extends Application {
 
 		soundPlay.playSound(SoundInterface.MUSIC_CELEBRATION, 1);
 
-		root.getChildren().remove(fxb);
 		startScreen = new EndScreen();
 		EndScreenII ii = new EndScreenII();
 		root.getChildren().add(ii);
