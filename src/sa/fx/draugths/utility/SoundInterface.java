@@ -24,7 +24,8 @@ public interface SoundInterface {
     public static final int MUSIC_SIGLA=20;
     public static final int MUSIC_CELEBRATION=21;
     public static final int EFFECT_HEY=22;
-
+    public static final int EFFECT_COIN=23;
+    
 	public static final String[] soundsName={
 
 			"fire5.wav","speedy_bite.wav","Dogbite.wav","lion_roar_2.mp3"
@@ -32,7 +33,7 @@ public interface SoundInterface {
 			,"UFO.wav","Fireball.wav","top.wav","elicopter.wav"
 			,"move_alien.wav","Fireball.wav","Explosion3.wav"
 			,"Achievement.wav","pluck.wav","159355-wing-effect.wav","jerpack.wav"
-			,"191594_laser.wav","muppet.mp3","270545_jingle-win-01.wav","416507_hey.wav"};
+			,"191594_laser.wav","muppet.mp3","270545_jingle-win-01.wav","416507_hey.wav","29649-coin-return.wav"};
 
 	void playSoundLoop(int code);
 
