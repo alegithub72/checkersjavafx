@@ -10,6 +10,7 @@ import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.gluonhq.attach.util.Platform;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
@@ -31,6 +32,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import sa.fx.draugths.utility.SoundInterface;
+import sa.fx.draugths.utility.SoundPlay;
 import sa.fx.draugths.utility.SoundPlayMobile;
 import sa.gameboard.core.Game;
 
@@ -58,8 +60,10 @@ public class BCDraugthsAndroidApp extends Application {
 	int level;
 
 	private static SoundInterface getSoundInterfaceInstance() {
-
-		return SoundPlayMobile.getSoundInterfaceInstance();
+		if(Platform.isDesktop())
+			 return SoundPlay.getSoundInterfaceInstance();
+		else
+			return SoundPlayMobile.getSoundInterfaceInstance();
 
 	}
 
