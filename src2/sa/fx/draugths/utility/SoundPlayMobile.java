@@ -1,6 +1,8 @@
 package sa.fx.draugths.utility;
 
 import java.net.URL;
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -9,7 +11,7 @@ import com.gluonhq.attach.audio.AudioService;
 
 public class SoundPlayMobile implements SoundInterface {
 
-	Audio[] soundsMobile = new Audio[30];
+	Map<String, Audio>soundsMobile = new Hashtable(30);
 
 	private static SoundInterface soundInterface = null;
 
@@ -36,14 +38,14 @@ public class SoundPlayMobile implements SoundInterface {
 				URL url = classLoader.getResource(soundsName[code]);
 				AudioService.create().ifPresent(service -> {
 					service.loadMusic(url).ifPresent(audio -> {
-						if(soundsMobile[code]!=null)
+						if(soundsMobile.get(soundsName[code])!=null)
 							{
-								soundsMobile[code].stop();
+								soundsMobile.get(soundsName[code]).stop();
 								audio.setLooping(true);
 								audio.play();
 
 							}else {
-								soundsMobile[code] = audio;
+								soundsMobile.put(soundsName[code],audio);
 								audio.setLooping(true);
 								audio.play();
 							}
@@ -66,9 +68,11 @@ public class SoundPlayMobile implements SoundInterface {
 				URL url = classLoader.getResource(soundsName[code]);
 				AudioService.create().ifPresent(service -> {
 					service.loadMusic(url).ifPresent(audio -> {
-						soundsMobile[code] = audio;
-						audio.setLooping(false);
-						audio.play();
+						if(soundsMobile.get(soundsName[code])==null) {
+							soundsMobile.put(soundsName[code],audio);
+						}
+						soundsMobile.get(soundsName[code]).setLooping(false);
+						soundsMobile.get(soundsName[code]).play();						
 					});
 				});
 
@@ -83,10 +87,10 @@ public class SoundPlayMobile implements SoundInterface {
 			@Override
 			public void run() {
 				try {
-					Audio audio = soundsMobile[code];
-					if(audio!=null) {
-						audio.setLooping(false);
-						audio.stop();
+					;
+					if(soundsMobile.get(soundsName[code])!=null) {
+						soundsMobile.get(soundsName[code]).setLooping(false);
+						soundsMobile.get(soundsName[code]).stop();
 					}
 					
 				} catch (Exception e) {
