@@ -36,6 +36,7 @@ public class SoundPlayMobile implements SoundInterface {
 				URL url = classLoader.getResource(soundsName[code]);
 				AudioService.create().ifPresent(service -> {
 					service.loadMusic(url).ifPresent(audio -> {
+						if(soundsMobile[code]!=null) soundsMobile[code].stop();
 						soundsMobile[code] = audio;
 						audio.setLooping(true);
 						audio.play();
