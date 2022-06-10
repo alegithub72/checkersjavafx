@@ -59,6 +59,7 @@ public class SimpleFrameAnimation extends Transition {
 		before = System.currentTimeMillis();
 		this.interval = interval;
 		addEndHandler();
+		
 
 	}
 
@@ -122,13 +123,12 @@ public class SimpleFrameAnimation extends Transition {
 	}
 
 	private void addEndHandler() {
-		setOnFinished(new EventHandler<ActionEvent>() {
+		this.setOnFinished(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 
 				FXBoard.SoundSystem.stopSound(sound);
-
 				event.consume();
 
 			}

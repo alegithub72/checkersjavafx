@@ -75,6 +75,7 @@ public class SoundPlayMobile implements SoundInterface {
 			public void run() {
 				try {
 					Audio audio = soundsMobile[code];
+					audio.setLooping(false);
 					audio.stop();
 				} catch (Exception e) {
 					e.printStackTrace();
