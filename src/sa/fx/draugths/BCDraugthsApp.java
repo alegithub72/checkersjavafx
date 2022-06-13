@@ -145,7 +145,7 @@ public class BCDraugthsApp extends Application {
 
 	public void drawRecordScreen(int points) {
 
-		root.getChildren().remove(fxb);
+		//root.getChildren().remove(fxb);
 		BCDraugthsApp.log.info("index of fxb =" + root.getChildren().contains(fxb));
 		// fxb=new FXBoardClass(0, this);
 
@@ -275,6 +275,13 @@ public class BCDraugthsApp extends Application {
 			}
 		});
 
+	}
+
+	@Override
+	public void stop() throws Exception {
+		if(FXBoard.SoundSystem!=null)
+			FXBoard.SoundSystem.stopExecutor();
+		super.stop();
 	}
 
 }

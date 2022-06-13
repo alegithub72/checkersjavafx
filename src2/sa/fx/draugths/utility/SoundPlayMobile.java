@@ -5,13 +5,14 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.BiConsumer;
 
 import com.gluonhq.attach.audio.Audio;
 import com.gluonhq.attach.audio.AudioService;
 
 public class SoundPlayMobile implements SoundInterface {
 
-	Map<String, Audio>soundsMobile = new Hashtable<String, Audio>(30);
+	Map<String, Audio> soundsMobile = new Hashtable<String, Audio>(30);
 
 	private static SoundInterface soundInterface = null;
 
@@ -38,17 +39,16 @@ public class SoundPlayMobile implements SoundInterface {
 				URL url = classLoader.getResource(soundsName[code]);
 				AudioService.create().ifPresent(service -> {
 					service.loadMusic(url).ifPresent(audio -> {
-						if(soundsMobile.get(soundsName[code])!=null)
-							{
-								soundsMobile.get(soundsName[code]).stop();
-								soundsMobile.get(soundsName[code]).setLooping(true);
-								soundsMobile.get(soundsName[code]).play();
+						if (soundsMobile.get(soundsName[code]) != null) {
+							soundsMobile.get(soundsName[code]).stop();
+							soundsMobile.get(soundsName[code]).setLooping(true);
+							soundsMobile.get(soundsName[code]).play();
 
-							}else {
-								soundsMobile.put(soundsName[code],audio);
-								soundsMobile.get(soundsName[code]).setLooping(true);
-								soundsMobile.get(soundsName[code]).play();
-							}
+						} else {
+							soundsMobile.put(soundsName[code], audio);
+							soundsMobile.get(soundsName[code]).setLooping(true);
+							soundsMobile.get(soundsName[code]).play();
+						}
 
 					});
 				});
@@ -68,11 +68,11 @@ public class SoundPlayMobile implements SoundInterface {
 				URL url = classLoader.getResource(soundsName[code]);
 				AudioService.create().ifPresent(service -> {
 					service.loadMusic(url).ifPresent(audio -> {
-						if(soundsMobile.get(soundsName[code])==null) {
-							soundsMobile.put(soundsName[code],audio);
+						if (soundsMobile.get(soundsName[code]) == null) {
+							soundsMobile.put(soundsName[code], audio);
 						}
 						soundsMobile.get(soundsName[code]).setLooping(false);
-						soundsMobile.get(soundsName[code]).play();						
+						soundsMobile.get(soundsName[code]).play();
 					});
 				});
 
@@ -88,11 +88,11 @@ public class SoundPlayMobile implements SoundInterface {
 			public void run() {
 				try {
 					;
-					if(soundsMobile.get(soundsName[code])!=null) {
+					if (soundsMobile.get(soundsName[code]) != null) {
 						soundsMobile.get(soundsName[code]).setLooping(false);
 						soundsMobile.get(soundsName[code]).stop();
 					}
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -100,4 +100,16 @@ public class SoundPlayMobile implements SoundInterface {
 		});
 	}
 
+	public void stopExecutor() {
+		executors.shutdown();
+		if (soundsMobile != null) {
+			soundsMobile.forEach(new BiConsumer<String, Audio>() {
+				@Override
+				public void accept(String t, Audio u) {
+					if(u!=null)u.stop();
+				}
+			});
+		}
+
+	}
 }

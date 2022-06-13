@@ -30,6 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import sa.fx.draugths.utility.ScaleFactor;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
 import sa.fx.draugths.utility.SoundPlayMobile;
@@ -121,33 +122,12 @@ public class BCDraugthsAndroidApp extends Application {
 
 		scaleX = scene.getWidth() / 800;
 		scaleY = scene.getHeight() / 850;
-
-		scale();
+		FXBoard.scaleRoot=new ScaleFactor(scaleX,scaleY);
+		fxb.scale();
 		// sceneX=scene;
 
 	}
 
-	public void scale() {
-		if (scaleX < 1) {
-
-			fxb.getRoot().setScaleX(scaleX);
-			double transalteX = ((1d - scaleX) * 800) / 2;
-			fxb.getRoot().setTranslateX(-transalteX);
-			System.out.println("x translate)" + transalteX);
-		}
-
-		if (scaleY < 1) {
-			fxb.getRoot().setScaleY(scaleY);
-			double transalteY = ((1d - scaleY) * 800) / 2;
-			fxb.getRoot().setTranslateY(-transalteY);
-			System.out.println("y translate)" + transalteY);
-		}
-		System.out.println("Scale Factor)" + scaleX + "," + scaleY);
-
-		System.out.println("Screeen Size)" + Screen.getPrimary().getVisualBounds().getWidth() + ","
-				+ Screen.getPrimary().getVisualBounds().getHeight());
-
-	}
 
 	public void initDama() {
 
@@ -206,9 +186,16 @@ public class BCDraugthsAndroidApp extends Application {
 	 * 
 	 * }
 	 */
-
+	
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	@Override
+	public void stop() throws Exception {
+		if(FXBoard.SoundSystem!=null)
+			FXBoard.SoundSystem.stopExecutor();
+		super.stop();
 	}
 
 }

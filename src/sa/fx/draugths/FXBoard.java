@@ -22,6 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.util.Duration;
 import sa.boardgame.console.imp.AutomaPlayer;
 import sa.boardgame.console.imp.ConsoleRendering;
@@ -51,6 +52,7 @@ import sa.fx.draugths.sprite.SkySoldierPiece;
 import sa.fx.draugths.sprite.SoldierPiece;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.ScaleFactor;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
 import sa.gameboard.core.Board;
@@ -77,7 +79,7 @@ public class FXBoard implements GraficBoardInterface {
 	private PresentationScreen startScreen;
 	private RecordScreen recordScreen;
 	private BackGround backGround;
-
+	public static ScaleFactor scaleRoot = null;
 	private boolean animationOn = false;
 	private SpritePiece select;
 
@@ -85,26 +87,6 @@ public class FXBoard implements GraficBoardInterface {
 	private FXAIPlayer1 computerPlayer;
 	private FXPMousePlayer mousePlayer;
 	private boolean turn;
-
-	public PresentationScreen getStartScreen() {
-		return startScreen;
-	}
-
-	public BorderPane getView() {
-		return view;
-	}
-
-	public void setView(BorderPane view) {
-		this.view = view;
-	}
-
-	public Group getRoot() {
-		return root;
-	}
-
-	public void setRoot(Group root) {
-		this.root = root;
-	}
 
 	public FXBoard(int level) {
 		initLevel(level);
@@ -249,12 +231,63 @@ public class FXBoard implements GraficBoardInterface {
 		}
 	}
 
+	public void scale() {
+		if (scaleRoot != null && scaleRoot.getScaleX() < 1) {
+
+			root.setScaleX(scaleRoot.getScaleX());
+			double transalteX = ((1d - scaleRoot.getScaleX()) * 800) / 2;
+			root.setTranslateX(-transalteX);
+			System.out.println("x translate)" + transalteX);
+		}
+
+		if (scaleRoot != null && scaleRoot.getScaleY() < 1) {
+			root.setScaleY(scaleRoot.getScaleY());
+			double transalteY = ((1d - scaleRoot.getScaleY()) * 800) / 2;
+			root.setTranslateY(-transalteY);
+			System.out.println("y translate)" + transalteY);
+		}
+		System.out.println("Scale Factor)" + scaleRoot);
+
+		System.out.println("Screeen Size)" + Screen.getPrimary().getVisualBounds().getWidth() + ","
+				+ Screen.getPrimary().getVisualBounds().getHeight());
+
+	}
+
+	public ScaleFactor getScaleRoot() {
+		return scaleRoot;
+	}
+
+	public void setScaleRoot(ScaleFactor scaleRoot) {
+		this.scaleRoot = scaleRoot;
+	}
+
+	public PresentationScreen getStartScreen() {
+		return startScreen;
+	}
+
+	public BorderPane getView() {
+		return view;
+	}
+
+	public void setView(BorderPane view) {
+		this.view = view;
+	}
+
+	public Group getRoot() {
+		return root;
+	}
+
+	public void setRoot(Group root) {
+		this.root = root;
+	}
+
 	public void levelUp(int level, int point) {
 		// root.getChildren().remove(this);
 
 		BCDraugthsApp.log.info("system level=" + level);
 		initLevel(level);
 		startLevel(point);
+		scale();
 		view.setCenter(root);
 
 		root.getChildren().remove(startScreen);
@@ -531,14 +564,13 @@ public class FXBoard implements GraficBoardInterface {
 		t.play();
 		if (win == Piece.WHITE) {
 			winText = new Image("winwhite.png");
-			
+
 			imageView.setImage(winText);
 			imageView.setX(150);
 			imageView.setY(250);
 			imageView.setScaleX(1);
 			imageView.setScaleY(1);
 			level++;
-
 
 		} else if (win == Piece.BLACK) {
 
@@ -551,14 +583,13 @@ public class FXBoard implements GraficBoardInterface {
 			imageView.setScaleX(1);
 			imageView.setScaleY(1);
 			level = 0;
-			
 
 		}
-		start.setX(150+(imageView.maxWidth(win)/4));
-		start.setY(300+(imageView.maxHeight(win)/2));
+		start.setX(150 + (imageView.maxWidth(win) / 4));
+		start.setY(300 + (imageView.maxHeight(win) / 2));
 		root.getChildren().add(imageView);
 		root.getChildren().add(start);
-		
+
 		if (winText != null) {
 			start.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -598,7 +629,7 @@ public class FXBoard implements GraficBoardInterface {
 				@Override
 				public void handle(MouseEvent event) {
 					if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() > 1) {
-						SoundSystem.playSound(SoundInterface.EFFECT_COIN,1);
+						SoundSystem.playSound(SoundInterface.EFFECT_COIN, 1);
 						SoundSystem.stopSound(SoundInterface.MUSIC_SIGLA);
 
 						startLevel(level);

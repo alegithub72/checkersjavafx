@@ -40,5 +40,5 @@ public interface SoundInterface {
 	void stopSound(int code);
 
 	void playSound(int code, int times);
-
+	public void stopExecutor() ;
 }
