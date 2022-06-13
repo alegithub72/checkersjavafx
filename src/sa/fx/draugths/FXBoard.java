@@ -640,17 +640,17 @@ public class FXBoard implements GraficBoardInterface {
 					}
 				}
 			});
-			startScreen.setOnTouchPressed(new EventHandler<TouchEvent>() {
-
-				@Override
-				public void handle(TouchEvent event) {
-					SoundSystem.stopSound(SoundInterface.MUSIC_SIGLA);
-					startLevel(level);
-					root.getChildren().remove(startScreen);
-					// root.getChildren().add(fxb);
-					event.consume();
-				}
-			});
+//			startScreen.setOnTouchPressed(new EventHandler<TouchEvent>() {
+//
+//				@Override
+//				public void handle(TouchEvent event) {
+//					SoundSystem.stopSound(SoundInterface.MUSIC_SIGLA);
+//					startLevel(level);
+//					root.getChildren().remove(startScreen);
+//					// root.getChildren().add(fxb);
+//					event.consume();
+//				}
+//			});
 			SoundSystem.playSoundLoop(SoundInterface.MUSIC_SIGLA);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

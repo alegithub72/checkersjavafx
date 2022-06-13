@@ -51,8 +51,7 @@ public class BCDraugthsAndroidApp extends Application {
 	public static boolean loadScenario;
 	public static boolean tracepath;
 	public static java.util.logging.Logger log = Logger.getAnonymousLogger();
-	double scaleX;
-	double scaleY;
+
 	public String confirmCommand;
 //	Stage primaryStage;
 //	Scene sceneX;
@@ -120,8 +119,8 @@ public class BCDraugthsAndroidApp extends Application {
 //		scaleY = Screen.getPrimary().getVisualBounds().getHeight() / 850;
 		ParallelCamera camera=new ParallelCamera();
 
-		scaleX = scene.getWidth() / 800;
-		scaleY = scene.getHeight() / 850;
+		double scaleX = scene.getWidth() / 800;
+		double scaleY = scene.getHeight() / 850;
 		FXBoard.scaleRoot=new ScaleFactor(scaleX,scaleY);
 		fxb.scale();
 		// sceneX=scene;
