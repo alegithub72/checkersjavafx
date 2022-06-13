@@ -237,29 +237,23 @@ public class FXBoard implements GraficBoardInterface {
 			root.setScaleX(scaleRoot.getScaleX());
 			double transalteX = ((1d - scaleRoot.getScaleX()) * 800) / 2;
 			root.setTranslateX(-transalteX);
-			System.out.println("x translate)" + transalteX);
+			BCDraugthsApp.log.info("x translate)" + transalteX);
 		}
 
 		if (scaleRoot != null && scaleRoot.getScaleY() < 1) {
 			root.setScaleY(scaleRoot.getScaleY());
 			double transalteY = ((1d - scaleRoot.getScaleY()) * 800) / 2;
 			root.setTranslateY(-transalteY);
-			System.out.println("y translate)" + transalteY);
+			BCDraugthsApp.log.info("y translate)" + transalteY);
 		}
-		System.out.println("Scale Factor)" + scaleRoot);
+		BCDraugthsApp.log.info("Scale Factor)" + scaleRoot);
 
-		System.out.println("Screeen Size)" + Screen.getPrimary().getVisualBounds().getWidth() + ","
+		BCDraugthsApp.log.info("Screeen Size)" + Screen.getPrimary().getVisualBounds().getWidth() + ","
 				+ Screen.getPrimary().getVisualBounds().getHeight());
 
 	}
 
-	public ScaleFactor getScaleRoot() {
-		return scaleRoot;
-	}
 
-	public void setScaleRoot(ScaleFactor scaleRoot) {
-		this.scaleRoot = scaleRoot;
-	}
 
 	public PresentationScreen getStartScreen() {
 		return startScreen;
@@ -664,6 +658,7 @@ public class FXBoard implements GraficBoardInterface {
 			// music.play();
 			root.getChildren().clear();
 			initLevel(1);
+			scale();
 			view.setCenter(root);
 			drawStartScreen();
 		} catch (Exception e) {
