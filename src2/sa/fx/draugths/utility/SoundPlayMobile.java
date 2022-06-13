@@ -11,7 +11,7 @@ import com.gluonhq.attach.audio.AudioService;
 
 public class SoundPlayMobile implements SoundInterface {
 
-	Map<String, Audio>soundsMobile = new Hashtable(30);
+	Map<String, Audio>soundsMobile = new Hashtable<String, Audio>(30);
 
 	private static SoundInterface soundInterface = null;
 
@@ -41,13 +41,13 @@ public class SoundPlayMobile implements SoundInterface {
 						if(soundsMobile.get(soundsName[code])!=null)
 							{
 								soundsMobile.get(soundsName[code]).stop();
-								audio.setLooping(true);
-								audio.play();
+								soundsMobile.get(soundsName[code]).setLooping(true);
+								soundsMobile.get(soundsName[code]).play();
 
 							}else {
 								soundsMobile.put(soundsName[code],audio);
-								audio.setLooping(true);
-								audio.play();
+								soundsMobile.get(soundsName[code]).setLooping(true);
+								soundsMobile.get(soundsName[code]).play();
 							}
 
 					});
