@@ -8,7 +8,6 @@ package sa.fx.draugths;
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.gluonhq.attach.util.Platform;
 import com.gluonhq.charm.glisten.application.AppManager;
@@ -34,7 +33,7 @@ import sa.fx.draugths.utility.ScaleFactor;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
 import sa.fx.draugths.utility.SoundPlayMobile;
-import sa.gameboard.core.Game;
+
 
 /**
  *
@@ -42,7 +41,7 @@ import sa.gameboard.core.Game;
  */
 public class BCDraugthsAndroidApp extends Application {
 	private final AppManager appManager = AppManager.initialize(this::postInit);
-	private Game game;
+
 
 	static public SoundInterface soundplay = null;
 
@@ -50,7 +49,7 @@ public class BCDraugthsAndroidApp extends Application {
 	public static boolean debug;
 	public static boolean loadScenario;
 	public static boolean tracepath;
-	public static java.util.logging.Logger log = Logger.getAnonymousLogger();
+
 
 	public String confirmCommand;
 //	Stage primaryStage;
@@ -113,7 +112,7 @@ public class BCDraugthsAndroidApp extends Application {
 
 		fxb.drawStartScreen();
 		scene.setFill(Color.BLACK);
-		System.out.println("1)" + scene.getHeight() + "," + scene.getWidth());
+		BCDraugthsApp.log.info("1--->" + scene.getHeight() + "," + scene.getWidth());
 		Screen.getPrimary().getVisualBounds().getWidth();
 //		scaleX = Screen.getPrimary().getVisualBounds().getWidth() / 800;
 //		scaleY = Screen.getPrimary().getVisualBounds().getHeight() / 850;
@@ -144,20 +143,20 @@ public class BCDraugthsAndroidApp extends Application {
 		else
 			tracepath = false;
 
-		System.setProperty("java.util.logging.SimpleFormatter.format", "%2$s   %4$s: %5$s %n");
+		System.setProperty("java.util.logging.SimpleFormatter.format", "%2$s   %4$s:   %5$s %6$s   %n");
 		// java.util.logging.SimpleFormatter.format
 		if (debug)
-			log.setLevel(Level.INFO);
+			BCDraugthsApp.log.setLevel(Level.SEVERE);
 		else
-			log.setLevel(Level.OFF);
+			BCDraugthsApp.log.setLevel(Level.OFF);
 		// log.info("System.getProperty(\"checkers.level\")="+System.getProperty("checkers.level"));
 		if (System.getProperty("checkers.level") != null)
 			level = Integer.valueOf(System.getProperty("checkers.level"));
 		else
 			level = 1;
 
-		log.info("level system=" + level);
-		log.info("level system=" + debug);
+		BCDraugthsApp.log.info("level system=" + level);
+		BCDraugthsApp.log.info("level system=" + debug);
 
 	}
 

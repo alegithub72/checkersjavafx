@@ -6,9 +6,12 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.BiConsumer;
+import java.util.logging.Level;
 
 import com.gluonhq.attach.audio.Audio;
 import com.gluonhq.attach.audio.AudioService;
+
+import sa.fx.draugths.BCDraugthsApp;
 
 public class SoundPlayMobile implements SoundInterface {
 
@@ -94,7 +97,7 @@ public class SoundPlayMobile implements SoundInterface {
 					}
 
 				} catch (Exception e) {
-					e.printStackTrace();
+					BCDraugthsApp.log.log(Level.SEVERE,"Exception ",e);
 				}
 			}
 		});

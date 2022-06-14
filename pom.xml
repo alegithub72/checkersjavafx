@@ -10,13 +10,12 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.release>11</maven.compiler.release>
-        <javafx.version>17.0.1</javafx.version>
+		<javafx.version>17.0.1</javafx.version>
 		<javafx.plugin.version>0.0.8</javafx.plugin.version>
 		<gluonfx.plugin.version>1.0.13</gluonfx.plugin.version>
 		<charm.version>6.1.0</charm.version>
 		<attach.version>4.0.13</attach.version>
 		<main.class>sa.fx.draugths.BCDraugthsApp</main.class>
-
 	</properties>
 	<distributionManagement>
 		<repository>
@@ -122,7 +121,6 @@
 				<version>0.0.8</version>
 				<configuration>
 					<mainClass>${main.class}</mainClass>
-					<commandLineArgs>-Dcheckers.level=2 -Dcheckers.debug</commandLineArgs>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -148,8 +146,8 @@
 					<target>${gluonfx.target}</target>
 					<mainClass>${main.class}</mainClass>
 					<releaseConfiguration>
-					<versionName>${project.version}</versionName>
-					<versionCode>1</versionCode>
+						<versionName>${project.version}</versionName>
+						<versionCode>1</versionCode>
 					</releaseConfiguration>
 					<enableSWRendering>true</enableSWRendering>
 					<nativeImageArgs>
@@ -228,7 +226,7 @@
 				<gluonfx.target>host</gluonfx.target>
 				<main.class>sa.fx.draugths.BCDraugthsAndroidApp</main.class>
 			</properties>
-		</profile>		
+		</profile>
 	</profiles>
 	<repositories>
 		<repository>
@@ -237,4 +235,3 @@
 		</repository>
 	</repositories>
 </project>
-

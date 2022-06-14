@@ -74,7 +74,10 @@ public class SoldierPiece extends SpritePiece {
         		 
 
         	}
-            else BCDraugthsApp.log.info("Errorre.........");
+            else {
+            	BCDraugthsApp.log.severe("Errorre...draugthTransform......?????");
+            	
+            }
         
         } else if (m.getP().getType()  ==Piece.DRAUGTH)  {
         

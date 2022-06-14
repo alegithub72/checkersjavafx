@@ -7,6 +7,7 @@ package sa.fx.draugths.players;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import javafx.event.EventHandler;
 import javafx.scene.effect.DropShadow;
@@ -19,6 +20,7 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.HumanPlayer;
+import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.board.event.EventConfirmCommandHandler;
 import sa.fx.draugths.sprite.SpritePiece;
@@ -47,7 +49,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 j = Integer.parseInt("" + c2);
 
             } catch (NumberFormatException e) {
-                //  e.printStackTrace();
+    			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
              
             }        
             possibleMove=this.listPedineMoves(i, j);

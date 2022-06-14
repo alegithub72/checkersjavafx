@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.animation.Animation;
 import javafx.animation.Transition;
@@ -108,8 +110,9 @@ public class FXBoard implements GraficBoardInterface {
 					"p15", "1", "p26", "0", "p15", "0", "p77", "0", "p33", "1", "p55", "0", "p04", "0", "p22", "0",
 					"p11", "0" };
 			// String[] part2=new String[]{""};
+			BCDraugthsApp.log.info("Log Level:"+BCDraugthsApp.log.getLevel());
+			BCDraugthsApp.log.log(Level.INFO,"level up level={0},loger name={1}" ,new Object[] {level,BCDraugthsApp.log.getName()});
 
-			BCDraugthsApp.log.info(" level=" + level);
 			// HBox infoPanel=new HBox();
 			computerPlayer = new FXAIPlayer1();
 			mousePlayer = new FXPMousePlayer(this);
@@ -119,10 +122,11 @@ public class FXBoard implements GraficBoardInterface {
 			game = new Game(automa, computerPlayer, Board.CHECKERS_GAME);
 
 			// game.setDamaSystem((DamaInterface) this);
-			// TODO cambiare le pedine in base alla wave....
+			
 
 			ConsoleRendering console = new ConsoleRendering();
 			game.addRenderInterface(console);
+
 			// game.playGame();
 
 			game.setHuman(mousePlayer);
@@ -162,7 +166,7 @@ public class FXBoard implements GraficBoardInterface {
 							transformInDraugth(p);
 							event.consume();
 						} catch (Exception e) {
-							e.printStackTrace();
+							BCDraugthsApp.log.log(Level.SEVERE,"EventDraugthTransform.DRAUGTH_EVENT-->",e);
 						}
 					}
 				}
@@ -226,8 +230,8 @@ public class FXBoard implements GraficBoardInterface {
 				}
 			});
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+
+			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e1);
 		}
 	}
 
@@ -237,18 +241,18 @@ public class FXBoard implements GraficBoardInterface {
 			root.setScaleX(scaleRoot.getScaleX());
 			double transalteX = ((1d - scaleRoot.getScaleX()) * 800) / 2;
 			root.setTranslateX(-transalteX);
-			BCDraugthsApp.log.info("x translate)" + transalteX);
+			BCDraugthsApp.log.info("x translate:" + transalteX);
 		}
 
 		if (scaleRoot != null && scaleRoot.getScaleY() < 1) {
 			root.setScaleY(scaleRoot.getScaleY());
 			double transalteY = ((1d - scaleRoot.getScaleY()) * 800) / 2;
 			root.setTranslateY(-transalteY);
-			BCDraugthsApp.log.info("y translate)" + transalteY);
+			BCDraugthsApp.log.info("y translate:" + transalteY);
 		}
-		BCDraugthsApp.log.info("Scale Factor)" + scaleRoot);
+		BCDraugthsApp.log.info("Scale Factor:" + scaleRoot);
 
-		BCDraugthsApp.log.info("Screeen Size)" + Screen.getPrimary().getVisualBounds().getWidth() + ","
+		BCDraugthsApp.log.info("Screeen Size:" + Screen.getPrimary().getVisualBounds().getWidth() + ","
 				+ Screen.getPrimary().getVisualBounds().getHeight());
 
 	}
@@ -278,7 +282,7 @@ public class FXBoard implements GraficBoardInterface {
 	public void levelUp(int level, int point) {
 		// root.getChildren().remove(this);
 
-		BCDraugthsApp.log.info("system level=" + level);
+		BCDraugthsApp.log.info("game level=" + level);
 		initLevel(level);
 		startLevel(point);
 		scale();
@@ -331,14 +335,10 @@ public class FXBoard implements GraficBoardInterface {
 							resetGame();
 							recordScreen.saveRecordPlayers();
 							event.consume();
-							if (BCDraugthsApp.debug)
-								BCDraugthsApp.log.info(
-										"----FINE------>" + name + "-->" + only3 + "----->" + new String(recordName));
+							BCDraugthsApp.log.info("----FINE------>" + name + "-->" + only3 + "----->" + new String(recordName));
 						}
 
-						if (BCDraugthsApp.debug)
-							BCDraugthsApp.log
-									.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
+						BCDraugthsApp.log.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
 
 					} else {
 
@@ -349,9 +349,8 @@ public class FXBoard implements GraficBoardInterface {
 							recordName[only3] = name;
 
 						}
-						if (BCDraugthsApp.debug)
-							BCDraugthsApp.log
-									.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
+
+						BCDraugthsApp.log.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
 						recordScreen.addRecordPlayer(new String(recordName), points);
 						recordScreen.drawTableRecord();
 					}
@@ -416,7 +415,7 @@ public class FXBoard implements GraficBoardInterface {
 		try {
 			game.getBoard().loadBoard(file);
 		} catch (IOException e) {
-			BCDraugthsApp.log.info(e.getStackTrace().toString());
+			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
 		}
 
 	}
@@ -433,14 +432,14 @@ public class FXBoard implements GraficBoardInterface {
 		int decodeCol = decodeColor(color);
 		SpritePiece sp = null;
 		int k = -1;
-		// BCDraugthsApp.log.info("--------" + pedinaList[decodeCol].size() +
-		// "-------------");
+		 BCDraugthsApp.log.info("--------" + pedinaList[decodeCol].size() +
+		 "-------------");
 		for (k = 0; k < pedinaList[decodeCol].size(); k++) {
 			SpritePiece pedina = pedinaList[decodeCol].get(k);
 			if (pedina != null) {
 				Piece p = pedina.getBoardPieceLink();
 
-				// BCDraugthsApp.log.info(k + ")" + pedina);
+				 BCDraugthsApp.log.info(k + ")" + pedina);
 				if (eated && p.getI() == i1 && p.getJ() == j1 && p.isEated()) {
 					sp = pedinaList[decodeCol].get(k);
 
@@ -449,7 +448,7 @@ public class FXBoard implements GraficBoardInterface {
 
 				}
 			} else {
-				// BCDraugthsApp.log.info(k + ")sp=null");
+				 BCDraugthsApp.log.info(k + ")sp=null");
 			}
 			if (sp != null) {
 				break;
@@ -458,8 +457,7 @@ public class FXBoard implements GraficBoardInterface {
 		}
 		// if(sp==null ) System.exit(-1);
 
-		BCDraugthsApp.log.info(
-				" ..The sprite is k=" + k + " ,sprite scelto " + sp + " isEated=" + sp.getBoardPieceLink().isEated());
+		BCDraugthsApp.log.info(" ..The sprite is k=" + k + " ,sprite scelto " + sp + " isEated=" + sp.getBoardPieceLink().isEated());
 		return sp;
 	}
 
@@ -647,8 +645,7 @@ public class FXBoard implements GraficBoardInterface {
 //			});
 			SoundSystem.playSoundLoop(SoundInterface.MUSIC_SIGLA);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
 		}
 	}
 
@@ -662,8 +659,8 @@ public class FXBoard implements GraficBoardInterface {
 			view.setCenter(root);
 			drawStartScreen();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
+
 		}
 
 	}

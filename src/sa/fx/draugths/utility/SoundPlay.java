@@ -3,8 +3,10 @@ package sa.fx.draugths.utility;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
 
 import javafx.scene.media.AudioClip;
+import sa.fx.draugths.BCDraugthsApp;
 
 public class SoundPlay implements SoundInterface {
 
@@ -36,8 +38,8 @@ public class SoundPlay implements SoundInterface {
 		if(audioClip==null) {
 			ClassLoader classLoader = getClass().getClassLoader();
         	URL url = classLoader.getResource(soundsName[code]);
-
-        	System.out.println("code="+code+","+soundsName[code]);
+        	BCDraugthsApp.log.log(Level.INFO,"code={0}, name={1}" ,new Object[]{code,soundsName[code]});
+        	
 
         	audioClip=new AudioClip(url.toString());
 		}

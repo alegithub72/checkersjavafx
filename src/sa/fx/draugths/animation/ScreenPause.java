@@ -5,6 +5,8 @@
  */
 package sa.fx.draugths.animation;
 
+import java.util.logging.Level;
+
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,7 +32,7 @@ public class ScreenPause extends Transition{
                 try {
 					i.goAhead();
 				} catch (Exception e) {
-					BCDraugthsApp.log.info(e.getMessage());
+					BCDraugthsApp.log.log(Level.SEVERE,"Exception ",e);
 				}
             }
             

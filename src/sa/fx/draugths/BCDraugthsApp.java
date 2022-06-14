@@ -5,25 +5,21 @@
  */
 package sa.fx.draugths;
 
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sa.fx.draugths.screen.EndScreen;
-import sa.fx.draugths.screen.EndScreenII;
 import sa.fx.draugths.screen.PresentationScreen;
 import sa.fx.draugths.screen.RecordScreen;
-import sa.fx.draugths.screen.StartScreen;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
 
@@ -41,7 +37,7 @@ public class BCDraugthsApp extends Application {
 	public static boolean debug;
 	public static boolean loadScenario;
 	public static boolean tracepath;
-	public static java.util.logging.Logger log = Logger.getAnonymousLogger();
+	public static java.util.logging.Logger log = Logger.getLogger("sa.fx.draugths");
 	// PathTransition pathTransition;
 	Group root;
 	// RotateTransition rotateTransition;
@@ -52,7 +48,7 @@ public class BCDraugthsApp extends Application {
 	int level;
 
 	public void initDama() {
-
+		System.out.println("---->"+System.getProperty("checkers.debug"));
 		if (System.getProperty("checkers.debug") != null)
 			debug = "true".equals("" + System.getProperty("checkers.debug"));
 		else
@@ -67,12 +63,35 @@ public class BCDraugthsApp extends Application {
 		else
 			tracepath = false;
 
-		System.setProperty("java.util.logging.SimpleFormatter.format", "%2$s   %4$s: %5$s %n");
+		System.setProperty("java.util.logging.SimpleFormatter.format", "%2$s   %4$s:   %5$s %6$s   %n");
 		// java.util.logging.SimpleFormatter.format
-		if (debug)
-			log.setLevel(Level.INFO);
-		else
-			log.setLevel(Level.OFF);
+		System.out.println("---->"+debug);
+		if (debug) {
+			Level logLevel=Level.INFO;
+			log.setLevel(logLevel);
+			if(log.getParent()!=null && log.getParent().getHandlers()!=null) {
+				Handler[] hanlders=log.getParent().getHandlers();
+					log.info("lentgth="+hanlders.length);
+					for(int i=0; i<hanlders.length;i++) {
+						log.info("--->"+hanlders[i]);
+						if(hanlders[i]!=null)
+							hanlders[i].setLevel(logLevel);
+						//log.getParent().removeHandler(hanlders[i]);
+
+				}
+
+			}
+			
+		}
+		else{
+			log.setLevel(Level.SEVERE);
+		}
+		//ConsoleHandler handler=new ConsoleHandler();
+		//handler.setLevel(Level.FINEST);
+
+		//log.addHandler(handler);
+		
+		//System.setProperty("java.util.logging.ConsoleHandler.level","FINEST");
 		// log.info("System.getProperty(\"checkers.level\")="+System.getProperty("checkers.level"));
 		if (System.getProperty("checkers.level") != null)
 			level = Integer.valueOf(System.getProperty("checkers.level"));
@@ -81,7 +100,7 @@ public class BCDraugthsApp extends Application {
 
 		log.info("level system=" + level);
 		log.info("level system=" + debug);
-
+		log.info("level log=" + log.getLevel());
 
 	}
 

@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
 
 import javafx.animation.Animation;
 import javafx.animation.Transition;
@@ -44,7 +45,7 @@ public class RecordScreen  extends Parent{
     	try {
 			prop.load(loadCodedFile(FILE1_REC));
 		} catch (IOException e) {
-			BCDraugthsApp.log.info(e.getMessage());
+			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
 		}
 
         players=ordredrecordsPlayers();
@@ -111,7 +112,7 @@ public class RecordScreen  extends Parent{
 			in = new FileInputStream(name);
 		} catch (FileNotFoundException e1) {
 
-			e1.printStackTrace();
+			BCDraugthsApp.log.log(Level.SEVERE,"loadFromFileSystem:",e1);
 		}
     	return in;
     }
@@ -128,7 +129,7 @@ public class RecordScreen  extends Parent{
 			}
 			fileOutputStream.flush();
 		} catch (Exception e) {
-			BCDraugthsApp.log.info(e.getMessage());
+			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
 		} finally {
 			if(fileOutputStream!=null)fileOutputStream.close();
 			if(byteArrayInputStream!=null)byteArrayInputStream.close();
@@ -157,7 +158,7 @@ public void saveRecordPlayers(){
 		try {
 			if(arrayOutputStream!=null) arrayOutputStream.close();
 		} catch (IOException e) {
-			BCDraugthsApp.log.info(e.getMessage());
+			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
 			
 		}
 	}
