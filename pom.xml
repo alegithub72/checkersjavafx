@@ -121,6 +121,15 @@
 				<version>0.0.8</version>
 				<configuration>
 					<mainClass>${main.class}</mainClass>
+					<options>
+						<option>-Dcheckers.debug=${checkersjavafx.debug}</option>
+						<option>-Dcheckers.level=108</option>
+						<option>-Dcheckers.debug=true</option>
+						<option>-Dcheckers.loadScenario=true</option>
+						<option>-Dcheckers.tracepath=false</option>
+						<option>-Dcheckers.fileScenario2=boardPedinaBlackTest.txt</option>
+						<option>-Dcheckers.fileScenario=boardEndLevel.txt</option>
+					</options>					
 				</configuration>
 			</plugin>
 			<plugin>

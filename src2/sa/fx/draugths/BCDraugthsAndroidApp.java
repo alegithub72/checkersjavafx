@@ -46,9 +46,7 @@ public class BCDraugthsAndroidApp extends Application {
 	static public SoundInterface soundplay = null;
 
 	FXBoard fxb;
-	public static boolean debug;
-	public static boolean loadScenario;
-	public static boolean tracepath;
+
 
 
 	public String confirmCommand;
@@ -130,22 +128,22 @@ public class BCDraugthsAndroidApp extends Application {
 	public void initDama() {
 
 		if (System.getProperty("checkers.debug") != null)
-			debug = "true".equals("" + System.getProperty("checkers.debug"));
+			BCDraugthsApp.debug = "true".equals("" + System.getProperty("checkers.debug"));
 		else
-			debug = false;
+			BCDraugthsApp.debug = false;
 		// log.info("System.getProperty(\"checkers.loadScenario\")="+System.getProperty("checkers.loadScenario"));
 		if (System.getProperty("checkers.loadScenario") != null)
-			loadScenario = "true".equals("" + System.getProperty("checkers.loadScenario"));
+			BCDraugthsApp.loadScenario = "true".equals("" + System.getProperty("checkers.loadScenario"));
 		else
-			loadScenario = false;
+			BCDraugthsApp.loadScenario = false;
 		if (System.getProperty("checkers.tracepath") != null)
-			tracepath = "true".equals("" + System.getProperty("checkers.tracepath"));
+			BCDraugthsApp.tracepath = "true".equals("" + System.getProperty("checkers.tracepath"));
 		else
-			tracepath = false;
+			BCDraugthsApp.tracepath = false;
 
 		System.setProperty("java.util.logging.SimpleFormatter.format", "%2$s   %4$s:   %5$s %6$s   %n");
 		// java.util.logging.SimpleFormatter.format
-		if (debug)
+		if (BCDraugthsApp.debug)
 			BCDraugthsApp.log.setLevel(Level.SEVERE);
 		else
 			BCDraugthsApp.log.setLevel(Level.OFF);
@@ -156,7 +154,7 @@ public class BCDraugthsAndroidApp extends Application {
 			level = 1;
 
 		BCDraugthsApp.log.info("level system=" + level);
-		BCDraugthsApp.log.info("level system=" + debug);
+		BCDraugthsApp.log.info("level system=" + BCDraugthsApp.debug);
 
 	}
 
