@@ -5,7 +5,6 @@
  */
 package sa.fx.draugths;
 
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;

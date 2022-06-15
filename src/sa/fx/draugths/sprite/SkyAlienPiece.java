@@ -7,7 +7,6 @@ package sa.fx.draugths.sprite;
 
 import javafx.animation.ParallelTransition;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.utility.BoardHW;
