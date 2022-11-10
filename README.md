@@ -2,8 +2,13 @@
 # Chekcers Space Invaders JavaFX Game
 The game of checkers made with Java and JavaFX, space invaders style.(still developing).
 
-Copy the `ckeckersengine` directory  under `lib` in  your local `repository`.
+Install library in themain folder launch the command:<br><br>
 
+																						
+`mvn install:install-file -Dfile=./lib/checkersengine-3.2.jar -DgroupId=checkersengine -DartifactId=checkersengine -Dversion=3.2 -Dpackaging=jar`
+
+
+<br>
 To run the game: 
 
 1. mvn clean compile 

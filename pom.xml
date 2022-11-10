@@ -15,6 +15,7 @@
 		<gluonfx.plugin.version>1.0.13</gluonfx.plugin.version>
 		<charm.version>6.1.0</charm.version>
 		<attach.version>4.0.13</attach.version>
+		<checkersjavafx.debug>false</checkersjavafx.debug>
 		<main.class>sa.fx.draugths.BCDraugthsApp</main.class>
 	</properties>
 	<distributionManagement>
@@ -123,9 +124,8 @@
 					<mainClass>${main.class}</mainClass>
 					<options>
 						<option>-Dcheckers.debug=${checkersjavafx.debug}</option>
-						<option>-Dcheckers.level=108</option>
-						<option>-Dcheckers.debug=true</option>
-						<option>-Dcheckers.loadScenario=true</option>
+						<option>-Dcheckers.level=1</option>
+						<option>-Dcheckers.loadScenario=${checkersjavafx.debug}</option>
 						<option>-Dcheckers.tracepath=false</option>
 						<option>-Dcheckers.fileScenario2=boardPedinaBlackTest.txt</option>
 						<option>-Dcheckers.fileScenario=boardEndLevel.txt</option>

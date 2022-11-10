@@ -328,13 +328,19 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 				public void handle(ActionEvent event) {
 
 		            c.getGraphicsContext2D().fillRect(0, 0, wBackground, hBackgroundTot);
+		           
 		            Font f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 36);
 		            if(f==null) f=Font.font(36);
 		            c.getGraphicsContext2D().setFont( f);
 		            double centerX=(wBackground/4)-(wBackground/24);
 		            double centerY=(hBackgroundTot/2)+(hBackgroundTot/12);
 		            if (FXBoard.levelWave(level) == BackGround.LVL_JUNGLE) {
+		            	
+		            	c.getGraphicsContext2D().setEffect(null);
+		            	c.getGraphicsContext2D().drawImage(new Image("jungle_bck.png"), (wBackground/2)-256,(hBackgroundTot/2)-256,512, 512);
+		            	c.getGraphicsContext2D().setEffect(dropShadow);
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Jungle", centerX,centerY);
+		            	
 		            } else if (FXBoard.levelWave(level) == BackGround.LVL_DESERT) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Desert", centerX,centerY);
 		            }else if (FXBoard.levelWave(level) == BackGround.LVL_POLE) {

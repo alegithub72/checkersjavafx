@@ -620,7 +620,7 @@ public class FXBoard implements GraficBoardInterface {
 					if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() > 1) {
 						SoundSystem.playSound(SoundInterface.EFFECT_COIN, 1);
 						SoundSystem.stopSound(SoundInterface.MUSIC_SIGLA);
-
+						waitCoin();
 						startLevel(level);
 						root.getChildren().remove(startScreen);
 
@@ -645,7 +645,13 @@ public class FXBoard implements GraficBoardInterface {
 			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
 		}
 	}
-
+	private void waitCoin() {
+		try {
+			Thread.currentThread().sleep(1000);
+		} catch (InterruptedException e) {
+			BCDraugthsApp.log.log(Level.SEVERE,"Sleep Excption:",e);
+		}
+	}
 	private void resetGame() {
 
 		try {
