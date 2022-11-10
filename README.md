@@ -6,7 +6,7 @@ Install library in the project folder launch the command:<br><br>
 
 																						
 ```
-vn install:install-file -Dfile=./lib/checkersengine-3.2.jar -DgroupId=checkersengine -DartifactId=checkersengine -Dversion=3.2 -Dpackaging=jar
+mvn install:install-file -Dfile=./lib/checkersengine-3.2.jar -DgroupId=checkersengine -DartifactId=checkersengine -Dversion=3.2 -Dpackaging=jar
 ```
 
 
