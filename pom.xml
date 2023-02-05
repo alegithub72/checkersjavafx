@@ -127,7 +127,7 @@
 					<mainClass>${main.class}</mainClass>
 					<options>
 						<option>-Dcheckers.debug=${checkersjavafx.debug}</option>
-						<option>-Dcheckers.level=8</option>
+						<option>-Dcheckers.level=1</option>
 						<option>-Dcheckers.loadScenario=fasle</option>
 						<option>-Dcheckers.tracepath=false</option>
 						<option>-Dcheckers.fileScenario2=boardPedinaBlackTest.txt</option>
