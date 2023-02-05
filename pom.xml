@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>checkersfx</groupId>
 	<artifactId>chekcersfx</artifactId>
-	<version>4.2</version>
+	<version>4.2.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>ChekcersInvader</name>
 	<!-- https://search.maven.org https://repository.apache.org https://mvnrepository.com -->
@@ -109,7 +109,10 @@
 			<version>14.06-beta</version> </dependency -->
 	</dependencies>
 	<build>
+
+
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -124,12 +127,12 @@
 					<mainClass>${main.class}</mainClass>
 					<options>
 						<option>-Dcheckers.debug=${checkersjavafx.debug}</option>
-						<option>-Dcheckers.level=1</option>
-						<option>-Dcheckers.loadScenario=${checkersjavafx.debug}</option>
+						<option>-Dcheckers.level=8</option>
+						<option>-Dcheckers.loadScenario=fasle</option>
 						<option>-Dcheckers.tracepath=false</option>
 						<option>-Dcheckers.fileScenario2=boardPedinaBlackTest.txt</option>
 						<option>-Dcheckers.fileScenario=boardEndLevel.txt</option>
-					</options>					
+					</options>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -201,6 +204,11 @@
 			</plugin>
 			<!-- Calling mvn jfx:jar creates your javafx-application-jar inside target/jfx/app/yourapp-jfx.jar, 
 				or even creates native launcher (like EXE-file) when calling mvn jfx:native. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
 		</plugins>
 		<directory>target</directory>
 		<outputDirectory>target/classes</outputDirectory>
@@ -212,8 +220,21 @@
 		<resources>
 			<resource>
 				<directory>src/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>version.properties</include>
+				</includes>				
+			</resource>		
+			<resource>
+				<directory>src/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+				<exclude>version.properties</exclude>
+				</excludes>
 			</resource>
+
 		</resources>
+
 		<testResources>
 			<testResource>
 				<directory>test/resources</directory>
@@ -236,6 +257,8 @@
 				<main.class>sa.fx.draugths.BCDraugthsAndroidApp</main.class>
 			</properties>
 		</profile>
+
+
 	</profiles>
 	<repositories>
 		<repository>

@@ -1,9 +1,14 @@
 package sa.fx.draugths.screen;
 
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.text.Text;
+import sa.fx.draugths.BCDraugthsApp;
 
 public abstract class PresentationScreen extends Parent {
 
@@ -12,7 +17,18 @@ public abstract class PresentationScreen extends Parent {
 	protected Canvas c;
 	protected Text start;
 	protected int level;
-
+	protected Properties prop;
+	
+	private void loadProperties() {
+    	prop= new Properties();
+    	try {
+			prop.load(ClassLoader.getSystemClassLoader().getResourceAsStream("version.properties"));
+		} catch (IOException e) {
+			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
+			e.printStackTrace();
+		}
+		
+	}
 	protected PresentationScreen(String image) {
 		super();
 		c = new Canvas(800, 840);
@@ -20,6 +36,7 @@ public abstract class PresentationScreen extends Parent {
 		widthScreen = 800;
 		heightScreen = 840;
 		this.level = 0;
+		loadProperties();
 		drawScreen(image);
 
 	}
