@@ -21,7 +21,7 @@ public class SkyAlienPiece extends AlienPiece {
 
 
 
-    private static final  String DRAUGTH_ALIEN_IMAGE_SKY="alien_checker_dama.png";
+    private static final  String DRAUGTH_ALIEN_IMAGE_SKY="alien_checker_dama_fly.png";
     private static final  String CHEKCER_ALIEN_IMAGE_SKY="alien_checker_fly.png";
     
    public SkyAlienPiece( Piece piece, BoardHW boardHW, FXBoard board) {
