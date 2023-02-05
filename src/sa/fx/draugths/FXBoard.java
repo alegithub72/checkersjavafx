@@ -1031,7 +1031,7 @@ public class FXBoard implements GraficBoardInterface {
 				pedina = new SkyAlienPiece(charPiece, boardHW, this);
 				pedina = pedina.loadDraugthFrame();
 				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
+				FrameInfo[] move = { new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
 				pedina.addMoveSequenceFrame(move);
 				// MOVE EAT SEQUENCE 1-4
 				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
@@ -1072,7 +1072,7 @@ public class FXBoard implements GraficBoardInterface {
 				pedina.addEatMoveSequenceFrame(moveat);
 				// KILLED SEQUENCE 7-10
 				FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), };
+						new FrameInfo(9, 1), new FrameInfo(10, 1),new FrameInfo(10, 1) };
 				pedina.addKillSequenceFrame(killed);
 
 			}

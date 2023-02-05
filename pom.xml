@@ -128,10 +128,10 @@
 					<options>
 						<option>-Dcheckers.debug=${checkersjavafx.debug}</option>
 						<option>-Dcheckers.level=1</option>
-						<option>-Dcheckers.loadScenario=fasle</option>
+						<option>-Dcheckers.loadScenario=false</option>
 						<option>-Dcheckers.tracepath=false</option>
-						<option>-Dcheckers.fileScenario2=boardPedinaBlackTest.txt</option>
-						<option>-Dcheckers.fileScenario=boardEndLevel.txt</option>
+						<option>-Dcheckers.fileScenario=boardDamaTest.txt</option>
+						<option>-Dcheckers.fileScenario2=boardEndLevel.txt</option>
 					</options>
 				</configuration>
 			</plugin>

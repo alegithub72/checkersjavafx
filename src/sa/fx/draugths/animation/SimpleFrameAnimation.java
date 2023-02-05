@@ -80,7 +80,7 @@ public class SimpleFrameAnimation extends Transition {
 
 		if (startMusic) {
 			if (this.sound == SoundPlay.FIRE || this.sound == SoundPlay.SPEEDY_BITE || this.sound == SoundPlay.CLOPETE
-					|| this.sound == SoundPlay.CLOPETE_DOUBLE || this.sound == SoundPlay.MOVESPACESOLDIER) {
+					|| this.sound == SoundPlay.CLOPETE_DOUBLE || this.sound == SoundPlay.MOVESPACESOLDIER|| this.sound == SoundPlay.WING) {
 
 				FXBoard.SoundSystem.playSoundLoop(sound);
 			}
