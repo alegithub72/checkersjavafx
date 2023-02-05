@@ -33,24 +33,24 @@ public class SoundPlayMobile implements SoundInterface {
 	}
 
 	@Override
-	public void playSoundLoop(int code) {
+	public void playSoundLoop(SoundEffect effect) {
 		executors.execute(new Runnable() {
 
 			@Override
 			public void run() {
 				ClassLoader classLoader = getClass().getClassLoader();
-				URL url = classLoader.getResource(soundsName[code]);
+				URL url = classLoader.getResource(effect.getFile());
 				AudioService.create().ifPresent(service -> {
 					service.loadMusic(url).ifPresent(audio -> {
-						if (soundsMobile.get(soundsName[code]) != null) {
-							soundsMobile.get(soundsName[code]).stop();
-							soundsMobile.get(soundsName[code]).setLooping(true);
-							soundsMobile.get(soundsName[code]).play();
+						if (soundsMobile.get(effect.getFile()) != null) {
+							soundsMobile.get(effect.getFile()).stop();
+							soundsMobile.get(effect.getFile()).setLooping(true);
+							soundsMobile.get(effect.getFile()).play();
 
 						} else {
-							soundsMobile.put(soundsName[code], audio);
-							soundsMobile.get(soundsName[code]).setLooping(true);
-							soundsMobile.get(soundsName[code]).play();
+							soundsMobile.put(effect.getFile(), audio);
+							soundsMobile.get(effect.getFile()).setLooping(true);
+							soundsMobile.get(effect.getFile()).play();
 						}
 
 					});
@@ -62,20 +62,20 @@ public class SoundPlayMobile implements SoundInterface {
 	}
 
 	@Override
-	public void playSound(int code, int times) {
+	public void playSound(SoundEffect effect, int times) {
 		executors.execute(new Runnable() {
 
 			@Override
 			public void run() {
 				ClassLoader classLoader = getClass().getClassLoader();
-				URL url = classLoader.getResource(soundsName[code]);
+				URL url = classLoader.getResource(effect.getFile());
 				AudioService.create().ifPresent(service -> {
 					service.loadMusic(url).ifPresent(audio -> {
-						if (soundsMobile.get(soundsName[code]) == null) {
-							soundsMobile.put(soundsName[code], audio);
+						if (soundsMobile.get(effect.getFile()) == null) {
+							soundsMobile.put(effect.getFile(), audio);
 						}
-						soundsMobile.get(soundsName[code]).setLooping(false);
-						soundsMobile.get(soundsName[code]).play();
+						soundsMobile.get(effect.getFile()).setLooping(false);
+						soundsMobile.get(effect.getFile()).play();
 					});
 				});
 
@@ -85,15 +85,15 @@ public class SoundPlayMobile implements SoundInterface {
 	}
 
 	@Override
-	public void stopSound(int code) {
+	public void stopSound(SoundEffect effect) {
 		executors.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					;
-					if (soundsMobile.get(soundsName[code]) != null) {
-						soundsMobile.get(soundsName[code]).setLooping(false);
-						soundsMobile.get(soundsName[code]).stop();
+					if (soundsMobile.get(effect.getFile()) != null) {
+						soundsMobile.get(effect.getFile()).setLooping(false);
+						soundsMobile.get(effect.getFile()).stop();
 					}
 
 				} catch (Exception e) {

@@ -11,6 +11,7 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.sprite.Sprite;
 import sa.fx.draugths.sprite.SpritePiece;
+import sa.fx.draugths.utility.SoundEffect;
 
 /**
  *
@@ -26,8 +27,8 @@ public class ShotCollisionFrameAnimation extends SimpleFrameAnimation {
 
 	public ShotCollisionFrameAnimation(FrameInfo[] frames, Move move, SpritePiece sprite, Sprite shot,
 
-			boolean cyclic, long interval, int soundCode) {
-		super(frames, shot,move, cyclic, interval, soundCode);
+			boolean cyclic, long interval, SoundEffect effect) {
+		super(frames, shot,move, cyclic, interval, effect);
 
 	     this.piece=sprite;
 		this.shot = shot;

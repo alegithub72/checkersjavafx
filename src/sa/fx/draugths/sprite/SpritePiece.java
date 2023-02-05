@@ -22,6 +22,7 @@ import sa.fx.draugths.animation.PieceAnimationEndHandler;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
 /**
@@ -67,7 +68,7 @@ public abstract class SpritePiece extends Sprite{
 
     }
 
-    void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, int sound) {
+    void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, SoundEffect sound) {
     	SimpleFrameAnimation transition=  new SimpleFrameAnimation(frames, this,m,  ciclyc, interval, sound);
 
     	transition.setDuration(Duration.seconds(0.5));

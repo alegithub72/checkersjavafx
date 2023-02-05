@@ -13,6 +13,7 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.sprite.Sprite;
+import sa.fx.draugths.utility.SoundEffect;
 import sa.fx.draugths.utility.SoundPlay;
 
 /**
@@ -22,7 +23,7 @@ import sa.fx.draugths.utility.SoundPlay;
 public class SimpleFrameAnimation extends Transition {
 	FrameInfo[] frames;
 
-	int sound;
+	SoundEffect sound;
 
 	Sprite sprite;
 	Move move;
@@ -37,7 +38,7 @@ public class SimpleFrameAnimation extends Transition {
 	boolean startMusic = true;
 
 	public SimpleFrameAnimation(FrameInfo[] frames, Sprite sprite, Move move, boolean cyclic, long interval,
-			int sound) {
+			SoundEffect sound) {
 		this.frames = frames;
 		this.sprite = sprite;
 		this.move = move;
@@ -49,7 +50,7 @@ public class SimpleFrameAnimation extends Transition {
 		addEndHandler();
 	}
 
-	public SimpleFrameAnimation(FrameInfo[] frames, Sprite sprite, boolean cyclic, long interval, int sound) {
+	public SimpleFrameAnimation(FrameInfo[] frames, Sprite sprite, boolean cyclic, long interval, SoundEffect sound) {
 		this.frames = frames;
 		this.sprite = sprite;
 		this.move = null;
@@ -79,8 +80,8 @@ public class SimpleFrameAnimation extends Transition {
 	void playEffect() {
 
 		if (startMusic) {
-			if (this.sound == SoundPlay.FIRE || this.sound == SoundPlay.SPEEDY_BITE || this.sound == SoundPlay.CLOPETE
-					|| this.sound == SoundPlay.CLOPETE_DOUBLE || this.sound == SoundPlay.MOVESPACESOLDIER|| this.sound == SoundPlay.WING) {
+			if (sound.isLoop()	
+					) {
 
 				FXBoard.SoundSystem.playSoundLoop(sound);
 			}

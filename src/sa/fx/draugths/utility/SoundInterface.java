@@ -1,44 +1,40 @@
 package sa.fx.draugths.utility;
 
 public interface SoundInterface {
-    public static final int FIRE=0;
-    public static final int SPEEDY_BITE=1;
-    public static final int BITE=2;
-    public static final int BIG_BITE=3;
-    public static final int JUNGLE=4;
-    public static final int MARCH=5;
-    public static final int MOVESPACESOLDIER=6;
-    public static final int CLOPETE_DOUBLE=7;
-    public static final int MOVEMONSTER=8;
-    public static final int EXPLOSIONMONSTER=9;
-    public static final int MISSILE=10;
-    public static final int ELICOPTER=11;
-    public static final int CLOPETE=12;
-    public static final int EXPLOSION=13;
-    public static final int BIGEXPLOSION=14;
-    public static final int ACHW=15;
-    public static final int ACHB=16;
-    public static final int WING=17;
-    public static final int JETPACK=18;
-    public static final int LASER=19;
-    public static final int MUSIC_SIGLA=20;
-    public static final int MUSIC_CELEBRATION=21;
-    public static final int EFFECT_HEY=22;
-    public static final int EFFECT_COIN=23;
+	
+	/**this.sound == SoundPlay.FIRE || this.sound == SoundPlay.SPEEDY_BITE || this.sound == SoundPlay.CLOPETE
+	|| this.sound == SoundPlay.CLOPETE_DOUBLE || this.sound == SoundPlay.MOVESPACESOLDIER|| this.sound == SoundPlay.WING**/
+    public static final SoundEffect FIRE=new SoundEffect("fire5.wav", true);
+    public static final SoundEffect SPEEDY_BITE=new SoundEffect("speedy_bite.wav", true);
+    public static final SoundEffect BITE=new SoundEffect("Dogbite.wav", false);
+    public static final SoundEffect BIG_BITE=new SoundEffect("lion_roar_2.mp3", false);
+    public static final SoundEffect JUNGLE=new SoundEffect("jungle_drum.wav", false);
+    public static final SoundEffect MARCH=new SoundEffect("marcias.wav", false);
+    public static final SoundEffect MOVESPACESOLDIER=new SoundEffect("jerpack.wav", true);
+    public static final SoundEffect CLOPETE_DOUBLE=new SoundEffect("moveAlien2.wav", true);
+    public static final SoundEffect MOVEMONSTER=new SoundEffect("UFO.wav", false);
+    public static final SoundEffect EXPLOSIONMONSTER=new SoundEffect("Fireball.wav", false);
+    public static final SoundEffect MISSILE=new SoundEffect("top.wav", false);
+    public static final SoundEffect ELICOPTER=new SoundEffect("elicopter.wav", false);
+    public static final SoundEffect CLOPETE=new SoundEffect("move_alien.wav", true);
+    public static final SoundEffect EXPLOSION=new SoundEffect("Fireball.wav", false);
+    public static final SoundEffect BIGEXPLOSION=new SoundEffect("Explosion3.wav", false);
+    public static final SoundEffect ACHW=new SoundEffect("Achievement.wav", false);
+    public static final SoundEffect ACHB=new SoundEffect("pluck.wav", false);
+    public static final SoundEffect WING=new SoundEffect("159355-wing-effect.wav", true);
+    public static final SoundEffect JETPACK=new SoundEffect("jerpack.wav", false);
+    public static final SoundEffect LASER=new SoundEffect("191594_laser.wav", false);
+    public static final SoundEffect MUSIC_SIGLA=new SoundEffect("muppet.mp3", false);
+    public static final SoundEffect MUSIC_CELEBRATION=new SoundEffect("270545_jingle-win-01.wav", false);
+    public static final SoundEffect EFFECT_HEY=new SoundEffect("416507_hey.wav", false);
+    public static final SoundEffect EFFECT_COIN=new SoundEffect("29649-coin-return.wav", false);
     
-	public static final String[] soundsName={
 
-			"fire5.wav","speedy_bite.wav","Dogbite.wav","lion_roar_2.mp3"
-			,"jungle_drum.wav","marcias.wav","jerpack.wav","moveAlien2.wav"
-			,"UFO.wav","Fireball.wav","top.wav","elicopter.wav"
-			,"move_alien.wav","Fireball.wav","Explosion3.wav"
-			,"Achievement.wav","pluck.wav","159355-wing-effect.wav","jerpack.wav"
-			,"191594_laser.wav","muppet.mp3","270545_jingle-win-01.wav","416507_hey.wav","29649-coin-return.wav"};
 
-	void playSoundLoop(int code);
+	void playSoundLoop(SoundEffect code);
 
-	void stopSound(int code);
+	void stopSound(SoundEffect code);
 
-	void playSound(int code, int times);
+	void playSound(SoundEffect code, int times);
 	public void stopExecutor() ;
 }

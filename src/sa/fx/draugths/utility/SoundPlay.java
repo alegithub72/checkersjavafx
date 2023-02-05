@@ -1,6 +1,8 @@
 package sa.fx.draugths.utility;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -15,7 +17,7 @@ public class SoundPlay implements SoundInterface {
 
 	
 	ExecutorService executors = Executors.newCachedThreadPool();
-	AudioClip[] sounds=new AudioClip[30];	
+	Map<String, AudioClip> sounds=new HashMap<String, AudioClip>();	
 
 
 	
@@ -33,12 +35,12 @@ public class SoundPlay implements SoundInterface {
 		return soundInterface;
 	}
 	
-	private AudioClip getSoundHashMap(int code) {
-        AudioClip audioClip=  sounds[code];
+	private AudioClip getSoundHashMap(SoundEffect effect) {
+        AudioClip audioClip=  sounds.get(effect.getFile());
 		if(audioClip==null) {
 			ClassLoader classLoader = getClass().getClassLoader();
-        	URL url = classLoader.getResource(soundsName[code]);
-        	BCDraugthsApp.log.log(Level.INFO,"code={0}, name={1}" ,new Object[]{code,soundsName[code]});
+        	URL url = classLoader.getResource(effect.getFile());
+        	BCDraugthsApp.log.log(Level.INFO,"code={0}, name={1}" ,new Object[]{effect,effect.getFile()});
         	
 
         	audioClip=new AudioClip(url.toString());
@@ -47,16 +49,16 @@ public class SoundPlay implements SoundInterface {
 		
 	}
 	@Override
-	public void  playSoundLoop(int code){
+	public void  playSoundLoop(SoundEffect effect){
 		executors.execute(new Runnable() {
 			
 			@Override
 			public void run() {
-				AudioClip audioClip=getSoundHashMap(code);
+				AudioClip audioClip=getSoundHashMap(effect);
 				audioClip.stop(); 
 				audioClip.setCycleCount(AudioClip.INDEFINITE);
 		        audioClip.play(); 
-		        sounds[code]= audioClip;
+		        sounds.put(effect.getFile(), audioClip);
 				
 			}
 		});
@@ -64,12 +66,12 @@ public class SoundPlay implements SoundInterface {
 		
 	}
 	@Override
-	public void  stopSound(int code){
+	public void  stopSound(SoundEffect effect){
 		executors.execute(new Runnable() {
 			
 			@Override
 			public void run() {
-				AudioClip audioClip=getSoundHashMap(code);
+				AudioClip audioClip=getSoundHashMap(effect);
 		        audioClip.stop(); 
 				
 			}
@@ -78,12 +80,12 @@ public class SoundPlay implements SoundInterface {
 		
 	}
 	@Override
-	public void  playSound(int code, int times){
+	public void  playSound(SoundEffect effect, int times){
 		executors.execute(new Runnable() {
 			
 			@Override
 			public void run() {
-				AudioClip audioClip=getSoundHashMap(code);
+				AudioClip audioClip=getSoundHashMap(effect);
 		        audioClip.setCycleCount(times);
 		        audioClip.play(); 
 				
@@ -94,7 +96,7 @@ public class SoundPlay implements SoundInterface {
 	}
 	public void stopExecutor() {
 		executors.shutdown();
-		for (AudioClip audio:sounds) {
+		for (AudioClip audio:sounds.values()) {
 			if(audio!=null)audio.stop();
 		}
 	}

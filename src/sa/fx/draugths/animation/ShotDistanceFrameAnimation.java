@@ -9,6 +9,7 @@ import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.sprite.SpritePiece;
+import sa.fx.draugths.utility.SoundEffect;
 
 
 /**
@@ -22,8 +23,8 @@ public class ShotDistanceFrameAnimation extends SimpleFrameAnimation{
       SpritePiece piece;
 
 
-    public ShotDistanceFrameAnimation(FrameInfo[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,int soundCode) {
-    	super(frames, piece,move, cyclic, interval, soundCode);
+    public ShotDistanceFrameAnimation(FrameInfo[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,SoundEffect effect) {
+    	super(frames, piece,move, cyclic, interval, effect);
 
     	this.piece=piece;
         once=false;
