@@ -46,7 +46,7 @@ public class SkyAlienPiece extends AlienPiece {
     public void buildMoveSequence(boolean ciclyc) {
     	SimpleFrameAnimation transition=null;
         if (!draugthTransform) {
-        	transition=new  SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 50, SoundInterface.WING);
+        	transition=new  SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 25, SoundInterface.WING);
         	pltransition.getChildren().add(transition);
         	transition.setDuration(pltransition.getTotalDuration());
         } else {

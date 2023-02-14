@@ -1034,7 +1034,7 @@ public class FXBoard implements GraficBoardInterface {
 				FrameInfo[] move = { new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
 				pedina.addMoveSequenceFrame(move);
 				// MOVE EAT SEQUENCE 1-4
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
+				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(4, 1), new FrameInfo(1, 1),
 						new FrameInfo(4, 1) };
 				pedina.addEatMoveSequenceFrame(moveat);
 				// KILLED SEQUENCE 7-12

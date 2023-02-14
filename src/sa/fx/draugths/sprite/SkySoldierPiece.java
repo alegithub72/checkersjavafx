@@ -45,7 +45,7 @@ public class SkySoldierPiece extends SoldierPiece {
         	transition.setDuration(pltransition.getTotalDuration());
          	pltransition.getChildren().add( transition);
         } else {
-        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundInterface.ELICOPTER);
+        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundInterface.JETPACK);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add( transition);
 
