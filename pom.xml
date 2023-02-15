@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>checkersfx</groupId>
 	<artifactId>chekcersfx</artifactId>
-	<version>4.2.2-SNAPSHOT</version>
+	<version>4.2.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>ChekcersInvader</name>
 	<!-- https://search.maven.org https://repository.apache.org https://mvnrepository.com -->

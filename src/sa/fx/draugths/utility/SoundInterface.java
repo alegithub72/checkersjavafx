@@ -23,6 +23,7 @@ public interface SoundInterface {
     public static final SoundEffect ACHB=new SoundEffect("pluck.wav", false);
     public static final SoundEffect WING=new SoundEffect("159355-wing-effect.wav", true);
     public static final SoundEffect JETPACK=new SoundEffect("jerpack.wav", true);
+    public static final SoundEffect JET=new SoundEffect("jet.wav", true);
     public static final SoundEffect LASER=new SoundEffect("191594_laser.wav", false);
     public static final SoundEffect MUSIC_SIGLA=new SoundEffect("muppet.mp3", false);
     public static final SoundEffect MUSIC_CELEBRATION=new SoundEffect("270545_jingle-win-01.wav", false);
