@@ -50,7 +50,7 @@ public class SkyAlienPiece extends AlienPiece {
         	pltransition.getChildren().add(transition);
         	transition.setDuration(pltransition.getTotalDuration());
         } else {
-        	transition=new SimpleFrameAnimation(moveSequenceFrame,this ,ciclyc, 50, SoundInterface.WING);
+        	transition=new SimpleFrameAnimation(moveSequenceFrame,this ,ciclyc, 50, SoundInterface.SAPCESHIP);
         	pltransition.getChildren().add( transition);
         	transition.setDuration(pltransition.getTotalDuration());
         }
@@ -67,7 +67,7 @@ public class SkyAlienPiece extends AlienPiece {
         	pltransition.getChildren().add(transition);
         }
         else {
-        	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this,m, ciclyc, 50, SoundInterface.WING);
+        	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this,m, ciclyc, 50, SoundInterface.SAPCESHIP);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add(transition );
         }

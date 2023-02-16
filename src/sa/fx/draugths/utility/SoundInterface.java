@@ -30,6 +30,8 @@ public interface SoundInterface {
     public static final SoundEffect EFFECT_HEY=new SoundEffect("416507_hey.wav", false);
     public static final SoundEffect EFFECT_COIN=new SoundEffect("29649-coin-return.wav", false);
     
+    public static final SoundEffect SAPCESHIP=new SoundEffect("510018-buzzy.wav",true);
+    
 
 
 	void playSoundLoop(SoundEffect code);
