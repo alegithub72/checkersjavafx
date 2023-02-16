@@ -29,7 +29,7 @@ public interface SoundInterface {
     public static final SoundEffect MUSIC_CELEBRATION=new SoundEffect("270545_jingle-win-01.wav", false);
     public static final SoundEffect EFFECT_HEY=new SoundEffect("416507_hey.wav", false);
     public static final SoundEffect EFFECT_COIN=new SoundEffect("29649-coin-return.wav", false);
-    
+    public static final SoundEffect SAPCESHIP_BUZZ=new SoundEffect("55829_electric.wav",false);
     public static final SoundEffect SAPCESHIP=new SoundEffect("510018-buzzy.wav",true);
     
 
