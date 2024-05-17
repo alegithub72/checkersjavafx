@@ -25,6 +25,9 @@ class PNGPeronalExport(inkex.Effect):
         self.arg_parser.add_argument("--crop", action="store", type=bool, dest="crop", default=False)
         self.arg_parser.add_argument("--dpi", action="store", type=float, dest="dpi", default=90.0)
         self.arg_parser.add_argument("--layersName", action="store", type=str, dest="layersName", default="")
+        self.arg_parser.add_argument("--prefix", action="store", type=str, dest="prefix", default="")
+        self.arg_parser.add_argument("--count", action="store", type=int, dest="count", default=1)
+        
     
     def effect(self):
 
@@ -46,21 +49,23 @@ class PNGPeronalExport(inkex.Effect):
           for exportId in list_layer:
                 if layer_id == exportId :  
                     logging.info("Extension function cehck."+layer_id+" ")
-                    logging.info("Extension function tempfile."+dest+" ")
-                    esporta_livelli_in_png(self,layer_id,dest)
-                    counter = counter +1
+                    logging.info("Extension function tempfile."+dest+" ")                
+                    esporta_livelli_in_png(self,layer_id,dest,counter)
+                    counter = counter +1        
                     logging.info("Extension function counter."+str(counter)+" ")
                     
                 
-def esporta_livelli_in_png(self,layer_id,dest):
+def esporta_livelli_in_png(self,layer_id,dest,counter):
         output_path = os.path.expanduser(self.options.path)+ "\\"
+        prefix = os.path.expanduser(self.options.prefix)
+        count_number = self.options.count
         filetype = os.path.expanduser(self.options.filetype)
         area_param = "-D"
         if self.options.crop:
             area_param = "-C"
-        
+        counter=counter+count_number
         # Esegui Inkscape per esportare i livelli ,inkscape -i g1939 -o soldato_frame2.png pedinaSoldatoSkyBase.svg
-        comando = f"inkscape {area_param} -j -i {layer_id} -o {output_path}{layer_id}.{filetype} {dest}"
+        comando = f"inkscape {area_param} -j -i {layer_id} -o {output_path}{prefix}_{counter}.{filetype} {dest}"
         logging.info("Extension function comando."+comando+" ")
         p = subprocess.Popen(comando , shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = p.communicate()
