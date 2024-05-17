@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <_name>Export Layers Personal</_name>
+    <id>org.personal.layers</id>
+<!--     <dependency type="executable" location="extensions">export.py</dependency> -->
+
+
+	<param name="help" type="description">Export your file in different png\svg\eps files by layer</param>
+    <param name="path" type="string"  _gui-text="Choose path to export">/</param>
+    <param name="filetype" type="optiongroup" gui-text="Export layers as..." appearance="minimal">
+       <option  value="svg">SVG</option>
+	   <option  value="eps">EPS</option>
+       <option selected="selected" value="png">PNG</option>
+    </param>
+    <param name="crop" type="boolean" _gui-text="Crop to drawn bounds?">false</param>
+    <param name="dpi" type="float" min="0.0" max="1000.0" _gui-text="Export DPI">90</param>
+	<param name="layersName" type="string"  _gui-text="List layers Name">[ID_LAYER]|..</param>
+
+
+    <effect needs-live-preview="false">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu _name="Export" />
+        </effects-menu>
+    </effect>
+    <script>
+        <command reldir="extensions" interpreter="python">export.py</command>
+    </script>
+</inkscape-extension>
