@@ -17,7 +17,7 @@ public class EventEatAnimPiece extends EventAnimPiece{
 	
 
 	private static final long serialVersionUID = -2332571104664340411L;
-    public static final EventType<EventEatAnimPiece> KILLPLAY_EVENT=new EventType<>(Event.ANY,"KILLPLAY_EVENT");
+    public static final EventType<EventEatAnimPiece> KILLPLAY_EVENT=new EventType(Event.ANY,"KILLPLAY_EVENT");
     public static final EventType<EventEatAnimPiece> KILLPLAY_EVENT_BACK=new EventType<>(Event.ANY,"KILLPLAY_EVENT_BACK");
     public EventEatAnimPiece(SpritePiece source, Parent target,Move m, EventType<EventEatAnimPiece> eventType) {
         super(source, target, eventType);
