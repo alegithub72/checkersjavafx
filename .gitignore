@@ -1,2 +1,10 @@
+
 /bin/
 /target/
+
+target/**
+targetOld/**
+.settings/**
+.project
+.classpath
+

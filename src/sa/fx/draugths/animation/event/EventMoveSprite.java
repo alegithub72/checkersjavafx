@@ -13,7 +13,7 @@ public class EventMoveSprite  extends EventAnimPiece{
 	 * 
 	 */
 	private static final long serialVersionUID = -2332571104664340411L;
-    public static final EventType<EventMoveSprite> MOVE_SPRITE=new EventType<>(Event.ANY,"MOVE_SPRITE");
+    public static final EventType<EventMoveSprite> MOVE_SPRITE=new EventType(Event.ANY,"MOVE_SPRITE");
     public EventMoveSprite(SpritePiece source, EventTarget target, EventType<EventMoveSprite> eventType) {
         super(source, target, eventType);
 
