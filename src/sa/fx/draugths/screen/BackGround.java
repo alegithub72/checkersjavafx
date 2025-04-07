@@ -17,6 +17,7 @@ import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -326,7 +327,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 				
 				@Override
 				public void handle(ActionEvent event) {
-
+					c.getGraphicsContext2D().setFill(Color.BLACK);
 		            c.getGraphicsContext2D().fillRect(0, 0, wBackground, hBackgroundTot);
 		           
 		            Font f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 36);
@@ -334,14 +335,16 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 		            c.getGraphicsContext2D().setFont( f);
 		            double centerX=(wBackground/4)-(wBackground/24);
 		            double centerY=(hBackgroundTot/2)+(hBackgroundTot/12);
+					dropShadow.setColor(Color.valueOf("00cc66ff"));
 		            if (FXBoard.levelWave(level) == BackGround.LVL_JUNGLE) {
 		            	
 		            	c.getGraphicsContext2D().setEffect(null);
 		            	c.getGraphicsContext2D().drawImage(new Image("jungle_bck.png"), (wBackground/2)-256,(hBackgroundTot/2)-256,512, 512);
 		            	c.getGraphicsContext2D().setEffect(dropShadow);
+						c.getGraphicsContext2D().setFill(Color.valueOf("ffd42aff"));
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Jungle", centerX,centerY);
-		            	
-		            } else if (FXBoard.levelWave(level) == BackGround.LVL_DESERT) {
+
+                    } else if (FXBoard.levelWave(level) == BackGround.LVL_DESERT) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Desert", centerX,centerY);
 		            }else if (FXBoard.levelWave(level) == BackGround.LVL_POLE) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Poles", centerX,centerY);
@@ -354,7 +357,12 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 		            }else if (FXBoard.levelWave(level) == BackGround.LVL_MOON) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Moon",centerX,centerY);
 		            }else if (FXBoard.levelWave(level) == BackGround.LVL_SKY) {
-		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Sky",centerX,centerY);
+						c.getGraphicsContext2D().setEffect(null);
+						c.getGraphicsContext2D().drawImage(new Image("sky_bck.png"), (wBackground/2)-256,(hBackgroundTot/2)-256,512, 512);
+						c.getGraphicsContext2D().setEffect(dropShadow);
+						c.getGraphicsContext2D().setFill(Color.valueOf("ffd42aff"));
+
+		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Sky",centerX+20,centerY);
 		            }else if (FXBoard.levelWave(level) == BackGround.LVL_CITY) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the City",centerX,centerY);
 		            }           

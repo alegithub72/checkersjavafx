@@ -49,7 +49,7 @@ public class BCDama extends Application {
         Image images;
         Group root=new Group();
        
-        images = new Image("sc2.png");
+        images = new Image("citta.png");
         ImageView background = new ImageView();
         background.setFocusTraversable(true);
         background.setImage(images);
@@ -171,7 +171,7 @@ public class BCDama extends Application {
      */
     public static void main(String[] args) {
         BCDama bc=new BCDama();
-      //  bc.launch(args);
+        bc.launch(args);
         //launch(args);
         
     }
