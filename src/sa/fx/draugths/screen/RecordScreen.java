@@ -185,14 +185,17 @@ public   List<RecordPlayer> ordredrecordsPlayers() {
 	public  void drawTableRecord(){
 		getChildren().clear();
         //Image images = new Image("background.png");
-        Canvas c=new Canvas(800,840);
+        Canvas c=new Canvas(1000,1040);
+		c.getGraphicsContext2D().setFill(Color.BLACK);
+		c.getGraphicsContext2D().fillRect(0,0,1000,1040);
+
        // c.getGraphicsContext2D().drawImage(images, 0, 0,800,840);
         getChildren().add(c);
         Text record=new Text("RECORD PLAYER TABLE");
         Font f = new Font(50);
         record.setFont(f);
-        record.setX((BackGround.wBackground/18)+90 );
-        record.setY(BackGround.hBackgroud/12);
+        record.setX((BackGround.wBackground/18) +BackGround.scrollW);
+        record.setY((BackGround.hBackgroud/12 )+BackGround.scrollH);
         record.setFill(Color.CRIMSON);
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(20.0);
@@ -234,8 +237,8 @@ public   List<RecordPlayer> ordredrecordsPlayers() {
                 }
                  f = new Font(30);
                 player.setFont(f);
-                player.setX((BackGround.wBackground/18)+200);
-                player.setY(((BackGround.hBackgroud/12)+130)+(40*i));
+                player.setX((BackGround.wBackground/18)+120+ +BackGround.scrollW);
+                player.setY(((BackGround.hBackgroud/12)+130)+(40*i)+ +BackGround.scrollH);
                 player.setFill(Color.AQUA);
                 getChildren().add(player);
                 i++;

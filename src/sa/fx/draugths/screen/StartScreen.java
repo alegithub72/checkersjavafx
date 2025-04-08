@@ -38,6 +38,8 @@ public class StartScreen extends PresentationScreen {
 		Image images = null;
 		images = new Image(image);
 		c.getGraphicsContext2D().setEffect(null);
+		c.getGraphicsContext2D().setFill(Color.BLACK);
+		c.getGraphicsContext2D().fillRect(0,0,widthScreen+BackGround.scrollW,heightScreen+BackGround.scrollH);
 		c.getGraphicsContext2D().drawImage(images, 0, 0,widthScreen,heightScreen);
 
 		Font f2 = new Font(null, 10);
