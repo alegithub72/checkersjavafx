@@ -17,6 +17,7 @@ import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SoundEffect;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.gameboard.core.Piece;
 
@@ -45,11 +46,11 @@ public class SkySoldierPiece extends SoldierPiece {
     public void buildMoveSequence( boolean ciclyc) {
 
         if (!draugthTransform) {
-        	SimpleFrameAnimation transition=  new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundInterface.JETPACK);
+        	SimpleFrameAnimation transition=  new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundEffect.JETPACK);
         	transition.setDuration(pltransition.getTotalDuration());
          	pltransition.getChildren().add( transition);
         } else {
-        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundInterface.JET);
+        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundEffect.JET);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add( transition);
 
@@ -63,7 +64,7 @@ public class SkySoldierPiece extends SoldierPiece {
            
         	if(!draugthTransform) { 
 
-        		 transition= new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundInterface.BITE);
+        		 transition= new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.BITE);
         		 transition.setDuration(Duration.seconds(0.5));
         		 
 
@@ -76,11 +77,11 @@ public class SkySoldierPiece extends SoldierPiece {
         } else if (m.getP().getType()  ==Piece.DRAUGTH)  {
         
           if(draugthTransform) {
-        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false,40, SoundInterface.SAPCESHIP_BUZZ);
+        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false,40, SoundEffect.SAPCESHIP_BUZZ);
         	   transition.setDuration(Duration.seconds(0.5));
           }
           else {
-        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundInterface.SAPCESHIP_BUZZ); 
+        	   transition=new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.SAPCESHIP_BUZZ);
         	   transition.setDuration(Duration.seconds(0.5));
           }
               
@@ -110,13 +111,13 @@ public class SkySoldierPiece extends SoldierPiece {
 		SimpleFrameAnimation transition=null;
 	    if (!draugthTransform) {
 	    	
-	    	transition= new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 150, SoundInterface.LASER);
+	    	transition= new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 150, SoundEffect.LASER);
 	    	transition.setDuration(pltransition.getTotalDuration());
 
 
 	    } else {
 
-	    	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this ,ciclyc, 20, SoundInterface.JET);
+	    	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this ,ciclyc, 20, SoundEffect.JET);
 	    	transition.setDuration(pltransition.getTotalDuration());
 	    	}
 	    pltransition.getChildren().add( transition);
@@ -129,7 +130,7 @@ public class SkySoldierPiece extends SoldierPiece {
                 draugthTransform==false) {
             draugthTransform=true;
             sp=new SkySoldierPiece( this.piece,DRAUGTH_SKYSOLDIER_IMAGE, FXBoard.boardHW, this.getFxBoard());       
-            FXBoard.SoundSystem.playSound(SoundInterface.ACHB, 1);
+            FXBoard.SoundSystem.playSound(SoundEffect.ACHB, 1);
             sp.setDraugthTransform(true);
             //buildFrameImages();
 

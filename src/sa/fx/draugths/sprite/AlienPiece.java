@@ -21,6 +21,7 @@ import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SoundEffect;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.gameboard.core.Piece;
 
@@ -52,18 +53,18 @@ public class AlienPiece extends SpritePiece {
     public void buildKilledSequence(Move m) {
     	pltransition=new ParallelTransition(this);
 
-        buildDefaultKillAnimation(killSequenceFrame,m,  false, 25, SoundInterface.EXPLOSION);
+        buildDefaultKillAnimation(killSequenceFrame,m,  false, 25, SoundEffect.EXPLOSION);
 
     }
 
     public void buildMoveSequence(boolean ciclyc) {
     	SimpleFrameAnimation transition=null;
         if (!draugthTransform) {
-        	transition=new  SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 50, SoundInterface.CLOPETE);
+        	transition=new  SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 50, SoundEffect.CLOPETE);
         	pltransition.getChildren().add(transition);
         	transition.setDuration(pltransition.getTotalDuration());
         } else {
-        	transition=new SimpleFrameAnimation(moveSequenceFrame,this ,ciclyc, 50, SoundInterface.CLOPETE_DOUBLE);
+        	transition=new SimpleFrameAnimation(moveSequenceFrame,this ,ciclyc, 50, SoundEffect.CLOPETE_DOUBLE);
         	pltransition.getChildren().add( transition);
         	transition.setDuration(pltransition.getTotalDuration());
         }
@@ -75,12 +76,12 @@ public class AlienPiece extends SpritePiece {
     	//SpritePiece eated=getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(),m.getEat().getColor(), false);
     	SimpleFrameAnimation transition=null;
         if(draugthTransform==false) {
-        	transition= new SimpleFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 50, SoundInterface.CLOPETE_DOUBLE);
+        	transition= new SimpleFrameAnimation(eatMoveSequenceFrame, this,m, ciclyc, 50, SoundEffect.CLOPETE_DOUBLE);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add(transition);
         }
         else {
-        	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this,m, ciclyc, 50, SoundInterface.CLOPETE_DOUBLE);
+        	transition=new SimpleFrameAnimation(eatMoveSequenceFrame,this,m, ciclyc, 50, SoundEffect.CLOPETE_DOUBLE);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add(transition );
         }
@@ -97,7 +98,7 @@ public class AlienPiece extends SpritePiece {
 
             sp=new AlienPiece(this.piece,DRAUGTH_ALIEN_IMAGE,"SkyALien", FXBoard.boardHW, this.getFxBoard()); 
             
-            FXBoard.SoundSystem.playSound(SoundInterface.ACHB,1);
+            FXBoard.SoundSystem.playSound(SoundEffect.ACHB,1);
 
 
             sp.setDraugthTransform(true);

@@ -8,6 +8,7 @@ package sa.fx.draugths.sprite;
 import javafx.scene.image.Image;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SoundEffect;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.gameboard.core.Piece;
 
@@ -47,7 +48,7 @@ public class MoonSoldier extends SoldierPiece {
             setImage(frameImages);
             buildFrameImages();
 
-            FXBoard.SoundSystem.playSound(SoundInterface.ACHB,1);
+            FXBoard.SoundSystem.playSound(SoundEffect.ACHB,1);
 
 
         }

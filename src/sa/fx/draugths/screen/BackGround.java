@@ -18,7 +18,6 @@ import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -26,7 +25,7 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.ScreenPause;
 import sa.fx.draugths.animation.ScreenPauseInterface;
-import sa.fx.draugths.utility.SoundInterface;
+import sa.fx.draugths.utility.SoundEffect;
 
 
 /**
@@ -41,15 +40,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     public static  double hPointTable=30;
 	public static double scrollH=200;
 	public static double scrollW=200;
-    public static int LVL_JUNGLE=1,
-    		LVL_DESERT=2,
-    		LVL_MOUNTAIN=3,
-    		LVL_FOREST=4,
-    		LVL_SEA=5,
-    		LVL_POLE=6,
-    		LVL_CITY=7,
-    		LVL_SKY=8,    		
-    		LVL_MOON=9;
+
 
 
     Canvas c;
@@ -104,50 +95,50 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 		Image[] full = new Image[10];
 		BCDraugthsApp.log.info("Level:" + level + " modulo:" + level % FXBoard.MAX_LEVEL);
 
-	if (FXBoard.levelWave(level) == LVL_JUNGLE) {
+	if (FXBoard.levelWave(level) == GLevel.LVL1_JUNGLE.n()) {
 			loadTiles("giungla", full);
 			loadTiles("giunglaEmpty", empty);
 
-		} else if (FXBoard.levelWave(level) == LVL_DESERT) {
+		} else if (FXBoard.levelWave(level) == GLevel.LVL2_DESERT.n()) {
 
 			loadTiles("desertBoxEmpty", empty);
 			loadTiles("desertBox", full);
 
-		} else if (FXBoard.levelWave(level) == LVL_POLE) {
+		} else if (FXBoard.levelWave(level) == GLevel.LVL6_POLE.n()) {
 			loadTiles("iceBoxEmpty", full);
 			loadTiles("iceBox", empty);
 
-		} else if (FXBoard.levelWave(level) == LVL_FOREST) {
+		} else if (FXBoard.levelWave(level) == GLevel.LVL4_FOREST.n()) {
 
 			// images = new Image("forestBoardsvg.png");
 			loadTiles("forestaBoxEmpty", empty);
 			loadTiles("forestaBox", full);
 
-		} else if (FXBoard.levelWave(level) == LVL_MOUNTAIN) {
+		} else if (FXBoard.levelWave(level) == GLevel.LVL3_MOUNTAIN.n()) {
 
 			// images = new Image("forestBoardsvg.png");
 			loadTiles("montagnaEmpty", empty);
 			loadTiles("montagna", full);
 
-		} else if (FXBoard.levelWave(level) == LVL_SEA) {
+		} else if (FXBoard.levelWave(level) == GLevel.LVL5_SEA.n()) {
 
 			// images = new Image("mare.png");
 			loadTiles("mareEmpty", empty);
 			loadTiles("mare", full);
 
-		} else if (FXBoard.levelWave(level) == LVL_MOON) {
+		} else if (FXBoard.levelWave(level) == GLevel.LVL9_MOON.n()) {
 
 			// images = new Image("mare.png");
 			loadTiles("lunaEmpty", empty);
 			loadTiles("luna", full);
 
-		} else if (FXBoard.levelWave(level) == LVL_SKY) {
+		} else if (FXBoard.levelWave(level) == GLevel.LVL8_SKY.n()) {
 
 			// images = new Image("mare.png");
 			loadTiles("cieloEmpty", empty);
 			loadTiles("cielo", full);
 
-		} else if (FXBoard.levelWave(level) == LVL_CITY) {
+		} else if (FXBoard.levelWave(level) == GLevel.LVL7_CITY.n()) {
 
 			// images = new Image("mare.png");
 			loadTiles("cittaEmpty", empty);
@@ -254,7 +245,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         score.setText("" + this.point);
 
 
-        FXBoard.SoundSystem.playSound(SoundInterface.ACHW, 1);
+        FXBoard.SoundSystem.playSound(SoundEffect.ACHW, 1);
 
       Animation t=new Transition() {
                 {
@@ -342,7 +333,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 		            double centerX=(wBackground/4)-(wBackground/24)+scrollW;
 		            double centerY=(hBackgroundTot/2)+(hBackgroundTot/12)+scrollH;
 					dropShadow.setColor(Color.valueOf("00cc66ff"));
-		            if (FXBoard.levelWave(level) == BackGround.LVL_JUNGLE) {
+		            if (FXBoard.levelWave(level) == GLevel.LVL1_JUNGLE.n()) {
 		            	
 		            	c.getGraphicsContext2D().setEffect(null);
 		            	c.getGraphicsContext2D().drawImage(new Image("jungle_bck.png"), (wBackground/2)-256+scrollW,(hBackgroundTot/2)-256+scrollH,512, 512);
@@ -350,26 +341,26 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 						c.getGraphicsContext2D().setFill(Color.valueOf("ffd42aff"));
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Jungle", centerX,centerY);
 
-                    } else if (FXBoard.levelWave(level) == BackGround.LVL_DESERT) {
+                    } else if (FXBoard.levelWave(level) == GLevel.LVL2_DESERT.n()) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Desert", centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == BackGround.LVL_POLE) {
+		            }else if (FXBoard.levelWave(level) == GLevel.LVL6_POLE.n()) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Poles", centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == BackGround.LVL_FOREST) {
+		            }else if (FXBoard.levelWave(level) == GLevel.LVL4_FOREST.n()) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Forest",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == BackGround.LVL_MOUNTAIN) {
+		            }else if (FXBoard.levelWave(level) == GLevel.LVL3_MOUNTAIN.n()) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Mountains",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == BackGround.LVL_SEA) {
+		            }else if (FXBoard.levelWave(level) == GLevel.LVL5_SEA.n()) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Sea",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == BackGround.LVL_MOON) {
+		            }else if (FXBoard.levelWave(level) == GLevel.LVL9_MOON.n()) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Moon",centerX,centerY);
-		            }else if (FXBoard.levelWave(level) == BackGround.LVL_SKY) {
+		            }else if (FXBoard.levelWave(level) == GLevel.LVL8_SKY.n()) {
 						c.getGraphicsContext2D().setEffect(null);
 						c.getGraphicsContext2D().drawImage(new Image("sky_bck.png"), (wBackground/2)-256+scrollW,(hBackgroundTot/2)-256+scrollH,512, 512);
 						c.getGraphicsContext2D().setEffect(dropShadow);
 						c.getGraphicsContext2D().setFill(Color.valueOf("ffd42aff"));
 
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Sky",centerX+20,centerY);
-		            }else if (FXBoard.levelWave(level) == BackGround.LVL_CITY) {
+		            }else if (FXBoard.levelWave(level) == GLevel.LVL7_CITY.n()) {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the City",centerX,centerY);
 		            }           
 		            //f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"),24);

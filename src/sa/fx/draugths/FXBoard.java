@@ -8,7 +8,6 @@ import java.util.logging.Level;
 
 import javafx.animation.Animation;
 import javafx.animation.Transition;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -39,12 +38,7 @@ import sa.fx.draugths.board.event.EventPointUpdate;
 import sa.fx.draugths.board.event.EventSelectionPlayerHandler;
 import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
-import sa.fx.draugths.screen.BackGround;
-import sa.fx.draugths.screen.EndScreen;
-import sa.fx.draugths.screen.EndScreenII;
-import sa.fx.draugths.screen.PresentationScreen;
-import sa.fx.draugths.screen.RecordScreen;
-import sa.fx.draugths.screen.StartScreen;
+import sa.fx.draugths.screen.*;
 import sa.fx.draugths.sprite.AlienPiece;
 import sa.fx.draugths.sprite.HelmetSoldierPiece;
 import sa.fx.draugths.sprite.MonsterSprite;
@@ -55,6 +49,7 @@ import sa.fx.draugths.sprite.SoldierPiece;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.fx.draugths.utility.ScaleFactor;
+import sa.fx.draugths.utility.SoundEffect;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.gameboard.core.Board;
 import sa.gameboard.core.Game;
@@ -562,7 +557,7 @@ public class FXBoard implements GraficBoardInterface {
 
 			winText = new Image("winblack.png");
 			imageView = new ImageView();
-			// background.setFocusTraversable(true);
+			// GLevel.setFocusTraversable(true);
 			imageView.setImage(winText);
 			imageView.setX(150);
 			imageView.setY(250);
@@ -615,8 +610,8 @@ public class FXBoard implements GraficBoardInterface {
 				@Override
 				public void handle(MouseEvent event) {
 					if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() > 1) {
-						SoundSystem.playSound(SoundInterface.EFFECT_COIN, 1);
-						SoundSystem.stopSound(SoundInterface.MUSIC_SIGLA);
+						SoundSystem.playSound(SoundEffect.EFFECT_COIN, 1);
+						SoundSystem.stopSound(SoundEffect.MUSIC_SIGLA);
 						waitCoin();
 						startLevel(level);
 						root.getChildren().remove(startScreen);
@@ -630,14 +625,14 @@ public class FXBoard implements GraficBoardInterface {
 //
 //				@Override
 //				public void handle(TouchEvent event) {
-//					SoundSystem.stopSound(SoundInterface.MUSIC_SIGLA);
+//					SoundSystem.stopSound(SoundEffect.MUSIC_SIGLA);
 //					startLevel(level);
 //					root.getChildren().remove(startScreen);
 //					// root.getChildren().add(fxb);
 //					event.consume();
 //				}
 //			});
-			SoundSystem.playSoundLoop(SoundInterface.MUSIC_SIGLA);
+			SoundSystem.playSoundLoop(SoundEffect.MUSIC_SIGLA);
 		} catch (Exception e) {
 			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
 		}
@@ -667,7 +662,7 @@ public class FXBoard implements GraficBoardInterface {
 
 	public void drawEndScreen() {
 		root.getChildren().removeAll();
-		SoundSystem.playSound(SoundInterface.MUSIC_CELEBRATION, 1);
+		SoundSystem.playSound(SoundEffect.MUSIC_CELEBRATION, 1);
 
 		startScreen = new EndScreen();
 		EndScreenII ii = new EndScreenII();
@@ -682,7 +677,7 @@ public class FXBoard implements GraficBoardInterface {
 				if (event.getButton() == MouseButton.PRIMARY) {
 					flip = !flip;
 					startScreen.setVisibleBack(flip);
-					SoundSystem.playSound(SoundInterface.EFFECT_HEY, 1);
+					SoundSystem.playSound(SoundEffect.EFFECT_HEY, 1);
 
 				} else {
 					root.getChildren().remove(startScreen);
@@ -824,23 +819,23 @@ public class FXBoard implements GraficBoardInterface {
 
 	public SpritePiece buildPedina(int color, Piece charPiece, int level) throws Exception {
 
-		if (FXBoard.levelWave(level) == BackGround.LVL_JUNGLE)
+		if (FXBoard.levelWave(level) == GLevel.LVL1_JUNGLE.n())
 			return buildPedinaLevel1(color, charPiece);
-		else if (FXBoard.levelWave(level) == BackGround.LVL_CITY)
+		else if (FXBoard.levelWave(level) == GLevel.LVL7_CITY.n())
 			return buildPedinaLevel2(color, charPiece);
-		else if (FXBoard.levelWave(level) == BackGround.LVL_DESERT)
+		else if (FXBoard.levelWave(level) == GLevel.LVL2_DESERT.n())
 			return buildPedinaLevel2(color, charPiece);
-		else if (FXBoard.levelWave(level) == BackGround.LVL_FOREST)
+		else if (FXBoard.levelWave(level) == GLevel.LVL4_FOREST.n())
 			return buildPedinaLevel2(color, charPiece);
-		else if (FXBoard.levelWave(level) == BackGround.LVL_MOON)
+		else if (FXBoard.levelWave(level) == GLevel.LVL9_MOON.n())
 			return buildPedinaLevel2(color, charPiece);
-		else if (FXBoard.levelWave(level) == BackGround.LVL_MOUNTAIN)
+		else if (FXBoard.levelWave(level) == GLevel.LVL3_MOUNTAIN.n())
 			return buildPedinaLevel2(color, charPiece);
-		else if (FXBoard.levelWave(level) == BackGround.LVL_POLE)
+		else if (FXBoard.levelWave(level) == GLevel.LVL6_POLE.n())
 			return buildPedinaLevel2(color, charPiece);
-		else if (FXBoard.levelWave(level) == BackGround.LVL_SEA)
+		else if (FXBoard.levelWave(level) == GLevel.LVL5_SEA.n())
 			return buildPedinaLevel2(color, charPiece);
-		else if (FXBoard.levelWave(level) == BackGround.LVL_SKY)
+		else if (FXBoard.levelWave(level) == GLevel.LVL8_SKY.n())
 			return buildPedinaLevelSky(color, charPiece);
 		else
 			return null;
@@ -1175,24 +1170,24 @@ public class FXBoard implements GraficBoardInterface {
 	}
 
 	public static int levelWave(int level) {
-		if (level == BackGround.LVL_JUNGLE || level % MAX_LEVEL == BackGround.LVL_JUNGLE)
-			return BackGround.LVL_JUNGLE;
-		else if (level == BackGround.LVL_DESERT || level % MAX_LEVEL == BackGround.LVL_DESERT)
-			return BackGround.LVL_DESERT;
-		else if (level == BackGround.LVL_FOREST || level % MAX_LEVEL == BackGround.LVL_FOREST)
-			return BackGround.LVL_FOREST;
-		else if (level == BackGround.LVL_CITY || level % MAX_LEVEL == BackGround.LVL_CITY)
-			return BackGround.LVL_CITY;
-		else if (level == BackGround.LVL_SKY || level % MAX_LEVEL == BackGround.LVL_SKY)
-			return BackGround.LVL_SKY;
-		else if (level == BackGround.LVL_MOUNTAIN || level % MAX_LEVEL == BackGround.LVL_MOUNTAIN)
-			return BackGround.LVL_MOUNTAIN;
-		else if (level == BackGround.LVL_POLE || level % MAX_LEVEL == BackGround.LVL_POLE)
-			return BackGround.LVL_POLE;
-		else if (level == BackGround.LVL_SEA || level % MAX_LEVEL == BackGround.LVL_SEA)
-			return BackGround.LVL_SEA;
-		else if (level == BackGround.LVL_MOON || level % MAX_LEVEL == 0)
-			return BackGround.LVL_MOON;
+		if (level == GLevel.LVL1_JUNGLE.n() || level % MAX_LEVEL == GLevel.LVL1_JUNGLE.n())
+			return GLevel.LVL1_JUNGLE.n();
+		else if (level == GLevel.LVL2_DESERT.n() || level % MAX_LEVEL == GLevel.LVL2_DESERT.n())
+			return GLevel.LVL2_DESERT.n();
+		else if (level == GLevel.LVL4_FOREST.n() || level % MAX_LEVEL == GLevel.LVL4_FOREST.n())
+			return GLevel.LVL4_FOREST.n();
+		else if (level == GLevel.LVL7_CITY.n() || level % MAX_LEVEL == GLevel.LVL7_CITY.n())
+			return GLevel.LVL7_CITY.n();
+		else if (level == GLevel.LVL8_SKY.n() || level % MAX_LEVEL == GLevel.LVL8_SKY.n())
+			return GLevel.LVL8_SKY.n();
+		else if (level == GLevel.LVL3_MOUNTAIN.n() || level % MAX_LEVEL == GLevel.LVL3_MOUNTAIN.n())
+			return GLevel.LVL3_MOUNTAIN.n();
+		else if (level == GLevel.LVL6_POLE.n() || level % MAX_LEVEL == GLevel.LVL6_POLE.n())
+			return GLevel.LVL6_POLE.n();
+		else if (level == GLevel.LVL5_SEA.n() || level % MAX_LEVEL == GLevel.LVL5_SEA.n())
+			return GLevel.LVL5_SEA.n();
+		else if (level == GLevel.LVL9_MOON.n() || level % MAX_LEVEL == 0)
+			return GLevel.LVL9_MOON.n();
 		else
 			return -1;
 

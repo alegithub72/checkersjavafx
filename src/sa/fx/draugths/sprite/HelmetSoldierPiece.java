@@ -3,6 +3,7 @@ package sa.fx.draugths.sprite;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SoundEffect;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.gameboard.core.Piece;
 
@@ -21,11 +22,11 @@ public class HelmetSoldierPiece extends SoldierPiece {
     public void buildMoveSequence( boolean ciclyc) {
 
         if (!draugthTransform) {
-        	SimpleFrameAnimation transition=  new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundInterface.MARCH);
+        	SimpleFrameAnimation transition=  new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundEffect.MARCH);
         	transition.setDuration(pltransition.getTotalDuration());
          	pltransition.getChildren().add( transition);
         } else {
-        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundInterface.ELICOPTER);
+        	SimpleFrameAnimation transition=new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundEffect.ELICOPTER);
         	transition.setDuration(pltransition.getTotalDuration());
         	pltransition.getChildren().add( transition);
 
