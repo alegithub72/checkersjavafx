@@ -9,6 +9,7 @@ import javafx.animation.PauseTransition;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -38,6 +39,8 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     public static double hBackgroud=800;
     public double hBackgroundTot;
     public static  double hPointTable=30;
+	public static double scrollH=200;
+	public static double scrollW=200;
     public static int LVL_JUNGLE=1,
     		LVL_DESERT=2,
     		LVL_MOUNTAIN=3,
@@ -83,7 +86,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     
     public BackGround(int level,FXBoard board,int point){
         this.hBackgroundTot=hBackgroud+hPointTable+10;
-        c=new Canvas(wBackground, hBackgroundTot);
+        c=new Canvas(wBackground+scrollW, hBackgroundTot+scrollH);
 
         getChildren().add(c);
         this.board=board;
@@ -91,6 +94,9 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         this.point=point;
 
     }
+	public void addPedine(Group group){
+		getChildren().add(group);
+	}
 
 	public void drawBackGround() {
 		drawScoreBar();
@@ -156,29 +162,29 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 					if (j % 2 == 0) {
 						int random = (int) (10 * Math.random()) / 2;
 						if (empty[random] != null)
-							c.getGraphicsContext2D().drawImage(empty[random], i * 100, (j * 100) + 30);
+							c.getGraphicsContext2D().drawImage(empty[random], (i * 100)+scrollW, (j * 100) + 30+scrollH);
 						else
-							c.getGraphicsContext2D().drawImage(empty[0], i * 100, (j * 100) + 30);
+							c.getGraphicsContext2D().drawImage(empty[0], (i * 100)+scrollW, (j * 100) + 30+scrollH);
 					} else if (j % 2 != 0) {
 						int random = (int) (10 * Math.random()) / 2;
 						if (full[random] != null)
-							c.getGraphicsContext2D().drawImage(full[random], i * 100, (j * 100) + 30);
+							c.getGraphicsContext2D().drawImage(full[random], (i * 100)+scrollW, (j * 100) + 30+scrollH);
 						else
-							c.getGraphicsContext2D().drawImage(full[0], i * 100, (j * 100) + 30);
+							c.getGraphicsContext2D().drawImage(full[0], (i * 100)+scrollW, (j * 100) + 30+scrollH);
 					}
 				} else if (i % 2 != 0) {
 					if (j % 2 != 0) {
 						int random = (int) (10 * Math.random()) / 2;
 						if (empty[random] != null)
-							c.getGraphicsContext2D().drawImage(empty[random], i * 100, (j * 100) + 30);
+							c.getGraphicsContext2D().drawImage(empty[random], (i * 100)+scrollW, (j * 100) + 30+scrollH);
 						else
-							c.getGraphicsContext2D().drawImage(empty[0], i * 100, (j * 100) + 30);
+							c.getGraphicsContext2D().drawImage(empty[0], (i * 100)+scrollW, (j * 100) + 30+scrollH);
 					} else if (j % 2 == 0) {
 						int random = (int) (10 * Math.random()) / 2;
 						if (full[random] != null)
-							c.getGraphicsContext2D().drawImage(full[random], i * 100, (j * 100) + 30);
+							c.getGraphicsContext2D().drawImage(full[random], (i * 100)+scrollW, (j * 100) + 30+scrollH);
 						else
-							c.getGraphicsContext2D().drawImage(full[0], i * 100, (j * 100) + 30);
+							c.getGraphicsContext2D().drawImage(full[0], (i * 100)+scrollW, (j * 100) + 30+scrollH);
 					}
 				}
 
@@ -198,12 +204,12 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     void drawScoreBar() {
         
  
- 
+
         c.getGraphicsContext2D().setFill(Color.rgb(255, 255, 128));
         c.getGraphicsContext2D().setLineWidth(4);
-        c.getGraphicsContext2D().fillRect(0, 0, wBackground, hPointTable );
+        c.getGraphicsContext2D().fillRect(0+scrollW, 0+scrollH, wBackground, hPointTable );
         c.getGraphicsContext2D().setStroke(Color.rgb(0, 204, 102));
-        c.getGraphicsContext2D().strokeRect(0, 0, wBackground, hPointTable );
+        c.getGraphicsContext2D().strokeRect(0+scrollW, 0+scrollH, wBackground, hPointTable );
         scoreLabel = new Text("SCORE:");
         Font f = new Font(null, hPointTable);
             if (level <= 1) {
@@ -214,10 +220,10 @@ public class BackGround extends Parent implements ScreenPauseInterface {
             
            
 
-            score.setX(135);
-            score.setY(25);
-            scoreLabel.setX(20);
-            scoreLabel.setY(25);
+            score.setX(135+scrollW);
+            score.setY(25+scrollH);
+            scoreLabel.setX(20+scrollW);
+            scoreLabel.setY(25+scrollH);
             score.setFont(f);
             scoreLabel.setFont(f);
             score.setFill(Color.rgb(0, 204, 102));
@@ -231,8 +237,8 @@ public class BackGround extends Parent implements ScreenPauseInterface {
             score.setEffect(dropShadow);
 
             levelLabel = new Text("Level:" + level);
-            levelLabel.setX(wBackground - 180);
-            levelLabel.setY(25);
+            levelLabel.setX(wBackground - 180+scrollW);
+            levelLabel.setY(25+scrollH);
             levelLabel.setFont(f);
             levelLabel.setFill(Color.rgb(0, 204, 102));
             levelLabel.setEffect(dropShadow);
@@ -286,7 +292,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     			imagesDesc = new Image("desc2.png");
     		}
 
-            c.getGraphicsContext2D().fillRect(0, 0, wBackground, hBackgroundTot);
+            c.getGraphicsContext2D().fillRect(0, 0, wBackground+scrollW, hBackgroundTot+scrollH);
 
             
             Font f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 48);
@@ -315,8 +321,8 @@ public class BackGround extends Parent implements ScreenPauseInterface {
             c.getGraphicsContext2D().setFill(Color.WHITE);
 			c.getGraphicsContext2D().setFill(Color.BLACK);
 
-			c.getGraphicsContext2D().drawImage(imagesDesc, 0, 0);
-			c.getGraphicsContext2D().fillText("WAVE "+romanWave(level), wBackground/4+wBackground/8,hBackgroundTot/2+hBackgroundTot/8);            	
+			c.getGraphicsContext2D().drawImage(imagesDesc, 0+scrollW, 0+scrollH);
+			c.getGraphicsContext2D().fillText("WAVE "+romanWave(level), wBackground/4+wBackground/8+scrollW,hBackgroundTot/2+hBackgroundTot/8+scrollH);
 
 
             BackGround back=this;
@@ -328,18 +334,18 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 				@Override
 				public void handle(ActionEvent event) {
 					c.getGraphicsContext2D().setFill(Color.BLACK);
-		            c.getGraphicsContext2D().fillRect(0, 0, wBackground, hBackgroundTot);
+		            c.getGraphicsContext2D().fillRect(0, 0, wBackground+scrollW, hBackgroundTot+scrollH);
 		           
 		            Font f= Font.loadFont(ClassLoader.getSystemResourceAsStream("SHOWG.TTF"), 36);
 		            if(f==null) f=Font.font(36);
 		            c.getGraphicsContext2D().setFont( f);
-		            double centerX=(wBackground/4)-(wBackground/24);
-		            double centerY=(hBackgroundTot/2)+(hBackgroundTot/12);
+		            double centerX=(wBackground/4)-(wBackground/24)+scrollW;
+		            double centerY=(hBackgroundTot/2)+(hBackgroundTot/12)+scrollH;
 					dropShadow.setColor(Color.valueOf("00cc66ff"));
 		            if (FXBoard.levelWave(level) == BackGround.LVL_JUNGLE) {
 		            	
 		            	c.getGraphicsContext2D().setEffect(null);
-		            	c.getGraphicsContext2D().drawImage(new Image("jungle_bck.png"), (wBackground/2)-256,(hBackgroundTot/2)-256,512, 512);
+		            	c.getGraphicsContext2D().drawImage(new Image("jungle_bck.png"), (wBackground/2)-256+scrollW,(hBackgroundTot/2)-256+scrollH,512, 512);
 		            	c.getGraphicsContext2D().setEffect(dropShadow);
 						c.getGraphicsContext2D().setFill(Color.valueOf("ffd42aff"));
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Jungle", centerX,centerY);
@@ -358,7 +364,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Moon",centerX,centerY);
 		            }else if (FXBoard.levelWave(level) == BackGround.LVL_SKY) {
 						c.getGraphicsContext2D().setEffect(null);
-						c.getGraphicsContext2D().drawImage(new Image("sky_bck.png"), (wBackground/2)-256,(hBackgroundTot/2)-256,512, 512);
+						c.getGraphicsContext2D().drawImage(new Image("sky_bck.png"), (wBackground/2)-256+scrollW,(hBackgroundTot/2)-256+scrollH,512, 512);
 						c.getGraphicsContext2D().setEffect(dropShadow);
 						c.getGraphicsContext2D().setFill(Color.valueOf("ffd42aff"));
 

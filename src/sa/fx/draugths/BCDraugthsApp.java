@@ -14,7 +14,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sa.fx.draugths.screen.PresentationScreen;
@@ -119,11 +119,11 @@ public class BCDraugthsApp extends Application {
 //		SubScene subScene=new SubScene(fxb.getRoot(), 400, 400);
 //		Group superRoot=new Group();
 //		superRoot.getChildren().add(subScene);
-		BorderPane borderPane=new BorderPane(fxb.getRoot());
-		Scene scene = new Scene(borderPane, fxb.getStartScreen().getWidthScreen() - 12,
-				fxb.getStartScreen().getHeightScreen() - 18, Color.BLACK);
+		StackPane stackPanel=new StackPane(fxb.getRoot());
+		Scene scene = new Scene(stackPanel, fxb.getStartScreen().getWidthScreen(),
+				fxb.getStartScreen().getHeightScreen() , Color.BLACK);
 
-		fxb.setView(borderPane);
+		fxb.setSceneStakPanel(stackPanel);
 		primaryStage.setTitle("Checkers Invader");
 		primaryStage.setScene(scene);
 		primaryStage.getIcons().add(new Image("cinvaders.png"));

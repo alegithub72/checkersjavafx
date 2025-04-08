@@ -23,6 +23,7 @@ import sa.boardgame.core.players.HumanPlayer;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.board.event.EventConfirmCommandHandler;
+import sa.fx.draugths.screen.BackGround;
 import sa.fx.draugths.sprite.SpritePiece;
 import sa.gameboard.core.Piece;
 

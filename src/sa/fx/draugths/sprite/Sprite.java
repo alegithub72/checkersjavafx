@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import sa.fx.draugths.screen.BackGround;
 
+
 /**
  *
  * @author Alessio Sardaro
@@ -104,7 +105,7 @@ public class Sprite extends ImageView {
      	int hadjust=0;
  
      	if(this.h>hboard) hadjust=(this.h-hboard)/2;
-     	return (i * hboard )+(BackGround.hPointTable-hadjust)
+     	return( (i * hboard )+(BackGround.hPointTable-hadjust))+BackGround.scrollH
                     ;
         
     }   
@@ -115,7 +116,7 @@ public class Sprite extends ImageView {
     	if(this.w>wboard) {
     		wadjust=(this.w-wboard)/2;
     	}
-        return (j * wboard )-((double)wadjust);
+        return ((j * wboard )-((double)wadjust))+BackGround.scrollW;
          
     }       
 
@@ -126,7 +127,7 @@ public class Sprite extends ImageView {
      		hadjust=(this.h-hboard)/2;
      	}
         return ((i * hboard) + (hboard / 2d)+
-        		(BackGround.hPointTable-hadjust));
+        		(BackGround.hPointTable-hadjust))+BackGround.scrollH;
                         
 
     }
@@ -137,7 +138,7 @@ public class Sprite extends ImageView {
     	if(this.w>wboard) {
     		wadjust=(this.w-wboard)/2;
     	}
-        return ((j * wboard)+ (wboard / 2)-wadjust);
+        return ((j * wboard)+ (wboard / 2)-wadjust)+BackGround.scrollW;
         
     }
     

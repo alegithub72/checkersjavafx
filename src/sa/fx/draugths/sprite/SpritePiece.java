@@ -141,6 +141,7 @@ public abstract class SpritePiece extends Sprite{
     }    
     public void play(Move m) {
    	 	 pltransition=new ParallelTransition();
+         this.setManaged(false);
    	 	 steps=new HashMap<>();
          if (m.getType() == Move.MOVE ) {           
          if( Piece.DRAUGTH==m.getP().getType() ) {
@@ -196,7 +197,7 @@ public abstract class SpritePiece extends Sprite{
       
     }    
     public void playKilled() {
-
+        this.setManaged(false);
     	pltransition.play();
     	
     }
@@ -204,6 +205,7 @@ public abstract class SpritePiece extends Sprite{
 
     	BCDraugthsApp.log.info("PL)Stop transition:"+ pltransition.getStatus()+" pltransition=:"+pltransition);
         pltransition.stop();
+        this.setManaged(true);
         setFrame(0);
 
         

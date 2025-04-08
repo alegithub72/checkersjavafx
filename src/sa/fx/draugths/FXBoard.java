@@ -8,9 +8,11 @@ import java.util.logging.Level;
 
 import javafx.animation.Animation;
 import javafx.animation.Transition;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Reflection;
@@ -18,7 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -70,9 +72,9 @@ public class FXBoard implements GraficBoardInterface {
 	static final public BoardHW boardHW = new BoardHW(100, 100);
 	private Game game;
 	private TextField command;
-	private BorderPane view;
+
 	private List<SpritePiece> pedinaList[];
-	private Group root;
+	private StackPane root;
 	private Group zGroup;
 	public static SoundInterface SoundSystem;
 	private PresentationScreen startScreen;
@@ -86,6 +88,7 @@ public class FXBoard implements GraficBoardInterface {
 	private FXAIPlayer1 computerPlayer;
 	private FXPMousePlayer mousePlayer;
 	private boolean turn;
+	private StackPane sceneStackPanel;
 
 	public FXBoard(int level) {
 		initLevel(level);
@@ -94,7 +97,7 @@ public class FXBoard implements GraficBoardInterface {
 	public void initLevel(int level) {
 		try {
 
-			root = new Group();
+			root = new StackPane();
 			zGroup = new Group();
 			this.animationOn = false;
 			this.pedinaList = new LinkedList[2];
@@ -260,19 +263,13 @@ public class FXBoard implements GraficBoardInterface {
 		return startScreen;
 	}
 
-	public BorderPane getView() {
-		return view;
-	}
 
-	public void setView(BorderPane view) {
-		this.view = view;
-	}
 
-	public Group getRoot() {
+	public StackPane getRoot() {
 		return root;
 	}
 
-	public void setRoot(Group root) {
+	public void setRoot(StackPane root) {
 		this.root = root;
 	}
 
@@ -283,7 +280,7 @@ public class FXBoard implements GraficBoardInterface {
 		initLevel(level);
 		startLevel(point);
 		scale();
-		view.setCenter(root);
+		sceneStackPanel.getChildren().add(root);
 
 		root.getChildren().remove(startScreen);
 		// root.getChildren().add(fxb);
@@ -659,7 +656,7 @@ public class FXBoard implements GraficBoardInterface {
 			root.getChildren().clear();
 			initLevel(1);
 			scale();
-			view.setCenter(root);
+			sceneStackPanel.getChildren().add(root);
 			drawStartScreen();
 		} catch (Exception e) {
 			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e);
@@ -720,9 +717,33 @@ public class FXBoard implements GraficBoardInterface {
 
 	public void startLevel(int point) {
 		backGround = new BackGround(level, this, point);
-		root.getChildren().add(backGround);
+		ScrollPane scrollPane = new ScrollPane();
+		scrollPane.setContent(backGround);
+		scrollPane.setPrefSize(800, 800);
+		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Barre orizzontali
+		scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		scrollPane.addEventFilter(javafx.scene.input.ScrollEvent.SCROLL, event -> {
+			event.consume(); // Consuma l'evento per bloccarne l'elaborazione
+
+		});
+		scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
+
+			System.out.println("Vvalue cambiato: " + newValue);
+		});
+
+		scrollPane.hvalueProperty().addListener((observable, oldValue, newValue) -> {
+
+
+			System.out.println("Hvalue cambiato: " + newValue);
+		});
+
+		root.getChildren().add(scrollPane);
+		scrollPane.setVvalue(0.9856701030927835);
+		scrollPane.setHvalue(0.985360824742268);
+
+
 		backGround.middleScreen();
-		root.getChildren().add(zGroup);
+		backGround.addPedine(zGroup);
 
 	}
 
@@ -791,7 +812,9 @@ public class FXBoard implements GraficBoardInterface {
 	public void renderMove(String namePlayer, Move m) {
 		if (m != Move.NULLMOVE) {
 			SpritePiece p;
+
 			p = getSpritePiece(m.getI1(), m.getJ1(), m.getP().getColor(), false);
+
 			p.play(m);
 			// game.getBoard().makeMove(m);
 			// turnEnd();
@@ -1181,5 +1204,9 @@ public class FXBoard implements GraficBoardInterface {
 		else
 			return java.lang.Math.round(level / FXBoard.MAX_LEVEL) + 1;
 
+	}
+
+	public void setSceneStakPanel(StackPane stackPanel) {
+		this.sceneStackPanel =stackPanel;
 	}
 }
