@@ -185,10 +185,10 @@ public class SkySoldierPiece extends SoldierPiece {
 
                 //.build();
         RotateTransition rotateTransition = new RotateTransition();
-                // .node(p)
-        rotateTransition.setDuration(Duration.seconds(  0.2));
+        // .node(p)
+        rotateTransition.setDuration(Duration.seconds(  1.5));
         rotateTransition.setFromAngle(0);
-        rotateTransition.setToAngle(45);
+        rotateTransition.setToAngle(+1080);
 //        rotateTransition.setCycleCount(1);
 //        rotateTransition.setNode(this);
 //        rotateTransition.setAutoReverse(false);
@@ -197,7 +197,7 @@ public class SkySoldierPiece extends SoldierPiece {
 
 //        pt.setCycleCount(1);
 //        pt.setAutoReverse(true);
-       // pltransition.getChildren().add(rotateTransition);
+        pltransition.getChildren().add(rotateTransition);
         pltransition.getChildren().add(pathTransition);
         pltransition.setNode(this);
         pltransition.setAutoReverse(true);

@@ -43,7 +43,7 @@ public class SimpleFrameAnimation extends Transition {
 		this.sprite = sprite;
 		this.move = move;
 		this.sound = sound;
-
+		System.out.println("sound:"+sound.getFile());
 		this.ciclyc = cyclic;
 		before = System.currentTimeMillis();
 		this.interval = interval;

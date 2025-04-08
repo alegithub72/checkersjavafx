@@ -40,7 +40,7 @@ public class SkyAlienPiece extends AlienPiece {
     @Override
     public void buildKilledSequence(Move m) {
     	pltransition=new ParallelTransition(this);
-        buildDefaultKillAnimation(killSequenceFrame,m,  false, 50, SoundInterface.EXPLOSION);
+        buildDefaultKillAnimation(killSequenceFrame,m,  false, 50, SoundInterface.EXPLOSION_LASER);
     }
 
     public void buildMoveSequence(boolean ciclyc) {
