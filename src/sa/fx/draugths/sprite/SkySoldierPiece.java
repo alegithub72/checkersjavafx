@@ -3,9 +3,13 @@ package sa.fx.draugths.sprite;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
@@ -13,6 +17,7 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
+import sa.fx.draugths.animation.PieceAnimationEndHandler;
 import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
@@ -144,7 +149,16 @@ public class SkySoldierPiece extends SoldierPiece {
         return sp;
 
     }
-    
+    @Override
+    protected void  buildAnimPedinaEat(Move m) {
+
+        buildPedinaMoveEatPath(m);
+        buildMoveEatSequence( m,false);
+        pltransition.setOnFinished(new PieceAnimationEndHandler(this, m));
+
+
+
+    }
     public void buildPedinaMoveEatPath(Move m) {
     	
 
@@ -179,9 +193,10 @@ public class SkySoldierPiece extends SoldierPiece {
         pathTransition.setPath(path);
 //        pathTransition.setNode(this);
         pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+        pathTransition.setNode(this);
 //        
-//        pathTransition.setCycleCount(1);
-//        pathTransition.setAutoReverse(false);
+        pathTransition.setCycleCount(1);
+        pathTransition.setAutoReverse(false);
 
 
                 //.build();
@@ -190,17 +205,64 @@ public class SkySoldierPiece extends SoldierPiece {
         rotateTransition.setDuration(Duration.seconds(  1.5));
         rotateTransition.setFromAngle(0);
         rotateTransition.setToAngle(+1080);
-//        rotateTransition.setCycleCount(1);
+        rotateTransition.setNode(this);
+
+        rotateTransition.setCycleCount(1);
 //        rotateTransition.setNode(this);
-//        rotateTransition.setAutoReverse(false);
+        rotateTransition.setAutoReverse(false);
                 //.build();
        // rotateTransition;
 
 //        pt.setCycleCount(1);
 //        pt.setAutoReverse(true);
+        extraSprite[0]= new Sprite("laser.png","laser");
+        extraSprite[0].setVisible(true);
+        extraSprite[0].setX(x0);
+        extraSprite[0].setY(y0);
+        extraSprite[0].toFront();
+        this.getFxBoard().add(extraSprite[0]);
+
+        SkySoldierPiece questo=this;
+
+
+        Path laserPath = new Path();
+        laserPath.setStroke(color);
+        laserPath.setStrokeWidth(2);
+        laserPath.getStrokeDashArray().setAll(5d, 5d);
+
+        double x = questo.getLayoutX();
+        double y = questo.getLayoutY();
+        BCDraugthsApp.log.info("x,y=" + x + "," + y);
+        double xn = convertBoardJtoPositionXCenter(m.getEat().getJ(), wSquare);
+        //(m.getI1() * wSquare) + ((wSquare / 2));
+        double yn = convertBoardItoPositionYCenter(m.getEat().getI(), hSquare);
+        MoveTo laserFrom = new MoveTo(x0, y0);
+        LineTo lineTo = new LineTo(xn, yn);
+        laserPath.getElements().addAll(laserFrom, lineTo);
+        PathTransition shootLaser = new PathTransition();
+        shootLaser = new PathTransition();
+        shootLaser.setNode(extraSprite[0]);
+        shootLaser.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        shootLaser.setPath(laserPath);
+        questo.getFxBoard().add(laserPath);
+        shootLaser.setDuration(Duration.seconds(0.3));
+
+        shootLaser.setCycleCount(1);
+        shootLaser.setOnFinished(actionEvent -> {
+           questo.getFxBoard().remove(extraSprite[0]);
+
+        });
+                    //translateLaser[0].play();
+
+
+
+
+
+        //timer.start();
+        pltransition.getChildren().add(shootLaser);
         pltransition.getChildren().add(rotateTransition);
         pltransition.getChildren().add(pathTransition);
-        pltransition.setNode(this);
+     //   pltransition.setNode(this);
         pltransition.setAutoReverse(true);
         pltransition.setCycleCount(1);
 
@@ -210,5 +272,6 @@ public class SkySoldierPiece extends SoldierPiece {
         if(BCDraugthsApp.tracepath)   this.getFxBoard().add(path);
  
 
-    }    
+    }
+
 }

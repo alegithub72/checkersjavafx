@@ -23,7 +23,7 @@ public enum SoundEffect {
     WING("159355-wing-effect.wav", true),
     JETPACK("jerpack.wav", true),
     JET("jet.wav", true),
-    LASER("191594_laser.wav", true),
+    LASER("191594_laser.wav", false),
     MUSIC_SIGLA("muppet.mp3", false),
     MUSIC_CELEBRATION("270545_jingle-win-01.wav", false),
     EFFECT_HEY("416507_hey.wav", false),

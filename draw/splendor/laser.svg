@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg3444"
+   width="100"
+   height="100"
+   viewBox="0 0 100 100"
+   sodipodi:docname="laser.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   inkscape:export-filename="..\..\src\resources\laser.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3448">
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter14157"
+       x="-0.061523112"
+       y="-0.074902389"
+       width="1.4181865"
+       height="1.15756">
+      <feFlood
+         flood-opacity="0.498039"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood14147" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite14149" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="1.82371"
+         result="blur"
+         id="feGaussianBlur14151" />
+      <feOffset
+         dx="20.997"
+         dy="0.453172"
+         result="offset"
+         id="feOffset14153" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite14155" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1"
+       x="-0.059922432"
+       y="-0.69776346"
+       width="1.1198449"
+       height="2.3955269">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.6660313"
+         id="feGaussianBlur1" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="namedview3446"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:snap-global="true"
+     inkscape:zoom="6.0505842"
+     inkscape:cx="97.263335"
+     inkscape:cy="58.258837"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="0"
+     inkscape:deskcolor="#505050" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="frames1">
+    <rect
+       style="mix-blend-mode:normal;fill:#ff00ff;stroke:#800080;stroke-width:2.382;stroke-linecap:square;stroke-linejoin:bevel;filter:url(#filter1)"
+       id="rect1"
+       width="86.60321"
+       height="7.4372983"
+       x="6.9414783"
+       y="45.780704"
+       transform="matrix(0.28321487,0,0,1.0779691,36.30992,-2.6198644)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="frames2" />
+</svg>
