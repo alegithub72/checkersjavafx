@@ -1081,11 +1081,11 @@ public class FXBoard implements GraficBoardInterface {
 				pedina = new SkySoldierPiece(charPiece, boardHW, this);
 				pedina = pedina.loadDraugthFrame();
 				// MOVE SEQUENCE 1-5
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
-						new FrameInfo(5, 1) };
+				FrameInfo[] move = { new FrameInfo(3, 1), new FrameInfo(4, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
+						new FrameInfo(3, 1) };
 				pedina.addMoveSequenceFrame(move);
 				// MOVE EAT SEQUENCE 1-5
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
+				FrameInfo[] moveat = { new FrameInfo(3, 1), new FrameInfo(4, 1), new FrameInfo(3, 1),
 						new FrameInfo(4, 1), new FrameInfo(5, 1) };
 				pedina.addEatMoveSequenceFrame(moveat);
 				// KILLED SEQUENCE 7-10
