@@ -22,8 +22,8 @@ import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.players.FXPlayer;
-import sa.fx.draugths.sprite.SoldierPiece;
-import sa.fx.draugths.sprite.SpritePiece;
+import sa.fx.draugths.pieces.efa.Soldier;
+import sa.fx.draugths.pieces.SpritePiece;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Game;
 import sa.gameboard.core.Piece.Side;
@@ -39,7 +39,7 @@ public class BCDamaTxt extends Application{
     Player player2;
     FXPlayer player1;
     TextField command;
-    SoldierPiece select;
+    Soldier select;
 
     @Override
     public void start(Stage primaryStage) throws Exception {

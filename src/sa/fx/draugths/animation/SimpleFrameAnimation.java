@@ -12,9 +12,7 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.sprite.Sprite;
 import sa.fx.draugths.utility.SoundEffect;
-import sa.fx.draugths.utility.SoundPlay;
 
 /**
  *

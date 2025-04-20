@@ -3,8 +3,7 @@ package sa.fx.draugths.animation;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import sa.fx.draugths.BCDraugthsApp;
-import sa.fx.draugths.sprite.Sprite;
-import sa.fx.draugths.sprite.SpritePiece;
+import sa.fx.draugths.pieces.SpritePiece;
 
 public class ShotAnimationEndHandler implements  EventHandler<ActionEvent>  {
 	

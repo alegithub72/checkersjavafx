@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sa.fx.draugths.sprite;
+package sa.fx.draugths.animation;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -16,16 +16,16 @@ import sa.fx.draugths.screen.BackGround;
  * @author Alessio Sardaro
  */
 public class Sprite extends ImageView {
-  
-    
-    
 
-    Image frameImages;
+
+
+
+    protected Image frameImages;
     Rectangle2D[] frames;
     String imgUrl;
-    int w;
-    int h;
-    int nframes = 0;
+    protected int w;
+    protected int h;
+    protected int nframes = 0;
     int k;
     String name;
     public Sprite(String img,String name) {

@@ -3,7 +3,7 @@ package sa.fx.draugths.animation.event;
 import javafx.event.Event;
 import javafx.event.EventTarget;
 import javafx.event.EventType;
-import sa.fx.draugths.sprite.SpritePiece;
+import sa.fx.draugths.pieces.SpritePiece;
 
 public class EventRemoveEatPiece extends  EventAnimPiece{
 

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>checkersfx</groupId>
     <artifactId>chekcersfx</artifactId>
-    <version>4.2.5-SNAPSHOT</version>
+    <version>4.3.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>ChekcersInvader</name>
     <!-- https://search.maven.org https://repository.apache.org https://mvnrepository.com -->
@@ -100,12 +100,12 @@
                     <mainClass>${main.class}</mainClass>
                     <options>
                         <option>-Dcheckers.debug=${checkersjavafx.debug}</option>
-                        <option>-Dcheckers.level=1</option>
+                        <option>-Dcheckers.level=9</option>
                         <option>-Dcheckers.loadScenario=true</option>
                         <option>-Dcheckers.tracepath=true</option>
                         <option>-Dcheckers.fileScenario1=boardDamaTest.txt</option>
                         <option>-Dcheckers.fileScenario=boardEndLevel.txt</option>
-                        <option>-Dcheckers.fileScenario3=boardPedinaWhiteTest.txt</option>
+                        <option>-Dcheckers.fileScenario1=boardPedinaWhiteTest.txt</option>
                         <option>-Dcheckers.fileScenario4=boardPedinaBlackTest.txt</option>
                     </options>
                 </configuration>

@@ -9,8 +9,7 @@ import javafx.geometry.Bounds;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
-import sa.fx.draugths.sprite.Sprite;
-import sa.fx.draugths.sprite.SpritePiece;
+import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.SoundEffect;
 
 /**

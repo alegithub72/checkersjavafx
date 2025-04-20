@@ -25,6 +25,7 @@ public enum SoundEffect {
     JET("jet.wav", true),
     DRONE("mini-quadcopter-flying-loop-80330.wav",true),
     LASER("191594_laser.wav", false),
+    LASER_MM("191594_laser.wav", true),
     MUSIC_SIGLA("muppet.mp3", false),
     MUSIC_CELEBRATION("270545_jingle-win-01.wav", false),
     EFFECT_HEY("416507_hey.wav", false),

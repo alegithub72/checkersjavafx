@@ -6,7 +6,7 @@
 package sa.fx.draugths.utility;
 
 import javafx.beans.value.WritableValue;
-import sa.fx.draugths.sprite.SoldierPiece;
+import sa.fx.draugths.pieces.efa.Soldier;
 
 /**
  *
@@ -14,9 +14,9 @@ import sa.fx.draugths.sprite.SoldierPiece;
  */
 public class WriteFrame implements WritableValue<Object> {
 
-    SoldierPiece p;
+    Soldier p;
     int frame;
-    public WriteFrame(SoldierPiece p) {
+    public WriteFrame(Soldier p) {
        this.p=p;
     }
 

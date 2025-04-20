@@ -8,18 +8,18 @@ package sa.fx.draugths.animation;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.sprite.SoldierPiece;
+import sa.fx.draugths.pieces.efa.Soldier;
 
 /**
  *
  * @author  Alessio Sardaro
  */
 public class AnimationPedinaMove extends Transition  {
-    SoldierPiece pedina;
+    Soldier pedina;
     Move m;
     int f1,f2;
 
-    private AnimationPedinaMove(int f1, int f2, SoldierPiece p,Move m){
+    private AnimationPedinaMove(int f1, int f2, Soldier p, Move m){
         this.f1=f1;
         this.f2=f2;
         this.pedina=p;
