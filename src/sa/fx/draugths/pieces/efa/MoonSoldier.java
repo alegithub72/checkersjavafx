@@ -20,12 +20,13 @@ import sa.gameboard.core.Piece;
 public class MoonSoldier extends Helmet {
 
 
-    static String CHECKER_SOLDIER_IMAGE = "white_cheker_moonsoldier.png";
+    protected static  String PIECE_IMAGE = "white_cheker_moonsoldier.png";
 
 
     public MoonSoldier(Piece piece,
                        BoardHW boardHW, FXBoard board) {
-        super(CHECKER_SOLDIER_IMAGE, "MoonSoldier", piece, boardHW, board);
+        super(PIECE_IMAGE,"MoonSoldier" , piece, boardHW, board);
+
 
 
     }

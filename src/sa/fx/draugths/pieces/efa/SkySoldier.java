@@ -26,12 +26,13 @@ import sa.gameboard.core.Piece;
 
 public class SkySoldier extends Soldier {
 
-    private static final String CHECKER_SKYSOLDIER_IMAGE = "soldier_checker_fly.png";
+    protected static  String PIECE_IMAGE  = "soldier_checker_fly.png";
 
 
     public SkySoldier(Piece piece,
                       BoardHW boardHW, FXBoard board) {
-        super(CHECKER_SKYSOLDIER_IMAGE, "SkySoldier", piece, boardHW, board);
+        super( PIECE_IMAGE,"SkySoldier", piece, boardHW, board);
+
 
 
     }

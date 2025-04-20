@@ -9,18 +9,20 @@ import sa.gameboard.core.Piece;
 public class Helmet extends Soldier {
 
 
-    private static final String CHECKER_SOLDIER_IMAGE = "soldier_checker_helmet.png";
+    protected static  String PIECE_IMAGE = "soldier_checker_helmet.png";
 
     public Helmet(Piece piece,
                   BoardHW boardHW, FXBoard board) {
-        super(CHECKER_SOLDIER_IMAGE, "HelmetSoldier", piece, boardHW, board);
+        super(PIECE_IMAGE,"HelmetSoldier", piece, boardHW, board);
+
 
 
     }
 
-    public Helmet(String checkerSoldierImage, String moonSoldier, Piece piece, BoardHW boardHW, FXBoard board) {
-        super(checkerSoldierImage, moonSoldier, piece, boardHW, board);
+    public Helmet(String pieceImage, String moonSoldier, Piece piece, BoardHW boardHW, FXBoard board) {
+        super(pieceImage,moonSoldier,piece,boardHW,board);
     }
+
 
     @Override
     public void buildMoveSequence(boolean ciclyc) {

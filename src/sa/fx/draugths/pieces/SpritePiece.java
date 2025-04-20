@@ -55,8 +55,8 @@ public abstract class SpritePiece extends Sprite {
     
     
 
-	protected SpritePiece(String nameType, BoardHW boardHW, Piece piece, String img, FXBoard b) {
-        super(img, nameType);
+	protected SpritePiece(String pieceImg,String nameType, BoardHW boardHW, Piece piece,  FXBoard b) {
+        super(pieceImg, nameType);
         this.piece=piece;
         this.nameType = nameType;
         this.wSquare=boardHW.getH();

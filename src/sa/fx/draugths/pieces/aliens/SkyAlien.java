@@ -20,10 +20,10 @@ import sa.gameboard.core.Piece;
 public class SkyAlien extends Alien {
 
 
-    private static final String CHEKCER_ALIEN_IMAGE_SKY = "alien_checker_fly.png";
+    protected static  String PIECE_IMAGE ="alien_checker_fly.png";
 
     public SkyAlien(Piece piece, BoardHW boardHW, FXBoard board) {
-        super(piece, CHEKCER_ALIEN_IMAGE_SKY, "SkyAlien", boardHW, board);
+        super(PIECE_IMAGE,"SkyAlien",piece,   boardHW, board);
 
 
     }

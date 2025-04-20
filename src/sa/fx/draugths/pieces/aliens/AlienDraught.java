@@ -31,11 +31,11 @@ import sa.gameboard.core.Piece;
 public class AlienDraught extends SpritePiece {
 
 
-    private static final String DRAUGTH_ALIEN_IMAGE = "alien_checker_dama.png";
+    protected static  String PIECE_IMAGE = "alien_checker_dama.png";
 
 
     public AlienDraught(Piece piece, BoardHW boardHW, FXBoard board) {
-        super("Alien", boardHW, piece, DRAUGTH_ALIEN_IMAGE, board);
+        super(PIECE_IMAGE,"Alien", boardHW, piece,  board);
 
 
     }

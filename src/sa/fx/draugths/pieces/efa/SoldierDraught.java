@@ -35,19 +35,19 @@ import sa.gameboard.core.Piece;
 public class SoldierDraught extends SpritePiece {
 
 
-    private static final String DRAUGTH_SOLDIER_IMAGE = "soldier_checker_dama.png";
+    protected static  String PIECE_IMAGE  = "soldier_checker_dama.png";
     private static final String DAMA_TAKEOFF = "DAMA_TAKEOFF";
 
 
     public SoldierDraught(Piece piece,
                           BoardHW boardHW, FXBoard board) {
-        super("Soldier", boardHW, piece, DRAUGTH_SOLDIER_IMAGE, board);
+        super(PIECE_IMAGE,"Soldier", boardHW, piece,  board);
 
 
     }
 
-    public SoldierDraught(String draugthSoldierImage, String nameType, Piece piece, BoardHW boardHW, FXBoard board) {
-        super(nameType, boardHW, piece, draugthSoldierImage, board);
+    public SoldierDraught(String pieceImage, String moonSoldierDraught, Piece piece, BoardHW boardHW, FXBoard board) {
+        super(pieceImage,moonSoldierDraught,boardHW,piece,board);
     }
 
 

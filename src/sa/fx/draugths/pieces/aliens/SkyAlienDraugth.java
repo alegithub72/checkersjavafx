@@ -20,11 +20,11 @@ import sa.gameboard.core.Piece;
 public class SkyAlienDraugth extends Alien {
 
 
-    private static final String DRAUGTH_ALIEN_IMAGE_SKY = "alien_checker_dama_fly.png";
+    protected static  String PIECE_IMAGE = "alien_checker_dama_fly.png";
 
 
     public SkyAlienDraugth(Piece piece, BoardHW boardHW, FXBoard board) {
-        super(piece, DRAUGTH_ALIEN_IMAGE_SKY, "SkyAlien", boardHW, board);
+        super(PIECE_IMAGE,"SkyAlien",piece,   boardHW, board);
 
 
     }

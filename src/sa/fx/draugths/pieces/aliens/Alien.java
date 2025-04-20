@@ -31,18 +31,16 @@ import sa.gameboard.core.Piece;
 public class Alien extends SpritePiece {
 
 
-    private static final String CHEKCER_ALIEN_IMAGE = "alien_checker.png";
+    protected static  String PIECE_IMAGE ="alien_checker.png";
 
     public Alien(Piece piece, BoardHW boardHW, FXBoard board) {
-        super("Alien", boardHW, piece, CHEKCER_ALIEN_IMAGE, board);
+        super(PIECE_IMAGE,"Alien", boardHW, piece,  board);
 
 
     }
 
-    protected Alien(Piece piece, String img, String colorFX, BoardHW boardHW, FXBoard board) {
-        super(colorFX, boardHW, piece, img, board);
-
-
+    public Alien(String pieceImage, String skyAlien, Piece piece, BoardHW boardHW, FXBoard board) {
+        super(pieceImage,skyAlien,boardHW,piece,board);
     }
 
 

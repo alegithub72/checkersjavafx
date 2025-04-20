@@ -34,21 +34,18 @@ import sa.gameboard.core.Piece;
 public class Soldier extends SpritePiece {
 
 
-    private static final String CHECKER_SOLDIER_IMAGE = "soldier_checker.png";
+    protected static  String PIECE_IMAGE = "soldier_checker.png";
 
 
     public Soldier(Piece piece,
                    BoardHW boardHW, FXBoard board) {
-        super("Soldier", boardHW, piece, CHECKER_SOLDIER_IMAGE, board);
+        super(PIECE_IMAGE,"Soldier", boardHW, piece, board);
 
 
     }
 
-    public Soldier(String img, String nameType, Piece piece,
-                   BoardHW boardHW, FXBoard board) {
-        super(nameType, boardHW, piece, img, board);
-
-
+    public Soldier(String pieceImage, String nameType, Piece piece, BoardHW boardHW, FXBoard board) {
+        super(pieceImage,nameType,boardHW,piece,board);
     }
 
 

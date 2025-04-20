@@ -16,12 +16,12 @@ import sa.gameboard.core.Piece;
 public class SkySoldierDraught extends Soldier {
 
 
-    private static final String DRAUGTH_SKYSOLDIER_IMAGE = "soldier_checker_dama_fly.png";
+    protected static  String PIECE_IMAGE =  "soldier_checker_dama_fly.png";
 
 
     public SkySoldierDraught(Piece piece,
                              BoardHW boardHW, FXBoard board) {
-        super(DRAUGTH_SKYSOLDIER_IMAGE, "SkySoldier", piece, boardHW, board);
+        super(PIECE_IMAGE,"SkySoldier",  piece, boardHW, board);
 
     }
 

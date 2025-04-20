@@ -19,11 +19,11 @@ import sa.gameboard.core.Piece;
 public class MoonSoldierDraught extends SoldierDraught {
 
 
-    static String DRAUGTH_SOLDIER_IMAGE = "white_draugth_moonsoldier.png";
+    protected static  String PIECE_IMAGE = "white_draugth_moonsoldier.png";
 
     public MoonSoldierDraught(Piece piece,
                               BoardHW boardHW, FXBoard board) {
-        super(DRAUGTH_SOLDIER_IMAGE, "MoonSoldier", piece, boardHW, board);
+        super(PIECE_IMAGE,"MoonSoldierDraught",piece,  boardHW,board);
 
 
     }
