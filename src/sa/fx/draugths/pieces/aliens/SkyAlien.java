@@ -57,7 +57,7 @@ public class SkyAlien extends Alien {
     }
 
 
-    public SpritePiece loadDraugthFrame() {
+    public SpritePiece crownedSound() {
 
         if (piece.getType() == Piece.DRAUGTH &&
                 !draugthTransform) {

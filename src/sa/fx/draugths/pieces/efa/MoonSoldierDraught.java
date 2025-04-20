@@ -16,19 +16,17 @@ import sa.gameboard.core.Piece;
 /**
  * @author Alessio Sardaro
  */
-public class MoonSoldierDraugth extends SoldierDraugth {
-
+public class MoonSoldierDraught extends SoldierDraught {
 
 
     static String DRAUGTH_SOLDIER_IMAGE = "white_draugth_moonsoldier.png";
 
-    public MoonSoldierDraugth(Piece piece,
+    public MoonSoldierDraught(Piece piece,
                               BoardHW boardHW, FXBoard board) {
         super(DRAUGTH_SOLDIER_IMAGE, "MoonSoldier", piece, boardHW, board);
 
 
     }
-
 
 
     @Override
@@ -37,8 +35,8 @@ public class MoonSoldierDraugth extends SoldierDraugth {
         SimpleFrameAnimation transition = null;
 
 
-            transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, ciclyc, 20, SoundEffect.JET);
-            transition.setDuration(pltransition.getTotalDuration());
+        transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, ciclyc, 20, SoundEffect.JET);
+        transition.setDuration(pltransition.getTotalDuration());
 
         pltransition.getChildren().add(transition);
 
@@ -48,16 +46,15 @@ public class MoonSoldierDraugth extends SoldierDraugth {
     public void buildMoveSequence(boolean ciclyc) {
 
 
-            SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundEffect.JET);
-            transition.setDuration(pltransition.getTotalDuration());
-            pltransition.getChildren().add(transition);
-
+        SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundEffect.JET);
+        transition.setDuration(pltransition.getTotalDuration());
+        pltransition.getChildren().add(transition);
 
 
     }
 
     @Override
-    public SpritePiece loadDraugthFrame() {
+    public SpritePiece crownedSound() {
 
         if (piece.getType() == Piece.DRAUGTH &&
                 draugthTransform == false) {

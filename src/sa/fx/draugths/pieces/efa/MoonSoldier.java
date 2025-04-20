@@ -31,22 +31,15 @@ public class MoonSoldier extends Helmet {
     }
 
 
-
     @Override
     public void buildMoveEatSequence(Move m, boolean ciclyc) {
 
         SimpleFrameAnimation transition = null;
-        if (!draugthTransform) {
-
-            transition = new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 20, SoundEffect.LASER_MM);
-            transition.setDuration(pltransition.getTotalDuration());
 
 
-        } else {
+        transition = new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 20, SoundEffect.LASER_MM);
+        transition.setDuration(pltransition.getTotalDuration());
 
-            transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, ciclyc, 20, SoundEffect.JET);
-            transition.setDuration(pltransition.getTotalDuration());
-        }
         pltransition.getChildren().add(transition);
 
     }
@@ -54,21 +47,15 @@ public class MoonSoldier extends Helmet {
     @Override
     public void buildMoveSequence(boolean ciclyc) {
 
-        if (!draugthTransform) {
-            SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundEffect.MARCH);
-            transition.setDuration(pltransition.getTotalDuration());
-            pltransition.getChildren().add(transition);
-        } else {
-            SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundEffect.JET);
-            transition.setDuration(pltransition.getTotalDuration());
-            pltransition.getChildren().add(transition);
+        SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundEffect.MARCH);
+        transition.setDuration(pltransition.getTotalDuration());
+        pltransition.getChildren().add(transition);
 
-        }
 
     }
 
     @Override
-    public SpritePiece loadDraugthFrame() {
+    public SpritePiece crownedSound() {
         throw new RuntimeException("Not allowed");
 
     }

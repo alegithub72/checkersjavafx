@@ -186,7 +186,7 @@ public class FXBoard implements GraficBoardInterface {
 				public void handle(EventEndTurn event) {
 					if (event.getEventType() == EventEndTurn.END_TURN) {
 						BCDraugthsApp.log.info("HANDLE EventEndTurn.END_TURN-->" + event.getEventType().getName() + ","
-								+ event.getSrpitePiece().getColorFX());
+								+ event.getSrpitePiece().getNameType());
 						turnEnd();
 						event.consume();
 					}
@@ -862,7 +862,7 @@ public class FXBoard implements GraficBoardInterface {
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
 				pedina = new AlienDraught(charPiece, boardHW, this);
-				pedina = pedina.loadDraugthFrame();
+				pedina = pedina.crownedSound();
 				// MOVE SEQUENCE 1-3
 				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
 				pedina.addMoveSequenceFrame(move);
@@ -894,8 +894,8 @@ public class FXBoard implements GraficBoardInterface {
 				pedina.addKillSequenceFrame(killed);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new SoldierDraugth(charPiece, boardHW, this);
-				pedina = pedina.loadDraugthFrame();
+				pedina = new SoldierDraught(charPiece, boardHW, this);
+				pedina = pedina.crownedSound();
 				// MOVE SEQUENCE 1-5
 				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
 						new FrameInfo(5, 1) };
@@ -953,7 +953,7 @@ public class FXBoard implements GraficBoardInterface {
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
 				pedina = new AlienDraught(charPiece, boardHW, this);
-				pedina = pedina.loadDraugthFrame();
+				pedina = pedina.crownedSound();
 				// MOVE SEQUENCE 1-3
 				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
 				pedina.addMoveSequenceFrame(move);
@@ -984,8 +984,8 @@ public class FXBoard implements GraficBoardInterface {
 				pedina.addKillSequenceFrame(killed);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new MoonSoldierDraugth(charPiece, boardHW, this);
-				pedina = pedina.loadDraugthFrame();
+				pedina = new MoonSoldierDraught(charPiece, boardHW, this);
+				pedina = pedina.crownedSound();
 				// MOVE SEQUENCE 1-5
 				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
 						new FrameInfo(5, 1) };
@@ -1042,7 +1042,7 @@ public class FXBoard implements GraficBoardInterface {
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
 				pedina = new AlienDraught(charPiece, boardHW, this);
-				pedina = pedina.loadDraugthFrame();
+				pedina = pedina.crownedSound();
 				// MOVE SEQUENCE 1-3
 				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
 				pedina.addMoveSequenceFrame(move);
@@ -1073,8 +1073,8 @@ public class FXBoard implements GraficBoardInterface {
 				pedina.addKillSequenceFrame(killed);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new SoldierDraugth(charPiece, boardHW, this);
-				pedina = pedina.loadDraugthFrame();
+				pedina = new SoldierDraught(charPiece, boardHW, this);
+				pedina = pedina.crownedSound();
 				// MOVE SEQUENCE 1-5
 				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
 						new FrameInfo(5, 1) };
@@ -1133,7 +1133,7 @@ public class FXBoard implements GraficBoardInterface {
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
 				pedina = new SkyAlien(charPiece, boardHW, this);
-				pedina = pedina.loadDraugthFrame();
+				pedina = pedina.crownedSound();
 				// MOVE SEQUENCE 1-3
 				FrameInfo[] move = { new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
 				pedina.addMoveSequenceFrame(move);
@@ -1164,8 +1164,8 @@ public class FXBoard implements GraficBoardInterface {
 				pedina.addKillSequenceFrame(killed);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new SkySoldierDraugth(charPiece, boardHW, this);
-				pedina = pedina.loadDraugthFrame();
+				pedina = new SkySoldierDraught(charPiece, boardHW, this);
+				pedina = pedina.crownedSound();
 				// MOVE SEQUENCE 1-5
 				FrameInfo[] move = { new FrameInfo(3, 1), new FrameInfo(4, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
 						new FrameInfo(3, 1) };

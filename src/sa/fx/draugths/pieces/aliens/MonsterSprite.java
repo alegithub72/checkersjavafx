@@ -42,7 +42,7 @@ public class MonsterSprite extends Alien {
     }
 
     @Override
-    public SpritePiece loadDraugthFrame() {
+    public SpritePiece crownedSound() {
         if (piece.getType() == Piece.DRAUGTH
                 && !draugthTransform) {
             draugthTransform = true;

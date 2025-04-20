@@ -25,16 +25,10 @@ public class Helmet extends Soldier {
     @Override
     public void buildMoveSequence(boolean ciclyc) {
 
-        if (!draugthTransform) {
-            SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundEffect.MARCH);
-            transition.setDuration(pltransition.getTotalDuration());
-            pltransition.getChildren().add(transition);
-        } else {
-            SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundEffect.ELICOPTER);
-            transition.setDuration(pltransition.getTotalDuration());
-            pltransition.getChildren().add(transition);
+        SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundEffect.MARCH);
+        transition.setDuration(pltransition.getTotalDuration());
+        pltransition.getChildren().add(transition);
 
-        }
 
     }
 

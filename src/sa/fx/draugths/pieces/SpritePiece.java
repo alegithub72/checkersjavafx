@@ -43,7 +43,7 @@ public abstract class SpritePiece extends Sprite {
 
     protected int wSquare;
     protected int hSquare;
-	String colorFX;
+	String nameType;
     protected FXBoard fxBoard;
     protected Sprite[] extraSprite=new Sprite[2];
 
@@ -55,10 +55,10 @@ public abstract class SpritePiece extends Sprite {
     
     
 
-	protected SpritePiece(String colorFX,BoardHW boardHW,Piece piece, String img,FXBoard b) {
-        super(img,colorFX);
+	protected SpritePiece(String nameType, BoardHW boardHW, Piece piece, String img, FXBoard b) {
+        super(img, nameType);
         this.piece=piece;
-        this.colorFX=colorFX;
+        this.nameType = nameType;
         this.wSquare=boardHW.getH();
         this.hSquare=boardHW.getW();
         this.fxBoard=b;
@@ -106,11 +106,11 @@ public abstract class SpritePiece extends Sprite {
 	}
     
 
-	public String getColorFX() {
-		return colorFX;
+	public String getNameType() {
+		return nameType;
 	}
-	public void setColorFX(String colorFX) {
-		this.colorFX = colorFX;
+	public void setNameType(String nameType) {
+		this.nameType = nameType;
 	}
 	public FXBoard getFxBoard() {
 		return fxBoard;
@@ -263,11 +263,11 @@ public abstract class SpritePiece extends Sprite {
     public abstract void buildDamaMovePath(Move m);
     public abstract void buildPedinaMoveEatPath(Move m);
     public abstract void buildDamaMoveEatPath(Move m);
-    public abstract   SpritePiece loadDraugthFrame() ;
+    public abstract   SpritePiece crownedSound() ;
 
 	@Override
 	public String toString() {
-		return "SpritePiece [piece "+(piece.getColor()==Piece.BLACK?"BLACK":"WHITE")+"-"+piece.getPos()+"(" + piece.getI()+","+piece.getJ()+") " + ", colorFX=" + colorFX + "]";
+		return "SpritePiece [piece "+(piece.getColor()==Piece.BLACK?"BLACK":"WHITE")+"-"+piece.getPos()+"(" + piece.getI()+","+piece.getJ()+") " + ", colorFX=" + nameType + "]";
 	}    
 
 

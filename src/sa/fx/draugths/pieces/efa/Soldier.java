@@ -44,9 +44,9 @@ public class Soldier extends SpritePiece {
 
     }
 
-    public Soldier(String img, String colofrFX, Piece piece,
+    public Soldier(String img, String nameType, Piece piece,
                    BoardHW boardHW, FXBoard board) {
-        super(colofrFX, boardHW, piece, img, board);
+        super(nameType, boardHW, piece, img, board);
 
 
     }
@@ -55,30 +55,11 @@ public class Soldier extends SpritePiece {
     public synchronized void buildKilledSequence(Move m) {
         pltransition = new ParallelTransition(this);
         SimpleFrameAnimation transition = null;
-        if (m.getP().getType() == Piece.CHECKER) {
-
-            if (!draugthTransform) {
-
-                transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.BITE);
-                transition.setDuration(Duration.seconds(0.5));
 
 
-            } else {
-                BCDraugthsApp.log.severe("Errorre...draugthTransform......?????");
+        transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.BITE);
+        transition.setDuration(Duration.seconds(0.5));
 
-            }
-
-        } else if (m.getP().getType() == Piece.DRAUGTH) {
-
-            if (draugthTransform) {
-                transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 40, SoundEffect.BITE);
-                transition.setDuration(Duration.seconds(0.5));
-            } else {
-                transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.BITE);
-                transition.setDuration(Duration.seconds(0.5));
-            }
-
-        }
         SpritePiece eated = this;
         transition.setOnFinished(new EventHandler<ActionEvent>() {
 
@@ -270,7 +251,7 @@ public class Soldier extends SpritePiece {
     }
 
 
-    public SpritePiece loadDraugthFrame() {
+    public SpritePiece crownedSound() {
 
         throw new RuntimeException("Not allowed");
 

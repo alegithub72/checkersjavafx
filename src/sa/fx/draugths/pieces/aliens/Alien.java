@@ -66,15 +66,10 @@ public class Alien extends SpritePiece {
     public void buildMoveEatSequence(Move m, boolean ciclyc) {
         //SpritePiece eated=getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(),m.getEat().getColor(), false);
         SimpleFrameAnimation transition = null;
-        if (!draugthTransform) {
             transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 50, SoundEffect.CLOPETE_DOUBLE);
             transition.setDuration(pltransition.getTotalDuration());
             pltransition.getChildren().add(transition);
-        } else {
-            transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 50, SoundEffect.CLOPETE_DOUBLE);
-            transition.setDuration(pltransition.getTotalDuration());
-            pltransition.getChildren().add(transition);
-        }
+
 
     }
 
@@ -220,7 +215,7 @@ public class Alien extends SpritePiece {
     }
 
     @Override
-    public SpritePiece loadDraugthFrame() {
+    public SpritePiece crownedSound() {
         throw new RuntimeException("Not allowed");
     }
 

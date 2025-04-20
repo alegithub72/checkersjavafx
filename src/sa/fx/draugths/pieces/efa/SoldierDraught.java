@@ -32,52 +32,33 @@ import sa.gameboard.core.Piece;
 /**
  * @author Alessio Sardaro
  */
-public class SoldierDraugth extends SpritePiece {
+public class SoldierDraught extends SpritePiece {
 
 
     private static final String DRAUGTH_SOLDIER_IMAGE = "soldier_checker_dama.png";
     private static final String DAMA_TAKEOFF = "DAMA_TAKEOFF";
 
 
-    public SoldierDraugth(Piece piece,
+    public SoldierDraught(Piece piece,
                           BoardHW boardHW, FXBoard board) {
         super("Soldier", boardHW, piece, DRAUGTH_SOLDIER_IMAGE, board);
 
 
     }
 
-    public SoldierDraugth(String draugthSoldierImage, String moonSoldier, Piece piece, BoardHW boardHW, FXBoard board) {
-        super(moonSoldier, boardHW, piece, draugthSoldierImage, board);
+    public SoldierDraught(String draugthSoldierImage, String nameType, Piece piece, BoardHW boardHW, FXBoard board) {
+        super(nameType, boardHW, piece, draugthSoldierImage, board);
     }
 
 
     public synchronized void buildKilledSequence(Move m) {
         pltransition = new ParallelTransition(this);
         SimpleFrameAnimation transition = null;
-        if (m.getP().getType() == Piece.CHECKER) {
-
-            if (!draugthTransform) {
-
-                transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.BITE);
-                transition.setDuration(Duration.seconds(0.5));
-
-
-            } else {
-                BCDraugthsApp.log.severe("Errorre...draugthTransform......?????");
-
-            }
-
-        } else if (m.getP().getType() == Piece.DRAUGTH) {
-
-            if (draugthTransform) {
                 transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 40, SoundEffect.BITE);
                 transition.setDuration(Duration.seconds(0.5));
-            } else {
-                transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.BITE);
-                transition.setDuration(Duration.seconds(0.5));
-            }
 
-        }
+
+
         SpritePiece eated = this;
         transition.setOnFinished(new EventHandler<ActionEvent>() {
 
@@ -354,7 +335,7 @@ public class SoldierDraugth extends SpritePiece {
     }
 
 
-    public SpritePiece loadDraugthFrame() {
+    public SpritePiece crownedSound() {
         SpritePiece sp = null;
         if (piece.getType() == Piece.DRAUGTH &&
                 !draugthTransform) {
