@@ -142,7 +142,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 
 			// images = new Image("mare.png");
 			loadTiles("cittaEmpty", empty);
-			loadTiles("citta", full);
+			loadTiles("citta_", full);
 
 		}
 
