@@ -106,7 +106,7 @@ public class SimpleFrameAnimation extends Transition {
 
 			sprite.toFront();
 			frameCount++;
-			BCDraugthsApp.log.info("sprite:" + sprite + ",frames:" + frames[i] + " interval:" + intervalTemp);
+			System.out.println("sprite:" + sprite + ",frames:" + frames[i] + " interval:" + intervalTemp);
 			if (frameCount >= frames[i].getDuration()) {
 				i++;
 				frameCount = 0;

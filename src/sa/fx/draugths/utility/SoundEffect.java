@@ -31,7 +31,8 @@ public enum SoundEffect {
     EFFECT_HEY("416507_hey.wav", false),
     EFFECT_COIN("29649-coin-return.wav", false),
     SAPCESHIP_BUZZ("55829_electric.wav", false),
-    SAPCESHIP("510018-buzzy.wav", true);
+    SAPCESHIP("510018-buzzy.wav", true),
+    POLICE_JUMP("policeJump.wav", false);
     private String file;
     private boolean loop;
 
