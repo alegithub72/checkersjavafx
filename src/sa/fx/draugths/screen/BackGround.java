@@ -347,7 +347,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 						c.getGraphicsContext2D().drawImage(new Image("desert_bck.png"), (wBackground/2)-256+scrollW,(hBackgroundTot/2)-256+scrollH,512, 512);
 						c.getGraphicsContext2D().setEffect(dropShadow);
 						c.getGraphicsContext2D().setFill(Color.valueOf("ffd42aff"));
-						c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Jungle", centerX,centerY);
+
 		            	c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Desert", centerX,centerY);
 		            }else if (FXBoard.levelWave(level) == GLevel.LVL3_MOUNTAIN.n()) {
 						c.getGraphicsContext2D().fillText("Level "+level+" : Clear the Mountains",centerX,centerY);
