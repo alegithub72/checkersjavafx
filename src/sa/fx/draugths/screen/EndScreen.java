@@ -49,7 +49,7 @@ public class EndScreen extends PresentationScreen {
 
 			@Override
 			protected void interpolate(double frac) {
-				// System.out.println("color="+Color.WHITE.interpolate(Color.BLACK, frac));
+				// BCDraugthsApp.log.info("color="+Color.WHITE.interpolate(Color.BLACK, frac));
 				start.setFill(Color.WHITE.interpolate(Color.BLACK, frac));
 			}
 		};

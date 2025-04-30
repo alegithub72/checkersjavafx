@@ -47,7 +47,7 @@ public class BCDraugthsApp extends Application {
 	int level;
 
 	public void initDama() {
-		System.out.println("---->"+System.getProperty("checkers.debug"));
+		BCDraugthsApp.log.info("---->"+System.getProperty("checkers.debug"));
 		if (System.getProperty("checkers.debug") != null)
 			debug = "true".equals("" + System.getProperty("checkers.debug"));
 		else
@@ -64,7 +64,7 @@ public class BCDraugthsApp extends Application {
 
 		System.setProperty("java.util.logging.SimpleFormatter.format", "%2$s   %4$s:   %5$s %6$s   %n");
 		// java.util.logging.SimpleFormatter.format
-		System.out.println("---->"+debug);
+		BCDraugthsApp.log.info("---->"+debug);
 		if (debug) {
 			Level logLevel=Level.INFO;
 			log.setLevel(logLevel);
@@ -83,7 +83,9 @@ public class BCDraugthsApp extends Application {
 			
 		}
 		else{
-			log.setLevel(Level.SEVERE);
+			Level logLevel=Level.OFF;
+			log.setLevel(logLevel);
+			//log.setLevel(Level.SEVERE);
 		}
 		//ConsoleHandler handler=new ConsoleHandler();
 		//handler.setLevel(Level.FINEST);

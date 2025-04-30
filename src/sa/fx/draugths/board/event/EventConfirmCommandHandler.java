@@ -37,7 +37,7 @@ public class EventConfirmCommandHandler implements EventHandler<MouseEvent>{
         BCDraugthsApp.log.info("HANDLE EventConfirmCommand Hai scelto la mossa "+n+"°");
         Move m=mousePlayer.chooseMove();
 
-        //System.out.println("m="+m+", p.i="+m.getP().getI()+",p.j="+m.getP().getJ());
+        //BCDraugthsApp.log.info("m="+m+", p.i="+m.getP().getI()+",p.j="+m.getP().getJ());
         if(!mousePlayer.makeMove(m)) throw new RuntimeException("Move not executed");
         mousePlayer.setMoveChoose(-1);
         bb.updateInterface(mousePlayer.getName(),m);

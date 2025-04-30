@@ -229,7 +229,7 @@ public   List<RecordPlayer> ordredrecordsPlayers() {
                         
                         @Override
                         protected void interpolate(double frac) {
-                            //System.out.println("color="+Color.WHITE.interpolate(Color.BLACK, frac));
+                            //BCDraugthsApp.log.info("color="+Color.WHITE.interpolate(Color.BLACK, frac));
                         	player.setFill(Color.WHITE.interpolate(Color.BLACK, frac));
                         }
                     };

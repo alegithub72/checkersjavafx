@@ -41,7 +41,7 @@ public class SimpleFrameAnimation extends Transition {
 		this.sprite = sprite;
 		this.move = move;
 		this.sound = sound;
-		System.out.println("sound:"+sound.getFile());
+		BCDraugthsApp.log.info("sound:"+sound.getFile());
 		this.ciclyc = cyclic;
 		before = System.currentTimeMillis();
 		this.interval = interval;
@@ -106,7 +106,7 @@ public class SimpleFrameAnimation extends Transition {
 
 			sprite.toFront();
 			frameCount++;
-			System.out.println("sprite:" + sprite + ",frames:" + frames[i] + " interval:" + intervalTemp);
+			BCDraugthsApp.log.info("sprite:" + sprite + ",frames:" + frames[i] + " interval:" + intervalTemp);
 			if (frameCount >= frames[i].getDuration()) {
 				i++;
 				frameCount = 0;

@@ -535,7 +535,7 @@ public class FXBoard implements GraficBoardInterface {
 
 			@Override
 			protected void interpolate(double frac) {
-				// System.out.println("color="+Color.WHITE.interpolate(Color.BLACK, frac));
+				// BCDraugthsApp.log.info("color="+Color.WHITE.interpolate(Color.BLACK, frac));
 				start.setFill(Color.WHITE.interpolate(Color.BLACK, frac));
 			}
 		};
@@ -720,13 +720,13 @@ public class FXBoard implements GraficBoardInterface {
 		});
 		scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
 
-			System.out.println("Vvalue cambiato: " + newValue);
+			BCDraugthsApp.log.info("Vvalue cambiato: " + newValue);
 		});
 
 		scrollPane.hvalueProperty().addListener((observable, oldValue, newValue) -> {
 
 
-			System.out.println("Hvalue cambiato: " + newValue);
+			BCDraugthsApp.log.info("Hvalue cambiato: " + newValue);
 		});
 
 		root.getChildren().add(scrollPane);

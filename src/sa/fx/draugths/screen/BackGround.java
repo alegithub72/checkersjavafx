@@ -256,7 +256,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
                 
                 @Override
                 protected void interpolate(double frac) {
-                    //System.out.println("color="+Color.WHITE.interpolate(Color.BLACK, frac));
+                    //BCDraugthsApp.log.info("color="+Color.WHITE.interpolate(Color.BLACK, frac));
                        score.setFill(Color.WHITE.interpolate(Color.rgb(0, 204, 102), frac));
                        score.setScaleX(frac);
                        score.setScaleY(frac);

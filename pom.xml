@@ -100,12 +100,12 @@
                     <mainClass>${main.class}</mainClass>
                     <options>
                         <option>-Dcheckers.debug=${checkersjavafx.debug}</option>
-                        <option>-Dcheckers.level=7</option>
+                        <option>-Dcheckers.level=1</option>
                         <option>-Dcheckers.loadScenario=true</option>
                         <option>-Dcheckers.tracepath=false</option>
                         <option>-Dcheckers.fileScenario1=boardDamaTest.txt</option>
-                        <option>-Dcheckers.fileScenario=boardEndLevel.txt</option>
-                        <option>-Dcheckers.fileScenario1=boardPedinaWhiteTest.txt</option>
+                        <option>-Dcheckers.fileScenario1=boardEndLevel.txt</option>
+                        <option>-Dcheckers.fileScenario=boardPedinaWhiteTest.txt</option>
                         <option>-Dcheckers.fileScenario4=boardPedinaBlackTest.txt</option>
                     </options>
                 </configuration>
