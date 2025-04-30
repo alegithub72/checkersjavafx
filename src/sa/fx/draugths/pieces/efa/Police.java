@@ -17,7 +17,7 @@ import sa.gameboard.core.Piece;
 public class Police extends Soldier {
 
 
-    protected static  String PIECE_IMAGE = "soldier_checker_helmet.png";
+    protected static  String PIECE_IMAGE = "soldier_checker_police.png";
 
     public Police(Piece piece,
                   BoardHW boardHW, FXBoard board) {

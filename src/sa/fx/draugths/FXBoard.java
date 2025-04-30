@@ -1162,7 +1162,7 @@ public class FXBoard implements GraficBoardInterface {
 				pedina.addKillSequenceFrame(killed);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new SoldierDraught(charPiece, boardHW, this);
+				pedina = new PoliceDraught(charPiece, boardHW, this);
 				pedina = pedina.crownedSound();
 				// MOVE SEQUENCE 1-5
 				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
