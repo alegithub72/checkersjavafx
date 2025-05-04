@@ -18,6 +18,8 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
+import sa.fx.draugths.animation.FrameInfo;
+import sa.fx.draugths.animation.FrameSequence;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.pieces.SpritePiece;
@@ -43,6 +45,27 @@ public class Alien extends SpritePiece {
         super(pieceImage,skyAlien,boardHW,piece,board);
     }
 
+    public  void buildAlienFrameSeq() {
+        // MOVE SEQUENCE 0-3
+        FrameInfo[] move = { new FrameInfo(0, 1), new FrameInfo(1, 1), new FrameInfo(2, 1),
+                new FrameInfo(3, 1) };
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        // MOVE EAT SEQUENCE 4-6
+        FrameInfo[] moveeat = { new FrameInfo(4, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
+
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveeat)});
+        // KILLED SEQUENCE 7-13
+        FrameInfo[] killed = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
+                new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };
+
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
+    }
+
+
+    @Override
+    protected void init() {
+        buildAlienFrameSeq();
+    }
 
     @Override
     public void buildKilledSequence(Move m) {

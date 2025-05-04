@@ -9,7 +9,11 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
+import sa.fx.draugths.animation.FrameInfo;
+import sa.fx.draugths.animation.FrameSequence;
+import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
+import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
@@ -21,7 +25,7 @@ public class Police extends Soldier {
 
     public Police(Piece piece,
                   BoardHW boardHW, FXBoard board) {
-        super(PIECE_IMAGE,"HelmetSoldier", piece, boardHW, board);
+        super(PIECE_IMAGE,"PoliceSoldier", piece, boardHW, board);
 
 
 
@@ -29,6 +33,24 @@ public class Police extends Soldier {
 
     public Police(String pieceImage, String moonSoldier, Piece piece, BoardHW boardHW, FXBoard board) {
         super(pieceImage,moonSoldier,piece,boardHW,board);
+    }
+
+    @Override
+    protected void init() {
+        buildPoliceFrames();
+    }
+
+    public  void buildPoliceFrames() {
+        FrameInfo[] move = { new FrameInfo(6, 8), new FrameInfo(7, 8), new FrameInfo(8, 8) };
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        // MOVE EAT SEQUENCE 2-5
+        FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1) };
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat)});
+        // KILLED SEQUENCE 10-17
+        FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
+                new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
+                new FrameInfo(17, 1) };
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
     }
 
 
@@ -41,7 +63,16 @@ public class Police extends Soldier {
 
 
     }
+    @Override
+    public void buildMoveEatSequence(Move m, boolean ciclyc) {
 
+        SimpleFrameAnimation transition = null;
+        transition = new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 20, SoundEffect.FIRE);
+        transition.setDuration(pltransition.getTotalDuration());
+
+        pltransition.getChildren().add(transition);
+
+    }
 @Override
 public void buildPedinaMovePath(Move m) {
 

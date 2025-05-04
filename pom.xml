@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>checkersfx</groupId>
     <artifactId>chekcersfx</artifactId>
-    <version>4.3.0-SNAPSHOT</version>
+    <version>4.5.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>ChekcersInvader</name>
     <!-- https://search.maven.org https://repository.apache.org https://mvnrepository.com -->
@@ -15,7 +15,7 @@
         <gluonfx.plugin.version>1.0.13</gluonfx.plugin.version>
         <charm.version>6.1.0</charm.version>
         <attach.version>4.0.13</attach.version>
-        <checkersjavafx.debug>false</checkersjavafx.debug>
+        <checkersjavafx.debug>true</checkersjavafx.debug>
         <main.class>sa.fx.draugths.BCDraugthsApp</main.class>
     </properties>
     <distributionManagement>
@@ -103,9 +103,9 @@
                         <option>-Dcheckers.level=1</option>
                         <option>-Dcheckers.loadScenario=true</option>
                         <option>-Dcheckers.tracepath=false</option>
-                        <option>-Dcheckers.fileScenario1=boardDamaTest.txt</option>
+                        <option>-Dcheckers.fileScenario=boardDamaTest.txt</option>
                         <option>-Dcheckers.fileScenario1=boardEndLevel.txt</option>
-                        <option>-Dcheckers.fileScenario=boardPedinaWhiteTest.txt</option>
+                        <option>-Dcheckers.fileScenario1=boardPedinaWhiteTest.txt</option>
                         <option>-Dcheckers.fileScenario4=boardPedinaBlackTest.txt</option>
                     </options>
                 </configuration>
@@ -372,6 +372,11 @@
                         <artifactId>javafx-maven-plugin</artifactId>
                         <version>8.8.3</version>
                         <configuration>
+                            <additionalBundlerResources>install\extraBudleResources</additionalBundlerResources>
+<!--                            <bundler>exe</bundler>-->
+<!--                            <bundleArguments>-->
+<!--                                <WizardImageFile>startScreen3.bmp</WizardImageFile>-->
+<!--                            </bundleArguments>-->
                             <mainClass>${main.class}</mainClass>
                             <nativeReleaseVersion>${project.version}</nativeReleaseVersion>
                             <vendor>sagame</vendor>

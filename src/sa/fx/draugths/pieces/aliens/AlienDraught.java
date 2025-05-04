@@ -18,6 +18,8 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
+import sa.fx.draugths.animation.FrameInfo;
+import sa.fx.draugths.animation.FrameSequence;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.pieces.SpritePiece;
@@ -37,9 +39,31 @@ public class AlienDraught extends SpritePiece {
     public AlienDraught(Piece piece, BoardHW boardHW, FXBoard board) {
         super(PIECE_IMAGE,"Alien", boardHW, piece,  board);
 
+    }
+    public AlienDraught(String pieceImage, String moonSoldierDraught, Piece piece, BoardHW boardHW, FXBoard board) {
+        super(pieceImage,moonSoldierDraught,boardHW,piece,board);
+    }
+    public void builAnimKing() {
+        crownedSound();
+        // MOVE SEQUENCE 1-3
+        FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        // MOVE EAT SEQUENCE 1-4}
+        FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
+                new FrameInfo(4, 1) };
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat)});
+        // KILLED SEQUENCE 7-12})
+        FrameInfo[] killed = { new FrameInfo(0, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
+                new FrameInfo(9, 1), new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1) };
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
 
     }
 
+
+    @Override
+    protected void init() {
+        builAnimKing();
+    }
 
     @Override
     public void buildKilledSequence(Move m) {

@@ -14,10 +14,7 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.PieceAnimationEndHandler;
-import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
-import sa.fx.draugths.animation.SimpleFrameAnimation;
-import sa.fx.draugths.animation.Sprite;
+import sa.fx.draugths.animation.*;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
@@ -38,6 +35,25 @@ public class SkySoldier extends Soldier {
     }
 
     @Override
+    protected void init() {
+        buildSkySoldierFrames();
+    }
+
+    public  void buildSkySoldierFrames() {
+        // MOVE SEQUENCE 1-3
+        FrameInfo[] move = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1) };
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        // MOVE EAT SEQUENCE 2-5
+        FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1) };
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat)});
+        // KILLED SEQUENCE 10-17
+        FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
+                new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
+                new FrameInfo(17, 1) };
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
+    }
+
+    @Override
     public void buildMoveSequence(boolean ciclyc) {
 
 
@@ -49,33 +65,60 @@ public class SkySoldier extends Soldier {
     }
 
     public synchronized void buildKilledSequence(Move m) {
-        pltransition = new ParallelTransition(this);
-        SimpleFrameAnimation transition = null;
+        pltransition=new ParallelTransition(this);
+        SimpleFrameAnimation transition=null;
+        BCDraugthsApp.log.info("buildDefaultKillAnimation....1");
+
+        if (m.getP().getType() ==Piece.CHECKER) {
+
+            if(!draugthTransform) {
+                BCDraugthsApp.log.info("buildDefaultKillAnimation....2");
+                transition= new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.BITE);
+                transition.setDuration(Duration.seconds(0.5));
 
 
-        transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.BITE);
-        transition.setDuration(Duration.seconds(0.5));
+            }
+            else {
+                BCDraugthsApp.log.info("buildDefaultKillAnimation....3");
+                transition= new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.SAPCESHIP_BUZZ);
+                transition.setDuration(Duration.seconds(0.5));
 
-        SpritePiece eated = this;
+            }
+
+        } else if (m.getP().getType()  ==Piece.DRAUGTH)  {
+            BCDraugthsApp.log.info("buildDefaultKillAnimation....4");
+            if(draugthTransform) {
+                BCDraugthsApp.log.info("buildDefaultKillAnimation....5");
+                transition=new SimpleFrameAnimation(killSequenceFrame, this, false,40, SoundEffect.SAPCESHIP_BUZZ);
+                transition.setDuration(Duration.seconds(0.5));
+            }
+            else {
+                BCDraugthsApp.log.info("buildDefaultKillAnimation....6");
+                transition=new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.SAPCESHIP_BUZZ);
+                transition.setDuration(Duration.seconds(0.5));
+            }
+
+        }
+        BCDraugthsApp.log.info("buildDefaultKillAnimation....7");
+        SpritePiece eated=this;
         transition.setOnFinished(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
 
-                if (m.getType() == Move.EAT) {
+                if(m.getType()==Move.EAT) {
 
-                    BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: " + eated);
-                    fireEvent(new EventRemoveEatPiece(eated, eated.getParent(), EventRemoveEatPiece.REMOVE_PIECE_EVENT));
+                    BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
+                    fireEvent(new EventRemoveEatPiece(eated, eated.getParent(),EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
 
                 }
 
             }
         });
-        pltransition.getChildren().add(transition);
+        pltransition.getChildren().add( transition);
 
     }
-
     @Override
     public void buildMoveEatSequence(Move m, boolean ciclyc) {
 

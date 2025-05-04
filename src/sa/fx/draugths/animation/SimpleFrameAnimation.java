@@ -22,10 +22,10 @@ public class SimpleFrameAnimation extends Transition {
 	FrameInfo[] frames;
 
 	SoundEffect sound;
-
+	FrameSequence[] seq;
 	Sprite sprite;
 	Move move;
-
+	int seqNUmber;
 	int i;
 	int frameCount = 0;
 
@@ -35,9 +35,11 @@ public class SimpleFrameAnimation extends Transition {
 	long before;
 	boolean startMusic = true;
 
-	public SimpleFrameAnimation(FrameInfo[] frames, Sprite sprite, Move move, boolean cyclic, long interval,
+	public SimpleFrameAnimation(FrameSequence[] seq, Sprite sprite, Move move, boolean cyclic, long interval,
 			SoundEffect sound) {
-		this.frames = frames;
+		this.frames = seq[0].getSeqList();
+		seqNUmber=0;
+		this.seq=seq;
 		this.sprite = sprite;
 		this.move = move;
 		this.sound = sound;
@@ -48,8 +50,10 @@ public class SimpleFrameAnimation extends Transition {
 		addEndHandler();
 	}
 
-	public SimpleFrameAnimation(FrameInfo[] frames, Sprite sprite, boolean cyclic, long interval, SoundEffect sound) {
-		this.frames = frames;
+	public SimpleFrameAnimation(FrameSequence[] seq, Sprite sprite, boolean cyclic, long interval, SoundEffect sound) {
+		this.frames = seq[0].getSeqList();
+		this.seq=seq;
+		seqNUmber=0;
 		this.sprite = sprite;
 		this.move = null;
 		this.sound = sound;
@@ -100,7 +104,7 @@ public class SimpleFrameAnimation extends Transition {
 
 		playEffect();
 		if (intervalTemp > this.interval) {
-
+			sprite.setViewOrder(0);
 			before = System.currentTimeMillis();
 			sprite.setFrame(frames[i].getFrameNumber());
 
@@ -115,6 +119,13 @@ public class SimpleFrameAnimation extends Transition {
 						i = 0;
 				} else if (!this.ciclyc && (i >= (frames.length)))
 					i = frames.length - 1;
+
+			}
+			if(((seq.length-1)>seqNUmber) &&  seq[seqNUmber].getSeqDuration()>(this.interval*i)){
+				seqNUmber++;
+				frames=seq[seqNUmber].getSeqList();
+				i=0;
+				frameCount = 0;
 			}
 
 		}

@@ -6,21 +6,17 @@
 package sa.fx.draugths.pieces;
 
 
+import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 
-import javafx.animation.Animation;
-import javafx.animation.ParallelTransition;
-import javafx.animation.Transition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.animation.FrameInfo;
-import sa.fx.draugths.animation.PieceAnimationEndHandler;
-import sa.fx.draugths.animation.SimpleFrameAnimation;
-import sa.fx.draugths.animation.Sprite;
+import sa.fx.draugths.animation.*;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.fx.draugths.utility.SoundEffect;
@@ -36,9 +32,9 @@ public abstract class SpritePiece extends Sprite {
 
     protected Piece piece;
     protected boolean draugthTransform=false;
-    protected FrameInfo[] moveSequenceFrame;
-    protected FrameInfo[] eatMoveSequenceFrame;
-    protected FrameInfo[] killSequenceFrame;
+    protected FrameSequence[] moveSequenceFrame;
+    protected FrameSequence[] eatMoveSequenceFrame;
+    protected FrameSequence[] killSequenceFrame;
 
 
     protected int wSquare;
@@ -50,28 +46,31 @@ public abstract class SpritePiece extends Sprite {
     protected ParallelTransition pltransition;
     protected HashMap<String,Transition> steps;
 	boolean eatedAnim;
-    
-    
-    
-    
+
 
 	protected SpritePiece(String pieceImg,String nameType, BoardHW boardHW, Piece piece,  FXBoard b) {
         super(pieceImg, nameType);
-        this.piece=piece;
+        this.piece = piece;
         this.nameType = nameType;
-        this.wSquare=boardHW.getH();
-        this.hSquare=boardHW.getW();
-        this.fxBoard=b;
-        steps=new HashMap<>();
-
-                
-
-
+        this.wSquare = boardHW.getH();
+        this.hSquare = boardHW.getW();
+        this.fxBoard = b;
+        steps = new HashMap<>();
+        init();
     }
+    protected abstract void init();
 
-    protected void buildDefaultKillAnimation(FrameInfo[] frames,Move m, boolean ciclyc, long interval, SoundEffect sound) {
-    	SimpleFrameAnimation transition=  new SimpleFrameAnimation(frames, this,m,  ciclyc, interval, sound);
+    protected void buildDefaultKillAnimation(FrameSequence[] seq, Move m, boolean ciclyc, long interval, SoundEffect sound) {
 
+//        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(FRAME_DURATION), event -> {
+//            currentFrame = (currentFrame + 1) % TOTAL_FRAMES;
+//            imageView.setViewport(new Rectangle2D(currentFrame * FRAME_WIDTH, 0, FRAME_WIDTH, FRAME_HEIGHT));
+//        }));
+//        timeline.setCycleCount(Timeline.INDEFINITE);
+//        timeline.play();
+
+
+        SimpleFrameAnimation transition=  new SimpleFrameAnimation(seq, this,m,  ciclyc, interval, sound);
     	transition.setDuration(Duration.seconds(0.5));
     	pltransition.getChildren().add(transition );
     	SpritePiece eated=this;
@@ -95,13 +94,13 @@ public abstract class SpritePiece extends Sprite {
     }    
 
 
-	public void addMoveSequenceFrame(FrameInfo[] moveSequenceFrame) {
+	public void addMoveSequenceFrame(FrameSequence[] moveSequenceFrame) {
 		this.moveSequenceFrame = moveSequenceFrame;
 	}
-	public void addEatMoveSequenceFrame(FrameInfo[] eatMoveSequenceFrame) {
+	public void addEatMoveSequenceFrame(FrameSequence[] eatMoveSequenceFrame) {
 		this.eatMoveSequenceFrame = eatMoveSequenceFrame;
 	}
-	public void addKillSequenceFrame(FrameInfo[] killSequenceFrame) {
+	public void addKillSequenceFrame(FrameSequence[] killSequenceFrame) {
 		this.killSequenceFrame = killSequenceFrame;
 	}
     

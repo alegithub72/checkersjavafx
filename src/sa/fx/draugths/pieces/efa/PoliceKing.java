@@ -22,7 +22,6 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.*;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
-import sa.fx.draugths.animation.Sprite;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.fx.draugths.utility.SoundEffect;
@@ -32,22 +31,39 @@ import sa.gameboard.core.Piece;
 /**
  * @author Alessio Sardaro
  */
-public class SoldierDraught extends SpritePiece {
+public class PoliceKing extends SpritePiece {
 
 
-    protected static  String PIECE_IMAGE  = "soldier_checker_dama.png";
+    protected static  String PIECE_IMAGE  = "soldier_draugth_police.png";
     private static final String DAMA_TAKEOFF = "DAMA_TAKEOFF";
 
 
-    public SoldierDraught(Piece piece,
-                          BoardHW boardHW, FXBoard board) {
-        super(PIECE_IMAGE,"Soldier", boardHW, piece,  board);
+    public PoliceKing(Piece piece,
+                      BoardHW boardHW, FXBoard board) {
+        super(PIECE_IMAGE,"PoliceKing", boardHW, piece,  board);
 
 
     }
 
-    public SoldierDraught(String pieceImage, String moonSoldierDraught, Piece piece, BoardHW boardHW, FXBoard board) {
+    public PoliceKing(String pieceImage, String moonSoldierDraught, Piece piece, BoardHW boardHW, FXBoard board) {
         super(pieceImage,moonSoldierDraught,boardHW,piece,board);
+    }
+
+    public  void buildPoliceKingFrames() {
+        crownedSound();
+        // MOVE SEQUENCE 1-5
+        FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
+                new FrameInfo(5, 1) };
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        // MOVE EAT SEQUENCE 1-5
+        FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
+                new FrameInfo(4, 1), new FrameInfo(5, 1) };
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat)});
+        // KILLED SEQUENCE 7-10
+        FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
+                new FrameInfo(9, 1), new FrameInfo(10, 1), };
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
+
     }
 
 
@@ -257,6 +273,11 @@ public class SoldierDraught extends SpritePiece {
     }
 
     @Override
+    protected void init() {
+        buildPoliceKingFrames();
+    }
+
+    @Override
     public void builAnimDamaEat(Move m) {
 
         ParallelTransition ptMissile = new ParallelTransition();
@@ -305,10 +326,10 @@ public class SoldierDraught extends SpritePiece {
         }
 
 
-        ShotCollisionFrameAnimation missileAnim = new ShotCollisionFrameAnimation(
-                new FrameInfo[]{new FrameInfo(0, 1),
-                        new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-                        new FrameInfo(4, 1), new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(7, 1)}
+        FrameInfo misileFreame[]= new FrameInfo[]{new FrameInfo(0, 1),
+                new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
+                new FrameInfo(4, 1), new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(7, 1)};
+        ShotCollisionFrameAnimation missileAnim = new ShotCollisionFrameAnimation(new FrameSequence[]{new FrameSequence(misileFreame)}
                 , m, this, extraSprite[0], true, 100, SoundEffect.MISSILE);
         missileAnim.setDuration(ptMissile.getTotalDuration());
 

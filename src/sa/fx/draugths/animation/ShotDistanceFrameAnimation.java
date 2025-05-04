@@ -23,7 +23,7 @@ public class ShotDistanceFrameAnimation extends SimpleFrameAnimation{
       SpritePiece piece;
 
 
-    public ShotDistanceFrameAnimation(FrameInfo[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,SoundEffect effect) {
+    public ShotDistanceFrameAnimation(FrameSequence[] frames, SpritePiece piece,Move move,boolean cyclic,long interval,SoundEffect effect) {
     	super(frames, piece,move, cyclic, interval, effect);
 
     	this.piece=piece;

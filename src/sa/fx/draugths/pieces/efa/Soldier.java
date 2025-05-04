@@ -19,6 +19,8 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
+import sa.fx.draugths.animation.FrameInfo;
+import sa.fx.draugths.animation.FrameSequence;
 import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
@@ -48,6 +50,25 @@ public class Soldier extends SpritePiece {
         super(pieceImage,nameType,boardHW,piece,board);
     }
 
+    public  void buildSoldierFrames() {
+        FrameInfo[] move = { new FrameInfo(7, 1), new FrameInfo(8, 1) };
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        // MOVE EAT SEQUENCE 2-5
+        FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
+                new FrameInfo(5, 1) };
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat)});
+        // KILLED SEQUENCE 10-17
+        FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
+                new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
+                new FrameInfo(17, 1) };
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
+    }
+
+
+    @Override
+    protected void init() {
+        buildSoldierFrames();
+    }
 
     public synchronized void buildKilledSequence(Move m) {
         pltransition = new ParallelTransition(this);

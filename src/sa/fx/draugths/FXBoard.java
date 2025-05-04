@@ -29,7 +29,6 @@ import sa.boardgame.console.imp.AutomaPlayer;
 import sa.boardgame.console.imp.ConsoleRendering;
 import sa.boardgame.core.moves.Move;
 import sa.boardgame.core.players.Player;
-import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.event.EventDraugthTransform;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
@@ -40,6 +39,7 @@ import sa.fx.draugths.pieces.*;
 import sa.fx.draugths.pieces.aliens.Alien;
 import sa.fx.draugths.pieces.aliens.AlienDraught;
 import sa.fx.draugths.pieces.aliens.SkyAlien;
+import sa.fx.draugths.pieces.aliens.SkyAlienDraugth;
 import sa.fx.draugths.pieces.efa.*;
 import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
@@ -845,70 +845,24 @@ public class FXBoard implements GraficBoardInterface {
 
 		if (Piece.BLACK == playerColor) {
 
-			pedina = new Alien(charPiece, boardHW, this);
-			if (charPiece.getType() == Piece.CHECKER) {
-				// MOVE SEQUENCE 0-3
-				FrameInfo[] move = { new FrameInfo(0, 1), new FrameInfo(1, 1), new FrameInfo(2, 1),
-						new FrameInfo(3, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 4-6
-				FrameInfo[] moveeat = { new FrameInfo(4, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
-				pedina.addEatMoveSequenceFrame(moveeat);
-				// KILLED SEQUENCE 7-13
-				FrameInfo[] killed = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
-						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };
 
-				pedina.addKillSequenceFrame(killed);
+			if (charPiece.getType() == Piece.CHECKER) {
+
+				pedina = new Alien(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
 				pedina = new AlienDraught(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-4
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-						new FrameInfo(4, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-12
-				FrameInfo[] killed = { new FrameInfo(0, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1) };
-				pedina.addKillSequenceFrame(killed);
+
 
 			}
 
 		} else if (Piece.WHITE == playerColor) {
-			pedina = new Soldier(charPiece, boardHW, this);
+
 			if (charPiece.getType() == Piece.CHECKER) {
-				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(7, 1), new FrameInfo(8, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 2-5
-				FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
-						new FrameInfo(5, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 10-17
-				FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
-						new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
-						new FrameInfo(17, 1) };
-				pedina.addKillSequenceFrame(killed);
+				pedina = new Soldier(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new SoldierDraught(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-5
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
-						new FrameInfo(5, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-5
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-						new FrameInfo(4, 1), new FrameInfo(5, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-10
-				FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), };
-				pedina.addKillSequenceFrame(killed);
-
+				pedina = new SoldierKing(charPiece, boardHW, this);
 			}
 
 		}
@@ -936,68 +890,22 @@ public class FXBoard implements GraficBoardInterface {
 
 		if (Piece.BLACK == playerColor) {
 
-			pedina = new Alien(charPiece, boardHW, this);
-			if (charPiece.getType() == Piece.CHECKER) {
-				// MOVE SEQUENCE 0-3
-				FrameInfo[] move = { new FrameInfo(0, 1), new FrameInfo(1, 1), new FrameInfo(2, 1),
-						new FrameInfo(3, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 4-6
-				FrameInfo[] moveeat = { new FrameInfo(4, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
-				pedina.addEatMoveSequenceFrame(moveeat);
-				// KILLED SEQUENCE 7-13
-				FrameInfo[] killed = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
-						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };
 
-				pedina.addKillSequenceFrame(killed);
+			if (charPiece.getType() == Piece.CHECKER) {
+				pedina = new Alien(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
 				pedina = new AlienDraught(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-4
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-						new FrameInfo(4, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-12
-				FrameInfo[] killed = { new FrameInfo(0, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1) };
-				pedina.addKillSequenceFrame(killed);
 
 			}
 
 		} else if (Piece.WHITE == playerColor) {
-			pedina = new MoonSoldier(charPiece, boardHW, this);
+
 			if (charPiece.getType() == Piece.CHECKER) {
-				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 2-5
-				FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 10-17
-				FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
-						new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
-						new FrameInfo(17, 1) };
-				pedina.addKillSequenceFrame(killed);
+				pedina = new MoonSoldier(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new MoonSoldierDraught(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-5
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
-						new FrameInfo(5, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-5
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-						new FrameInfo(4, 1), new FrameInfo(5, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-10
-				FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), };
-				pedina.addKillSequenceFrame(killed);
+				pedina = new MoonSoldierKing(charPiece, boardHW, this);
 
 			}
 
@@ -1018,6 +926,7 @@ public class FXBoard implements GraficBoardInterface {
 		return pedina;
 
 	}
+
 	public SpritePiece buildPedinaLevel2(int playerColor, Piece charPiece) throws Exception {
 		if (playerColor != charPiece.getColor())
 			throw new Exception("Disegual color");
@@ -1025,68 +934,23 @@ public class FXBoard implements GraficBoardInterface {
 
 		if (Piece.BLACK == playerColor) {
 
-			pedina = new Alien(charPiece, boardHW, this);
+
 			if (charPiece.getType() == Piece.CHECKER) {
-				// MOVE SEQUENCE 0-3
-				FrameInfo[] move = { new FrameInfo(0, 1), new FrameInfo(1, 1), new FrameInfo(2, 1),
-						new FrameInfo(3, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 4-6
-				FrameInfo[] moveeat = { new FrameInfo(4, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
-				pedina.addEatMoveSequenceFrame(moveeat);
-				// KILLED SEQUENCE 7-13
-				FrameInfo[] killed = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
-						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };
-
-				pedina.addKillSequenceFrame(killed);
-
+				pedina = new Alien(charPiece, boardHW, this);
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
 				pedina = new AlienDraught(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-4
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-						new FrameInfo(4, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-12
-				FrameInfo[] killed = { new FrameInfo(0, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1) };
-				pedina.addKillSequenceFrame(killed);
+
 
 			}
 
 		} else if (Piece.WHITE == playerColor) {
 			pedina = new Helmet(charPiece, boardHW, this);
 			if (charPiece.getType() == Piece.CHECKER) {
-				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 2-5
-				FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 10-17
-				FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
-						new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
-						new FrameInfo(17, 1) };
-				pedina.addKillSequenceFrame(killed);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new SoldierDraught(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-5
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
-						new FrameInfo(5, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-5
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-						new FrameInfo(4, 1), new FrameInfo(5, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-10
-				FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), };
-				pedina.addKillSequenceFrame(killed);
+				pedina = new SoldierKing(charPiece, boardHW, this);
+
+
 
 			}
 
@@ -1107,6 +971,7 @@ public class FXBoard implements GraficBoardInterface {
 		return pedina;
 
 	}
+
 	public SpritePiece buildPedinaLevelPolice(int playerColor, Piece charPiece) throws Exception {
 		if (playerColor != charPiece.getColor())
 			throw new Exception("Disegual color");
@@ -1114,35 +979,13 @@ public class FXBoard implements GraficBoardInterface {
 
 		if (Piece.BLACK == playerColor) {
 
-			pedina = new Alien(charPiece, boardHW, this);
-			if (charPiece.getType() == Piece.CHECKER) {
-				// MOVE SEQUENCE 0-3
-				FrameInfo[] move = { new FrameInfo(0, 1), new FrameInfo(1, 1), new FrameInfo(2, 1),
-						new FrameInfo(3, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 4-6
-				FrameInfo[] moveeat = { new FrameInfo(4, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
-				pedina.addEatMoveSequenceFrame(moveeat);
-				// KILLED SEQUENCE 7-13
-				FrameInfo[] killed = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
-						new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };
 
-				pedina.addKillSequenceFrame(killed);
+			if (charPiece.getType() == Piece.CHECKER) {
+				pedina = new Alien(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
 				pedina = new AlienDraught(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-4
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-						new FrameInfo(4, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-12
-				FrameInfo[] killed = { new FrameInfo(0, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1) };
-				pedina.addKillSequenceFrame(killed);
+
 
 			}
 
@@ -1150,32 +993,11 @@ public class FXBoard implements GraficBoardInterface {
 			pedina = new Police(charPiece, boardHW, this);
 			if (charPiece.getType() == Piece.CHECKER) {
 				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(6, 8), new FrameInfo(7, 8), new FrameInfo(8, 8) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 2-5
-				FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 10-17
-				FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
-						new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
-						new FrameInfo(17, 1) };
-				pedina.addKillSequenceFrame(killed);
+
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new PoliceDraught(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-5
-				FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
-						new FrameInfo(5, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-5
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-						new FrameInfo(4, 1), new FrameInfo(5, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-10
-				FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), };
-				pedina.addKillSequenceFrame(killed);
+				pedina = new PoliceKing(charPiece, boardHW, this);
+
 
 			}
 
@@ -1196,6 +1018,7 @@ public class FXBoard implements GraficBoardInterface {
 		return pedina;
 
 	}
+
 	public SpritePiece buildPedinaLevelSky(int playerColor, Piece charPiece) throws Exception {
 		if (playerColor != charPiece.getColor())
 			throw new Exception("Disegual color");
@@ -1203,69 +1026,24 @@ public class FXBoard implements GraficBoardInterface {
 
 		if (Piece.BLACK == playerColor) {
 
-			pedina = new SkyAlien(charPiece, boardHW, this);
-			if (charPiece.getType() == Piece.CHECKER) {
-				// MOVE SEQUENCE 0-3
-				FrameInfo[] move = { new FrameInfo(2, 2), new FrameInfo(3, 2), new FrameInfo(4, 2) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 4-6
-				FrameInfo[] moveeat = { new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(7, 1),
-						new FrameInfo(8, 1) };
-				pedina.addEatMoveSequenceFrame(moveeat);
-				// KILLED SEQUENCE 7-13
-				FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
-						new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
-						new FrameInfo(17, 1) };
 
-				pedina.addKillSequenceFrame(killed);
+			if (charPiece.getType() == Piece.CHECKER) {
+
+				pedina = new SkyAlien(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new SkyAlien(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-4
-				FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(4, 1), new FrameInfo(1, 1),
-						new FrameInfo(4, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-12
-				FrameInfo[] killed = { new FrameInfo(0, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1) };
-				pedina.addKillSequenceFrame(killed);
+				pedina = new SkyAlienDraugth(charPiece, boardHW, this);
 
 			}
 
 		} else if (Piece.WHITE == playerColor) {
 			pedina = new SkySoldier(charPiece, boardHW, this);
 			if (charPiece.getType() == Piece.CHECKER) {
-				// MOVE SEQUENCE 1-3
-				FrameInfo[] move = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 2-5
-				FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 10-17
-				FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
-						new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
-						new FrameInfo(17, 1) };
-				pedina.addKillSequenceFrame(killed);
+
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new SkySoldierDraught(charPiece, boardHW, this);
-				pedina = pedina.crownedSound();
-				// MOVE SEQUENCE 1-5
-				FrameInfo[] move = { new FrameInfo(3, 1), new FrameInfo(4, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
-						new FrameInfo(3, 1) };
-				pedina.addMoveSequenceFrame(move);
-				// MOVE EAT SEQUENCE 1-5
-				FrameInfo[] moveat = { new FrameInfo(3, 1), new FrameInfo(4, 1), new FrameInfo(3, 1),
-						new FrameInfo(4, 1), new FrameInfo(5, 1) };
-				pedina.addEatMoveSequenceFrame(moveat);
-				// KILLED SEQUENCE 7-10
-				FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
-						new FrameInfo(9, 1), new FrameInfo(10, 1),new FrameInfo(10, 1) };
-				pedina.addKillSequenceFrame(killed);
+				pedina = new SkySoldierKing(charPiece, boardHW, this);
+
 
 			}
 
