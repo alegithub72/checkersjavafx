@@ -37,9 +37,9 @@ import sa.fx.draugths.board.event.EventPointUpdate;
 import sa.fx.draugths.board.event.EventSelectionPlayerHandler;
 import sa.fx.draugths.pieces.*;
 import sa.fx.draugths.pieces.aliens.Alien;
-import sa.fx.draugths.pieces.aliens.AlienDraught;
+import sa.fx.draugths.pieces.aliens.AlienKing;
 import sa.fx.draugths.pieces.aliens.SkyAlien;
-import sa.fx.draugths.pieces.aliens.SkyAlienDraugth;
+import sa.fx.draugths.pieces.aliens.SkyAlienKing;
 import sa.fx.draugths.pieces.efa.*;
 import sa.fx.draugths.players.FXAIPlayer1;
 import sa.fx.draugths.players.FXPMousePlayer;
@@ -851,7 +851,7 @@ public class FXBoard implements GraficBoardInterface {
 				pedina = new Alien(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new AlienDraught(charPiece, boardHW, this);
+				pedina = new AlienKing(charPiece, boardHW, this);
 
 
 			}
@@ -895,7 +895,7 @@ public class FXBoard implements GraficBoardInterface {
 				pedina = new Alien(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new AlienDraught(charPiece, boardHW, this);
+				pedina = new AlienKing(charPiece, boardHW, this);
 
 			}
 
@@ -938,7 +938,7 @@ public class FXBoard implements GraficBoardInterface {
 			if (charPiece.getType() == Piece.CHECKER) {
 				pedina = new Alien(charPiece, boardHW, this);
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new AlienDraught(charPiece, boardHW, this);
+				pedina = new AlienKing(charPiece, boardHW, this);
 
 
 			}
@@ -984,7 +984,7 @@ public class FXBoard implements GraficBoardInterface {
 				pedina = new Alien(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new AlienDraught(charPiece, boardHW, this);
+				pedina = new AlienKing(charPiece, boardHW, this);
 
 
 			}
@@ -1032,7 +1032,7 @@ public class FXBoard implements GraficBoardInterface {
 				pedina = new SkyAlien(charPiece, boardHW, this);
 
 			} else if (charPiece.getType() == Piece.DRAUGTH) {
-				pedina = new SkyAlienDraugth(charPiece, boardHW, this);
+				pedina = new SkyAlienKing(charPiece, boardHW, this);
 
 			}
 

@@ -30,17 +30,17 @@ import sa.gameboard.core.Piece;
 /**
  * @author Alessio Sardaro
  */
-public class AlienDraught extends SpritePiece {
+public class AlienKing extends SpritePiece {
 
 
     protected static  String PIECE_IMAGE = "alien_checker_dama.png";
 
 
-    public AlienDraught(Piece piece, BoardHW boardHW, FXBoard board) {
+    public AlienKing(Piece piece, BoardHW boardHW, FXBoard board) {
         super(PIECE_IMAGE,"Alien", boardHW, piece,  board);
 
     }
-    public AlienDraught(String pieceImage, String moonSoldierDraught, Piece piece, BoardHW boardHW, FXBoard board) {
+    public AlienKing(String pieceImage, String moonSoldierDraught, Piece piece, BoardHW boardHW, FXBoard board) {
         super(pieceImage,moonSoldierDraught,boardHW,piece,board);
     }
     public void builAnimKing() {

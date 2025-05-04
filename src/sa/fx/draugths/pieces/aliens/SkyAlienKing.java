@@ -7,7 +7,6 @@ package sa.fx.draugths.pieces.aliens;
 
 import javafx.animation.ParallelTransition;
 import sa.boardgame.core.moves.Move;
-import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.FrameSequence;
@@ -20,13 +19,13 @@ import sa.gameboard.core.Piece;
 /**
  * @author Alessio Sardaro
  */
-public class SkyAlienDraugth extends AlienDraught {
+public class SkyAlienKing extends AlienKing {
 
 
     protected static  String PIECE_IMAGE = "alien_checker_dama_fly.png";
 
 
-    public SkyAlienDraugth(Piece piece, BoardHW boardHW, FXBoard board) {
+    public SkyAlienKing(Piece piece, BoardHW boardHW, FXBoard board) {
         super(PIECE_IMAGE,"SkyAlienKing",piece,   boardHW, board);
 
 
