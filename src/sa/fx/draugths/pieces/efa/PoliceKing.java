@@ -24,6 +24,7 @@ import sa.fx.draugths.animation.*;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SequenceSoundEffect;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
@@ -54,15 +55,15 @@ public class PoliceKing extends SpritePiece {
         // MOVE SEQUENCE 1-5
         FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
                 new FrameInfo(5, 1) };
-        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.ELICOPTER))});
         // MOVE EAT SEQUENCE 1-5
         FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
                 new FrameInfo(4, 1), new FrameInfo(5, 1) };
-        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat)});
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.ELICOPTER))});
         // KILLED SEQUENCE 7-10
         FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
                 new FrameInfo(9, 1), new FrameInfo(10, 1), };
-        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed,new SequenceSoundEffect(SequenceSoundEffect.ADD,SoundEffect.BITE))});
 
     }
 
@@ -70,7 +71,7 @@ public class PoliceKing extends SpritePiece {
     public synchronized void buildKilledSequence(Move m) {
         pltransition = new ParallelTransition(this);
         SimpleFrameAnimation transition = null;
-                transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 40, SoundEffect.BITE);
+                transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 40);
                 transition.setDuration(Duration.seconds(0.5));
 
 
@@ -98,7 +99,7 @@ public class PoliceKing extends SpritePiece {
     public void buildMoveSequence(boolean ciclyc) {
 
 
-        SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundEffect.ELICOPTER);
+        SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20);
         transition.setDuration(pltransition.getTotalDuration());
         pltransition.getChildren().add(transition);
 
@@ -111,7 +112,7 @@ public class PoliceKing extends SpritePiece {
         SimpleFrameAnimation transition = null;
 
 
-        transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, ciclyc, 20, SoundEffect.ELICOPTER);
+        transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, ciclyc, 20);
         transition.setDuration(pltransition.getTotalDuration());
 
         pltransition.getChildren().add(transition);
@@ -329,8 +330,8 @@ public class PoliceKing extends SpritePiece {
         FrameInfo misileFreame[]= new FrameInfo[]{new FrameInfo(0, 1),
                 new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
                 new FrameInfo(4, 1), new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(5, 1), new FrameInfo(6, 1), new FrameInfo(7, 1)};
-        ShotCollisionFrameAnimation missileAnim = new ShotCollisionFrameAnimation(new FrameSequence[]{new FrameSequence(misileFreame)}
-                , m, this, extraSprite[0], true, 100, SoundEffect.MISSILE);
+        ShotCollisionFrameAnimation missileAnim = new ShotCollisionFrameAnimation(new FrameSequence[]{new FrameSequence(misileFreame,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.MISSILE))}
+                , m, this, extraSprite[0], true, 100);
         missileAnim.setDuration(ptMissile.getTotalDuration());
 
         ptMissile.getChildren().add(missileAnim);

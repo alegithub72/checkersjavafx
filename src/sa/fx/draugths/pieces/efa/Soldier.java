@@ -26,6 +26,7 @@ import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SequenceSoundEffect;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
@@ -52,16 +53,16 @@ public class Soldier extends SpritePiece {
 
     public  void buildSoldierFrames() {
         FrameInfo[] move = { new FrameInfo(7, 1), new FrameInfo(8, 1) };
-        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move, new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.JUNGLE))});
         // MOVE EAT SEQUENCE 2-5
         FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
                 new FrameInfo(5, 1) };
-        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat)});
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.FIRE))});
         // KILLED SEQUENCE 10-17
         FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
                 new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
                 new FrameInfo(17, 1) };
-        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed,new SequenceSoundEffect(SequenceSoundEffect.ADD,SoundEffect.BITE))});
     }
 
 
@@ -75,7 +76,7 @@ public class Soldier extends SpritePiece {
         SimpleFrameAnimation transition = null;
 
 
-        transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.BITE);
+        transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 25);
         transition.setDuration(Duration.seconds(0.5));
 
         SpritePiece eated = this;
@@ -99,17 +100,10 @@ public class Soldier extends SpritePiece {
     }
 
     public void buildMoveSequence(boolean ciclyc) {
-
-        if (!draugthTransform) {
-            SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 100, SoundEffect.JUNGLE);
-            transition.setDuration(pltransition.getTotalDuration());
-            pltransition.getChildren().add(transition);
-        } else {
-            SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundEffect.ELICOPTER);
+            SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 100);
             transition.setDuration(pltransition.getTotalDuration());
             pltransition.getChildren().add(transition);
 
-        }
 
     }
 
@@ -117,17 +111,11 @@ public class Soldier extends SpritePiece {
     public void buildMoveEatSequence(Move m, boolean ciclyc) {
 
         SimpleFrameAnimation transition = null;
-        if (!draugthTransform) {
 
-            transition = new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 20, SoundEffect.FIRE);
+
+            transition = new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 20);
             transition.setDuration(pltransition.getTotalDuration());
 
-
-        } else {
-
-            transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, ciclyc, 20, SoundEffect.ELICOPTER);
-            transition.setDuration(pltransition.getTotalDuration());
-        }
         pltransition.getChildren().add(transition);
 
     }

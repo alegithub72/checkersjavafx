@@ -100,8 +100,8 @@
                     <mainClass>${main.class}</mainClass>
                     <options>
                         <option>-Dcheckers.debug=${checkersjavafx.debug}</option>
-                        <option>-Dcheckers.level=1</option>
-                        <option>-Dcheckers.loadScenario=true</option>
+                        <option>-Dcheckers.level=2</option>
+                        <option>-Dcheckers.loadScenario=false</option>
                         <option>-Dcheckers.tracepath=false</option>
                         <option>-Dcheckers.fileScenario=boardDamaTest.txt</option>
                         <option>-Dcheckers.fileScenario1=boardEndLevel.txt</option>

@@ -24,6 +24,7 @@ import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SequenceSoundEffect;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
@@ -49,16 +50,16 @@ public class Alien extends SpritePiece {
         // MOVE SEQUENCE 0-3
         FrameInfo[] move = { new FrameInfo(0, 1), new FrameInfo(1, 1), new FrameInfo(2, 1),
                 new FrameInfo(3, 1) };
-        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.CLOPETE))});
         // MOVE EAT SEQUENCE 4-6
         FrameInfo[] moveeat = { new FrameInfo(4, 1), new FrameInfo(5, 1), new FrameInfo(6, 1) };
 
-        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveeat)});
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveeat,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.CLOPETE_DOUBLE))});
         // KILLED SEQUENCE 7-13
         FrameInfo[] killed = { new FrameInfo(7, 1), new FrameInfo(8, 1), new FrameInfo(9, 1),
                 new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1), new FrameInfo(13, 1) };
 
-        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed,new SequenceSoundEffect(SequenceSoundEffect.ADD,SoundEffect.EXPLOSION))});
     }
 
 
@@ -70,13 +71,13 @@ public class Alien extends SpritePiece {
     @Override
     public void buildKilledSequence(Move m) {
         pltransition = new ParallelTransition(this);
-        buildDefaultKillAnimation(killSequenceFrame, m, false, 25, SoundEffect.EXPLOSION);
+        buildDefaultKillAnimation(killSequenceFrame, m, false, 25);
 
     }
 
     public void buildMoveSequence(boolean ciclyc) {
         SimpleFrameAnimation transition = null;
-        transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 50, SoundEffect.CLOPETE);
+        transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 50);
         pltransition.getChildren().add(transition);
         transition.setDuration(pltransition.getTotalDuration());
 
@@ -87,7 +88,7 @@ public class Alien extends SpritePiece {
     public void buildMoveEatSequence(Move m, boolean ciclyc) {
         //SpritePiece eated=getFxBoard().getSpritePiece(m.getEat().getI(), m.getEat().getJ(),m.getEat().getColor(), false);
         SimpleFrameAnimation transition = null;
-            transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 50, SoundEffect.CLOPETE_DOUBLE);
+            transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 50);
             transition.setDuration(pltransition.getTotalDuration());
             pltransition.getChildren().add(transition);
 

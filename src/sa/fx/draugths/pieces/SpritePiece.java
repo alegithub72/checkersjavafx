@@ -60,7 +60,7 @@ public abstract class SpritePiece extends Sprite {
     }
     protected abstract void init();
 
-    protected void buildDefaultKillAnimation(FrameSequence[] seq, Move m, boolean ciclyc, long interval, SoundEffect sound) {
+    protected void buildDefaultKillAnimation(FrameSequence[] seq, Move m, boolean ciclyc, long interval) {
 
 //        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(FRAME_DURATION), event -> {
 //            currentFrame = (currentFrame + 1) % TOTAL_FRAMES;
@@ -70,7 +70,7 @@ public abstract class SpritePiece extends Sprite {
 //        timeline.play();
 
 
-        SimpleFrameAnimation transition=  new SimpleFrameAnimation(seq, this,m,  ciclyc, interval, sound);
+        SimpleFrameAnimation transition=  new SimpleFrameAnimation(seq, this,m,  ciclyc, interval);
     	transition.setDuration(Duration.seconds(0.5));
     	pltransition.getChildren().add(transition );
     	SpritePiece eated=this;

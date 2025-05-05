@@ -12,6 +12,7 @@ import sa.fx.draugths.animation.FrameSequence;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SequenceSoundEffect;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
@@ -37,15 +38,15 @@ public class MoonSoldierKing extends SoldierKing {
         // MOVE SEQUENCE 1-5
         FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
                 new FrameInfo(5, 1) };
-        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.JET))});
         // MOVE EAT SEQUENCE 1-5
         FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
                 new FrameInfo(4, 1), new FrameInfo(5, 1) };
-        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat)});
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.JET))});
         // KILLED SEQUENCE 7-10
         FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
                 new FrameInfo(9, 1), new FrameInfo(10, 1), };
-        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed,new SequenceSoundEffect(SequenceSoundEffect.ADD,SoundEffect.BITE))});
 
     }
 
@@ -60,7 +61,7 @@ public class MoonSoldierKing extends SoldierKing {
         SimpleFrameAnimation transition = null;
 
 
-        transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, ciclyc, 20, SoundEffect.JET);
+        transition = new SimpleFrameAnimation(eatMoveSequenceFrame, this, ciclyc, 20);
         transition.setDuration(pltransition.getTotalDuration());
 
         pltransition.getChildren().add(transition);
@@ -71,7 +72,7 @@ public class MoonSoldierKing extends SoldierKing {
     public void buildMoveSequence(boolean ciclyc) {
 
 
-        SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20, SoundEffect.JET);
+        SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 20);
         transition.setDuration(pltransition.getTotalDuration());
         pltransition.getChildren().add(transition);
 

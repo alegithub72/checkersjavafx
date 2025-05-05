@@ -12,7 +12,7 @@ import javafx.util.Duration;
 import sa.boardgame.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
-import sa.fx.draugths.utility.SoundEffect;
+import sa.fx.draugths.utility.SequenceSoundEffect;
 
 /**
  *
@@ -20,8 +20,6 @@ import sa.fx.draugths.utility.SoundEffect;
  */
 public class SimpleFrameAnimation extends Transition {
 	FrameInfo[] frames;
-
-	SoundEffect sound;
 	FrameSequence[] seq;
 	Sprite sprite;
 	Move move;
@@ -33,30 +31,27 @@ public class SimpleFrameAnimation extends Transition {
 
 	boolean ciclyc;
 	long before;
-	boolean startMusic = true;
 
-	public SimpleFrameAnimation(FrameSequence[] seq, Sprite sprite, Move move, boolean cyclic, long interval,
-			SoundEffect sound) {
+
+	public SimpleFrameAnimation(FrameSequence[] seq, Sprite sprite, Move move, boolean cyclic, long interval) {
 		this.frames = seq[0].getSeqList();
 		seqNUmber=0;
 		this.seq=seq;
 		this.sprite = sprite;
 		this.move = move;
-		this.sound = sound;
-		BCDraugthsApp.log.info("sound:"+sound.getFile());
 		this.ciclyc = cyclic;
 		before = System.currentTimeMillis();
 		this.interval = interval;
 		addEndHandler();
 	}
 
-	public SimpleFrameAnimation(FrameSequence[] seq, Sprite sprite, boolean cyclic, long interval, SoundEffect sound) {
+	public SimpleFrameAnimation(FrameSequence[] seq, Sprite sprite, boolean cyclic, long interval) {
 		this.frames = seq[0].getSeqList();
 		this.seq=seq;
 		seqNUmber=0;
 		this.sprite = sprite;
 		this.move = null;
-		this.sound = sound;
+
 
 		this.ciclyc = cyclic;
 		before = System.currentTimeMillis();
@@ -79,17 +74,15 @@ public class SimpleFrameAnimation extends Transition {
 		this.sprite = sprite;
 	}
 
-	void playEffect() {
+	void playEffect(SequenceSoundEffect s) {
 
-		if (startMusic) {
-			if (sound.isLoop()	
+		if (!s.isPlaying()) {
+			if (s.getType()>=SequenceSoundEffect.CYCLCIC
 					) {
 
-				FXBoard.SoundSystem.playSoundLoop(sound);
-			}
-
-			FXBoard.SoundSystem.playSound(sound, 1);
-			startMusic = false;
+				FXBoard.SoundSystem.playSoundLoop(s.getEffect());
+			}else FXBoard.SoundSystem.playSound(s.getEffect(), 1);
+			s.setPlaying(true);
 		}
 
 	}
@@ -102,7 +95,7 @@ public class SimpleFrameAnimation extends Transition {
 	protected void framing(double frac) {
 		long intervalTemp = System.currentTimeMillis() - before;
 
-		playEffect();
+		playEffect(seq[seqNUmber].getEffect());
 		if (intervalTemp > this.interval) {
 			sprite.setViewOrder(0);
 			before = System.currentTimeMillis();
@@ -122,6 +115,9 @@ public class SimpleFrameAnimation extends Transition {
 
 			}
 			if(((seq.length-1)>seqNUmber) &&  seq[seqNUmber].getSeqDuration()>(this.interval*i)){
+				if(seq[seqNUmber].getEffect().getType()<=SequenceSoundEffect.CYCLCIC){
+					FXBoard.SoundSystem.stopSound(seq[seqNUmber].getSoundEffect());
+				}
 				seqNUmber++;
 				frames=seq[seqNUmber].getSeqList();
 				i=0;
@@ -133,12 +129,15 @@ public class SimpleFrameAnimation extends Transition {
 	}
 
 	private void addEndHandler() {
+		FrameSequence[] local=this.seq;
 		this.setOnFinished(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-
-				FXBoard.SoundSystem.stopSound(sound);
+				for (int j = 0; j < local.length; j++) {
+					FXBoard.SoundSystem.stopSound(local[j].getSoundEffect());
+					local[j].setPlaying(false);
+				}
 				event.consume();
 
 			}

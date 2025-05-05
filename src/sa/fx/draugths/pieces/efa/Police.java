@@ -15,6 +15,7 @@ import sa.fx.draugths.animation.ShotDistanceFrameAnimation;
 import sa.fx.draugths.animation.SimpleFrameAnimation;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.BoardHW;
+import sa.fx.draugths.utility.SequenceSoundEffect;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
@@ -42,22 +43,22 @@ public class Police extends Soldier {
 
     public  void buildPoliceFrames() {
         FrameInfo[] move = { new FrameInfo(6, 8), new FrameInfo(7, 8), new FrameInfo(8, 8) };
-        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move)});
+        addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.POLICE_JUMP))});
         // MOVE EAT SEQUENCE 2-5
         FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1) };
-        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat)});
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.FIRE))});
         // KILLED SEQUENCE 10-17
         FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
                 new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
                 new FrameInfo(17, 1) };
-        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed)});
+        addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed,new SequenceSoundEffect(SequenceSoundEffect.ADD,SoundEffect.BITE))});
     }
 
 
     @Override
     public void buildMoveSequence(boolean ciclyc) {
 
-        SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70, SoundEffect.POLICE_JUMP);
+        SimpleFrameAnimation transition = new SimpleFrameAnimation(moveSequenceFrame, this, ciclyc, 70);
         transition.setDuration(pltransition.getTotalDuration());
         pltransition.getChildren().add(transition);
 
@@ -67,7 +68,7 @@ public class Police extends Soldier {
     public void buildMoveEatSequence(Move m, boolean ciclyc) {
 
         SimpleFrameAnimation transition = null;
-        transition = new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 20, SoundEffect.FIRE);
+        transition = new ShotDistanceFrameAnimation(eatMoveSequenceFrame, this, m, ciclyc, 20);
         transition.setDuration(pltransition.getTotalDuration());
 
         pltransition.getChildren().add(transition);

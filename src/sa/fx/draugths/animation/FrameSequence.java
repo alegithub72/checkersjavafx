@@ -1,15 +1,33 @@
 package sa.fx.draugths.animation;
 
-import java.util.List;
+import sa.fx.draugths.utility.SequenceSoundEffect;
+import sa.fx.draugths.utility.SoundEffect;
 
 public class FrameSequence {
 
     private FrameInfo[] seqList;
     private long seqDuration;
+    private SequenceSoundEffect effect;
 
-    public FrameSequence(FrameInfo[] seqList) {
+
+    public FrameSequence(FrameInfo[] seqList,SequenceSoundEffect effect) {
         this.seqList = seqList;
+        this.effect=effect;
         seqDuration=1500;
+    }
+
+    public SequenceSoundEffect getEffect() {
+        return effect;
+    }
+
+    public SoundEffect getSoundEffect() {
+        return effect.getEffect();
+    }
+    public int getSoundTypeEffect(){
+        return effect.getType();
+    }
+    public void setEffect(SequenceSoundEffect effect) {
+        this.effect = effect;
     }
 
     public FrameInfo[] getSeqList() {
@@ -26,5 +44,13 @@ public class FrameSequence {
 
     public void setSeqDuration(long seqDuration) {
         this.seqDuration = seqDuration;
+    }
+
+    public boolean isPlaying() {
+        return effect.isPlaying();
+    }
+
+    public void setPlaying(boolean soundEffectStarted) {
+        this.effect.setPlaying(soundEffectStarted);
     }
 }

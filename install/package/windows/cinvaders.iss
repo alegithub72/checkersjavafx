@@ -3,7 +3,7 @@
 [Setup]
 AppId={{sa.fx.draugths}}
 AppName=cinvaders
-AppVersion=4.2
+AppVersion=4.3.0
 AppVerName=cinvaders
 AppPublisher=sagame
 AppComments=Checkers Invaders
@@ -23,8 +23,8 @@ DefaultGroupName=sagame
 ;Optional License
 ;LicenseFile=LICENSE
 ;(Windows 2000/XP/Server 2003 are no longer supported.)
-MinVersion=6.0
-OutputBaseFilename=cinvaders-setup-x64bit-4.2
+MinVersion=6.1
+OutputBaseFilename=cinvaders-setup-x64bit-4.3.0
 DiskSpanning=no
 SlicesPerDisk=1
 DiskSliceSize=24000000
@@ -38,7 +38,7 @@ UninstallDisplayName=cinvaders
 WizardImageStretch=Yes
 WizardSmallImageFile=cinvaders-setup-icon.bmp
 WizardStyle=modern
-;WizardImageFile=startScreen3.bmp
+WizardImageFile=startScreen3.bmp
 ArchitecturesInstallIn64BitMode=x64
 
 

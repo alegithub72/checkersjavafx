@@ -55,7 +55,7 @@ public class SoundPlay implements SoundInterface {
 			@Override
 			public void run() {
 				AudioClip audioClip=getSoundHashMap(effect);
-				audioClip.stop(); 
+				//audioClip.stop();
 				audioClip.setCycleCount(AudioClip.INDEFINITE);
 		        audioClip.play(); 
 		        sounds.put(effect.getFile(), audioClip);
@@ -72,7 +72,8 @@ public class SoundPlay implements SoundInterface {
 			@Override
 			public void run() {
 				AudioClip audioClip=getSoundHashMap(effect);
-		        audioClip.stop(); 
+
+				audioClip.stop();
 				
 			}
 		});
