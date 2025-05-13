@@ -1,7 +1,7 @@
 package sa.fx.draugths.utility;
 
 public enum SoundEffect {
-
+    MACHINE_GUN("machinegun.wav", true),
     FIRE("fire5.wav", true),
     SPEEDY_BITE("speedy_bite.wav", true),
     BITE("Dogbite.wav", false),

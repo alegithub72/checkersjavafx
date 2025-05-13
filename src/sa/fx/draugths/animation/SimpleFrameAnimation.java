@@ -26,7 +26,7 @@ public class SimpleFrameAnimation extends Transition {
 	int seqNUmber;
 	int i;
 	int frameCount = 0;
-
+	int seqCounter=0;
 	long interval = 0;
 
 	boolean ciclyc;
@@ -100,10 +100,10 @@ public class SimpleFrameAnimation extends Transition {
 			sprite.setViewOrder(0);
 			before = System.currentTimeMillis();
 			sprite.setFrame(frames[i].getFrameNumber());
-
+			seqCounter++;
 			sprite.toFront();
 			frameCount++;
-			BCDraugthsApp.log.info("sprite:" + sprite + ",frames:" + frames[i] + " interval:" + intervalTemp);
+			BCDraugthsApp.log.info("sprite:" + sprite.getName() +" , sequence:"+seqNUmber+ ",frames:" + frames[i].getFrameNumber() + " interval:" + intervalTemp+" seqCounter:"+seqCounter);
 			if (frameCount >= frames[i].getDuration()) {
 				i++;
 				frameCount = 0;
@@ -114,7 +114,8 @@ public class SimpleFrameAnimation extends Transition {
 					i = frames.length - 1;
 
 			}
-			if(((seq.length-1)>seqNUmber) &&  seq[seqNUmber].getSeqDuration()>(this.interval*i)){
+			if(((seq.length-1)>seqNUmber) && (this.interval*seqCounter) >seq[seqNUmber].getSeqDuration()){
+				BCDraugthsApp.log.info("duration:"+seq[seqNUmber].getSeqDuration()+">interval*seqCounter="+interval*seqCounter);
 				if(seq[seqNUmber].getEffect().getType()<=SequenceSoundEffect.CYCLCIC){
 					FXBoard.SoundSystem.stopSound(seq[seqNUmber].getSoundEffect());
 				}
@@ -122,6 +123,7 @@ public class SimpleFrameAnimation extends Transition {
 				frames=seq[seqNUmber].getSeqList();
 				i=0;
 				frameCount = 0;
+				seqCounter=0;
 			}
 
 		}

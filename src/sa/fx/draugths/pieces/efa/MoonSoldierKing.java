@@ -36,11 +36,11 @@ public class MoonSoldierKing extends SoldierKing {
 
         crownedSound();
         // MOVE SEQUENCE 1-5
-        FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
+        FrameInfo[] move = {  new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
                 new FrameInfo(5, 1) };
         addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.JET))});
         // MOVE EAT SEQUENCE 1-5
-        FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
+        FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1),
                 new FrameInfo(4, 1), new FrameInfo(5, 1) };
         addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.JET))});
         // KILLED SEQUENCE 7-10

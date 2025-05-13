@@ -45,7 +45,7 @@ public class SkySoldier extends Soldier {
         FrameInfo[] move = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1) };
         addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.JETPACK))});
         // MOVE EAT SEQUENCE 2-5
-        FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 1) };
+        FrameInfo[] moveat = { new FrameInfo(2, 1), new FrameInfo(3, 4),new FrameInfo(4, 1) };
         addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat,new SequenceSoundEffect(SequenceSoundEffect.ADD,SoundEffect.LASER))});
 
     }

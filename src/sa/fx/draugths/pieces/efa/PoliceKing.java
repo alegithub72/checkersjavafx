@@ -53,13 +53,13 @@ public class PoliceKing extends SpritePiece {
     public  void buildPoliceKingFrames() {
         crownedSound();
         // MOVE SEQUENCE 1-5
-        FrameInfo[] move = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1), new FrameInfo(4, 1),
-                new FrameInfo(5, 1) };
+        FrameInfo[] move = {  new FrameInfo(2, 1), new FrameInfo(3, 1) };
         addMoveSequenceFrame(new FrameSequence[]{new FrameSequence(move,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.ELICOPTER))});
         // MOVE EAT SEQUENCE 1-5
-        FrameInfo[] moveat = { new FrameInfo(1, 1), new FrameInfo(2, 1), new FrameInfo(3, 1),
-                new FrameInfo(4, 1), new FrameInfo(5, 1) };
-        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.ELICOPTER))});
+        FrameInfo[] moveat = {  new FrameInfo(2, 1), new FrameInfo(3, 1)};
+        FrameInfo[] moveatII = {  new FrameInfo(4, 1), new FrameInfo(5, 1)};
+        addEatMoveSequenceFrame(new FrameSequence[]{new FrameSequence(moveat,new SequenceSoundEffect(SequenceSoundEffect.SPREAD,SoundEffect.ELICOPTER),1),
+                new FrameSequence(moveatII,new SequenceSoundEffect(SequenceSoundEffect.CYCLCIC,SoundEffect.MACHINE_GUN),2.5)});
         // KILLED SEQUENCE 7-10
         FrameInfo[] killed = { new FrameInfo(6, 1), new FrameInfo(7, 1), new FrameInfo(8, 1),
                 new FrameInfo(9, 1), new FrameInfo(10, 1), };

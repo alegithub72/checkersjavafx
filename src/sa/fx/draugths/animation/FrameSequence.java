@@ -15,7 +15,11 @@ public class FrameSequence {
         this.effect=effect;
         seqDuration=1500;
     }
-
+    public FrameSequence(FrameInfo[] seqList,SequenceSoundEffect effect,double second) {
+        this.seqList = seqList;
+        this.effect=effect;
+        seqDuration= (long) (second*1000) ;
+    }
     public SequenceSoundEffect getEffect() {
         return effect;
     }

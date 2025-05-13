@@ -63,9 +63,11 @@ public class Sprite extends ImageView {
         for (int i = 0; i < n; i++) {
             frames[i] = new Rectangle2D(i *(double)w, 0, w, h);
         }
-    }    
+    }
 
-
+    public String getName() {
+        return name;
+    }
 
     public int getK() {
         return k;
