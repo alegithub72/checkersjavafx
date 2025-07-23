@@ -37,13 +37,18 @@ public class EventSelectionPlayerHandler implements EventHandler<MouseEvent> {
 					this.fxb.getSelect().setFrame(0);
 
 				}
+                fxb.getMousePlayer().setCp("p"+p.getBoardPieceLink().getI()+p.getBoardPieceLink().getJ());
 				fxb.getMousePlayer().deleteMoveChoose();
 				fxb.setSelect(p);
 				//TODO: fare animazione up pedina!!!
 				p.setFrame(1);
-				fxb.getMousePlayer().choosePiece();
+                try {
+                    fxb.getMousePlayer().choosePiece();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
 
-			}
+            }
 			BCDraugthsApp.log.info("HANDLE  EventSelectionPlayer clicked id=" + p);
 			event.consume();
 		}

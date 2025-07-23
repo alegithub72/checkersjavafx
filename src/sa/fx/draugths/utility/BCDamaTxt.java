@@ -18,8 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sa.boardgame.core.moves.Move;
-import sa.boardgame.core.players.Player;
+
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.players.FXPlayer;
 import sa.fx.draugths.pieces.efa.Soldier;
@@ -27,6 +26,8 @@ import sa.fx.draugths.pieces.SpritePiece;
 import sa.gameboard.core.Checker;
 import sa.gameboard.core.Game;
 import sa.gameboard.core.Piece.Side;
+import sa.gameboard.core.moves.Move;
+import sa.gameboard.core.players.Player;
 
 /**
  *

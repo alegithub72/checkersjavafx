@@ -6,7 +6,7 @@
 package sa.fx.draugths.pieces.aliens;
 
 import javafx.animation.ParallelTransition;
-import sa.boardgame.core.moves.Move;
+import sa.gameboard.core.moves.Move;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.FrameInfo;
 import sa.fx.draugths.animation.FrameSequence;

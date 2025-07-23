@@ -1,11 +1,5 @@
 package sa.fx.draugths;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.logging.Level;
-
 import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.event.EventHandler;
@@ -25,17 +19,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.util.Duration;
-import sa.boardgame.console.imp.AutomaPlayer;
-import sa.boardgame.console.imp.ConsoleRendering;
-import sa.boardgame.core.moves.Move;
-import sa.boardgame.core.players.Player;
+
 import sa.fx.draugths.animation.event.EventDraugthTransform;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.board.event.EventEndTurn;
 import sa.fx.draugths.board.event.EventPointUpdate;
 import sa.fx.draugths.board.event.EventSelectionPlayerHandler;
-import sa.fx.draugths.pieces.*;
+import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.pieces.aliens.Alien;
 import sa.fx.draugths.pieces.aliens.AlienKing;
 import sa.fx.draugths.pieces.aliens.SkyAlien;
@@ -51,13 +42,24 @@ import sa.fx.draugths.utility.SoundInterface;
 import sa.gameboard.core.Board;
 import sa.gameboard.core.Game;
 import sa.gameboard.core.Piece;
-import sa.gameboard.core.interfaces.GraficBoardInterface;
+import sa.gameboard.core.events.TurnEvent;
+import sa.gameboard.core.interfaces.RenderBoardInterface;
+import sa.gameboard.core.interfaces.impl.ConsoleRendering;
+import sa.gameboard.core.moves.Move;
+import sa.gameboard.core.players.AutomaPlayer;
+import sa.gameboard.core.players.Player;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
 
 /**
  *
  * @author Alessio Sardaro
  */
-public class FXBoard implements GraficBoardInterface {
+public class FXBoard implements RenderBoardInterface {
 
 	public static final int MAX_WAVE = 12;
 	public static final int MAX_LEVEL = 9;
@@ -81,7 +83,7 @@ public class FXBoard implements GraficBoardInterface {
 	private FXPMousePlayer mousePlayer;
 	private boolean turn;
 	private StackPane sceneStackPanel;
-
+	private static TurnEvent turnEvent;
 	public FXBoard(int level) {
 		initLevel(level);
 	}
@@ -98,9 +100,9 @@ public class FXBoard implements GraficBoardInterface {
 			this.pedinaList[0] = new LinkedList<>();
 			this.pedinaList[1] = new LinkedList<>();
 
-			String[] part1 = new String[] { "p55", "0", "p35", "0", "p46", "1", "p24", "1", "p44", "1", "p66", "0",
-					"p15", "1", "p26", "0", "p15", "0", "p77", "0", "p33", "1", "p55", "0", "p04", "0", "p22", "0",
-					"p11", "0" };
+			String[][] part1 = new String[][] { {"p55", "0","no"},{ "p35", "0","no"} ,{"p46", "1","no"},{ "p24", "1","no"},{ "p44", "1","no"},{ "p66", "0","no"}
+					,{"p15", "1","no"} ,{"p26", "0", "no"},{"p15", "0","no"} ,{"p77","0" ,"no"}, {"p33","1", "no"},{"p55", "0","no"} ,{"p04", "0","no"},{ "p22", "0","no"}
+					,{"p11", "0","no"} };
 			// String[] part2=new String[]{""};
 			BCDraugthsApp.log.info("Log Level:"+BCDraugthsApp.log.getLevel());
 			BCDraugthsApp.log.log(Level.INFO,"level up level={0},loger name={1}" ,new Object[] {level,BCDraugthsApp.log.getName()});
@@ -110,14 +112,14 @@ public class FXBoard implements GraficBoardInterface {
 			mousePlayer = new FXPMousePlayer(this);
 			AutomaPlayer automa = new AutomaPlayer(mousePlayer.getColor(), "Automa");
 			automa.setCommand(part1);
-
-			game = new Game(automa, computerPlayer, Board.CHECKERS_GAME);
+			TurnEvent turnEvent=new TurnEvent();
+			game = new Game(automa, computerPlayer,turnEvent, Board.CHECKERS_GAME);
 
 			// game.setDamaSystem((DamaInterface) this);
 			
 
 			ConsoleRendering console = new ConsoleRendering();
-			game.addRenderInterface(console);
+			game.getBoard().addRenderInterface(console);
 
 			// game.playGame();
 
@@ -132,8 +134,11 @@ public class FXBoard implements GraficBoardInterface {
 					load(scen);
 			}
 
-			if (game != null)
-				game.addRenderInterface(this);
+			if (game != null){
+
+				game.getBoard().addRenderInterface(this);
+				game.getBoard().addRenderInterface(new ConsoleRendering());
+			}
 			root.addEventHandler(EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
 
 				@Override
@@ -749,12 +754,12 @@ public class FXBoard implements GraficBoardInterface {
 	}
 
 	public void updateInterface(String namePlayer, Move m) {
-		game.updateInterface(namePlayer, m);
+		game.getBoard().updateInterface(namePlayer, m);
 	}
 
 	public void playComputerPlayer() {
 		if (game.getAI().getName().equals("Computer")) {
-			game.makeAITurn();
+			game.getAI().makeTurn();
 		}
 	}
 

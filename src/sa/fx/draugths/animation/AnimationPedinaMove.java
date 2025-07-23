@@ -7,7 +7,7 @@ package sa.fx.draugths.animation;
 
 import javafx.animation.Transition;
 import javafx.util.Duration;
-import sa.boardgame.core.moves.Move;
+import sa.gameboard.core.moves.Move;
 import sa.fx.draugths.pieces.efa.Soldier;
 
 /**

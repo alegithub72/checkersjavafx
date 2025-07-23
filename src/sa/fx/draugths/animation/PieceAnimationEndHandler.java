@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import sa.boardgame.core.moves.Move;
+import sa.gameboard.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.event.EventDraugthTransform;
 import sa.fx.draugths.board.event.EventEndTurn;

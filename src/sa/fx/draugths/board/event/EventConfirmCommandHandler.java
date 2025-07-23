@@ -6,12 +6,14 @@
 package sa.fx.draugths.board.event;
 
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import sa.boardgame.core.moves.Move;
+
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.players.FXPMousePlayer;
+import sa.gameboard.core.moves.Move;
 
 
 /**
@@ -32,12 +34,19 @@ public class EventConfirmCommandHandler implements EventHandler<MouseEvent>{
     }
     @Override
     public void handle(MouseEvent event) {
-    	if(event.getEventType()==MouseEvent.MOUSE_CLICKED && event.getButton()==MouseButton.PRIMARY) {
+        EventType eventHappened=event.getEventType();
+    	if(eventHappened==MouseEvent.MOUSE_CLICKED && event.getButton()==MouseButton.PRIMARY) {
         mousePlayer.setMoveChoose(n);
+        mousePlayer.setCp(""+n);
         BCDraugthsApp.log.info("HANDLE EventConfirmCommand Hai scelto la mossa "+n+"°");
-        Move m=mousePlayer.chooseMove();
+            Move m= null;
+            try {
+                m = mousePlayer.chooseMove();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
-        //BCDraugthsApp.log.info("m="+m+", p.i="+m.getP().getI()+",p.j="+m.getP().getJ());
+            //BCDraugthsApp.log.info("m="+m+", p.i="+m.getP().getI()+",p.j="+m.getP().getJ());
         if(!mousePlayer.makeMove(m)) throw new RuntimeException("Move not executed");
         mousePlayer.setMoveChoose(-1);
         bb.updateInterface(mousePlayer.getName(),m);
@@ -45,6 +54,13 @@ public class EventConfirmCommandHandler implements EventHandler<MouseEvent>{
         //app.makePlayer2Move();
         event.consume();
     	}
+        if (event.getEventType()==MouseEvent.MOUSE_CLICKED && event.getButton()==MouseButton.SECONDARY) {
+            try {
+                mousePlayer.choosePiece();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
     
 }

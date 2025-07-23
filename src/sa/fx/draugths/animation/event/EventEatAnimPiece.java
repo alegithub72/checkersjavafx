@@ -4,7 +4,7 @@ package sa.fx.draugths.animation.event;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.scene.Parent;
-import sa.boardgame.core.moves.Move;
+import sa.gameboard.core.moves.Move;
 import sa.fx.draugths.pieces.SpritePiece;
 
 public class EventEatAnimPiece extends EventAnimPiece{

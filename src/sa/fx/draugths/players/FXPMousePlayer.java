@@ -18,13 +18,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
-import sa.boardgame.core.moves.Move;
-import sa.boardgame.core.players.HumanPlayer;
+
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.board.event.EventConfirmCommandHandler;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.gameboard.core.Piece;
+import sa.gameboard.core.moves.Move;
+import sa.gameboard.core.players.HumanPlayer;
 
 /**
  *
@@ -79,12 +80,12 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     }
 
     @Override
-    public Move chooseMoveList( int n,int n2) {
+    public Move chooseMoveList(int n, int n2) {
         return possibleMove.get(n);
     }
 
 	@Override
-	public String getCommand() {
+	public void getCommand() {
 
 		String r = null;
 		if (moveChoose == -1) {
@@ -92,7 +93,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 		} else {
 			r = "" + moveChoose;
 		}
-		return r;
+
 	}
 
     public boolean makeMove(Move m) {
@@ -104,13 +105,17 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     
     
 	@Override
-	public void handle(MouseEvent event) {
+	public void handle(MouseEvent event)  {
 
 		if (event.getEventType() == MouseEvent.MOUSE_CLICKED && event.isPrimaryButtonDown()) {
 			if (!fxboard.isAnimationOn()) {
 				if (fxboard.getSelect() != null) {
-					choosePiece();
-				}
+                    try {
+                        choosePiece();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
 
 			}
 			event.consume();

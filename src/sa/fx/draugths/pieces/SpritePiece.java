@@ -13,7 +13,7 @@ import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
-import sa.boardgame.core.moves.Move;
+
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.*;
@@ -21,6 +21,7 @@ import sa.fx.draugths.animation.event.EventRemoveEatPiece;
 import sa.fx.draugths.utility.BoardHW;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
+import sa.gameboard.core.moves.Move;
 
 /**
  *

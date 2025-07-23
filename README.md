@@ -4,7 +4,7 @@ The game of checkers made with Java and JavaFX, space invaders style.(still deve
 
 - Install library, in the project folder launch the command:
 ``` 
-mvn install:install-file -Dfile=./lib/checkersengine-3.2.jar -DgroupId=checkersengine -DartifactId=checkersengine -Dversion=3.2 -Dpackaging=jar 
+mvn install:install-file -Dfile=./lib/checkersengine-4.0.jar -DgroupId=checkersengine -DartifactId=checkersengine -Dversion=4.0 -Dpackaging=jar 
 
 ```
 

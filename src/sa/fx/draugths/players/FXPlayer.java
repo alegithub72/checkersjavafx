@@ -11,15 +11,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
-import sa.boardgame.core.players.HumanPlayer;
+
 import sa.fx.draugths.FXBoard;
 import sa.gameboard.core.Piece;
+import sa.gameboard.core.players.HumanPlayer;
 
 /**
  *
  * @author  Alessio Sardaro
  */
-public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent>  {
+public class FXPlayer extends HumanPlayer implements EventHandler<ActionEvent>  {
 
 	FXBoard fxboard;
     Group table;
@@ -31,9 +32,9 @@ public class FXPlayer extends HumanPlayer  implements EventHandler<ActionEvent> 
 
 
 	@Override
-    public String getCommand() {
+    public void getCommand() {
         String r= fxboard.getCommand().getText(); //To change body of generated methods, choose Tools | Templates.
-        return r;
+
     }
 
 
