@@ -15,6 +15,8 @@ import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.players.FXPMousePlayer;
 import sa.gameboard.core.moves.Move;
 
+import java.util.logging.Level;
+
 
 /**
  *
@@ -36,27 +38,31 @@ public class EventConfirmCommandHandler implements EventHandler<MouseEvent>{
     public void handle(MouseEvent event) {
         EventType eventHappened=event.getEventType();
     	if(eventHappened==MouseEvent.MOUSE_CLICKED && event.getButton()==MouseButton.PRIMARY) {
-        mousePlayer.setMoveChoose(n);
-        mousePlayer.setCp(""+n);
+//        mousePlayer.setMoveChoose(n);
+//        mousePlayer.setCp(""+n);
         BCDraugthsApp.log.info("HANDLE EventConfirmCommand Hai scelto la mossa "+n+"°");
-            Move m= null;
+
             try {
-                m = mousePlayer.chooseMove();
+                mousePlayer.setMoveChoose(n);
+                mousePlayer.getCommand();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
             //BCDraugthsApp.log.info("m="+m+", p.i="+m.getP().getI()+",p.j="+m.getP().getJ());
-        if(!mousePlayer.makeMove(m)) throw new RuntimeException("Move not executed");
-        mousePlayer.setMoveChoose(-1);
-        bb.updateInterface(mousePlayer.getName(),m);
-        mousePlayer.deleteMoveChoose();
-        //app.makePlayer2Move();
+//        if(!mousePlayer.makeMove(m)) throw new RuntimeException("Move not executed");
+//        mousePlayer.setMoveChoose(-1);
+//        bb.updateInterface(mousePlayer.getName(),m);
+//        mousePlayer.deleteMoveChoose();
+//        //app.makePlayer2Move();
         event.consume();
     	}
         if (event.getEventType()==MouseEvent.MOUSE_CLICKED && event.getButton()==MouseButton.SECONDARY) {
             try {
-                mousePlayer.choosePiece();
+                BCDraugthsApp.log.info("HANDLE EventConfirmCommand Hai scelto la mossa no");
+
+                BCDraugthsApp.log.log(Level.INFO,"screen x {0}, screen y {1}",new Object[] {event.getSceneX(),event.getSceneY()});
+                mousePlayer.setCp("no");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

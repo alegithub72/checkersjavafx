@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import sa.gameboard.core.moves.Move;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.animation.event.EventDraugthTransform;
-import sa.fx.draugths.board.event.EventEndTurn;
+import sa.fx.draugths.board.event.EventEndTurnFX;
 import sa.fx.draugths.board.event.EventPointUpdate;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.gameboard.core.Piece;
@@ -68,7 +68,7 @@ public class PieceAnimationEndHandler implements EventHandler<ActionEvent> {
 		 
         	
         	BCDraugthsApp.log.info("EventEndTurn.END_TURN..."+p);
-        	parent.fireEvent(new EventEndTurn(p, parent,EventEndTurn.END_TURN));
+        	parent.fireEvent(new EventEndTurnFX(p, parent, EventEndTurnFX.END_TURN));
         	BCDraugthsApp.log.info("----------------END-------------------");
         	event.consume();
     }

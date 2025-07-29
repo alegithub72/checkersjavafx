@@ -5,13 +5,13 @@ import javafx.event.EventTarget;
 import javafx.event.EventType;
 import sa.fx.draugths.pieces.SpritePiece;
 
-public class EventEndTurn extends Event{
+public class EventEndTurnFX extends Event{
 
 
 
 	
 	private static final long serialVersionUID = -2332571104664340411L;
-    public static final EventType<EventEndTurn> END_TURN=new EventType<>(Event.ANY,"END_TURN");
+    public static final EventType<EventEndTurnFX> END_TURN=new EventType<>(Event.ANY,"END_TURN");
 
     SpritePiece spritePiece;
 
@@ -19,7 +19,7 @@ public class EventEndTurn extends Event{
 		return spritePiece;
 	}
 
-	public EventEndTurn(SpritePiece  source, EventTarget target, EventType<EventEndTurn> eventType) {
+	public EventEndTurnFX(SpritePiece  source, EventTarget target, EventType<EventEndTurnFX> eventType) {
         super(source, target, eventType);
         this.spritePiece=source;
 	}

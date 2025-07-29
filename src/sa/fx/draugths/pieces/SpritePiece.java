@@ -10,6 +10,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
@@ -141,30 +142,34 @@ public abstract class SpritePiece extends Sprite {
         return this.nframes;
     }    
     public void play(Move m) {
-   	 	 pltransition=new ParallelTransition();
-         this.setManaged(false);
-   	 	 steps=new HashMap<>();
-         if (m.getType() == Move.MOVE ) {           
-         if( Piece.DRAUGTH==m.getP().getType() ) {
-             buildAnimDamaMove(m);
-             playAnimDamaMove();
-         }else{
-             buildAnimPedinaMove(m);
-             playAnimPedinaMove();
-         }
+        Platform.runLater(()->{
+            pltransition=new ParallelTransition();
+            this.setManaged(false);
+            steps=new HashMap<>();
+            if (m.getType() == Move.MOVE ) {
+                if( Piece.DRAUGTH==m.getP().getType() ) {
+                    buildAnimDamaMove(m);
+                    playAnimDamaMove();
+                }else
+                {
+                    buildAnimPedinaMove(m);
+                    playAnimPedinaMove();
+                }
 
-            
-        } else if (m.getType() == Move.EAT) {
-        
-           if(m.getP().getType()==Piece.DRAUGTH){
-               builAnimDamaEat(m);
-               playAnimDamaEat();
-           }else {
-               buildAnimPedinaEat(m);
-               playAnimPedinaEat();
-           
-           }
-        } 
+
+            } else if (m.getType() == Move.EAT) {
+
+                if(m.getP().getType()==Piece.DRAUGTH){
+                    builAnimDamaEat(m);
+                    playAnimDamaEat();
+                }else {
+                    buildAnimPedinaEat(m);
+                    playAnimPedinaEat();
+
+                }
+            }
+        });
+
         
 
     }

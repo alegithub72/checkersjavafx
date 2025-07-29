@@ -29,7 +29,7 @@
         <dependency>
             <groupId>checkersengine</groupId>
             <artifactId>checkersengine</artifactId>
-            <version>4.0</version>
+            <version>4.1.0-SNAPSHOT</version>
             <scope>compile</scope>
             <!--systemPath>${project.basedir}/lib/CheckersEngine.jar</systemPath -->
         </dependency>

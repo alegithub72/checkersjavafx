@@ -2,6 +2,7 @@ package sa.fx.draugths;
 
 import javafx.animation.Animation;
 import javafx.animation.Transition;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -23,7 +24,7 @@ import javafx.util.Duration;
 import sa.fx.draugths.animation.event.EventDraugthTransform;
 import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
-import sa.fx.draugths.board.event.EventEndTurn;
+import sa.fx.draugths.board.event.EventEndTurnFX;
 import sa.fx.draugths.board.event.EventPointUpdate;
 import sa.fx.draugths.board.event.EventSelectionPlayerHandler;
 import sa.fx.draugths.pieces.SpritePiece;
@@ -77,7 +78,7 @@ public class FXBoard implements RenderBoardInterface {
 	public static ScaleFactor scaleRoot = null;
 	private boolean animationOn = false;
 	private SpritePiece select;
-
+	Thread threadGame ;
 	private int level;
 	private FXAIPlayer1 computerPlayer;
 	private FXPMousePlayer mousePlayer;
@@ -116,7 +117,7 @@ public class FXBoard implements RenderBoardInterface {
 			game = new Game(automa, computerPlayer,turnEvent, Board.CHECKERS_GAME);
 
 			// game.setDamaSystem((DamaInterface) this);
-			
+
 
 			ConsoleRendering console = new ConsoleRendering();
 			game.getBoard().addRenderInterface(console);
@@ -137,7 +138,7 @@ public class FXBoard implements RenderBoardInterface {
 			if (game != null){
 
 				game.getBoard().addRenderInterface(this);
-				game.getBoard().addRenderInterface(new ConsoleRendering());
+
 			}
 			root.addEventHandler(EventPointUpdate.MOVE_UPDATE, new EventHandler<EventPointUpdate>() {
 
@@ -185,14 +186,15 @@ public class FXBoard implements RenderBoardInterface {
 
 			});
 
-			root.addEventHandler(EventEndTurn.END_TURN, new EventHandler<EventEndTurn>() {
+			root.addEventHandler(EventEndTurnFX.END_TURN, new EventHandler<EventEndTurnFX>() {
 
 				@Override
-				public void handle(EventEndTurn event) {
-					if (event.getEventType() == EventEndTurn.END_TURN) {
+				public void handle(EventEndTurnFX event) {
+					if (event.getEventType() == EventEndTurnFX.END_TURN) {
 						BCDraugthsApp.log.info("HANDLE EventEndTurn.END_TURN-->" + event.getEventType().getName() + ","
 								+ event.getSrpitePiece().getNameType());
-						turnEnd();
+						game.getTurnEvent().endTurn();
+//						winCondition();
 						event.consume();
 					}
 				}
@@ -226,11 +228,43 @@ public class FXBoard implements RenderBoardInterface {
 					}
 				}
 			});
+
 		} catch (Exception e1) {
 
 			BCDraugthsApp.log.log(Level.SEVERE,"Exception:",e1);
 		}
 	}
+	public void startGame(){
+
+			BCDraugthsApp.log.log(Level.INFO, "Start Game level={0},loger name={1}" ,new Object[] {level,BCDraugthsApp.log.getName()});
+			threadGame = new Thread(game);
+			threadGame.start();
+			new Thread(() -> {
+				try {
+					threadGame.join(); // Waits for gameThread to finish
+					onGameEnd();       // Calls the callback
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}).start();
+
+
+
+
+
+
+
+
+	}
+public void onGameEnd() {
+		// This method will be called when the game ends
+		BCDraugthsApp.log.info("Game has ended. Performing cleanup or final actions.");
+		game.getTurnEvent().endGame();
+		endTurnFX();
+		//TODO: aggiungi quelloo che fa a fine gioco...cerca nei listener....
+	}
+
+
 
 	public void scale() {
 		if (scaleRoot != null && scaleRoot.getScaleX() < 1) {
@@ -473,8 +507,11 @@ public class FXBoard implements RenderBoardInterface {
 		pedinaList[z].set(n, p);
 	}
 
+
 	private void drawPiecePlayer(Player player) throws Exception {
+
 		Piece[] list = null;
+		int total=game.getBoard().getBlackPieces().length+ game.getBoard().getWhitePieces().length;
 		if (player.getColor() == Piece.BLACK) {
 			list = game.getBoard().getBlackPieces();
 		} else {
@@ -482,6 +519,9 @@ public class FXBoard implements RenderBoardInterface {
 		}
 
 		BCDraugthsApp.log.info("BUILD " + player.getName() + " LEVEL=" + this.level);
+		if(zGroup.getChildren().size()<total) {
+
+
 		for (int i = 0; i < list.length; i++) {
 
 			Piece pedinaChar = list[i];
@@ -494,6 +534,7 @@ public class FXBoard implements RenderBoardInterface {
 
 			} else
 				add(null, player.getColor());
+		}
 		}
 	}
 
@@ -525,7 +566,7 @@ public class FXBoard implements RenderBoardInterface {
 
 	}
 
-	public void winConditionMessage(int win) {
+	public void winConditionMessage(Player win) {
 		Image winText = null;
 		ImageView imageView = new ImageView();
 		Text start = new Text("- CLICK HERE TO CONTINUE -");
@@ -545,7 +586,7 @@ public class FXBoard implements RenderBoardInterface {
 			}
 		};
 		t.play();
-		if (win == Piece.WHITE) {
+		if (win.getColor() == Piece.WHITE) {
 			winText = new Image("winwhite.png");
 
 			imageView.setImage(winText);
@@ -555,7 +596,7 @@ public class FXBoard implements RenderBoardInterface {
 			imageView.setScaleY(1);
 			level++;
 
-		} else if (win == Piece.BLACK) {
+		} else if (win.getColor()  == Piece.BLACK) {
 
 			winText = new Image("winblack.png");
 			imageView = new ImageView();
@@ -568,8 +609,8 @@ public class FXBoard implements RenderBoardInterface {
 			level = 0;
 
 		}
-		start.setX(150 + (imageView.maxWidth(win) / 4));
-		start.setY(300 + (imageView.maxHeight(win) / 2));
+		start.setX(150 + (imageView.maxWidth(win.getColor()) / 4));
+		start.setY(300 + (imageView.maxHeight(win.getColor() ) / 2));
 		root.getChildren().add(imageView);
 		root.getChildren().add(start);
 
@@ -706,9 +747,20 @@ public class FXBoard implements RenderBoardInterface {
 
 	@Override
 	public void drawBoard() throws Exception {
+		Platform.runLater(()->{
+			//TODO: rivedere con una sola chiamata...
 
-		drawPiecePlayer(computerPlayer);
-		drawPiecePlayer(mousePlayer);
+            try {
+				drawPiecePlayer(computerPlayer);
+                drawPiecePlayer(mousePlayer);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+
+        });
+
+
 
 	}
 
@@ -757,37 +809,40 @@ public class FXBoard implements RenderBoardInterface {
 		game.getBoard().updateInterface(namePlayer, m);
 	}
 
-	public void playComputerPlayer() {
-		if (game.getAI().getName().equals("Computer")) {
-			game.getAI().makeTurn();
-		}
-	}
+//	public void playComputerPlayer() {
+//		//TODO: si puo' evitare di fare il check o rendere AI genierico....
+//		if (game.getAI().getName().equals("Computer")) {
+//			game.getBoard();
+//		}
+//	}
 
-	public synchronized void turnEnd() {
+//	public synchronized void turnEnd() {
+//
+//		turn = !turn;
+//
+//		if (winCondition() != Piece.WHITE && winCondition() != Piece.BLACK) {
+//			if (turn) {
+//				this.playComputerPlayer();
+//			} else {
+//				animationOn = false;
+//			}
+//		}
+//
+//	}
 
-		turn = !turn;
+	public int endTurnFX() {
 
-		if (winCondition() != Piece.WHITE && winCondition() != Piece.BLACK) {
-			if (turn) {
-				this.playComputerPlayer();
-			} else {
-				animationOn = false;
-			}
-		}
-
-	}
-
-	public int winCondition() {
-
-		int win = game.winCondition();
-		if (win == Piece.WHITE) {
+		Player winner = game.getWinner();
+		if (winner  !=null && winner.getColor() == Piece.WHITE) {
 			getBackGround().updatePoint(size(Piece.WHITE) * 10);
 
+		}else if(winner  !=null && winner.getColor() == Piece.BLACK){
+			//TODO: scirvere quello che c'e' negli eventilistner...
 		}
-		if (win != -1)
-			winConditionMessage(win);
+		 if (winner == null)
+			winConditionMessage(winner);
 
-		return win;
+		return winner.getColor();
 	}
 
 	public TextField getCommand() {
@@ -1085,7 +1140,12 @@ public class FXBoard implements RenderBoardInterface {
 
 	@Override
 	public void renderCommad() {
-		BCDraugthsApp.log.info("not implemented");
+		BCDraugthsApp.log.info("draw comand FX");
+		Platform.runLater(() -> {
+			mousePlayer.drawMoveChoose();
+
+		});
+
 
 	}
 

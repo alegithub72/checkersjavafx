@@ -43,7 +43,7 @@ public class EventSelectionPlayerHandler implements EventHandler<MouseEvent> {
 				//TODO: fare animazione up pedina!!!
 				p.setFrame(1);
                 try {
-                    fxb.getMousePlayer().choosePiece();
+                    fxb.getMousePlayer().getCommand();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

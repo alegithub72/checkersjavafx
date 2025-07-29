@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -24,6 +25,8 @@ import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.board.event.EventConfirmCommandHandler;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.gameboard.core.Piece;
+import sa.gameboard.core.events.ComandEvent;
+import sa.gameboard.core.events.ComandEventDispatcher;
 import sa.gameboard.core.moves.Move;
 import sa.gameboard.core.players.HumanPlayer;
 
@@ -61,15 +64,18 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
     @Override
     public void deleteMoveChoose() {
-        if (movesMouse != null) {
-            for (int i = 0; i < movesMouse.size(); i++) {
-                //TODO: internare la funzione remove 
-                this.fxboard.remove(movesMouse.get(i));
-               // movesMouse.remove(i);
-            }
-            movesMouse=new ArrayList();
+        Platform.runLater(()->{
+            if (movesMouse != null) {
+                for (int i = 0; i < movesMouse.size(); i++) {
+                    //TODO: internare la funzione remove
+                    this.fxboard.remove(movesMouse.get(i));
+                    // movesMouse.remove(i);
+                }
+                movesMouse=new ArrayList();
 
-        }
+            }
+        });
+
     }
 
     public FXPMousePlayer(FXBoard board) {
@@ -84,7 +90,12 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
         return possibleMove.get(n);
     }
 
-	@Override
+    @Override
+    public void chooseMoveStep() throws Exception {
+            comandEventDispatcher.waitComandStepEnd();
+    }
+
+    @Override
 	public void getCommand() {
 
 		String r = null;
@@ -93,6 +104,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 		} else {
 			r = "" + moveChoose;
 		}
+        setCp(r);
 
 	}
 
@@ -111,7 +123,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 			if (!fxboard.isAnimationOn()) {
 				if (fxboard.getSelect() != null) {
                     try {
-                        choosePiece();
+                        getCommand();
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -127,8 +139,44 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
     @Override
     public String drawMoveChoose() {
-    	String str="";
-    
+        final String[] str = {""};
+        Platform.runLater(()->{
+
+            ComandEvent.ComandState state = comandEventDispatcher.getCurrentEvent().getComandState();
+            switch (state) {
+                case ADD_MOVE:
+                    str[0] = "Waiting for move";
+                    BCDraugthsApp.log.log(Level.INFO, str[0]);
+                    break;
+                case CHOOSE_MOVE:
+                    str[0] = "Choose a move";
+                    BCDraugthsApp.log.log(Level.INFO, str[0]);
+                    break;
+                case CHOOSE_PIECE:
+                    str[0] = "Choose a piece";
+                    BCDraugthsApp.log.log(Level.INFO, str[0]);
+                    str[0] = drawChooseMoveFX(str[0]);
+                    break;
+                case CONFIRM_YESNOEND:
+                    str[0] = "Executing move";
+                    BCDraugthsApp.log.log(Level.INFO, str[0]);
+                    break;
+                case ERROR:
+                    str[0] = "Errore ";
+                    BCDraugthsApp.log.log(Level.INFO, str[0]);
+                    break;
+                default:
+                    BCDraugthsApp.log.log(Level.INFO, str[0]);
+                    str[0] = "Unknown state";
+            }
+        });
+        //TODO: mettere uno switchh per renderizzare il comando in modo diverso.....asesonda dell'envento....
+
+
+        return str[0];
+    }
+
+    private String drawChooseMoveFX(String str) {
         for (int i = 0; i < possibleMove.size(); i++) {
             Move m = possibleMove.get(i);
         	SpritePiece sp= fxboard.getSpritePiece(m.getP().getI(), m.getP().getJ(),m.getP().getColor(),false);
@@ -146,7 +194,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 } else {
                     quadTo.setControlX(x0 - inc);
                 }
-                
+
                 double x1 =sp.convertBoardJtoPositionXCenter(m.getJ1()  ,FXBoard.boardHW.getW());
                         //(m.getI1() * board.wBoardSquare) + 32;
                 double y1 =sp.convertBoardItoPositionYCenter(m.getI1() ,FXBoard.boardHW.getH());
@@ -154,20 +202,20 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 quadTo.setControlY(y0);
                 quadTo.setX(x0);
                 quadTo.setY(y0);
-                
+
                 Path path = new Path();
                 MoveTo mt=new MoveTo();
                 mt.setX(x1);
                 mt.setY(y1);
                 mt.setAbsolute(true);
                 path.getElements().addAll(
-                        
+
                                 mt
                                 ,quadTo
                         //,
                         //new CubicCurveTo(0, 120, 0, 240, 380, 240)
                         );
-                str=str+(" cursor  x0="+x0+",y0="+y0+",x1="+x1+",y1="+y1);
+                str = str +(" cursor  x0="+x0+",y0="+y0+",x1="+x1+",y1="+y1);
                 path.setStroke(Color.BLACK);
                 path.setOpacity(0.6);
                 path.setStrokeWidth(2);
@@ -200,7 +248,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                 movesMouse.add(punteImage[i]);
                 this.fxboard.add(path);
                 movesMouse.add(path);
-                str=str+" "+i + ")" + m;
+                str = str +" "+i + ")" + m;
 
             }
         }
@@ -208,7 +256,13 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     }
 
 
+    @Override
+    public boolean isLastComnad() {
+        return false;
+    }
 
-
-    
+    @Override
+    public boolean isHuman() {
+        return true;
+    }
 }

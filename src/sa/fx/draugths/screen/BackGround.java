@@ -7,6 +7,7 @@ import java.io.InputStream;
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.animation.Transition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -381,9 +382,11 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 		            c.getGraphicsContext2D().setEffect(null);
 //		            c.getGraphicsContext2D().fillText("WAVE I", wBackground/2, hBackgroud/2);
 		            ScreenPause p=new ScreenPause(2.5d,back);
+
 		            p.play();
-					
+
 				}
+
 			});
 
             
@@ -392,7 +395,12 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     }
     public void goAhead() throws Exception{
         drawBackGround();
-        board.drawBoard();
+       // board.drawBoard();
+		//TODO: rivedere dove metterlo....
+		board.startGame();
+
+
+
     }
     private String romanWave(int n) {
     	String romanNumber="";
