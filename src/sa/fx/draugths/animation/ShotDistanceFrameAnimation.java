@@ -11,6 +11,8 @@ import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.SoundEffect;
 
+import java.util.logging.Level;
+
 
 /**
  *
@@ -34,7 +36,7 @@ public class ShotDistanceFrameAnimation extends SimpleFrameAnimation{
 	@Override
 	protected void interpolate(double frac) {
 
-    	BCDraugthsApp.log.info("interpolate:"+frac);
+    	BCDraugthsApp.log.log(Level.INFO,"interpolate:"+frac);
     	framing(frac);
     	if(frac>0) shotFireEvent();
 
@@ -45,7 +47,7 @@ public class ShotDistanceFrameAnimation extends SimpleFrameAnimation{
     	if( !once ) {
         	once=true;
         	SpritePiece eated= piece.getFxBoard().getSpritePiece(move.getEat().getI(), move.getEat().getJ(), move.getEat().getColor(), true);
-    		BCDraugthsApp.log.info("FIRE EventEatAnimPiece.KILLPLAY_EVENT:"+eated);
+    		BCDraugthsApp.log.log(Level.INFO,"FIRE EventEatAnimPiece.KILLPLAY_EVENT:"+eated);
     		piece.getParent().fireEvent(new EventEatAnimPiece(eated,piece.getParent() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
            
            }    	

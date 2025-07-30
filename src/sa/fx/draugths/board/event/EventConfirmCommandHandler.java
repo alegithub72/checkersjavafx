@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.players.FXPMousePlayer;
+import sa.gameboard.core.events.ComandEvent;
 import sa.gameboard.core.moves.Move;
 
 import java.util.logging.Level;
@@ -37,19 +38,38 @@ public class EventConfirmCommandHandler implements EventHandler<MouseEvent>{
     @Override
     public void handle(MouseEvent event) {
         EventType eventHappened=event.getEventType();
+        ComandEvent.ComandState state=mousePlayer.getComandEventDispatcher().getCurrentEvent().getComandState();
+        BCDraugthsApp.log.log(Level.INFO,"HANDLE EventConfirmCommand Game State {0}  ",new Object[]{state.name(),"xxx"});
     	if(eventHappened==MouseEvent.MOUSE_CLICKED && event.getButton()==MouseButton.PRIMARY) {
 //        mousePlayer.setMoveChoose(n);
 //        mousePlayer.setCp(""+n);
-        BCDraugthsApp.log.info("HANDLE EventConfirmCommand Hai scelto la mossa "+n+"°");
+
 
             try {
-                mousePlayer.setMoveChoose(n);
-                mousePlayer.getCommand();
+
+                switch(state) {
+                    case CHOOSE_PIECE:
+                        mousePlayer.setMoveChoose(n);
+                        mousePlayer.deleteUnselectedChoose(n);
+                        mousePlayer.setCp(""+n);
+                        BCDraugthsApp.log.log(Level.INFO,"HANDLE EventConfirmCommand Hai scelto la mossa "+n+"°");
+                        break;
+                    case CHOOSE_MOVE:
+                        mousePlayer.setCp("yes");
+                        //TODO: aggiungi un mouseImage....
+                        BCDraugthsApp.log.log(Level.INFO,"------------->aggiungere image mouse click icon<-----------------");
+                        break;
+
+                    default:
+                        break;
+                }
+
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
-            //BCDraugthsApp.log.info("m="+m+", p.i="+m.getP().getI()+",p.j="+m.getP().getJ());
+            //BCDraugthsApp.log.log(Level.INFO,"m="+m+", p.i="+m.getP().getI()+",p.j="+m.getP().getJ());
 //        if(!mousePlayer.makeMove(m)) throw new RuntimeException("Move not executed");
 //        mousePlayer.setMoveChoose(-1);
 //        bb.updateInterface(mousePlayer.getName(),m);
@@ -59,8 +79,7 @@ public class EventConfirmCommandHandler implements EventHandler<MouseEvent>{
     	}
         if (event.getEventType()==MouseEvent.MOUSE_CLICKED && event.getButton()==MouseButton.SECONDARY) {
             try {
-                BCDraugthsApp.log.info("HANDLE EventConfirmCommand Hai scelto la mossa no");
-
+                BCDraugthsApp.log.log(Level.INFO,"HANDLE EventConfirmCommand Hai scelto la mossa no");
                 BCDraugthsApp.log.log(Level.INFO,"screen x {0}, screen y {1}",new Object[] {event.getSceneX(),event.getSceneY()});
                 mousePlayer.setCp("no");
             } catch (Exception e) {

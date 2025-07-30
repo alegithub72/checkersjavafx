@@ -17,6 +17,8 @@ import sa.fx.draugths.board.event.EventPointUpdate;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.gameboard.core.Piece;
 
+import java.util.logging.Level;
+
 
 /**
  *
@@ -41,23 +43,23 @@ public class PieceAnimationEndHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
     	Node n =null;
-    	BCDraugthsApp.log.info("----------------START-------------------"+p);
-    	BCDraugthsApp.log.info("...stop animation...");
+    	BCDraugthsApp.log.log(Level.INFO,"----------------START-------------------"+p);
+    	BCDraugthsApp.log.log(Level.INFO,"...stop animation...");
         p.stopPlayAnimation();
         Parent parent=p.getParent();
         if(m.getP().getColor()==Piece.WHITE) {
-        	BCDraugthsApp.log.info("FIRE..EventPointUpdate.MOVE_UPDATE");
+        	BCDraugthsApp.log.log(Level.INFO,"FIRE..EventPointUpdate.MOVE_UPDATE");
         	p.fireEvent(new EventPointUpdate(p,parent,m, EventPointUpdate.MOVE_UPDATE));
         
         }
         if ( (m.getType() == Move.MOVE || m.getType()==Move.EAT) && 
             m.getI1()==7 && m.getP().getType()!=Piece.DRAUGTH) {
-        	BCDraugthsApp.log.info("FIRE...PedinaAnimationEndHandler..EventDraugthTransform.DRAUGTH_EVENT....");
+        	BCDraugthsApp.log.log(Level.INFO,"FIRE...PedinaAnimationEndHandler..EventDraugthTransform.DRAUGTH_EVENT....");
         	p.fireEvent(new EventDraugthTransform(p, parent, EventDraugthTransform.DRAUGTH_EVENT));
 
         }else if((m.getType()==Move.MOVE || m.getType()==Move.EAT) &&
                 m.getI1()==0 && m.getP().getType()!=Piece.DRAUGTH){
-           	BCDraugthsApp.log.info("FIRE....EventDraugthTransform.DRAUGTH_EVENT.... ");
+           	BCDraugthsApp.log.log(Level.INFO,"FIRE....EventDraugthTransform.DRAUGTH_EVENT.... ");
         	p.fireEvent(new EventDraugthTransform(p, parent, EventDraugthTransform.DRAUGTH_EVENT));
  
            
@@ -67,9 +69,8 @@ public class PieceAnimationEndHandler implements EventHandler<ActionEvent> {
 		 
 		 
         	
-        	BCDraugthsApp.log.info("EventEndTurn.END_TURN..."+p);
-        	parent.fireEvent(new EventEndTurnFX(p, parent, EventEndTurnFX.END_TURN));
-        	BCDraugthsApp.log.info("----------------END-------------------");
+        	BCDraugthsApp.log.log(Level.INFO,"EventEndTurn.END_TURN..."+p);
+        	BCDraugthsApp.log.log(Level.INFO,"----------------END-------------------");
         	event.consume();
     }
 

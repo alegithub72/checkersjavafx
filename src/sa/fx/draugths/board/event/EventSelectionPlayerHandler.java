@@ -11,6 +11,9 @@ import javafx.scene.input.MouseEvent;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.pieces.SpritePiece;
+import sa.gameboard.core.events.ComandEvent;
+
+import java.util.logging.Level;
 
 /**
  *
@@ -37,19 +40,30 @@ public class EventSelectionPlayerHandler implements EventHandler<MouseEvent> {
 					this.fxb.getSelect().setFrame(0);
 
 				}
-                fxb.getMousePlayer().setCp("p"+p.getBoardPieceLink().getI()+p.getBoardPieceLink().getJ());
-				fxb.getMousePlayer().deleteMoveChoose();
-				fxb.setSelect(p);
+                //fxb.getMousePlayer().setCp("p"+p.getBoardPieceLink().getI()+p.getBoardPieceLink().getJ());
+
 				//TODO: fare animazione up pedina!!!
 				p.setFrame(1);
                 try {
-                    fxb.getMousePlayer().getCommand();
+                    ComandEvent.ComandState state= fxb.getMousePlayer().getComandEventDispatcher().getCurrentEvent().getComandState();
+                    switch (state) {
+                        case CHOOSE_PIECE:
+                           // fxb.getMousePlayer().deleteMoveChoose();
+                            fxb.setSelect(p);
+                            fxb.getMousePlayer().setMoveChoose(-1);
+                            fxb.getMousePlayer().setCp("p"+p.getBoardPieceLink().getI()+p.getBoardPieceLink().getJ());
+
+                            break;
+                        default:
+                            break;
+                    }
+
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
 
             }
-			BCDraugthsApp.log.info("HANDLE  EventSelectionPlayer clicked id=" + p);
+			BCDraugthsApp.log.log(Level.INFO,"HANDLE  EventSelectionPlayer clicked id=" + p);
 			event.consume();
 		}
     }

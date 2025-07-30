@@ -29,6 +29,8 @@ import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 import sa.gameboard.core.moves.Move;
 
+import java.util.logging.Level;
+
 /**
  * @author Alessio Sardaro
  */
@@ -203,7 +205,7 @@ public class Alien extends SpritePiece {
 
             @Override
             public void handle(ActionEvent event) {
-                BCDraugthsApp.log.info("FIRE EventEatAnimPiece.KILLPLAY_EVENT at end on animation...:" + this);
+                BCDraugthsApp.log.log(Level.INFO,"FIRE EventEatAnimPiece.KILLPLAY_EVENT at end on animation...:" + this);
                 fireEvent(new EventEatAnimPiece(eated, eated.getParent(), m, EventEatAnimPiece.KILLPLAY_EVENT));
 
 

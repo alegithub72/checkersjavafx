@@ -6,8 +6,9 @@
 package sa.fx.draugths.pieces;
 
 
-import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
+import java.util.logging.Level;
 
 import javafx.animation.*;
 import javafx.application.Platform;
@@ -19,8 +20,8 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.animation.*;
 import sa.fx.draugths.animation.event.EventRemoveEatPiece;
+import sa.fx.draugths.board.event.EventEndTurnFX;
 import sa.fx.draugths.utility.BoardHW;
-import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 import sa.gameboard.core.moves.Move;
 
@@ -38,7 +39,7 @@ public abstract class SpritePiece extends Sprite {
     protected FrameSequence[] eatMoveSequenceFrame;
     protected FrameSequence[] killSequenceFrame;
 
-
+    CountDownLatch latch = null;
     protected int wSquare;
     protected int hSquare;
 	String nameType;
@@ -83,7 +84,7 @@ public abstract class SpritePiece extends Sprite {
 				
 				  if(m.getType()==Move.EAT) { 
 					  
-					  BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
+					  BCDraugthsApp.log.log(Level.INFO,"FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
 					  fireEvent(new EventRemoveEatPiece(eated, eated.getParent(),EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
 
@@ -142,6 +143,7 @@ public abstract class SpritePiece extends Sprite {
         return this.nframes;
     }    
     public void play(Move m) {
+        latch = new CountDownLatch(1);
         Platform.runLater(()->{
             pltransition=new ParallelTransition();
             this.setManaged(false);
@@ -169,10 +171,20 @@ public abstract class SpritePiece extends Sprite {
                 }
             }
         });
+        waitAnimationEndTurn();
 
-        
 
     }
+
+    private void waitAnimationEndTurn() {
+        try {
+            latch.await();
+            fireEvent(new EventEndTurnFX(this, this.getParent(), EventEndTurnFX.END_TURN));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     protected void playAnimDamaMove(){
         playAnim();
         
@@ -195,8 +207,14 @@ public abstract class SpritePiece extends Sprite {
     private void playAnim(){
     	
         if(fxBoard!=null) fxBoard.setAnimationOn(true);
-        BCDraugthsApp.log.info("playAnim prima:"+pltransition.getStatus()+" pltransition="+pltransition);
+        BCDraugthsApp.log.log(Level.INFO,"playAnim prima:"+pltransition.getStatus()+" pltransition="+pltransition);
+        EventHandler<ActionEvent> oldHandler = pltransition.getOnFinished();
+        pltransition.setOnFinished(e -> {
+            if (oldHandler != null) oldHandler.handle(e);
+            latch.countDown();
+        });
         pltransition.play();
+
 
 
 
@@ -209,7 +227,7 @@ public abstract class SpritePiece extends Sprite {
     }
     public void stopPlayAnimation() {
 
-    	BCDraugthsApp.log.info("PL)Stop transition:"+ pltransition.getStatus()+" pltransition=:"+pltransition);
+    	BCDraugthsApp.log.log(Level.INFO,"PL)Stop transition:"+ pltransition.getStatus()+" pltransition=:"+pltransition);
         pltransition.stop();
         this.setManaged(true);
         setFrame(0);

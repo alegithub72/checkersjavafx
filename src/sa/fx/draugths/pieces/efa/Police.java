@@ -19,6 +19,8 @@ import sa.fx.draugths.utility.SequenceSoundEffect;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
+import java.util.logging.Level;
+
 public class Police extends Soldier {
 
 
@@ -128,7 +130,7 @@ public void buildPedinaMovePath(Move m) {
     //
 
     pltransition.getChildren().add(pathTransition);
-    BCDraugthsApp.log.info(this + "  from (" + x0 + "," + y0 + ") to (" + x1 + "," + y1 + ")");
+    BCDraugthsApp.log.log(Level.INFO,this + "  from (" + x0 + "," + y0 + ") to (" + x1 + "," + y1 + ")");
 
     if (BCDraugthsApp.tracepath) this.getFxBoard().add(path);
 }

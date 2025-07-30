@@ -22,6 +22,8 @@ import sa.fx.draugths.utility.SequenceSoundEffect;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
+import java.util.logging.Level;
+
 public class SkySoldier extends Soldier {
 
     protected static  String PIECE_IMAGE  = "soldier_checker_fly.png";
@@ -64,7 +66,7 @@ public class SkySoldier extends Soldier {
     public synchronized void buildKilledSequence(Move m) {
         pltransition=new ParallelTransition(this);
         SimpleFrameAnimation transition=null;
-        BCDraugthsApp.log.info("buildDefaultKillAnimation....1");
+        BCDraugthsApp.log.log(Level.INFO,"buildDefaultKillAnimation....1");
 
         if (m.getP().getType() ==Piece.CHECKER) {
 
@@ -74,22 +76,22 @@ public class SkySoldier extends Soldier {
                         new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
                         new FrameInfo(17, 1) };
                 addKillSequenceFrame(new FrameSequence[]{new FrameSequence(killed,new SequenceSoundEffect(SequenceSoundEffect.ADD,SoundEffect.BITE))});
-                BCDraugthsApp.log.info("buildDefaultKillAnimation....2");
+                BCDraugthsApp.log.log(Level.INFO,"buildDefaultKillAnimation....2");
                 transition= new SimpleFrameAnimation(killSequenceFrame, this, false, 25);
                 transition.setDuration(Duration.seconds(0.5));
 
 
             }
             else {
-                BCDraugthsApp.log.info("errror....3");
+                BCDraugthsApp.log.log(Level.INFO,"errror....3");
 //                transition= new SimpleFrameAnimation(killSequenceFrame, this, false, 25, SoundEffect.SAPCESHIP_BUZZ);
 //                transition.setDuration(Duration.seconds(0.5));
 
             }
 
         } else if (m.getP().getType()  ==Piece.DRAUGTH)  {
-            BCDraugthsApp.log.info("buildDefaultKillAnimation....4");
-                BCDraugthsApp.log.info("buildDefaultKillAnimation....5");
+            BCDraugthsApp.log.log(Level.INFO,"buildDefaultKillAnimation....4");
+                BCDraugthsApp.log.log(Level.INFO,"buildDefaultKillAnimation....5");
                 FrameInfo[] killed = { new FrameInfo(10, 1), new FrameInfo(11, 1), new FrameInfo(12, 1),
                         new FrameInfo(13, 1), new FrameInfo(14, 1), new FrameInfo(15, 1), new FrameInfo(16, 1),
                         new FrameInfo(17, 1) };
@@ -99,7 +101,7 @@ public class SkySoldier extends Soldier {
 
 
         }
-        BCDraugthsApp.log.info("buildDefaultKillAnimation....7");
+        BCDraugthsApp.log.log(Level.INFO,"buildDefaultKillAnimation....7");
         SpritePiece eated=this;
         transition.setOnFinished(new EventHandler<ActionEvent>() {
 
@@ -108,7 +110,7 @@ public class SkySoldier extends Soldier {
 
                 if(m.getType()==Move.EAT) {
 
-                    BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
+                    BCDraugthsApp.log.log(Level.INFO,"FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: "+eated);
                     fireEvent(new EventRemoveEatPiece(eated, eated.getParent(),EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
 
@@ -233,7 +235,7 @@ public class SkySoldier extends Soldier {
 
         double x = questo.getLayoutX();
         double y = questo.getLayoutY();
-        BCDraugthsApp.log.info("x,y=" + x + "," + y);
+        BCDraugthsApp.log.log(Level.INFO,"x,y=" + x + "," + y);
         double xn = convertBoardJtoPositionXCenter(m.getEat().getJ(), wSquare);
         //(m.getI1() * wSquare) + ((wSquare / 2));
         double yn = convertBoardItoPositionYCenter(m.getEat().getI(), hSquare);

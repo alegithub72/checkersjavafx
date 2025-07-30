@@ -12,6 +12,8 @@ import sa.fx.draugths.animation.event.EventEatAnimPiece;
 import sa.fx.draugths.pieces.SpritePiece;
 import sa.fx.draugths.utility.SoundEffect;
 
+import java.util.logging.Level;
+
 /**
  *
  * @author Alessio Sardaro
@@ -47,7 +49,7 @@ public class ShotCollisionFrameAnimation extends SimpleFrameAnimation {
 				
 				Bounds targetSceneBound = target.localToScene(target.getBoundsInLocal());
 				if (pSceneBound.intersects(targetSceneBound)) {
-					BCDraugthsApp.log.info("INTERSECTION DETECTED!!!!!!!");
+					BCDraugthsApp.log.log(Level.INFO,"INTERSECTION DETECTED!!!!!!!");
 					piece.fireEvent(new EventEatAnimPiece(target,target.getParent() ,move, EventEatAnimPiece.KILLPLAY_EVENT));
 					once = true;
 					shot.setVisible(false);

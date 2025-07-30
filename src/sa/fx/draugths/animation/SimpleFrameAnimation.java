@@ -14,6 +14,8 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.FXBoard;
 import sa.fx.draugths.utility.SequenceSoundEffect;
 
+import java.util.logging.Level;
+
 /**
  *
  * @author Alessio Sardaro
@@ -103,7 +105,7 @@ public class SimpleFrameAnimation extends Transition {
 			seqCounter++;
 			sprite.toFront();
 			frameCount++;
-			BCDraugthsApp.log.info("sprite:" + sprite.getName() +" , sequence:"+seqNUmber+ ",frames:" + frames[i].getFrameNumber() + " interval:" + intervalTemp+" seqCounter:"+seqCounter);
+			BCDraugthsApp.log.log(Level.INFO,"sprite:" + sprite.getName() +" , sequence:"+seqNUmber+ ",frames:" + frames[i].getFrameNumber() + " interval:" + intervalTemp+" seqCounter:"+seqCounter);
 			if (frameCount >= frames[i].getDuration()) {
 				i++;
 				frameCount = 0;
@@ -115,7 +117,7 @@ public class SimpleFrameAnimation extends Transition {
 
 			}
 			if(((seq.length-1)>seqNUmber) && (this.interval*seqCounter) >seq[seqNUmber].getSeqDuration()){
-				BCDraugthsApp.log.info("duration:"+seq[seqNUmber].getSeqDuration()+">interval*seqCounter="+interval*seqCounter);
+				BCDraugthsApp.log.log(Level.INFO,"duration:"+seq[seqNUmber].getSeqDuration()+">interval*seqCounter="+interval*seqCounter);
 				if(seq[seqNUmber].getEffect().getType()<=SequenceSoundEffect.CYCLCIC){
 					FXBoard.SoundSystem.stopSound(seq[seqNUmber].getSoundEffect());
 				}

@@ -110,7 +110,7 @@ public class BCDraugthsAndroidApp extends Application {
 
 		fxb.drawStartScreen();
 		scene.setFill(Color.BLACK);
-		BCDraugthsApp.log.info("1--->" + scene.getHeight() + "," + scene.getWidth());
+		BCDraugthsApp.log.log(Level.INFO,"1--->" + scene.getHeight() + "," + scene.getWidth());
 		Screen.getPrimary().getVisualBounds().getWidth();
 //		scaleX = Screen.getPrimary().getVisualBounds().getWidth() / 800;
 //		scaleY = Screen.getPrimary().getVisualBounds().getHeight() / 850;
@@ -153,8 +153,8 @@ public class BCDraugthsAndroidApp extends Application {
 		else
 			level = 1;
 
-		BCDraugthsApp.log.info("level system=" + level);
-		BCDraugthsApp.log.info("level system=" + BCDraugthsApp.debug);
+		BCDraugthsApp.log.log(Level.INFO,"level system=" + level);
+		BCDraugthsApp.log.log(Level.INFO,"level system=" + BCDraugthsApp.debug);
 
 	}
 

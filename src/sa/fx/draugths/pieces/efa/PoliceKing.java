@@ -28,6 +28,8 @@ import sa.fx.draugths.utility.SequenceSoundEffect;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
+import java.util.logging.Level;
+
 
 /**
  * @author Alessio Sardaro
@@ -84,7 +86,7 @@ public class PoliceKing extends SpritePiece {
 
                 if (m.getType() == Move.EAT) {
 
-                    BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: " + eated);
+                    BCDraugthsApp.log.log(Level.INFO,"FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: " + eated);
                     fireEvent(new EventRemoveEatPiece(eated, eated.getParent(), EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
 
@@ -140,7 +142,7 @@ public class PoliceKing extends SpritePiece {
         //(m.getI1() * wSquare) + ((wSquare / 2));
         double y1 = convertBoardItoPositionYCenter(m.getI1(), hSquare);
         //(m.getJ1() * hSquare) + ((hSquare / 2));
-        BCDraugthsApp.log.info(" move from (x0,y0)=(" + x0 + "," + y0 + ")");
+        BCDraugthsApp.log.log(Level.INFO," move from (x0,y0)=(" + x0 + "," + y0 + ")");
         arc.setX(x1);
         arc.setY(y1);
         if (y0 < y1) {

@@ -13,6 +13,8 @@ import sa.fx.draugths.BCDraugthsApp;
 import sa.gameboard.core.Piece;
 import sa.gameboard.core.players.AIPlayer;
 
+import java.util.logging.Level;
+
 /**
  *
  * @author  Alessio Sardaro
@@ -28,7 +30,7 @@ public class FXAIPlayer1 extends AIPlayer implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent event) {
-    	BCDraugthsApp.log.info(".........................event:"+event.getEventType());
+    	BCDraugthsApp.log.log(Level.INFO,".........................event:"+event.getEventType());
         event.consume();
         
     }

@@ -5,9 +5,8 @@
  */
 package sa.fx.draugths;
 
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.MessageFormat;
+import java.util.logging.*;
 
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -21,6 +20,7 @@ import sa.fx.draugths.screen.PresentationScreen;
 import sa.fx.draugths.screen.RecordScreen;
 import sa.fx.draugths.utility.SoundInterface;
 import sa.fx.draugths.utility.SoundPlay;
+import sa.gameboard.utility.Utility;
 
 /**
  *
@@ -47,7 +47,9 @@ public class BCDraugthsApp extends Application {
 	int level;
 
 	public void initDama() {
-		BCDraugthsApp.log.info("---->"+System.getProperty("checkers.debug"));
+		Utility.logFormatter(log);
+
+		BCDraugthsApp.log.log(Level.INFO,"---->"+System.getProperty("checkers.debug"));
 		if (System.getProperty("checkers.debug") != null)
 			debug = "true".equals("" + System.getProperty("checkers.debug"));
 		else
@@ -64,7 +66,7 @@ public class BCDraugthsApp extends Application {
 
 		System.setProperty("java.util.logging.SimpleFormatter.format", "%2$s   %4$s:   %5$s %6$s   %n");
 		// java.util.logging.SimpleFormatter.format
-		BCDraugthsApp.log.info("---->"+debug);
+		BCDraugthsApp.log.log(Level.INFO,"---->"+debug);
 		if (debug) {
 			Level logLevel=Level.INFO;
 			log.setLevel(logLevel);
@@ -105,6 +107,8 @@ public class BCDraugthsApp extends Application {
 
 	}
 
+
+
 	private static SoundInterface getSoundInterfaceInstance() {
 
 		return SoundPlay.getSoundInterfaceInstance();
@@ -133,6 +137,7 @@ public class BCDraugthsApp extends Application {
 
 		// primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.show();
+
 	}
 
 	/*
@@ -156,6 +161,7 @@ public class BCDraugthsApp extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+
 	}
 
 

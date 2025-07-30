@@ -31,6 +31,8 @@ import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 import sa.gameboard.core.moves.Move;
 
+import java.util.logging.Level;
+
 
 /**
  * @author Alessio Sardaro
@@ -88,7 +90,7 @@ public class Soldier extends SpritePiece {
 
                 if (m.getType() == Move.EAT) {
 
-                    BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: " + eated);
+                    BCDraugthsApp.log.log(Level.INFO,"FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: " + eated);
                     fireEvent(new EventRemoveEatPiece(eated, eated.getParent(), EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
 
@@ -174,7 +176,7 @@ public class Soldier extends SpritePiece {
         //
 
         pltransition.getChildren().add(pathTransition);
-        BCDraugthsApp.log.info(this + "  from (" + x0 + "," + y0 + ") to (" + x1 + "," + y1 + ")");
+        BCDraugthsApp.log.log(Level.INFO,this + "  from (" + x0 + "," + y0 + ") to (" + x1 + "," + y1 + ")");
 
         if (BCDraugthsApp.tracepath) this.getFxBoard().add(path);
     }

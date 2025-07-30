@@ -46,12 +46,14 @@ import sa.gameboard.core.Piece;
 import sa.gameboard.core.events.TurnEvent;
 import sa.gameboard.core.interfaces.RenderBoardInterface;
 import sa.gameboard.core.interfaces.impl.ConsoleRendering;
+import sa.gameboard.core.interfaces.impl.LogRendering;
 import sa.gameboard.core.moves.Move;
 import sa.gameboard.core.players.AutomaPlayer;
 import sa.gameboard.core.players.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -105,7 +107,7 @@ public class FXBoard implements RenderBoardInterface {
 					,{"p15", "1","no"} ,{"p26", "0", "no"},{"p15", "0","no"} ,{"p77","0" ,"no"}, {"p33","1", "no"},{"p55", "0","no"} ,{"p04", "0","no"},{ "p22", "0","no"}
 					,{"p11", "0","no"} };
 			// String[] part2=new String[]{""};
-			BCDraugthsApp.log.info("Log Level:"+BCDraugthsApp.log.getLevel());
+			BCDraugthsApp.log.log(Level.INFO,"Log Level:"+BCDraugthsApp.log.getLevel());
 			BCDraugthsApp.log.log(Level.INFO,"level up level={0},loger name={1}" ,new Object[] {level,BCDraugthsApp.log.getName()});
 
 			// HBox infoPanel=new HBox();
@@ -119,7 +121,7 @@ public class FXBoard implements RenderBoardInterface {
 			// game.setDamaSystem((DamaInterface) this);
 
 
-			ConsoleRendering console = new ConsoleRendering();
+			LogRendering console = new LogRendering(BCDraugthsApp.log);
 			game.getBoard().addRenderInterface(console);
 
 			// game.playGame();
@@ -146,7 +148,7 @@ public class FXBoard implements RenderBoardInterface {
 				public void handle(EventPointUpdate event) {
 					if (event.getEventType() == EventPointUpdate.MOVE_UPDATE) {
 						Move m = event.getMove();
-						BCDraugthsApp.log.info("HANDLE EventPointUpdate.MOVE_UPDATE-->" + m + " event:" + event);
+						BCDraugthsApp.log.log(Level.INFO,"HANDLE EventPointUpdate.MOVE_UPDATE-->" + m + " event:" + event);
 						backGround.updatePoint(m.calculateValue());
 						event.consume();
 					}
@@ -160,7 +162,7 @@ public class FXBoard implements RenderBoardInterface {
 					if (event.getEventType() == EventDraugthTransform.DRAUGTH_EVENT) {
 						try {
 							SpritePiece p = event.getPiece();
-							BCDraugthsApp.log.info("HANDLE EventDraugthTransform.DRAUGTH_EVENT->" + p);
+							BCDraugthsApp.log.log(Level.INFO,"HANDLE EventDraugthTransform.DRAUGTH_EVENT->" + p);
 							transformInDraugth(p);
 							event.consume();
 						} catch (Exception e) {
@@ -177,7 +179,7 @@ public class FXBoard implements RenderBoardInterface {
 				public void handle(EventRemoveEatPiece event) { //
 					if (event.getEventType() == EventRemoveEatPiece.REMOVE_PIECE_EVENT) {
 						SpritePiece eated = event.getPiece();
-						BCDraugthsApp.log.info("EventRemoveEatPiece.REMOVE_PIECE_EVENT ->" + eated + " event:" + event); //
+						BCDraugthsApp.log.log(Level.INFO,"EventRemoveEatPiece.REMOVE_PIECE_EVENT ->" + eated + " event:" + event); //
 						eated.stopPlayAnimation();
 						removeSpritePiece(eated);
 						event.consume();
@@ -191,8 +193,9 @@ public class FXBoard implements RenderBoardInterface {
 				@Override
 				public void handle(EventEndTurnFX event) {
 					if (event.getEventType() == EventEndTurnFX.END_TURN) {
-						BCDraugthsApp.log.info("HANDLE EventEndTurn.END_TURN-->" + event.getEventType().getName() + ","
+						BCDraugthsApp.log.log(Level.INFO,"HANDLE EventEndTurn.END_TURN-->" + event.getEventType().getName() + ","
 								+ event.getSrpitePiece().getNameType());
+						setAnimationOn(false);
 						game.getTurnEvent().endTurn();
 //						winCondition();
 						event.consume();
@@ -206,7 +209,7 @@ public class FXBoard implements RenderBoardInterface {
 //
 //					Move m=	event.getMove();
 //					SpritePiece eated=event.getPiece();
-//					BCDraugthsApp.log.info("HANDLE EventBuildSequence.KILL_SEQUENCE eated->"+eated);
+//					BCDraugthsApp.log.log(Level.INFO,"HANDLE EventBuildSequence.KILL_SEQUENCE eated->"+eated);
 //					eated.buildKilledSequence(m);
 //					eated.setEatedAnim(true);
 //					event.consume();
@@ -218,7 +221,7 @@ public class FXBoard implements RenderBoardInterface {
 				public void handle(EventEatAnimPiece event) {
 					if (event.getEventType() == EventEatAnimPiece.KILLPLAY_EVENT) {
 						SpritePiece eated = event.getPiece();
-						BCDraugthsApp.log.info("HANDLE EventEatAnimPiece.KILLPLAY_EVENT->" + eated);
+						BCDraugthsApp.log.log(Level.INFO,"HANDLE EventEatAnimPiece.KILLPLAY_EVENT->" + eated);
 						// eated.setViewOrder(-1000);
 						eated.buildKilledSequence(event.getMove());
 						// eated.toFront();
@@ -258,7 +261,7 @@ public class FXBoard implements RenderBoardInterface {
 	}
 public void onGameEnd() {
 		// This method will be called when the game ends
-		BCDraugthsApp.log.info("Game has ended. Performing cleanup or final actions.");
+		BCDraugthsApp.log.log(Level.INFO,"Game has ended. Performing cleanup or final actions.");
 		game.getTurnEvent().endGame();
 		endTurnFX();
 		//TODO: aggiungi quelloo che fa a fine gioco...cerca nei listener....
@@ -272,18 +275,18 @@ public void onGameEnd() {
 			root.setScaleX(scaleRoot.getScaleX());
 			double transalteX = ((1d - scaleRoot.getScaleX()) * 800) / 2;
 			root.setTranslateX(-transalteX);
-			BCDraugthsApp.log.info("x translate:" + transalteX);
+			BCDraugthsApp.log.log(Level.INFO,"x translate:" + transalteX);
 		}
 
 		if (scaleRoot != null && scaleRoot.getScaleY() < 1) {
 			root.setScaleY(scaleRoot.getScaleY());
 			double transalteY = ((1d - scaleRoot.getScaleY()) * 800) / 2;
 			root.setTranslateY(-transalteY);
-			BCDraugthsApp.log.info("y translate:" + transalteY);
+			BCDraugthsApp.log.log(Level.INFO,"y translate:" + transalteY);
 		}
-		BCDraugthsApp.log.info("Scale Factor:" + scaleRoot);
+		BCDraugthsApp.log.log(Level.INFO,"Scale Factor:" + scaleRoot);
 
-		BCDraugthsApp.log.info("Screeen Size:" + Screen.getPrimary().getVisualBounds().getWidth() + ","
+		BCDraugthsApp.log.log(Level.INFO,"Screeen Size:" + Screen.getPrimary().getVisualBounds().getWidth() + ","
 				+ Screen.getPrimary().getVisualBounds().getHeight());
 
 	}
@@ -307,7 +310,7 @@ public void onGameEnd() {
 	public void levelUp(int level, int point) {
 		// root.getChildren().remove(this);
 
-		BCDraugthsApp.log.info("game level=" + level);
+		BCDraugthsApp.log.log(Level.INFO,"game level=" + level);
 		initLevel(level);
 		startLevel(point);
 		scale();
@@ -360,10 +363,10 @@ public void onGameEnd() {
 							resetGame();
 							recordScreen.saveRecordPlayers();
 							event.consume();
-							BCDraugthsApp.log.info("----FINE------>" + name + "-->" + only3 + "----->" + new String(recordName));
+							BCDraugthsApp.log.log(Level.INFO,"----FINE------>" + name + "-->" + only3 + "----->" + new String(recordName));
 						}
 
-						BCDraugthsApp.log.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
+						BCDraugthsApp.log.log(Level.INFO,"---------->" + name + "-->" + only3 + "----->" + new String(recordName));
 
 					} else {
 
@@ -375,7 +378,7 @@ public void onGameEnd() {
 
 						}
 
-						BCDraugthsApp.log.info("---------->" + name + "-->" + only3 + "----->" + new String(recordName));
+						BCDraugthsApp.log.log(Level.INFO,"---------->" + name + "-->" + only3 + "----->" + new String(recordName));
 						recordScreen.addRecordPlayer(new String(recordName), points);
 						recordScreen.drawTableRecord();
 					}
@@ -457,14 +460,14 @@ public void onGameEnd() {
 		int decodeCol = decodeColor(color);
 		SpritePiece sp = null;
 		int k = -1;
-		 BCDraugthsApp.log.info("--------" + pedinaList[decodeCol].size() +
+		 BCDraugthsApp.log.log(Level.INFO,"--------" + pedinaList[decodeCol].size() +
 		 "-------------");
 		for (k = 0; k < pedinaList[decodeCol].size(); k++) {
 			SpritePiece pedina = pedinaList[decodeCol].get(k);
 			if (pedina != null) {
 				Piece p = pedina.getBoardPieceLink();
 
-				 BCDraugthsApp.log.info(k + ")" + pedina);
+				 BCDraugthsApp.log.log(Level.INFO,k + ")" + pedina);
 				if (eated && p.getI() == i1 && p.getJ() == j1 && p.isEated()) {
 					sp = pedinaList[decodeCol].get(k);
 
@@ -473,7 +476,7 @@ public void onGameEnd() {
 
 				}
 			} else {
-				 BCDraugthsApp.log.info(k + ")sp=null");
+				 BCDraugthsApp.log.log(Level.INFO,k + ")sp=null");
 			}
 			if (sp != null) {
 				break;
@@ -482,7 +485,7 @@ public void onGameEnd() {
 		}
 		// if(sp==null ) System.exit(-1);
 
-		BCDraugthsApp.log.info(" ..The sprite is k=" + k + " ,sprite scelto " + sp + " isEated=" + sp.getBoardPieceLink().isEated());
+		BCDraugthsApp.log.log(Level.INFO," ..The sprite is k=" + k + " ,sprite scelto " + sp + " isEated=" + sp.getBoardPieceLink().isEated());
 		return sp;
 	}
 
@@ -508,33 +511,21 @@ public void onGameEnd() {
 	}
 
 
-	private void drawPiecePlayer(Player player) throws Exception {
+	private void drawPiecePlayer() throws Exception {
 
-		Piece[] list = null;
-		int total=game.getBoard().getBlackPieces().length+ game.getBoard().getWhitePieces().length;
-		if (player.getColor() == Piece.BLACK) {
-			list = game.getBoard().getBlackPieces();
-		} else {
-			list = game.getBoard().getWhitePieces();
-		}
-
-		BCDraugthsApp.log.info("BUILD " + player.getName() + " LEVEL=" + this.level);
-		if(zGroup.getChildren().size()<total) {
-
-
-		for (int i = 0; i < list.length; i++) {
-
-			Piece pedinaChar = list[i];
-			if (pedinaChar != null) {
-
-				SpritePiece pedina = buildPedina(player.getColor(), pedinaChar, level);
-				positionPedina(pedina, pedinaChar);
-				// getChildren().add(pedina);
-				zGroup.getChildren().add(pedina);
-
-			} else
-				add(null, player.getColor());
-		}
+		for (int color = 0; color < 2; color++) {
+			Piece[] list = (color == 0) ? game.getBoard().getBlackPieces() : game.getBoard().getWhitePieces();
+			BCDraugthsApp.log.log(Level.INFO,"BUILD " + (color == 0 ? "BLACK" : "WHITE") + " PIECE POSITION LEVEL=" + this.level);
+			for (int i = 0; i < list.length; i++) {
+				Piece pedinaChar = list[i];
+				if (pedinaChar != null) {
+					SpritePiece pedina = buildPedina(color == 0 ? Piece.BLACK : Piece.WHITE, pedinaChar, level);
+					positionPedina(pedina, pedinaChar);
+					zGroup.getChildren().add(pedina);
+				} else {
+					add(null, color == 0 ? Piece.BLACK : Piece.WHITE);
+				}
+			}
 		}
 	}
 
@@ -546,13 +537,13 @@ public void onGameEnd() {
 		pedina.setK(pedinaChar.getPos());
 		add(pedina, pedinaChar.getColor());
 
-		BCDraugthsApp.log.info("pos:" + pedinaChar.getPos());
-		BCDraugthsApp.log.info("(i,j)=(" + i1 + "," + j1 + ")");
-		BCDraugthsApp.log.info("(x,y)=(" + x + "," + y + ")");
+		BCDraugthsApp.log.log(Level.INFO,"pos:" + pedinaChar.getPos());
+		BCDraugthsApp.log.log(Level.INFO,"(i,j)=(" + i1 + "," + j1 + ")");
+		BCDraugthsApp.log.log(Level.INFO,"(x,y)=(" + x + "," + y + ")");
 		pedina.setX(x);
 		pedina.setY(y);
 		if (pedinaChar.getColor() == Piece.BLACK && pedinaChar.getType() == Piece.DRAUGTH) {
-			BCDraugthsApp.log.info("also scale");
+			BCDraugthsApp.log.log(Level.INFO,"also scale");
 			pedina.setScaleX(0.64);
 			pedina.setScaleY(0.64);
 			pedina.setW((int) (pedina.getW() * 0.64));
@@ -581,7 +572,7 @@ public void onGameEnd() {
 
 			@Override
 			protected void interpolate(double frac) {
-				// BCDraugthsApp.log.info("color="+Color.WHITE.interpolate(Color.BLACK, frac));
+				// BCDraugthsApp.log.log(Level.INFO,"color="+Color.WHITE.interpolate(Color.BLACK, frac));
 				start.setFill(Color.WHITE.interpolate(Color.BLACK, frac));
 			}
 		};
@@ -742,7 +733,7 @@ public void onGameEnd() {
 		int color = p.getBoardPieceLink().getColor();
 		int n = p.getK();
 		replace(n, color, null);
-		BCDraugthsApp.log.info(" remove " + p);
+		BCDraugthsApp.log.log(Level.INFO," remove " + p);
 	}
 
 	@Override
@@ -751,8 +742,7 @@ public void onGameEnd() {
 			//TODO: rivedere con una sola chiamata...
 
             try {
-				drawPiecePlayer(computerPlayer);
-                drawPiecePlayer(mousePlayer);
+				drawPiecePlayer();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -777,13 +767,13 @@ public void onGameEnd() {
 		});
 		scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
 
-			BCDraugthsApp.log.info("Vvalue cambiato: " + newValue);
+			BCDraugthsApp.log.log(Level.INFO,"Vvalue cambiato: " + newValue);
 		});
 
 		scrollPane.hvalueProperty().addListener((observable, oldValue, newValue) -> {
 
 
-			BCDraugthsApp.log.info("Hvalue cambiato: " + newValue);
+			BCDraugthsApp.log.log(Level.INFO,"Hvalue cambiato: " + newValue);
 		});
 
 		root.getChildren().add(scrollPane);
@@ -797,7 +787,11 @@ public void onGameEnd() {
 	}
 
 	public void remove(Object o) {
-		zGroup.getChildren().remove(o);
+		Platform.runLater(()->{
+			zGroup.getChildren().remove(o);
+		});
+
+
 	}
 
 	public void add(Node o) {
@@ -868,9 +862,9 @@ public void onGameEnd() {
 			p = getSpritePiece(m.getI1(), m.getJ1(), m.getP().getColor(), false);
 
 			p.play(m);
-			// game.getBoard().makeMove(m);
-			// turnEnd();
+			 //game.getBoard().makeMove(m);
 		}
+
 
 	}
 
@@ -1140,7 +1134,7 @@ public void onGameEnd() {
 
 	@Override
 	public void renderCommad() {
-		BCDraugthsApp.log.info("draw comand FX");
+		BCDraugthsApp.log.log(Level.INFO,"draw comand FX");
 		Platform.runLater(() -> {
 			mousePlayer.drawMoveChoose();
 

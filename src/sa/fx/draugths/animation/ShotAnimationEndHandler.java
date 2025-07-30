@@ -5,6 +5,8 @@ import javafx.event.EventHandler;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.pieces.SpritePiece;
 
+import java.util.logging.Level;
+
 public class ShotAnimationEndHandler implements  EventHandler<ActionEvent>  {
 	
 	Sprite shot;
@@ -22,7 +24,7 @@ public class ShotAnimationEndHandler implements  EventHandler<ActionEvent>  {
 
 	@Override
 	public void handle(ActionEvent event) {
-		BCDraugthsApp.log.info("shot:"+shot);
+		BCDraugthsApp.log.log(Level.INFO,"shot:"+shot);
 		owner.getFxBoard().remove(shot);
 		
 	}

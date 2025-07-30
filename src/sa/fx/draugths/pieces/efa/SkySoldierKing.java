@@ -17,6 +17,8 @@ import sa.fx.draugths.utility.SequenceSoundEffect;
 import sa.fx.draugths.utility.SoundEffect;
 import sa.gameboard.core.Piece;
 
+import java.util.logging.Level;
+
 public class SkySoldierKing extends SoldierKing {
 
 
@@ -66,19 +68,19 @@ public class SkySoldierKing extends SoldierKing {
     public synchronized void buildKilledSequence(Move m) {
         pltransition = new ParallelTransition(this);
         SimpleFrameAnimation transition = null;
-        BCDraugthsApp.log.info("buildDefaultKillAnimation....11");
+        BCDraugthsApp.log.log(Level.INFO,"buildDefaultKillAnimation....11");
         transition = new SimpleFrameAnimation(killSequenceFrame, this, false, 40);
         transition.setDuration(Duration.seconds(0.5));
-        BCDraugthsApp.log.info("buildDefaultKillAnimation....12--->"+m.toString());
+        BCDraugthsApp.log.log(Level.INFO,"buildDefaultKillAnimation....12--->"+m.toString());
         SpritePiece eated = this;
         transition.setOnFinished(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                BCDraugthsApp.log.info("buildDefaultKillAnimation....13");
+                BCDraugthsApp.log.log(Level.INFO,"buildDefaultKillAnimation....13");
                 if (m.getType() == Move.EAT) {
-                    BCDraugthsApp.log.info("buildDefaultKillAnimation....14");
-                    BCDraugthsApp.log.info("FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: " + eated);
+                    BCDraugthsApp.log.log(Level.INFO,"buildDefaultKillAnimation....14");
+                    BCDraugthsApp.log.log(Level.INFO,"FIRE EventRemoveEatPiece.REMOVE_PIECE_EVENT: " + eated);
                     fireEvent(new EventRemoveEatPiece(eated, eated.getParent(), EventRemoveEatPiece.REMOVE_PIECE_EVENT));
 
 

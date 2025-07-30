@@ -153,7 +153,7 @@ public void saveRecordPlayers(){
     	storeCodedFile(arrayOutputStream,FILE1_REC);
 
 	} catch (Exception e) {
-		BCDraugthsApp.log.info(e.getMessage());
+		BCDraugthsApp.log.log(Level.INFO,e.getMessage());
 	}finally {
 		try {
 			if(arrayOutputStream!=null) arrayOutputStream.close();
@@ -229,7 +229,7 @@ public   List<RecordPlayer> ordredrecordsPlayers() {
                         
                         @Override
                         protected void interpolate(double frac) {
-                            //BCDraugthsApp.log.info("color="+Color.WHITE.interpolate(Color.BLACK, frac));
+                            //BCDraugthsApp.log.log(Level.INFO,"color="+Color.WHITE.interpolate(Color.BLACK, frac));
                         	player.setFill(Color.WHITE.interpolate(Color.BLACK, frac));
                         }
                     };

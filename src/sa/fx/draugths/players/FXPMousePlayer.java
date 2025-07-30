@@ -7,6 +7,7 @@ package sa.fx.draugths.players;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 
 import javafx.application.Platform;
@@ -64,19 +65,29 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
     @Override
     public void deleteMoveChoose() {
-        Platform.runLater(()->{
+
             if (movesMouse != null) {
                 for (int i = 0; i < movesMouse.size(); i++) {
-                    //TODO: internare la funzione remove
-                    this.fxboard.remove(movesMouse.get(i));
-                    // movesMouse.remove(i);
+
+                        this.fxboard.remove(movesMouse.get(i));
                 }
                 movesMouse=new ArrayList();
 
+
             }
-        });
+
+
 
     }
+    public void deleteUnselectedChoose(int n){
+        if (movesMouse != null) {
+            for (int i = 0; i < movesMouse.size(); i++) {
+
+               if(i!=n) this.fxboard.remove(movesMouse.get(i));
+            }
+        }
+    }
+
 
     public FXPMousePlayer(FXBoard board) {
         super(Piece.WHITE);
@@ -101,8 +112,6 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 		String r = null;
 		if (moveChoose == -1) {
 			r = "p" + fxboard.getSelect().getBoardPieceLink().getI() + fxboard.getSelect().getBoardPieceLink().getJ();
-		} else {
-			r = "" + moveChoose;
 		}
         setCp(r);
 
@@ -140,7 +149,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     @Override
     public String drawMoveChoose() {
         final String[] str = {""};
-        Platform.runLater(()->{
+
 
             ComandEvent.ComandState state = comandEventDispatcher.getCurrentEvent().getComandState();
             switch (state) {
@@ -169,7 +178,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
                     BCDraugthsApp.log.log(Level.INFO, str[0]);
                     str[0] = "Unknown state";
             }
-        });
+
         //TODO: mettere uno switchh per renderizzare il comando in modo diverso.....asesonda dell'envento....
 
 
@@ -177,6 +186,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
     }
 
     private String drawChooseMoveFX(String str) {
+        deleteMoveChoose();
         for (int i = 0; i < possibleMove.size(); i++) {
             Move m = possibleMove.get(i);
         	SpritePiece sp= fxboard.getSpritePiece(m.getP().getI(), m.getP().getJ(),m.getP().getColor(),false);
@@ -252,6 +262,7 @@ public class FXPMousePlayer extends HumanPlayer implements EventHandler<MouseEve
 
             }
         }
+
         return str;
     }
 

@@ -70,15 +70,15 @@ public class BCDamaTxt extends Application{
 //        Node n=p.getImg();
        // Point2D po= n1.localToScene(p1.getX(), p1.getY());
         
-       // BCDraugthsApp.log.info("po1  ="+po);
+       // BCDraugthsApp.log.log(Level.INFO,"po1  ="+po);
 //       Bounds b= n.getBoundsInLocal();
 //       Bounds b1=n1.getBoundsInLocal();
        
         Move m=new Move(0, 0,ck2 ,ck, Move.EAT);
         //p1.play(m);
-        //BCDraugthsApp.log.info("--->"+b.contains(200, 0));
-        //BCDraugthsApp.log.info(b+"-test2-->"+b.intersects(b1)+"--->\n"+b1);
-       // BCDraugthsApp.log.info( p1.getLayoutX()+","+p1.getLayoutY()+"--->"+ b.contains(b1)+b1.intersects(b));
+        //BCDraugthsApp.log.log(Level.INFO,"--->"+b.contains(200, 0));
+        //BCDraugthsApp.log.log(Level.INFO,b+"-test2-->"+b.intersects(b1)+"--->\n"+b1);
+       // BCDraugthsApp.log.log(Level.INFO, p1.getLayoutX()+","+p1.getLayoutY()+"--->"+ b.contains(b1)+b1.intersects(b));
         //n.fireEvent(new Event());
         primaryStage.show();
         

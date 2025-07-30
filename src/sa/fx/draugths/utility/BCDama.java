@@ -26,6 +26,8 @@ import javafx.util.Duration;
 import sa.fx.draugths.BCDraugthsApp;
 import sa.fx.draugths.pieces.efa.Soldier;
 
+import java.util.logging.Level;
+
 /**
  *
  * @author  Alessio Sardaro
@@ -42,7 +44,7 @@ public class BCDama extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-            	BCDraugthsApp.log.info("Hello World!");
+            	BCDraugthsApp.log.log(Level.INFO,"Hello World!");
             }//test 2
         });
 

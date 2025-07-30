@@ -3,6 +3,7 @@ package sa.fx.draugths.screen;
 
 
 import java.io.InputStream;
+import java.util.logging.Level;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
@@ -94,7 +95,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
 		drawScoreBar();
 		Image[] empty = new Image[10];
 		Image[] full = new Image[10];
-		BCDraugthsApp.log.info("Level:" + level + " modulo:" + level % FXBoard.MAX_LEVEL);
+		BCDraugthsApp.log.log(Level.INFO,"Level:" + level + " modulo:" + level % FXBoard.MAX_LEVEL);
 
 	if (FXBoard.levelWave(level) == GLevel.LVL1_JUNGLE.n()) {
 			loadTiles("giungla", full);
@@ -257,7 +258,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
                 
                 @Override
                 protected void interpolate(double frac) {
-                    //BCDraugthsApp.log.info("color="+Color.WHITE.interpolate(Color.BLACK, frac));
+                    //BCDraugthsApp.log.log(Level.INFO,"color="+Color.WHITE.interpolate(Color.BLACK, frac));
                        score.setFill(Color.WHITE.interpolate(Color.rgb(0, 204, 102), frac));
                        score.setScaleX(frac);
                        score.setScaleY(frac);
@@ -397,7 +398,10 @@ public class BackGround extends Parent implements ScreenPauseInterface {
         drawBackGround();
        // board.drawBoard();
 		//TODO: rivedere dove metterlo....
-		board.startGame();
+		Platform.runLater(()->{
+			board.startGame();
+		});
+
 
 
 
@@ -407,7 +411,7 @@ public class BackGround extends Parent implements ScreenPauseInterface {
     	
     	if(n%FXBoard.MAX_LEVEL==0) n=java.lang.Math.round(n/FXBoard.MAX_LEVEL);
     	else n=java.lang.Math.round(n/FXBoard.MAX_LEVEL)+1;
-    	BCDraugthsApp.log.info("Wave:"+n);
+    	BCDraugthsApp.log.log(Level.INFO,"Wave:"+n);
 
     	switch (n) {
 		case 1:
