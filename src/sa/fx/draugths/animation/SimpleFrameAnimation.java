@@ -99,7 +99,7 @@ public class SimpleFrameAnimation extends Transition {
 
 		playEffect(seq[seqNUmber].getEffect());
 		if (intervalTemp > this.interval) {
-			sprite.setViewOrder(0);
+			//sprite.setViewOrder(0);
 			before = System.currentTimeMillis();
 			sprite.setFrame(frames[i].getFrameNumber());
 			seqCounter++;

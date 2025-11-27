@@ -159,6 +159,13 @@
                 <gluonfx.target>android</gluonfx.target>
                 <main.class>sa.fx.draugths.BCDraugthsAndroidApp</main.class>
             </properties>
+            <repositories>
+                <repository>
+                    <id>gluon-releases</id>
+                    <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+                    <snapshots><enabled>false</enabled></snapshots>
+                </repository>
+            </repositories>
             <dependencies>
                 <dependency>
                     <groupId>com.gluonhq</groupId>
@@ -261,6 +268,13 @@
                 <gluonfx.target>host</gluonfx.target>
                 <main.class>sa.fx.draugths.BCDraugthsAndroidApp</main.class>
             </properties>
+            <repositories>
+                <repository>
+                    <id>gluon-releases</id>
+                    <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+                    <snapshots><enabled>false</enabled></snapshots>
+                </repository>
+            </repositories>
             <dependencies>
                 <dependency>
                     <groupId>com.gluonhq</groupId>
@@ -402,10 +416,5 @@
 
 
     </profiles>
-    <repositories>
-        <repository>
-            <id>gluon-releases</id>
-            <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
-        </repository>
-    </repositories>
+
 </project>
